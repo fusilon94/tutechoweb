@@ -1,0 +1,318 @@
+::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+      border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(29, 29, 29, 0.3);
+	background-color: rgb(114, 113, 113);
+}
+
+
+/* zoom btns */
+
+.leaflet-bar .leaflet-control-zoom-out {
+      background-position: 2px -24px !important;
+      font-size: 18px !important;
+}
+
+.leaflet-bar .leaflet-control-zoom-in {
+      background-position: 2px -24px !important;
+      font-size: 18px !important;
+}
+
+
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+#fondo
+{width: 100%;
+ position: fixed;
+ z-index: -10;
+ background-size: 100% 100%;
+ background-image: url(objetos/bg_image.jpeg);
+ height: 100vh;}
+
+body
+{width: 100%;
+ min-height: 100%;
+ background-size: 100% 100%;}
+
+#contenedor_total
+{width: 100%; height: calc(100% - 132px); display: flex; flex-direction: column;}
+
+/* ##########    BARRA DE NAVEGACION Y LOGOTYPO ########### */
+
+
+header
+{width: 100%;
+ position: sticky;
+ top: 0;
+ z-index: 20;}
+
+#contenedor_menu_boton {display:none;}
+
+
+header nav
+{width: 100%;
+ background-color:rgba(0,0,0,0.83);
+ box-shadow: 0px 6px 20px #F9F9F9;}
+
+#menu {display: flex;}
+#menu ul.ulmenu
+{width: 100%;
+ display: flex;}    /*  este flex permite la distribution del menu  */
+#menu ul.ulmenu li.limenu
+{margin: 3px auto;
+ display: flex;          /*flex para que el <a> englobe su contenido */
+ border-radius: 6px;
+ border: 2px solid transparent;}
+#menu ul.ulmenu li.limenu.hover_menu:hover {border: 2px solid white;}
+#menu ul.ulmenu li.limenu a
+{display: block;
+ padding: 5px 15px;}
+#menu ul.ulmenu li.limenu a.a_menu img
+{display: block;
+ margin: 0 auto;}
+#menu ul.ulmenu li.limenu a p
+{text-align: center;
+ margin: 5px auto;
+ font-size: 1em;
+ color: white;}
+
+.logo_img {height: 95px;}
+.menu_icons_style {width: 65px;}
+.menu_boton {cursor: pointer;}
+
+/*  ##########    ICON ANUNCIO SLIDER  ###########   */
+
+.flexslider.icon_slider_class
+{width: 100%;
+ height: 65px;
+ margin: 0px auto;
+ display: flex;
+ flex-direction: column;
+ position: relative;}
+
+.slides.icon_slides_class
+{width: 100%;
+ height: 100%;
+ margin: 0px auto;}
+.slides.icon_slides_class li
+{width:100%;}
+.slides.icon_slides_class li img
+{width: 65px;
+ margin: 0px auto;
+ display: flex;}
+
+
+ #icon_slider .flex-control-nav.flex-control-paging       /* Corresponde al contenedor de los puntos de paginacion */
+ {display: none;}
+
+ #icon_slider .flex-direction-nav    /* Botones de navegacion  */
+ {display: none;}
+
+
+/*  ##########    CONTENIDO PRINCIPAL DEFAULT   ###########   */
+main
+{width: 95%;
+ margin: 60px auto 100px auto;
+ background-color: rgba(0,0,0,0.88);
+ position: relative;}
+
+
+/*   ##########   PIE DE PAGINA   ########## */
+
+footer
+{background-color: rgba(0,0,0,0.95);
+ width: 100%;
+ display: flex;
+ z-index: 5;
+ padding-top: 10px;}
+
+.footer_div {margin: 0 auto;}
+
+#footer_logo {margin: auto;}
+.footer_logo_img {height: 110px;}
+
+#footer_list {}
+#footer_list h2 {color: white;}
+#footer_list ul {margin-top: 5px;}
+#footer_list ul li {padding: 7px 10px;}
+#footer_list ul li a {color: white;}
+#footer_list div {display: flex;}
+
+#footer_socialmedia {}
+#footer_socialmedia h2 {color: white;}
+#footer_socialmedia ul li {margin: 5px;}
+#footer_socialmedia ul li a {display: flex; align-items: center; color: white;}
+#footer_socialmedia ul li a p {}
+
+.socialmedia_style {width: 50px; height: 30px;}
+
+.cambiar_pais{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+}
+
+.cambiar_pais img{
+      display: flex;
+      width: 1.6em;
+      margin-left: 0.5em; 
+}
+
+.cambiar_pais p{
+      color: #fff;
+}
+
+/* ####################    ESTILOS RESPONSIVE    ########################### */
+@media screen and (max-width:1150px)
+{
+  main {width: 100%;}
+}
+@media screen and (max-width:800px)
+ {
+       body {padding-top: 98px;}   /* este el el alto del header, asi el menu no se superpone */
+       header {position:static;}
+       #contenedor_menu_boton {display:flex; position: fixed; top: 0; left:0; width: 100%; background-color:rgba(0,0,0,0.9); box-shadow: 0px 2px 20px #F9F9F9; z-index: 20;}
+       #contenedor_menu_boton ul {display: flex; margin: 8px 20px; width: 100%; justify-content: space-between; align-items: center;}
+       #contenedor_menu_boton ul li {border-radius: 6px; border: 2px solid transparent;}
+       #contenedor_menu_boton ul li.hover_menu:hover {border: 2px solid white;}
+       #contenedor_menu_boton ul li a {display: block;}
+       #contenedor_menu_boton ul li a img {display: block; height: 50px;}
+       #contenedor_menu_boton ul li a img.menu_logo {height: 78px;}
+       #contenedor_menu_boton ul li a p {display: block; font-size: 1em; text-align: center; margin: 0 auto; color: white;}
+       #contenedor_menu_boton ul li span.menu_boton img {display: block; height: 50px;}
+       #contenedor_menu_boton ul li span.menu_boton p {display: block; font-size: 1em; text-align: center; margin: 0 auto; color: white;}
+
+       header nav
+          {width: 40%;
+           height: calc(100% - 97px);
+           left: -100%;
+           margin: 0;
+           position: fixed;
+           overflow-y: scroll;
+           z-index: 1000;
+           top:98px;
+           background-color:rgba(0,0,0,0.9)}
+       #menu {display:flex;}
+       #menu ul.ulmenu {margin: 10px; display: inline;}
+       #menu ul.ulmenu li.limenu {border-bottom: 1px solid rgba(250, 250, 250, 0.5); padding-bottom: 5px; border-radius: 0; display: block;}
+       #menu ul.ulmenu li.limenu.logo_element {display: none;}
+       #menu ul.ulmenu li.limenu.hover_menu:hover {background-color: rgba(0, 0, 0, 0.9); border:none; border-bottom: 1px solid white;}
+       #menu ul.ulmenu li.limenu a {display:flex; height: 80px; align-items: center; padding: 0;}
+       #menu ul.ulmenu li.limenu a.a_menu img {height: 100%; display: inline; margin: 0;}
+       #menu ul.ulmenu li.limenu a p {font-size: 1.3em; margin: 0px 0px 0px 20px;}
+       .menu_icons_style {width: 90px;}
+
+       .flexslider.icon_slider_class
+       {width: 90px;
+        height: 100%;
+        margin: 0;
+        display: inline;
+        position: relative;}
+
+       .slides.icon_slides_class
+       {width: 100%; height: 100%;}
+       .slides.icon_slides_class li
+       {width:100%; height: 100%;}
+       .slides.icon_slides_class li img
+       {width: 90px;
+        height: 100%;
+        margin: 0;
+        display: flex;}
+}
+
+ @media screen and (max-width:760px) {
+       header nav {width: 48%;}
+}
+
+@media screen and (max-width:700px) {
+      header nav {width: 48%;}
+
+      .footer_logo_img {height: 95px;}
+}
+
+@media screen and (max-width:650px) {
+      header nav {width: 51%;}
+
+      .footer_logo_img {height: 85px;}
+}
+
+@media screen and (max-width:610px) {
+      header nav {width: 54%;}
+      .footer_logo_img {height: 80px;}
+}
+
+@media screen and (max-width:580px) {
+      header nav {width: 57%;}
+}
+
+@media screen and (max-width:550px) {
+      header nav {width: 61%;}
+
+      .footer_logo_img {display: none;}
+}
+
+@media screen and (max-width:520px) {
+      header nav {width: 65%;}
+}
+
+@media screen and (max-width:500px) {
+      header nav {width: 69%;}
+}
+
+@media screen and (max-width:470px) {
+      header nav {width: 73%;}
+
+      #footer_list h2 {text-indent: 30%;}
+
+}
+
+@media screen and (max-width:440px) {
+      header nav {width: 77%;}
+      #contenedor_total{height: calc(100% - 128px)}
+
+      #footer_list h2 {text-indent: 25%; font-size: 1em;}
+      #footer_list ul li a {font-size: 0.8em;}
+      #footer_socialmedia ul li a {font-size: 0.8em;}
+      #footer_socialmedia h2 {font-size: 1em; text-indent: 1em;}
+
+}
+
+@media screen and (max-width:410px) {
+      header nav {width: 81%;}
+}
+
+@media screen and (max-width:390px) {
+      header nav {width: 85%;}
+}
+
+@media screen and (max-width:380px) {
+      header nav {width: 100%;}
+}

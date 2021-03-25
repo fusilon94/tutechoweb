@@ -1,0 +1,652 @@
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+ul.articulo
+{position: relative;
+ padding: 0 0.5em;
+ margin: 0 0 2.4em 0;
+ max-width: 33.33%;
+ box-sizing:border-box;
+ /* ##### .row ##### */
+ display:-webkit-box; display:-ms-flexbox; display:flex;
+ -webkit-box-flex:0;-ms-flex:0 1 auto;
+ flex:0 1 33.33%;
+ -webkit-box-orient:horizontal;
+ -webkit-box-direction:normal;
+ -ms-flex-direction:row;flex-direction:row;
+ -ms-flex-wrap:wrap;flex-wrap:wrap;
+ cursor: pointer;}
+
+.overlay_thumbnail_inmueble{
+  position: absolute;
+  width: calc(100% - 1em);
+  height: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+ul.articulo li.parte_imagen {height: 100%; flex-basis: 66.66666667%; max-width: 66.66666667%;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen span.favoritos_star_icon {
+  display: block;
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  z-index: 2;
+  text-align: center;
+  color: rgba(50,50,50,0.4);
+  font-size: 2.2em;
+  cursor: pointer;
+}
+ul.articulo li.parte_imagen ul.ul_parte_imagen span.favoritos_star_icon:hover {
+  color: rgba(50,50,50,0.6);
+}
+ul.articulo li.parte_imagen ul.ul_parte_imagen span.favoritos_star_icon.rotate_star{
+  color: #e39012;
+  -webkit-animation: rotate-center 0.6s ease-in-out both;
+  animation: rotate-center 0.6s ease-in-out both;
+}
+ul.articulo li.parte_imagen ul.ul_parte_imagen span.favoritos_star_icon.rotate_star:active{
+  color: rgba(50,50,50,0.6);
+}
+ul.articulo li.parte_imagen ul.ul_parte_imagen
+{display:-webkit-box; display:-ms-flexbox;display:flex;
+-webkit-box-flex:0;-ms-flex:0 1 auto;
+flex:0 1 auto;
+-webkit-box-orient:horizontal;
+-webkit-box-direction:normal;
+-ms-flex-direction:row;flex-direction:row;
+-ms-flex-wrap:wrap;flex-wrap:wrap;
+position: relative;
+align-content: center;
+justify-content: center;
+height: 100%;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.imagen_bien {padding: 0; flex-basis: 100%; max-width: 100%; height: 100%;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.imagen_bien img {width: 100%; height: 100%;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien
+{position: absolute; bottom: -1.6em; width: 100%; max-width: 100%;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul
+{display:-webkit-box; display:-ms-flexbox;display:flex;
+-webkit-box-flex:0;-ms-flex:0 1 100%;
+flex:0 1 100%;
+-webkit-box-orient:horizontal;
+-webkit-box-direction:normal;
+-ms-flex-direction:row; flex-direction:row;
+-ms-flex-wrap:wrap;flex-wrap:wrap;
+justify-content: space-around;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li {width: 33.33333334%; justify-content: center; align-items: center; display: flex; position: relative;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li img {width: 40%;}
+ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {display: block; position: absolute; bottom: -0.2em; right: 0.5em; font-size: 1.8em; background-color: rgba(0,0,0,0.6)}
+
+ul.articulo li.parte_info {flex-basis: 33.33333334%; max-width: 33.33333334%;}
+ul.articulo li.parte_info ul.ul_parte_info
+{height: 100%;
+ background-color: rgba(255,255,255,0.1);
+ display:-webkit-box; display:-ms-flexbox;display:flex;
+ -webkit-box-flex:0;-ms-flex:0 1 auto;
+ flex:0 1 auto;
+ -webkit-box-orient:horizontal;
+ -webkit-box-direction:normal;
+ -ms-flex-direction:row;flex-direction:row;
+ -ms-flex-wrap:wrap;flex-wrap:wrap;}
+
+ul.articulo:hover li.parte_info ul.ul_parte_info {background-color: rgba(255,255,255,0.15);}
+
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien
+{padding: 0;
+ height: 75%;
+ display: flex;
+ flex-basis: 100%;
+ max-width: 100%}
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul
+{margin: 0;
+ display:-webkit-box; display:-ms-flexbox;display:flex;
+ -webkit-box-flex:0;-ms-flex:0 1 100%;
+ flex:0 1 100%;
+ -webkit-box-orient:horizontal;
+ -webkit-box-direction:normal;
+ -ms-flex-direction:row;flex-direction:row;
+ -ms-flex-wrap:wrap;flex-wrap:wrap;}
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li
+{text-align: center;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+ flex-basis: 100%;
+ max-width: 100%;}
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {color: white; font-size: 1.6em; font-weight: bold;}
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+  color: white;
+  font-size: 1.6em;
+}
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 2em;}
+ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon
+{font-size: 2em;
+ flex-basis: 100%;
+ max-width: 100%;}
+ul.articulo li.parte_info ul.ul_parte_info li.precio_bien
+{padding: 0;
+ justify-content: center;
+ display: flex;
+ align-items: center;
+ height: 25%;
+ flex-basis: 100%;
+ max-width: 100%;}
+
+ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {text-align: center; font-size: 2.5em; color: white; border-radius: 0.2em; padding: 0.2em; border: 3px solid gold;}
+
+ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+  font-size: 2.3em;
+};
+
+ul.articulo li.etiqueta_exclusivo
+{position: absolute;
+ left: 0em; top: 0.8em;
+ z-index: 2;
+ background-color: rgb(234,12,77);
+ color: white;
+ width: 30%; max-width: 30%;
+ text-transform: uppercase;
+ display: block;
+ font-weight: 700;
+ line-height: 1;
+ padding: 0.6em 0;
+ text-align: center;}
+
+ul.articulo li.etiqueta_exclusivo p {font-size: 1.8em;}
+
+ul.articulo li.etiqueta_exclusivo::after
+{position: absolute;
+ left: 0em;
+ bottom: -0.6em;
+ content: '';
+ width: 0;
+ height: 0;
+ border-style: solid;
+ border-width: 0 0.6em 0.6em 0;
+ border-color: transparent rgb(234,12,77) transparent transparent;}
+
+ ul.articulo li.etiqueta_pre_venta
+ {position: absolute;
+  left: 0em; top: 0.8em;
+  z-index: 2;
+  background-color: #e39012;
+  color: white;
+  width: 30%; max-width: 30%;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.6em 0;
+  text-align: center;}
+
+ ul.articulo li.etiqueta_pre_venta p {font-size: 1.8em;}
+
+ ul.articulo li.etiqueta_pre_venta::after
+ {position: absolute;
+  left: 0em;
+  bottom: -0.6em;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0.6em 0.6em 0;
+  border-color: transparent #e39012 transparent transparent;}
+
+/* ##########################  RESPONSIVE ################################ */
+
+@media screen and (max-width:2300px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1.5em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1.5em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 2.2em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 2em;
+  };
+  
+}
+
+@media screen and (max-width:2200px){
+ ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.8em}
+ ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+  font-size: 1.6em;
+};
+ ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.6em; right: 0.4em;}
+ ul.articulo li.etiqueta_exclusivo p {font-size: 1.5em;}
+ ul.articulo li.etiqueta_pre_venta p {font-size: 1.5em;}
+}
+
+@media screen and (max-width:2000px){
+ ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.7em;}
+ ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.7em;}
+ ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.7em}
+ ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+  font-size: 1.5em;
+};
+ ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.5em;}
+}
+
+@media screen and (max-width:1858px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1.4em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1.4em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.4em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.4em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.4em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.6em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.4em;
+  };
+  ul.articulo li.etiqueta_exclusivo p {font-size: 1.4em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 1.4em;}
+}
+
+@media screen and (max-width:1700px){
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {bottom: -1.3em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1.3em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1.3em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.3em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 1.3em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 1.3em;}
+}
+
+@media screen and (max-width:1600px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.3em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.3em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.5em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.3em;
+  };
+  ul.articulo li.etiqueta_exclusivo p {font-size: 1.2em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 1.2em;}
+}
+
+@media screen and (max-width:1550px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1.1em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li img {width: 45%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {right: 0.2em;}
+}
+
+@media screen and (max-width:1450px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.4em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.2em;
+  };
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.2em;}
+  ul.articulo li.etiqueta_exclusivo {top: 0.5em;}
+  ul.articulo li.etiqueta_pre_venta {top: 0.5em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 1em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 1em;}
+}
+
+@media screen and (max-width:1370px){
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.3em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.1em;
+  };
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.1em;}
+}
+
+@media screen and (max-width:1300px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.2em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1em;
+  };
+  ul.articulo li.etiqueta_exclusivo {width: 29%; padding: 0.5em 0;}
+  ul.articulo li.etiqueta_pre_venta {width: 29%; padding: 0.5em 0;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.9em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.9em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {bottom: -1em;}
+}
+
+@media screen and (max-width:1250px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.1em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.9em;
+  };
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1em;}
+  ul.articulo li.etiqueta_exclusivo {top: 0.4em;}
+  ul.articulo li.etiqueta_pre_venta {top: 0.4em;}
+}
+
+@media screen and (max-width:1170px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1em; border: 3px solid gold;}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.8em;
+  };
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 0.9em;}
+}
+
+@media screen and (max-width:1150px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.1em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.9em;
+  };
+}
+
+@media screen and (max-width:1080px){
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.8em;
+  };
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.8em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.8em;}
+}
+
+@media screen and (max-width:1024px){
+  ul.articulo {flex-basis: 50%; max-width: 50%;}
+
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.4em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.4em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.5em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.3em;
+  };
+  ul.articulo li.etiqueta_exclusivo {top:0.6em;}
+  ul.articulo li.etiqueta_pre_venta {top:0.6em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 1em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 1em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {bottom: -1.3em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1.1em;}
+}
+
+@media screen and (max-width:970px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.3em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.3em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.4em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.2em;
+  };
+}
+
+@media screen and (max-width:900px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.3em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1.1em;
+  };
+}
+
+@media screen and (max-width:850px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.2em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1em;
+  };
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.9em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.9em;}
+}
+
+@media screen and (max-width:800px){
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {bottom: -1em;}
+}
+
+@media screen and (max-width:760px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1.1em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.9em;
+  };
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 0.9em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.8em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.8em;}
+}
+
+@media screen and (max-width:730px){
+  ul.articulo li.parte_imagen {flex-basis: 100%; max-width: 100%; height: 66.66666667%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {height: 100%; bottom: 0; right: 0; flex-basis: 20%; max-width: 20%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul {flex-direction: column; align-items: center; height: 100%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li {width: 100%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li img {width: 60%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 0.9em; font-weight: bold;}
+
+  ul.articulo li.parte_info {flex-basis: 100%; max-width: 100%; height: 33.33333334%;}
+  ul.articulo li.parte_info ul.ul_parte_info {padding-top: 0.5em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien {height: 100%; flex-basis: 60%; max-width: 60%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li
+  {text-align: center;
+   flex-basis: 66.66666667%;
+   max-width: 66.66666667%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon
+  {font-size: 1.2em;
+   flex-basis: 33.33333334%;
+   max-width: 33.33333334%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien {height: 100%; flex-basis: 40%; max-width: 40%; font-size: 1.2em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 1em;
+  };
+  ul.articulo li.etiqueta_exclusivo {width: 40%; max-width: 40%;}
+  ul.articulo li.etiqueta_pre_venta {width: 40%; max-width: 40%;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 1em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 1em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen span.favoritos_star_icon {
+    top: auto;
+    right: auto;
+    bottom: 0.2em;
+    left: 0.2em;
+  }
+
+}
+
+@media screen and (max-width:700px){
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.8em;
+  };
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 0.9em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.7em;
+  };
+}
+
+@media screen and (max-width:660px){
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 0.8em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.9em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.9em;}
+}
+
+@media screen and (max-width:620px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 0.8em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.6em;
+  };
+}
+
+@media screen and (max-width:600px){
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {flex-basis: 25%; max-width: 23%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 0.9em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.7em;
+  };
+}
+
+@media screen and (max-width:570px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 0.8em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.6em;
+  };
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.8em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.8em;}
+}
+
+@media screen and (max-width:530px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.7em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.7em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 0.7em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.5em;
+  };
+  ul.articulo li.etiqueta_exclusivo {padding: 0.4em 0; width: 35%; max-width: 35%;}
+  ul.articulo li.etiqueta_pre_venta {padding: 0.4em 0; width: 35%; max-width: 35%;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.7em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.7em;}
+}
+
+@media screen and (max-width:470px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.6em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.6em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 0.7em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien p {font-size: 0.6em}
+  ul.articulo li.parte_info ul.ul_parte_info li.tag_precio_small p{
+    font-size: 0.4em;
+  };
+}
+
+@media screen and (max-width:440px){
+  ul.articulo {flex-basis: 100%; max-width: 100%;}
+  ul.articulo li.parte_imagen {height: 100%; flex-basis: 66.66666667%; max-width: 66.66666667%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien {height: auto; bottom: -0.7em; right: none; width: 100%; max-width: 100%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul {flex-direction: row; align-items: stretch; height: auto;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li {width: 33.33333334%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li img {width: 40%;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 1em; font-weight: normal; right: 0.5em; bottom: -0.4em;;}
+
+  ul.articulo li.parte_info {height: 100%; flex-basis: 33.33333334%; max-width: 33.33333334%;}
+  ul.articulo li.parte_info ul.ul_parte_info {padding-top: 0;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien {height: 75%; flex-basis: 100%; max-width: 100%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li
+  {text-align:center;
+   flex-basis: 100%;
+   max-width: 100%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1.1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon
+  {font-size: 1.1em;
+   flex-basis: 100%;
+   max-width: 100%;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien {height: 25%; flex-basis: 100%; max-width: 100%; font-size: 2em;}
+  ul.articulo li.etiqueta_exclusivo {width: 29%; max-width: 29%;}
+  ul.articulo li.etiqueta_pre_venta {width: 29%; max-width: 29%;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.8em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.8em;}
+  ul.articulo li.parte_imagen ul.ul_parte_imagen span.favoritos_star_icon {
+    top: 0.2em;
+    right: 0.2em;
+    bottom: auto;
+    left: auto;
+  }
+}
+
+@media screen and (max-width:380px){
+  ul.articulo li.parte_imagen ul.ul_parte_imagen li.iconos_bien ul li p {font-size: 0.9em}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_ciudad_zona {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_tipo_local {
+    font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 1em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien {font-size: 1.9em;}
+
+}
+
+@media screen and (max-width:360px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 0.9em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien {font-size: 1.8em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.7em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.7em;}
+}
+
+@media screen and (max-width:340px){
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien {font-size: 1.7em;}
+  ul.articulo li.etiqueta_exclusivo p {font-size: 0.6em;}
+  ul.articulo li.etiqueta_pre_venta p {font-size: 0.6em;}
+}
+
+@media screen and (max-width:330px){
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li div.div_info_superficie {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.li_info_bien ul li.li_info_icon {font-size: 0.8em;}
+  ul.articulo li.parte_info ul.ul_parte_info li.precio_bien {font-size: 1.6em;}
+
+}

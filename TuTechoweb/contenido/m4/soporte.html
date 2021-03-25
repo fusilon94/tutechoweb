@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#ffffff">
+      <title>Soporte legal y de administración</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <meta name="Description" content="">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+      <link rel="stylesheet" type="text/css" href="../../estilos.css">
+      <link rel="stylesheet" type="text/css" href="../../css/flexslider.css">
+      <link rel="stylesheet" href="../../css/font_awesome.css">
+
+      <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
+      <script src="../../js/js.cookie.js"></script>
+<script src="../../js/menu.js"></script>
+      <script src="../../js/slider.js"></script>
+      <script src="../../js/jquery.flexslider.js"></script>
+	  <script>
+		  jQuery(function($){
+
+		  	$(".etiqueta_maya").on("click", function(){
+				  alert("hiciste click");
+			  });
+
+		  });
+	  </script>
+ </head>
+ <body>
+ <div id="fondo"></div>
+      <div id="contenedor_total">
+<!-- BARRA DE NAVEGACION -->
+      	  <header>
+      	    <div id="contenedor_menu_boton"> <!-- Boton de menu visible en pantallas mobiles -->
+                <ul>
+                  <li><a href="../../index.php"><img src="../../objetos/logotipo2.svg" alt="Tu Techo.com" class="menu_logo"></a></li>
+                  <li class="hover_menu"><span class="menu_boton"><img src="../../objetos/menu_boton_icon.svg" alt="Menu" class="menu_icons_style"><p>Menu</p></span></li>
+                </ul>
+            </div>
+      	    <nav class="scroll">
+      	     <div id="menu">
+                <ul class="ulmenu">
+                  <li class="logo_element limenu"><a href="../../index.php" class="a_menu"><img src="../../objetos/logotipo2.svg" alt="Tu Techo.com" class="logo_img"></a></li>
+                  <li class="hover_menu limenu"><a href="../m1/anunciar.html" class="a_menu"><img src="../../objetos/anuncio_icon.svg" alt="Anunciar" class="menu_icons_style"><p>Anunciar un bien</p></a></li>
+      	          <li class="hover_menu limenu"><a href="../m2/venta_inmueble.php" class="a_menu"><img src="../../objetos/buy_icon.svg" alt="Comprar" class="menu_icons_style"><p>Comprar</p></a></li>
+      	          <li class="hover_menu limenu"><a href="../m2/renta_inmueble.php" class="a_menu"><img src="../../objetos/alquilar_icon.svg" alt="Alquilar" class="menu_icons_style"><p>Alquilar</p></a></li>
+      	          <li class="hover_menu limenu"><a href="soporte.html" class="a_menu"><img src="../../objetos/soporte_legal_icon.svg" alt="Soporte Legal" class="menu_icons_style"><p>Soporte legal</p></a></li>
+      	          <li class="hover_menu limenu"><a href="../m5/agencias.php" class="a_menu"><img src="../../objetos/agencias.svg" alt="Contacto" class="menu_icons_style"><p>Agencias</p></a></li>
+                </ul>
+             </div>
+           </nav>
+          </header>
+
+<!-- CONTENIDO PRINCIPAL -->
+          <main>
+               <p class="etiqueta_maya">Hola me llamo Maya</p>
+          </main>
+</div>
+<!--PIE DE PAGINA -->
+      	  <footer>
+      	  	 <div id="footer_logo" class="footer_div">
+      	  		 <a href="../../index.php">
+      	  			 <img src="../../objetos/logotipo.svg" alt="TuTecho.com" class="footer_logo_img">
+      	  		 </a>
+      	  	 </div>
+      	  	 <div id="footer_list" class="footer_div">
+      	  		 <h2><p>Acerca de</p></h2>
+      	  		  <div>
+      	  		       <ul>
+      	  			       <li><a href="../pie/quienes_somos.html">Quiénes somos</a></li>
+      	  			       <li><a href="../m5/contacto.html">Contacto</a></li>
+      	  			       <li><a href="#">Agencias</a></li>
+      	  		       </ul>
+      	  	 	       <ul>
+      	  	 		       <li><a href="../pie/empleo.html">Empleo</a></li>
+                       <li><a href="../pie/politica.html">Política de privacidad</a></li>
+      	  			       <li class="cambiar_pais"><p><?php echo ucfirst($_COOKIE['tutechopais']); ?></p><img src="../../objetos/flag_<?php echo $_COOKIE['tutechopais']; ?>.svg" alt="<?php echo $_COOKIE['tutechopais']; ?>"></li>
+      	  	 	       </ul>
+      	  	 	  </div>
+      	  	 </div>
+      	  	 <div id="footer_socialmedia" class="footer_div">
+      	  		 <h2><p>Síguenos en</p></h2>
+      	  		 <ul>
+      	  			 <li><a href="#"><img src="../../objetos/facebookicon.svg" alt="Facebook" class="socialmedia_style"><p>Facebook</p></a></li>
+      	  			 <li><a href="#"><img src="../../objetos/twittericon.svg" alt="Twitter" class="socialmedia_style"><p>Twitter</p></a></li>
+      	  			 <li><a href="#"><img src="../../objetos/youtubeicon.svg" alt="Youtube" class="socialmedia_style"><p>Youtube</p></a></li>
+      	  		 </ul>
+      	  	 </div>
+      	  </footer>
+ </body>
+</html>

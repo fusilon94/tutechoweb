@@ -1,0 +1,1661 @@
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/* ######################## ESTILOS TABS ############################# */
+
+.tabs_container{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  top: -2.1em;
+}
+
+.elemento_tab{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(41, 41, 41);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: rgb(102, 102, 102);
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 0.3em 1.5em;
+  cursor: pointer;
+}
+
+.elemento_tab:hover{
+  background-color: #0984CC;
+}
+
+.elemento_tab.active{
+  background-color: #0984CC;
+}
+
+
+
+/* #################################  VIEWER CODE ############################################################ */
+canvas { display: block; }
+
+body.ficha_active::-webkit-scrollbar {
+  display: none;
+}
+
+.ficha_bien_container{
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.ficha_bien_container.active{
+  display: flex;
+}
+
+.ficha_bien_container.active.viewer_opened::-webkit-scrollbar {
+  display: none;
+}
+
+.overlay_media_viewer{
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+}
+
+.overlay_media_viewer.active{
+  visibility: visible;
+}
+
+.media_viewer_container{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  background-color: rgb(150, 150, 150);
+}
+
+.media_viewer_cerrar{
+  display: flex;
+  position: absolute;
+  right: calc(50vw - 1em);
+  top: 1em;
+  z-index: 2;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  transition: .4s;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.media_viewer_cerrar:hover i {
+  color: #fff;
+}
+
+.media_viewer_cerrar i{
+  font-size: 2.5em;
+  color: rgba(57, 56, 56, 0.8);
+}
+
+.tutorial_360viewer{
+  position: absolute;
+  cursor: default;
+  display: flex;
+  z-index: 2;
+  font-weight: bold;
+}
+
+.tutorial_360viewer i{
+  font-size: 2em;
+  color: #0984CC;
+}
+
+.tutorial_360viewer p{
+  font-size: 1em;
+  color: #fff;
+}
+
+.overlay_tutorial_vr{
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.tutorial_vr_popup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18em;
+  height: 20em;
+  position: absolute;
+  top: calc(50% - 10em);
+  left: calc(50% - 9em);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+}
+
+.tutorial_logo_container img{
+  width: 10em;
+}
+
+.tutorial_vr_popup h3{
+  font-size: 1.15em;
+  text-align: center;
+  width: 100%;
+  margin: 0.3em 0em;;
+}
+
+.tutorial_vr_popup h4{
+  font-size: 1.1em;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 0.3em;
+}
+
+.tutorial_dot_explain{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 0.5em;
+}
+
+.tutorial_dot_explain img{
+  width: 2em;
+  margin-right: 0.3em;
+  margin-left: -0.3em;
+}
+
+.tutorial_dot_explain p{
+  font-size: 0.95em;
+  text-align: justify;
+}
+
+.btn_entrar_tour_vr{
+  display: flex;
+  padding: 0.4em 2em;
+  border-radius: 5px;
+  margin: auto;
+  background-color: rgb(75, 75, 75);
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn_entrar_tour_vr:hover{
+  background-color: #007fff;
+}
+
+.btn_entrar_tour_vr:active{
+  font-size: 0.98em;
+}
+
+.tutorial_cerrar{
+  top: 4em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: calc(50vw - 1.85em);
+}
+
+.tutorial_cerrar p{
+  margin-top: 0.5em;
+}
+
+.tutorial_galeria_pc{
+  top: calc(50% - 0.8em);
+  right: 4em;
+  justify-content: center;
+  align-items: center;
+}
+
+.tutorial_galeria_pc p{
+  margin-right: 1em;
+}
+
+.tutorial_galeria_mobile{
+  visibility: hidden;
+  right: calc(50% - 2.15em);
+  bottom: 4em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tutorial_galeria_mobile p{
+  margin-bottom: 0.5em;
+}
+
+
+.viewer_tooltip{
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1em;
+  z-index: 2;
+  color: rgba(0, 0, 0, 0.78);
+  opacity: 0;
+  transform: translate3d(-50%, -100%, 0);
+  transition: opacity .3s, transform .3s;
+}
+
+.viewer_tooltip.active{
+  opacity: 1;
+  transform: translate3d(-50%, calc(-100% - 25px), 0);
+}
+
+.viewer_tooltip_content{
+  display: flex;
+  max-width: 380px;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1em;
+  z-index: 2;
+  color: rgba(0, 0, 0, 0.78);
+  opacity: 0;
+  transform: translate3d(-50%, -100%, 0);
+  transition: opacity .3s, transform .3s;
+}
+
+.viewer_tooltip_content.active{
+  opacity: 1;
+  transform: translate3d(-50%, calc(-100% - 25px), 0);
+}
+
+.tooltip_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2em;
+  color: rgb(58, 59, 59);
+  position: absolute;
+  top: -0.2em;
+  right: -0.2em;
+  cursor: pointer;
+}
+
+.tooltip_cerrar:hover{
+  color: #007fff;
+}
+
+.tooltip_cerrar:active{
+  font-size: 2.1em;
+}
+
+.imagen_opcional_container{
+  display: flex;
+}
+
+.imagen_opcional_container img{
+  border: 1px solid rgb(71, 71, 71);
+  width: 9em;
+  height: 8em;
+  display: block;
+  margin-right: 1em;
+}
+
+.tooltip_text{
+  display: flex;
+  min-width: 10em;
+  min-height: 4em;
+  justify-content: center;
+  align-items: center;
+  overflow-y: overlay;
+  font-size: 0.9em;
+  word-break: break-word;
+  color: rgb(43, 43, 43);
+  cursor: default;
+}
+
+.control_right_container{
+  width: 25em;
+  height: 100vh;
+  right: -25em;
+  margin: 0;
+  position: fixed;
+  z-index: 3;
+  border: 1px solid black;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  transition: .4s;
+  background-color: #fff;
+}
+
+.control_right_container.visible{
+  right: 0;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  transition: .4s;
+}
+
+.btn_abrir_right{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 3em 0 0 3em;
+  width: 3em;
+  height: 6em;
+  left: -3em;
+  top: calc(50% - 3em);
+  cursor: pointer;
+  background-color: rgb(231, 228, 228);
+  opacity: 0.9;
+}
+
+.btn_abrir_right:hover{
+  color: #fff;
+  background-color: #007fff;
+  opacity: 1;
+}
+
+.btn_abrir_right img{
+  position: absolute;
+}
+
+.control_right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(31, 31, 31);
+}
+
+.encabezado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 6%;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  cursor: default;
+}
+
+.fotos_gran_container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 90%;
+  box-sizing: border-box;
+  padding-top: 1em;
+  overflow-y: overlay;
+  background-color: rgb(231, 228, 228);
+}
+
+.foto_mini_container{
+  width: 100%;
+  height: 9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.foto_mini_container:hover{
+  background-color: rgb(209, 203, 203);
+}
+
+.foto_mini_container.selected{
+  background-color: rgb(209, 203, 203);
+}
+
+.foto_prev_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.foto_prev_container img{
+  display: flex;
+  border: 1px solid black;
+  box-sizing: border-box;
+  width: 14em;
+  height: 9em;
+}
+
+.info_foto_prev_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - 16em);
+  height: 100%;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  position: relative;
+}
+
+.info_foto_prev_container.hovered{
+  background-color: rgb(212, 206, 206);
+}
+
+.foto_prev_titulo{
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+/* ################################### FICHA BIEN ############################################################# */
+
+.popup_ficha_bien {
+   display: flex;
+   flex-direction: column;
+	 border-radius: 0px;
+	 width: 95%;
+   min-height: 100vh;
+	 position: absolute;
+   top: 3em;
+   background: rgb(0, 0, 0);
+}
+
+.ficha_nav{
+  display: flex;
+  flex-direction: column;
+  background: #1f1c1c;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  padding: 0.8em 1em 0.2em 1em;
+  z-index: 4;
+}
+
+.ficha_nav_info{
+  display: flex;
+  flex-direction: column;
+}
+
+.ficha_nav_info_titles{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ficha_nav_info_titles .title_tag_container .title_tag_group{
+  display: flex;
+  align-items: center;
+}
+
+.ficha_nav_info_titles .title_tag_container{
+  display: flex;
+  flex-direction: column;
+}
+
+.ficha_nav_info_titles span.tipo_bien_tag{
+  display: flex;
+  margin-right: 0.4em;
+  color: white;
+  justify-content: center;
+  font-size: 1.6em;
+  align-self: flex-end;
+  cursor: default;
+}
+
+.ficha_nav_info_titles span.fa-home::before{
+  color: gold;
+  font-size: 2em;
+  margin-right: 3px;
+  margin-left: 0.5em;
+}
+
+.ficha_nav_info_titles span.fa-building::before{
+  color: gold;
+  font-size: 1.75em;
+  margin-right: 5px;
+  margin-left: 0.5em;
+}
+
+.ficha_nav_info_titles span.fa-shopping-bag::before{
+  color: gold;
+  font-size: 1.75em;
+  margin-right: 6px;
+  margin-left: 0.5em;
+}
+
+.ficha_nav_info_titles span.fa-tree::before{
+  color: gold;
+  font-size: 1.75em;
+  margin-right: 4px;
+  margin-left: 0.5em;
+}
+
+.ficha_nav_info_titles span.estado_tag{
+  display: flex;
+  padding: 4px 6px;
+  border: 2px solid white;
+  background-color: #0984CC;
+  color: white;
+  border-radius: 4px;
+  justify-content: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  width: max-content;
+  cursor: default;
+}
+
+.actions_widescreendisplay{
+  display: flex;
+}
+
+.actions_mobilescreendisplay{
+  display: none;
+}
+
+.ficha_nav_info_direccion{
+  margin-top: 0.2em;
+  margin-left: 1.3em;
+  font-size: 0.9em;
+  cursor: default;
+}
+
+.ficha_nav_info_referencia{
+  display: block;
+  margin-right: 0.5em;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  min-width: 200px;
+  cursor: default;
+}
+
+.ficha_nav_actions{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0em 1em;
+}
+
+.actions_type2{
+  display: flex;
+  position: absolute;
+  right: 1em;
+  margin-top: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(88, 85, 88);
+  padding: 0.4em 0em;
+}
+
+.actions_type2 .actions_type2_icon{
+  cursor: pointer;
+  font-size: 1.6em;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 1em;
+  width: 50%;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+}
+
+.actions_type2 .actions_type2_icon.fa-times:hover{
+  font-weight: bold;
+  font-size: 1.7em;
+}
+
+.ficha_contrato{
+  display: none;
+  flex-direction: column;
+  padding-bottom: 2em;
+}
+
+.contrato_no_disponible{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: #fff;
+  padding: 3em 1em 0em 1em;
+}
+
+.ficha_contrato.active{
+  display: flex;
+}
+
+.ficha_precios{
+  display: none;
+  flex-direction: column;
+  padding-bottom: 2em;
+}
+
+.ficha_precios.active{
+  display: flex;
+}
+
+.ficha_contenido{
+  display: none;
+  flex-direction: column;
+  padding-bottom: 2em;
+}
+
+.ficha_contenido.active{
+  display: flex;
+}
+
+.ficha_contenido_360_actions{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em 0em;
+}
+
+.open_viewer_btn{
+  display: flex;
+  align-self: center;
+  width: 100%;
+  max-width: 870px;
+  background-size: cover;
+  height: 140px;
+  margin: 0.5em 0em;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.open_viewer_btn.fotos_360_bnt {
+  background-image: url(../objetos/banner_360_viewer.svg);
+}
+
+.open_viewer_btn.visita_virtual_btn{
+  background-image: url(../objetos/banner_visita_virtual_viewer.svg);
+}
+
+.open_viewer_btn .overlay_open_viewer_bnt{
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+  border-radius: 10px;
+}
+
+.open_viewer_btn:hover .overlay_open_viewer_bnt{
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+  display: flex;
+  position: absolute;
+  width: 10em;
+  top: calc(50% - 2.5em);
+  left: 8.5%;
+}
+
+.open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt img{
+  display: flex;
+  position: absolute;
+  width: 6.6em;
+  top: 15%;
+  left: 13%;
+}
+
+.open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+  display: flex;
+  position: absolute;
+  top: 8%;
+  right: 1.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360::after{
+  content: "ENCUENTRA TU NUEVO HOGAR\a SIN RIESGO - SIN BARBIJO";
+  white-space: pre;
+}
+
+.open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+  display: flex;
+  position: absolute;
+  top: 8%;
+  right: 2.8em;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+  display: flex;
+  position: absolute;
+  top: 53%;
+  right: 4.8em;
+  background: #0984CC;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+}
+
+.open_viewer_btn:hover .overlay_open_viewer_bnt .btn_entrar{
+  font-size: 1.3em;
+}
+
+.banner_experiencia_vr{
+  display: none;
+  align-self: center;
+  width: 100%;
+  max-width: 900px;
+  background-image: url(../objetos/banner_experiencia_VR.jpg);
+  background-size: 100% 100%;
+  height: 9.4em;
+  margin: 0.5em 0em;
+  cursor: pointer;
+}
+
+.banner_experiencia_vr span.banner_vr_tag{
+  display: flex;
+  position: relative;
+  margin: 1em 8em auto auto;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 1.2em;
+  padding: 0.5em 2em;
+  border: 4px solid white;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+}
+
+.banner_experiencia_vr span.overlay_banner_hover{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+}
+
+.banner_experiencia_vr:hover span.overlay_banner_hover{
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.banner_experiencia_vr:hover span.banner_vr_tag{
+  background: rgba(0, 0, 0, 0.9);
+  font-size: 1.3em;
+}
+
+.ficha_contenido_resumen{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: auto;
+  padding: 0.5em 2em 0em 2em;
+  background: #4a4848;
+}
+
+.ficha_contenido_resumen.terreno{
+  padding: 0.8em 2em;
+}
+
+.resumen_parte1{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0.3em;
+}
+
+.resumen_parte1 .resumen_precio_tag{
+  display: block;
+  font-size: 1.9em;
+  font-weight: bold;
+  color: #fff;
+  border-top: 2px solid gold;
+  border-bottom: 2px solid gold;
+  cursor: default;
+}
+
+.resumen_parte1 .resumen_pre_venta_tag{
+  display: block;
+  padding: 0.3em 0.5em;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(227, 144, 18, 1);
+  margin-left: 1em;
+  cursor: default;
+}
+
+.resumen_parte1 .resumen_exclusivo_tag{
+  display: block;
+  padding: 0.3em 0.5em;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(234, 12, 77, 1);
+  margin-left: 1em;
+  cursor: default;
+}
+
+.resumen_parte1 .resumen_superficie_tag_terreno{
+  display: block;
+  border: 4px dashed #51d0f1;
+  font-size: 1.3em;
+  color: white;
+  padding: 0.4em 0.5em;
+  cursor: default;
+    margin-left: 20%;
+}
+
+.resumen_parte2{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+}
+
+.resumen_parte2 .resumen_superficie_tag{
+  display: block;
+  border: 4px dashed #51d0f1;
+  font-size: 1.3em;
+  color: white;
+  padding: 0.4em 0.5em;
+  cursor: default;
+}
+
+.resumen_parte2 .resumen_superficie_tag sup{
+  font-size: 0.6em;
+}
+
+.resumen_parte2 .resumen_dormitorios_tag{
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+  color: white;
+  padding: 0.3em 0.4em;
+  cursor: default;
+}
+
+.resumen_parte2 .resumen_dormitorios_tag img{
+  width: 2.4em;
+  margin-right: 0.3em;
+}
+
+.resumen_parte2 .resumen_parqueos_tag{
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+  color: white;
+  padding: 0.3em 0.4em;
+  cursor: default;
+}
+
+.resumen_parte2 .resumen_parqueos_tag img{
+  width: 2.4em;
+  margin-right: 0.3em;
+}
+
+
+.ficha_contenido_descripcion{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding: 1em 2em;
+  background: #fff;
+  margin: auto;
+}
+
+.ficha_contenido_descripcion h3{
+  color: #4a4848;
+  font-size: 1.6em;
+  margin-bottom: 1em;
+  cursor: default;
+}
+
+.ficha_contenido_descripcion p{
+  color: #4a4848;
+  max-height: 13em;
+  overflow-y: overlay;
+  font-size: 1.1em;
+  word-break: break-word;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-style: normal;
+  text-align: justify;
+  white-space: pre-line;
+  cursor: default;
+  padding-right: 2em;
+}
+
+
+.ficha_contenido_caracteristicas{
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1em 2em 1em;
+  width: 95%;
+  background: #fff;
+  margin: auto;
+}
+
+.ficha_contenido_caracteristicas h3{
+  color: #4a4848;
+  font-size: 1.7em;
+  margin-bottom: 1em;
+  cursor: default;
+  margin-left: 0.5em;
+}
+
+
+.ficha_contenido_caracteristicas h4{
+  color: #00080b;
+  font-size: 1.3em;
+  margin-bottom: 0.3em;
+  margin-top: 0.3em;
+  position: relative;
+  width: 100%;
+  display: flex;
+  cursor: default;
+}
+
+.ficha_contenido_caracteristicas h4 p{
+  display: inline-block;
+  background: #fff;
+  z-index: 1;
+  padding-right: 0.5em;
+}
+
+.ficha_contenido_caracteristicas h4 span{
+  border-bottom: 1px solid #c8c8c8;
+  width: 100%;
+  position: absolute;
+  bottom: 4px;
+}
+
+.ficha_contenido_caracteristicas h5{
+ font-size: 1.2em;
+ margin-bottom: 0.3em;
+ margin-top: 0.3em;
+ color: #2e2c2c;
+}
+
+.caracteristicas_columns{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.caracteristicas_column1{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 0em 1.5em;
+}
+
+.caracteristicas_column2{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 0em 1.5em;
+}
+
+.caracteristicas_row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  line-height: 25px;
+}
+
+.caracteristicas_row label{
+  color: #333;
+  cursor: default;
+}
+
+.caracteristicas_row span{
+  color: #2b2b2b;
+  font-weight: 700;
+  cursor: default;
+  text-align: end;
+  max-width: 8.5em;
+}
+
+.caracteristicas_row span sup{
+  position: absolute;
+}
+
+.mapa_ficha_contenedor{
+  display: flex;
+  width: 95%;
+  margin: auto;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.banner_ver_mapa{
+  display: flex;
+  align-self: center;
+  width: 100%;
+  max-width: 800px;
+  background-image: url(../objetos/banner_mapa.jpg);
+  background-size: 100% 100%;
+  height: 140px;
+  margin: 1.5em 0em;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.banner_ver_mapa span.banner_ver_mapa_tag{
+  display: flex;
+  position: relative;
+  margin: auto;
+  background: white;
+  color: #0984CC;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.5em 2em;
+  border: 4px solid #0984CC;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+}
+
+.banner_ver_mapa span.overlay_banner_ver_mapa_hover{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition:all 0.3s ease;
+  border-radius: 23px;
+}
+
+.banner_ver_mapa:hover span.overlay_banner_ver_mapa_hover{
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.banner_ver_mapa:hover span.banner_ver_mapa_tag{
+  font-size: 1.3em;
+}
+
+.ficha_contenido_info_zona{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding: 2em 1em 2em 1em;
+  background: #fff;
+  margin: auto;
+}
+
+.ficha_contenido_info_zona h3{
+  color: #4a4848;
+  font-size: 1.7em;
+  cursor: default;
+}
+
+.ficha_contenido_info_zona h4{
+  color: #4a4848;
+  font-size: 1em;
+  margin-bottom: 1em;
+  margin-top: 0.3em;
+  position: relative;
+  width: 100%;
+  display: flex;
+  cursor: default;
+}
+
+.elemento_vecindario_container{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.elemento_vecindario{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 1.5em 1em;
+  width: 19em;
+}
+
+.elemento_vecindario img{
+  margin-right: 0.5em;
+  width: 30%;
+}
+
+.elemento_vecindario .elemento_vecindario_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.elemento_vecindario .elemento_vecindario_info label{
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #4a4848;
+  width: 100%;
+  text-align: center;
+}
+
+.elemento_vecindario .elemento_vecindario_info span{
+  font-weight: bold;
+  color: #fff;
+  background: #0984CC;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  cursor: default;
+}
+
+.ficha_contenido_info_extra{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding: 2em 1em 2em 1em;
+  background: #fff;
+  margin: auto;
+}
+
+.extras_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 2px solid rgb(57, 57, 57);
+  width: 100%;
+  margin-top: 0.5em;
+  border-radius: 8px;
+  padding: 0.8em 0;
+}
+
+.extras_container h2 {
+    width: 100%;
+    color: #454545;
+    text-align: center;
+    margin-bottom: 0.3em;
+    margin-top: 0.5em;
+}
+
+.elemento_info_adicional_barrio {
+    width: 100%;
+    padding: 0.3em 0.5em 0.3em 0.8em;
+    font-size: 0.9em;
+}
+
+.elemento_info_adicional {
+    width: 20em;
+    padding: 0.3em 0.5em 0.3em 0.8em;
+    font-size: 0.9em;
+}
+
+.extras_container .info_label {
+    color: #454545;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+
+
+
+/* ############################# RESPONSIVE ############################## */
+
+@media screen and (max-width:845px){
+  .popup_ficha_bien{
+    top: 2.1em;
+    width: 100%;
+  }
+  .ficha_contenido_resumen{width: 100%;}
+  .ficha_contenido_descripcion{width: 100%;}
+  .ficha_contenido_caracteristicas{width: 100%;}
+  .mapa_ficha_contenedor{width: 100%;}
+  .ficha_contenido_info_zona{width: 100%;}
+  .ficha_contenido_info_extra{width: 100%;}
+}
+
+@media screen and (max-width:810px){
+  .actions_type2 .actions_type2_icon.puerta_exit{border-left: none}
+  .ficha_sponsors{padding: 1em 0.5em;}
+  .caracteristicas_column1 .popup_sponsor{left: 5em;}
+  .caracteristicas_column2 .popup_sponsor{right: 5em;}
+  .caracteristicas_row span{font-size: 0.8em;}
+  .caracteristicas_row label{font-size: 0.8em;}
+  .ficha_contenido_caracteristicas h4{font-size: 1.1em;}
+  .ficha_contenido_caracteristicas h5{font-size: 1em;}
+  .ficha_contenido_descripcion p{font-size: 0.9em;}
+  .ficha_contenido_descripcion h3{font-size: 1.4em;}
+  .ficha_contenido_caracteristicas h3{font-size: 1.4em;}
+  .ficha_contenido_info_zona h3{font-size: 1.4em;}
+  .caracteristicas_column1 {padding: 0em 1.5em 0em 0.5em;}
+  .caracteristicas_column2{padding: 0em 1.5em 0em 0.5em;}
+
+  .open_viewer_btn{
+    height: 120px;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    width: 8.5em;
+    top: calc(50% - 2.1em);
+    left: 10%;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt img{
+    width: 5.5em;
+    top: calc(17%);
+    left: 13%;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 1.1em;
+    right: 2em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    font-size: 1em;
+    right: 5.5em;
+  }
+  .open_viewer_btn:hover .overlay_open_viewer_bnt .btn_entrar{
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (max-width:760px){
+  .actions_type2{margin-top: 0.8em;}
+  .resumen_parte2 .resumen_superficie_tag{font-size: 1.2em;}
+  .resumen_parte2 .resumen_dormitorios_tag{font-size: 1.3em;}
+  .resumen_parte2 .resumen_parqueos_tag{font-size: 1.3em}
+  .resumen_parte1 .resumen_precio_tag{font-size: 1.7em;}
+  .resumen_parte1 .resumen_exclusivo_tag{font-size: 1.2em;}
+  .resumen_parte1 .resumen_pre_venta_tag{font-size: 1.2em;}
+  .ficha_contenido_resumen{padding: 0.5em 1em 0em 1em;}
+}
+
+@media screen and (max-width:700px){
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    width: 7.5em;
+    top: calc(50% - 1.9em);
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 1em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 1.08em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    padding: 0.5em 1.5em;
+    right: 5em;
+  }
+}
+
+@media screen and (max-width:680px){
+  .title_tag_container .ficha_nav_info_direccion{display: none;}
+  .ficha_nav_info_direccion{font-size: 1em;}
+  .ficha_nav {padding: 0.8em 1em 0.1em 1em;}
+  .actions_mobilescreendisplay{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.1em;}
+  .ficha_nav_info_titles .ficha_nav_info_referencia{display: none;}
+  .ficha_nav_info_referencia{
+    display: flex;
+    align-self: flex-end;
+    font-size: 1em;
+    font-weight: bold;
+    min-width: 0px;
+    margin-right: 1.3em;}
+  .resumen_parte1 .resumen_superficie_tag_terreno{margin-left: 10%;}
+}
+
+@media screen and (max-width:650px){
+  .caracteristicas_row span{font-size: 0.7em;}
+  .caracteristicas_row label{font-size: 0.7em;}
+  .ficha_contenido_caracteristicas h4{font-size: 1em;}
+  .ficha_contenido_caracteristicas{padding: 1em 1em 2em 1em;}
+  .ficha_contenido_caracteristicas h5{font-size: 0.9em;}
+  .ficha_contenido_descripcion {padding: 1em 1em;}
+  .ficha_contenido_descripcion p{font-size: 0.8em;}
+  .ficha_contenido_caracteristicas h3{margin-left: 0em; font-size: 1.3}
+  .ficha_contenido_descripcion h3{font-size: 1.3em;}
+  .ficha_contenido_info_zona h3{font-size: 1.3em;}
+  .caracteristicas_column1 {padding: 0em 1.5em 0em 0em;}
+  .caracteristicas_column2{padding: 0em 1.5em 0em 0em;}
+
+@media screen and (max-width:630px){
+  .caracteristicas_column1 .popup_sponsor{left: 3em;}
+  .caracteristicas_column2 .popup_sponsor{right: 3em;}
+  .resumen_parte2 .resumen_superficie_tag{font-size: 1em;}
+  .resumen_parte2 .resumen_dormitorios_tag{font-size: 1.1em;}
+  .resumen_parte2 .resumen_parqueos_tag{font-size: 1.1em}
+  .resumen_parte1 .resumen_precio_tag{font-size: 1.5em;}
+  .resumen_parte1 .resumen_exclusivo_tag{font-size: 1em;}
+  .resumen_parte1 .resumen_pre_venta_tag{font-size: 1em;}
+  .resumen_parte1 .resumen_superficie_tag_terreno{
+    border: 3px dashed #51d0f1;
+    font-size: 1.1em;
+  }
+  .open_viewer_btn{
+    height: 110px;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    width: 6.5em;
+    top: calc(50% - 1.6em);
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt img{
+    top: calc(12%);
+    left: 12%;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 0.95em;
+    right: 1.8em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 2em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    font-size: 0.95em;
+    right: 4.4em;
+  }
+  .open_viewer_btn:hover .overlay_open_viewer_bnt .btn_entrar{
+    font-size: 1.05em;
+  }
+}
+
+@media screen and (max-width:600px){
+  .open_viewer_btn.fotos_360_bnt{
+    margin: 1.5em 0em 0.5em 0em;
+  }
+  .open_viewer_btn.visita_virtual_btn{
+    margin: 1.5em 0em 0.5em 0em;
+  }
+}
+
+@media screen and (max-width:580px){
+    .caracteristicas_column1{
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+    .caracteristicas_column2{
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  .elemento_sponsor label{font-size: 1.2em;}
+  .popup_ficha_bien{
+    width: 100%;
+    top: 2.1em;}
+  .caracteristicas_row span{font-size: 1em;}
+  .caracteristicas_row label{font-size: 1em;}
+  .ficha_contenido_caracteristicas h4{font-size: 1.2em;}
+  .ficha_contenido_caracteristicas{padding: 1em;}
+  .ficha_contenido_caracteristicas h5{font-size: 1.2em;}
+  .ficha_contenido_descripcion p{font-size: 1em;}
+  .ficha_contenido_resumen{padding: 0.3em 0.5em;}
+
+  .open_viewer_btn{
+    height: 90px;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 0.75em;
+    font-weight: 800;
+    right: 1.8em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 0.95em;
+    right: 2.2em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    font-size: 0.75em;
+    font-weight: 800;
+    right: 5.6em;
+  }
+  .open_viewer_btn:hover .overlay_open_viewer_bnt .btn_entrar{
+    font-size: 0.85em;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    width: 6em;
+    top: calc(50% - 1.45em);
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt img{
+    width: 4.1em;
+    top: calc(15%);
+    left: 13%;
+  }
+}
+
+@media screen and (max-width:530px){
+
+  .ficha_nav_info_titles span.estado_tag{
+    font-size: 0.9em;
+    padding: 2px 4px;}
+  .ficha_nav_info_titles span.tipo_bien_tag{font-size: 1.3em;}
+  .ficha_nav_info_titles span.fa-home::before{font-size: 1.8em;}
+  .ficha_nav_info_direccion{font-size: 0.8em;}
+  .ficha_nav_info_referencia{font-size: 0.8em;}
+
+  .attributions_mapa_popup_sponsor{
+    bottom: -1.4em;
+    left: 0em;
+  }
+  .resumen_parte1 .resumen_superficie_tag_terreno{margin-left: 5%;}
+}
+
+@media screen and (max-width:500px){
+
+  .caracteristicas_column1{
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+  .caracteristicas_column2{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .control_right_container{
+    width: 100%;
+    height: 75vh;
+    top: 100%;
+    right: 0;
+    border: unset;
+  }
+
+  .control_right_container.visible{
+    top: 25%;
+    right: 0;
+  }
+
+  .btn_abrir_right{
+    border-radius: 3em 3em 0 0;
+    width: 6em;
+    height: 3em;
+    left: calc(50% - 3em);
+    top: -3em;
+  }
+  .btn_abrir_right img{
+    width: 3em;
+  }
+
+  .fotos_gran_container{
+    height: 100%;
+  }
+
+  .tutorial_galeria_pc{
+    visibility: hidden;
+  }
+
+  .tutorial_galeria_mobile{
+    visibility: unset;
+  }
+
+  .resumen_parte1 .resumen_superficie_tag_terreno{
+    border: 2px dashed #51d0f1;
+    font-size: 1em;
+    margin-left: 1em;
+  }
+  .ficha_contenido_resumen.terreno{
+    padding: 0.8em 1em 0.8em 1em;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    width: 5.3em;
+    top: calc(50% - 1.4em);
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    padding: 0.5em 1em;
+    right: 4.5em;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 0.85em;
+    right: 3em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 1.4em;
+    font-size: 0.9em;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360::after{
+    content: "NO TE PIERDAS \a NINGUN DETALLE";
+  }
+}
+
+@media screen and (max-width:450px){
+  .ficha_nav {padding: 0.8em 0.3em 0.1em 0.3em;}
+  .caracteristicas_row span{font-size: 0.8em; max-width: unset;}
+  .caracteristicas_row label{font-size: 0.8em;}
+  .ficha_contenido_caracteristicas h4{font-size: 1.1em;}
+  .ficha_contenido_caracteristicas{padding: 1em 0.5em 1em 0.5em;}
+  .ficha_contenido_caracteristicas h5{font-size: 1em;}
+  .ficha_contenido_descripcion p{font-size: 0.9em;}
+  .resumen_parte2 .resumen_superficie_tag{font-size: 0.8em; border: 3px dashed #51d0f1;}
+  .resumen_parte2 .resumen_dormitorios_tag{font-size: 0.9em;}
+  .resumen_parte2 .resumen_parqueos_tag{font-size: 0.9em}
+  .resumen_parte1 .resumen_precio_tag{font-size: 1.3em;}
+  .resumen_parte1 .resumen_exclusivo_tag{font-size: 0.9em;}
+  .resumen_parte1 .resumen_pre_venta_tag{font-size: 0.9em;}
+  .resumen_parte1 .resumen_superficie_tag_terreno{
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    left: 8%;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt img{
+    left: 10%;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 2em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 1.2em;
+    font-size: 0.85em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    right: 3em;
+  }
+}
+
+@media screen and (max-width:400px){
+  .ficha_contenido_descripcion p{font-size: 0.8em;}
+  .ficha_contenido_resumen.terreno{
+    padding: 0.8em 0.5em 0.8em 0.5em;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    left: 6.5%;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt img{
+    left: 8.5%;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    font-size: 0.8em;
+    right: 1.5em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 0.9em;
+    font-size: 0.8em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    right: 2em;
+  }
+}
+
+@media screen and (max-width:380px){
+  .resumen_parte1 .resumen_precio_tag{
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (max-width:370px){
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt img{
+    left: 5.5%;
+  }
+  .open_viewer_btn.fotos_360_bnt .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 1em;
+  }
+  .open_viewer_btn.visita_virtual_btn .overlay_open_viewer_bnt .titulo_banner_360{
+    right: 0.5em;
+    font-size: 0.78em;
+  }
+  .open_viewer_btn .overlay_open_viewer_bnt .btn_entrar{
+    right: 1.4em;
+  }
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#0071BC;}
+	.st3{fill:#F2F2F2;}
+	.st4{fill:#E6E6E6;}
+	.st5{fill:#F8F100;}
+	.st6{fill:#8CC63F;}
+	.st7{fill:#B3B3B3;}
+</style>
+<g id="Capa_2" class="st0">
+	<rect class="st1" width="80" height="80"/>
+</g>
+<g id="Capa_3">
+</g>
+<g id="Capa_4">
+	<g>
+		<path class="st2" d="M80,15v16H0V15c0-3.6,2.9-6.5,6.5-6.5h67C77.1,8.5,80,11.4,80,15z"/>
+	</g>
+	<g>
+		<path class="st3" d="M73.5,12.5c1.4,0,2.5,1.1,2.5,2.5v58.5c0,1.4-1.1,2.5-2.5,2.5h-67C5.1,76,4,74.9,4,73.5V15
+			c0-1.4,1.1-2.5,2.5-2.5H73.5 M73.5,8.5h-67C2.9,8.5,0,11.4,0,15v58.5C0,77.1,2.9,80,6.5,80h67c3.6,0,6.5-2.9,6.5-6.5V15
+			C80,11.4,77.1,8.5,73.5,8.5L73.5,8.5z"/>
+	</g>
+	<g>
+		<rect x="13" y="36" class="st4" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="13" y="60" class="st5" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="13" y="48" class="st4" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="27" y="36" class="st5" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="27" y="60" class="st4" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="27" y="48" class="st4" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="42" y="36" class="st4" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="42" y="60" class="st4" width="11" height="9"/>
+	</g>
+	<g>
+		<rect x="42" y="48" class="st5" width="11" height="9"/>
+	</g>
+	<g>
+		<g>
+			<g>
+				<rect x="56" y="36" class="st6" width="11" height="9"/>
+			</g>
+			<g>
+				<rect x="56" y="60" class="st6" width="11" height="9"/>
+			</g>
+			<g>
+				<rect x="56" y="48" class="st6" width="11" height="9"/>
+			</g>
+		</g>
+	</g>
+	<path class="st7" d="M23.3,24h-1.6c-2,0-3.7-1.7-3.7-3.7V3.7c0-2,1.7-3.7,3.7-3.7h1.6c2,0,3.7,1.7,3.7,3.7v16.6
+		C27,22.3,25.3,24,23.3,24z"/>
+	<path class="st7" d="M58.2,24h-1.4c-2.1,0-3.8-1.7-3.8-3.8V3.8C53,1.7,54.7,0,56.8,0h1.4C60.3,0,62,1.7,62,3.8v16.4
+		C62,22.3,60.3,24,58.2,24z"/>
+</g>
+</svg>

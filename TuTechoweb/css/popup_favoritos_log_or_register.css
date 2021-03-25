@@ -1,0 +1,445 @@
+
+/* ############ ESTILOS DEL POPUP SIGN-UP o LOG-IN ############# */
+
+.overlay_popup_enter_favoritos{
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.overlay_popup_enter_favoritos.active{
+  display: flex;
+}
+
+.popup_favoritos_cerrar_btn {
+  position: absolute;
+  top: 0.2em;
+  right: 0.4em;
+  font-size: 2em;
+  display: block;
+  color: #fff;
+  -webkit-transition:.4s;
+  -moz-transition:.4s;
+    transition:.4s;
+  z-index: 1;
+  -webkit-transform:translateY(0px);
+     transform:translateY(0px);
+}
+
+.popup_favoritos_cerrar_btn i{
+  cursor: pointer;
+}
+
+.popup_favoritos_cerrar_btn i:hover {
+  -webkit-transition:.4s;
+  -moz-transition:.4s;
+    transition:.4s;
+  -webkit-transform:translateY(-0.2em);
+  -moz-transform:translateY(-0.2em);
+  transform:translateY(-0.2em);
+}
+
+.popup_favoritos {
+	 background-color: #222;
+	 border-radius: 15px;
+	 height: 34em;
+	 width: 22em;
+   max-width: 100vw;
+   max-height: 100vh;
+	 position: relative;
+	 overflow: hidden;
+}
+ .popup_favoritos::after {
+	 content: '';
+	 opacity: 0.8;
+	 position: absolute;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 background-repeat: no-repeat;
+	 background-position: left bottom;
+	 background-size: 100% 100%;
+	 background-image: url(../objetos/popup_favoritos_enter_fondo.jpg);
+}
+
+ .popup_favoritos .signup {
+	 position: absolute;
+	 top: 45%;
+	 left: 50%;
+	 -webkit-transform: translate(-50%, -50%);
+   -moz-transform: translate(-50%, -50%);
+	 width: 90%;
+	 z-index: 5;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .signup.slide-up {
+	 top: 5%;
+	 -webkit-transform: translate(-50%, 0%);
+	 -webkit-transition: all 0.3s ease;
+   -moz-transform: translate(-50%, 0%);
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .signup.slide-up .form-holder, .popup_favoritos .signup.slide-up .submit-btn {
+	 opacity: 0;
+	 visibility: hidden;
+}
+ .popup_favoritos .signup.slide-up .form-title {
+	 font-size: 1.3em;
+	 cursor: pointer;
+}
+ .popup_favoritos .signup.slide-up .form-title span {
+	 margin-right: 5px;
+	 opacity: 1;
+	 visibility: visible;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+   display: inline;
+}
+ .popup_favoritos .signup .form-title {
+	 color: #fff;
+	 font-size: 1.7em;
+	 text-align: center;
+}
+ .popup_favoritos .signup .form-title span {
+	 color: rgba(255, 255, 255, 0.9);
+	 opacity: 0;
+	 visibility: hidden;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+   display: none;
+}
+ .popup_favoritos .signup .form-holder {
+	 border-radius: 6px;
+	 background-color: #fff;
+	 overflow: hidden;
+   padding-bottom: 1em;
+	 margin-top: 2em;
+	 opacity: 0.94;
+	 visibility: visible;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .signup .form-holder .input {
+	 border: 0;
+	 outline: none;
+	 box-shadow: none;
+	 display: block;
+   width: 90%;
+	 height: 3.8em;
+	 padding: 1.8em 1em 0em 1em;
+	 border-bottom: 2px solid #eee;
+	 font-size: 1em;
+   margin: 0 auto;
+   -webkit-transition:.4s ease all;
+   -moz-transition:.4s ease all;
+   transition: .4s ease all;
+}
+
+ .popup_favoritos .signup .form-holder .input::placeholder {
+	 color: rgba(0, 0, 0, 0.5);
+   -webkit-transform:translateY(0px);
+   -moz-transform:translateY(0px);
+      transform:translateY(0px);
+    -webkit-transition:.4s;
+    -moz-transition:.4s;
+      transition:.4s;
+}
+
+.popup_favoritos .signup .form-holder .input:hover {
+  color:#009688;
+  outline:none;
+  border-bottom:2px solid #009688;
+}
+.popup_favoritos .signup .form-holder .input:focus {
+  color:#009688;
+  outline:none;
+  border-bottom:2px solid #009688;
+}
+.popup_favoritos .signup .form-holder .input:active:focus {
+  color:#009688;
+  outline:none;
+  border-bottom:2px solid #009688;
+}
+
+.popup_favoritos .signup .form-holder .input:hover::placeholder {
+  color:#009688;
+  position:relative;
+  -webkit-transform:translateY(-1.3em);
+  -moz-transform:translateY(-1.3em);
+  transform:translateY(-1.3em);
+}
+.popup_favoritos .signup .form-holder .input:focus::placeholder {
+  color:#009688;
+  position:relative;
+  -webkit-transform:translateY(-1.3em);
+  -moz-transform:translateY(-1.3em);
+  transform:translateY(-1.3em);
+}
+.popup_favoritos .signup .form-holder .input:active:focus::placeholder {
+  color:#009688;
+  position:relative;
+  -webkit-transform:translateY(-1.3em);
+  -moz-transform:translateY(-1.3em);
+  transform:translateY(-1.3em);
+}
+
+ .popup_favoritos .signup .submit-btn {
+	 background-color: rgba(0, 0, 0, 0.4);
+	 color: rgba(256, 256, 256, 0.7);
+	 border: 0;
+	 border-radius: 15px;
+	 display: block;
+	 margin: 1em auto 10px auto;
+	 padding: 1em 2.8em;
+	 width: 100%;
+	 font-size: 1em;
+	 font-weight: bold;
+	 cursor: pointer;
+	 opacity: 1;
+	 visibility: visible;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .signup .submit-btn:hover {
+	 transition: all 0.3s ease;
+	 background-color: rgba(0, 0, 0, 0.8);
+   color: rgba(256, 256, 256, 1);
+}
+ .popup_favoritos .login {
+	 position: absolute;
+	 top: 20%;
+	 left: 0;
+	 right: 0;
+	 bottom: 0;
+	 background-color: #fff;
+	 z-index: 5;
+	 -webkit-transition: all 0.3s ease;
+}
+ .popup_favoritos .login::before {
+	 content: '';
+	 position: absolute;
+	 left: 50%;
+	 top: -20px;
+	 -webkit-transform: translate(-50%, 0);
+   -moz-transform: translate(-50%, 0);
+	 background-color: #fff;
+	 width: 200%;
+	 height: 15.6em;
+	 border-radius: 50%;
+	 z-index: 4;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login .center {
+	 position: absolute;
+	 top: calc(50% - 15%);
+	 left: 50%;
+	 -webkit-transform: translate(-50%, -50%);
+   -moz-transform: translate(-50%, -50%);
+	 width: 70%;
+	 z-index: 5;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login .center .form-title {
+	 color: #000;
+	 font-size: 1.7em;
+	 text-align: center;
+}
+ .popup_favoritos .login .center .form-title span {
+	 color: rgba(0, 0, 0, 0.7);
+	 opacity: 0;
+	 visibility: hidden;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+   display: none;
+}
+ .popup_favoritos .login .center .form-holder {
+	 border-radius: 6px;
+	 background-color: #fff;
+	 overflow: hidden;
+	 margin-top: 1em;
+	 opacity: 1;
+	 visibility: visible;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login .center .form-holder .input {
+	 border: 0;
+	 outline: none;
+	 box-shadow: none;
+	 display: block;
+	 height: 3.8em;
+	 padding: 1.8em 1em 0em 1em;;
+	 border-bottom: 1px solid #eee;
+	 width: 100%;
+	 font-size: 1em;
+   -webkit-transition:.5s ease all;
+   -moz-transition:.5s ease all;
+   transition: .5s ease all;
+}
+
+ .popup_favoritos .login .center .form-holder .input::placeholder {
+   color: rgba(0, 0, 0, 0.4);
+    -webkit-transform:translateY(0px);
+    -moz-transform:translateY(0px);
+       transform:translateY(0px);
+     -webkit-transition:.5s;
+     -moz-transition:.5s;
+       transition:.5s;
+}
+
+.popup_favoritos .login .center .form-holder .input:hover {
+  color:#ff5722;
+  outline:none;
+  border-bottom:1px solid #ff5722;
+}
+
+.popup_favoritos .login .center .form-holder .input:focus {
+  color:#ff5722;
+  outline:none;
+  border-bottom:1px solid #ff5722;
+}
+
+.popup_favoritos .login .center .form-holder .input:active:focus {
+  color:#ff5722;
+  outline:none;
+  border-bottom:1px solid #ff5722;
+}
+
+.popup_favoritos .login .center .form-holder .input:hover::placeholder {
+  color:#ff5722;
+  position:relative;
+  -webkit-transform:translateY(-1.3em);
+  -moz-transform:translateY(-1.3em);
+  transform:translateY(-1.3em);
+}
+
+.popup_favoritos .login .center .form-holder .input:focus::placeholder {
+  color:#ff5722;
+  position:relative;
+  -webkit-transform:translateY(-1.3em);
+  -moz-transform:translateY(-1.3em);
+  transform:translateY(-1.3em);
+}
+
+.popup_favoritos .login .center .form-holder .input:active:focus::placeholder {
+  color:#ff5722;
+  position:relative;
+  -webkit-transform:translateY(-1.3em);
+  -moz-transform:translateY(-1.3em);
+  transform:translateY(-1.3em);
+}
+
+ .popup_favoritos .login .center .submit-btn {
+	 background-color: rgba(107, 146, 164, 0.8);
+	 color: rgba(256, 256, 256, 0.7);
+	 border: 0;
+	 border-radius: 15px;
+	 display: block;
+	 margin: 1em auto 10px auto;
+	 padding: 15px 45px;
+	 width: 100%;
+	 font-size: 13px;
+	 font-weight: bold;
+	 cursor: pointer;
+	 opacity: 1;
+	 visibility: visible;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login .center .submit-btn:hover {
+	 transition: all 0.3s ease;
+	 background-color: rgba(107, 146, 164, 1);
+   color: rgba(256, 256, 256, 1);
+}
+ .popup_favoritos .login.slide-up {
+	 top: 90%;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login.slide-up .center {
+	 top: 10%;
+	 -webkit-transform: translate(-50%, 0%);
+	 -webkit-transition: all 0.3s ease;
+   -moz-transform: translate(-50%, 0%);
+	 -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login.slide-up .form-holder, .popup_favoritos .login.slide-up .submit-btn {
+	 opacity: 0;
+	 visibility: hidden;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login.slide-up .form-title {
+	 font-size: 1.3em;
+	 margin: 0;
+	 padding: 0;
+	 cursor: pointer;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+}
+ .popup_favoritos .login.slide-up .form-title span {
+	 margin-right: 5px;
+	 opacity: 1;
+	 visibility: visible;
+	 -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+   display: inline;
+}
+
+
+
+.log_with_facebook_bnt{
+  background-color: rgba(79, 111, 180, 0.9);
+  color: rgba(256, 256, 256, 0.9);
+  border: 0;
+  border-radius: 15px;
+  display: block;
+  margin: 10px auto;
+  padding: 15px 45px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+}
+
+.log_with_facebook_bnt:hover {
+  transition: all 0.3s ease;
+  color: rgba(256, 256, 256, 1);
+  background-color: rgba(79, 111, 180, 1);
+}
+
+.spacer1_popup_button{
+  display: block;
+  margin: 0px auto;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.spacer2_popup_button{
+  display: block;
+  margin: 0px auto;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}

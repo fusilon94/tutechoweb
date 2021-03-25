@@ -1,0 +1,654 @@
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+body
+{width: 100%;
+ min-height: 100%;
+ background-size: 100% 100%;}
+
+ #contenedor_total
+ {width: 100vw; height: 100vh; display: flex; flex-direction: column;}
+
+ header
+ {width: 100%;
+  top: 0;
+  z-index: 20;}
+
+header nav{
+  background-color: rgba(23, 22, 22, 0.97);
+  width: 100%;
+  box-shadow: 0px 6px 20px #F9F9F9;
+}
+
+#contenedor_menu_boton {display:none;}
+
+#menu {display: flex;}
+#menu ul.ulmenu
+{width: 100%;
+ display: flex;}    /*  este flex permite la distribution del menu  */
+#menu ul.ulmenu li.limenu
+{margin: 3px auto;
+ display: flex;          /*flex para que el <a> englobe su contenido */
+ border-radius: 6px;
+ border: 2px solid transparent;}
+#menu ul.ulmenu li.limenu.hover_menu:hover {border: 2px solid white;}
+#menu ul.ulmenu li.limenu a
+{display: block;
+ padding: 5px 15px;}
+#menu ul.ulmenu li.limenu a.a_menu img
+{display: block;
+ margin: 0 auto;}
+#menu ul.ulmenu li.limenu a p
+{text-align: center;
+ margin: 5px auto;
+ font-size: 1em;
+ color: white;}
+
+.logo_img{
+  height: 50px;
+}
+
+.regreso_boton_div_contenedor{
+  position: absolute;
+  top: 0.5em;
+}
+
+
+/* ################################## CONTENIDO ################################################################ */
+
+
+.contenido_pagina{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #dddddd;
+    padding: 1.5em 4em;
+    overflow-y: hidden;
+}
+
+.contrato_header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.contrato_titulo{
+    display: flex;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #007fff;
+    user-select: none;
+    cursor: default;
+}
+
+.barra_progreso_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra_progreso_label{
+    font-size: 1.1em;
+    color: rgb(30, 30, 30);
+    font-weight: bold;
+    user-select: none;
+    cursor: default;
+    margin-right: 0.8em;
+}
+
+.barra_progreso {
+    display: flex;
+    width: 12em;
+    height: 1.9em;
+    background-color: rgb(20, 20, 20);
+    border-radius: 3px;
+    padding: 0.3em;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.progreso{
+    display: flex;
+    width: calc(0% - 0.6em);
+    height: calc(100% - 0.6em);
+    background-color: #e5bf00;
+    position: absolute;
+    left: 0.3em;
+    -webkit-transition: .6s;
+    -moz-transition: .6s;
+    transition: .6s;
+}
+
+.progreso_porcentaje {
+  display: flex;
+  position: absolute;
+  left: 0.5em;
+  top: 0.5em;
+  font-weight: bold;
+  color: #fff;
+  font-size: 0.9em;
+  user-select: none;
+  cursor: default;
+}
+
+.contrato_global_wrap{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    height: 75vh;
+}
+
+.left_contenedor{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.preguntas_contenedor {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 25em;
+    min-height: 20em;
+    height: fit-content;
+    max-height: 70vh;
+    padding: 1em;
+    background-color: rgb(107, 107, 107);
+    box-shadow: 0px 3px 9px #949494;
+    overflow-y: overlay;
+}
+
+.preguntas_mini_contenedor{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.etapas_wrap{
+    display: flex;
+    width: 100%;
+    margin-left: 0;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+}
+
+.preguntas_wrap{
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.pregunta_elemento{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.3em;
+}
+
+.pregunta_label{
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    cursor: default;
+    user-select: none;
+}
+
+.pregunta_input{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(30, 30, 30);
+    padding-left: 0.5em;
+    resize: none;
+    width: 95%;
+
+}
+
+.pregunta_select{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(30, 30, 30);
+    padding-left: 0.5em;
+    display: flex;
+    width: 80%;
+}
+
+.bolean_group{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+}
+
+.bolean_choice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1.5em;
+    border-radius: 3px;
+    background-color: rgb(161, 161, 161);
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.bolean_choice.activo{
+    background-color: #007fff;
+    cursor: default;
+}
+
+.bolean_choice:not(.activo):hover{
+    background-color: rgb(180, 180, 180);  
+}
+
+.bolean_choice:not(.activo):active{
+    font-size: 0.95em;
+}
+
+.checkboxradio_group{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.checkbox_radio_choice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1.5em;
+    border-radius: 3px;
+    background-color: rgb(161, 161, 161);
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0.25em;
+}
+
+.checkbox_radio_choice.activo{
+    background-color: #007fff;
+    cursor: default;
+}
+
+.checkbox_radio_choice:not(.activo):hover{
+    background-color: rgb(180, 180, 180);  
+}
+
+.checkbox_radio_choice:not(.activo):active{
+    font-size: 0.95em;
+}
+
+.checkbox_group{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.checkbox_choice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1.5em;
+    border-radius: 3px;
+    background-color: rgb(161, 161, 161);
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0.25em;
+}
+
+.checkbox_choice.activo{
+    background-color: #007fff;
+}
+
+.checkbox_choice:not(.activo):hover{
+    background-color: rgb(180, 180, 180);  
+}
+
+.checkbox_choice.activo:hover{
+    background-color: #1087fd;  
+}
+
+.checkbox_choice:active{
+    font-size: 0.95em;
+}
+
+.barra_separacion_navigacion{
+    color: #fff;
+    margin: 1em auto;
+    width: 80%;
+}
+
+.navegacion_wrap{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.paso_anterior{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #949494;
+    border-radius: 10px;
+    color: #fff;
+    padding: 0.5em 1em 0.5em 2em;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    font-size: 1.1em;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.paso_btn_icon_left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0.5em;
+    left: 1em;
+}
+
+.paso_anterior:hover{
+    background-color: #a5a4a4; 
+}
+
+.paso_anterior:active{
+    font-size: 1.05em; 
+}
+
+.paso_btn_icon_left.hovered{
+    left: 0.8em; 
+}
+
+.paso_adelante{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007fff;
+    border-radius: 10px;
+    color: #fff;
+    padding: 0.5em 2em 0.5em 1em;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.paso_btn_icon_right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+}
+
+.paso_adelante:hover{
+    background-color: #1087fd; 
+}
+
+.paso_adelante:active{
+    font-size: 1.05em; 
+}
+
+.paso_btn_icon_right.hovered{
+    right: 0.8em; 
+}
+
+
+.contrato_contenedor {
+    display: block;
+    width: 50em;
+    min-height: 20em;
+    background-color: #fff;
+    box-shadow: 0px 3px 9px #949494;
+    overflow-y: scroll;
+    padding: 6em 7.1em;
+    user-select: none;
+    cursor: default;
+}
+
+.contrato_contenedor span.dato{
+    background-color: #b8d2dbe5;
+}
+
+.contrato_contenedor span.dato.focused{
+    background-color: #e5bf00;
+}
+
+.btn_imprimir {
+    display: flex;
+    position: absolute;
+    left: calc(50% - 5.25em);
+    bottom: -5em;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 1.1em;
+    width: 10.5em;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    background-color: rgb(142, 138, 138);
+    cursor: not-allowed;
+    padding: 0.3em 1em;
+    user-select: none;
+}
+
+.btn_imprimir.active{
+    background-color: #007fff;
+    border: 2px solid #003eff;
+    cursor: pointer;
+}
+
+.btn_imprimir.active:active{
+    font-size: 1.05em;
+}
+
+.btn_imprimir img{
+    width: 3em;
+    height: 3em;
+  }
+
+
+.overlay{
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 23;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    background-color: #fff;
+    position: relative;
+    border-radius: 5px;
+    width: 23em;
+}
+
+.popup h2{
+    font-size: 1.3em;
+    color: rgb(31, 31, 31);
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    user-select: none;
+    cursor: default;
+}
+
+.popup_cerrar{
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
+
+.popup_cerrar i{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(107, 107, 107);
+    cursor: pointer;
+}
+
+.popup_cerrar:hover i {
+    color: rgb(31, 31, 31);  
+}
+
+.popup_cerrar:active i {
+    font-size: 1.45em; 
+}
+
+.indicaciones_impresion{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5em;
+    user-select: none;
+    cursor: default;
+}
+
+.indicaciones_impresion p{
+    font-size: 0.9em;
+    font-weight: bold;
+    color: rgb(31, 31, 31);
+    margin-bottom: 1em;
+}
+
+.btn_confirmar_impresion{
+    display: flex;
+    margin: 0 auto;
+    padding: 0.5em 1.8em;
+    background-color: rgb(107, 107, 107);
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.btn_confirmar_impresion:hover{
+    background-color: #007fff; 
+}
+.btn_confirmar_impresion:active{
+    font-size: 1.05em; 
+}
+/* ###################################  RESPONSIVE ############################################################# */
+
+
+@media screen and (max-width:1150px){
+  .regreso_boton_div_contenedor{font-size: 0.8em; top: 0.2em;}
+  .logo_img{height: 35px}
+  .contenido_pagina{height: calc(100vh - 55px);}
+}
+
+
+@media screen and (max-width:1050px){
+    .contrato_contenedor{
+        padding: 3em;
+    }
+    .contenido_pagina{
+        padding: 1.5em 1.5em;
+    }
+}
+
+@media screen and (max-width:900px){
+    .contrato_contenedor{
+        padding: 2em;
+    }
+    .contenido_pagina{
+        padding: 1.5em 1em;
+    }
+}
+
+@media screen and (max-width:770px){
+    .preguntas_contenedor{
+        width: 21em;
+    }
+}
+
+@media screen and (max-width:650px){
+    .preguntas_contenedor{
+        width: 23em;
+    }
+
+    .contrato_contenedor{
+        display: none;
+    }
+
+    .left_contenedor{
+        margin: 0 auto;
+    }
+}
+
+
+@media screen and (max-width:570px){
+    .contrato_titulo{
+        font-size: 1em;
+    }
+    .barra_progreso_label{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width:530px){
+    .contrato_header{
+        flex-direction: column;
+    }
+    .contrato_titulo{
+        margin-bottom: 1em;
+        font-size: 1.1em;
+    }
+}
+
+@media screen and (max-width:400px){
+    .preguntas_contenedor{
+        width: 21em;
+    }
+    .contenido_pagina{
+        padding: 1.5em 0.4em;
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#666666;}
+	.st2{fill:url(#SVGID_1_);}
+</style>
+<g>
+	<circle class="st0" cx="500" cy="500" r="496"/>
+</g>
+<g>
+	<circle class="st1" cx="500" cy="500" r="400"/>
+</g>
+<g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="500" y1="652" x2="500" y2="140">
+		<stop  offset="0" style="stop-color:#666666"/>
+		<stop  offset="0.2293" style="stop-color:#696969"/>
+		<stop  offset="0.4021" style="stop-color:#737373"/>
+		<stop  offset="0.5566" style="stop-color:#838383"/>
+		<stop  offset="0.7002" style="stop-color:#9A9A9A"/>
+		<stop  offset="0.8365" style="stop-color:#B7B7B7"/>
+		<stop  offset="0.9653" style="stop-color:#DBDBDB"/>
+		<stop  offset="1" style="stop-color:#E6E6E6"/>
+	</linearGradient>
+	<ellipse class="st2" cx="500" cy="396" rx="323" ry="256"/>
+</g>
+</svg>

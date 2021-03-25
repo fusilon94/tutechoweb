@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#EBBA16;}
+	.st3{fill:#B8B8B8;}
+	.st4{fill:#CCCCCC;}
+	.st5{fill:#FFFFFF;}
+	.st6{fill:#BFBAA5;}
+	.st7{fill:#EFC940;}
+	.st8{fill:#66FF33;}
+</style>
+<g id="Capa_2" class="st0">
+	<rect class="st1" width="80" height="80"/>
+</g>
+<g id="Capa_4">
+	<g>
+		<path class="st2" d="M40,11.3v54c0,2-1.6,3.7-3.6,3.7H5.6c-2,0-3.6-1.7-3.6-3.7V7.7C2,5.7,3.6,4,5.6,4h24.1c1,0,3.6,0.3,6.2,2.1
+			C38.5,8,39.6,10.4,40,11.3z"/>
+		<rect x="8.2" y="10.3" class="st3" width="60.6" height="29.4"/>
+		<path class="st4" d="M14.3,17.1V25H6.1v-0.3C8.9,22.1,11.6,19.6,14.3,17.1z"/>
+		<polygon class="st5" points="70.8,16.6 70.8,50.9 69.3,55.4 6.1,55.4 6.1,25 14.3,25 14.3,16.6 		"/>
+		<g>
+			<rect x="21.5" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="30.8" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="40" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="49.2" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="58.5" y="21.8" class="st6" width="2.1" height="12.6"/>
+		</g>
+		<path class="st7" d="M77.8,29.8l-7,21.1l-1.5,4.5L66,65.2c-0.7,2.1-2.9,3.8-4.9,3.8H4.6c-2,0-3.1-1.7-2.4-3.8l3.9-11.7L14,29.8
+			c0.7-2.1,2.9-3.8,4.9-3.8h56.6C77.4,26,78.5,27.7,77.8,29.8z"/>
+	</g>
+	<path class="st8" d="M41,67.3c0,0,7.7,9,9.2,12.7h6.6c2.8-8.8,13.5-29.9,22.7-37.3c1.9-2.6-2.9-3.6-6.8-1.9
+		C67,43.4,56,62.9,53.9,67.6c-2.9,0.8-6-5.1-6-5.1L41,67.3z"/>
+</g>
+</svg>

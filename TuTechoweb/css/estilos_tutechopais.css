@@ -1,0 +1,47 @@
+.titulo {
+	font-weight: 600;
+	color: #B8711B;
+	text-align: center;
+	margin: 20px 0 10px 0;
+  font-size: 1.6em;
+}
+
+.barra {
+	border:none;
+	margin: 10px auto 15px auto;
+	border-top:7px solid #B8711B;
+	background: none;
+  width: 50%;
+}
+
+.contenedor_comandos_consola {
+  display: flex;
+  width: 90%;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  margin: auto;}
+
+.comando_consola {
+  margin: 3px auto;
+  display: flex;}
+
+.comando_consola button {
+  display: block;
+  padding: 5px 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;}
+
+.comando_consola button:hover {
+ background-color: rgba(255, 255, 255, 0.1)}
+
+.comando_consola button img {
+  width: 65px;
+  display: block;
+  margin: 0 auto;}
+
+.comando_consola button p {
+  text-align: center;
+  margin: 5px auto;
+  font-size: 1.2em;
+  color: white;}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#EBBA16;}
+	.st3{fill:#B8B8B8;}
+	.st4{fill:#CCCCCC;}
+	.st5{fill:#FFFFFF;}
+	.st6{fill:#BFBAA5;}
+	.st7{fill:#EFC940;}
+	.st8{fill:#BD360C;}
+	.st9{fill:#D74214;}
+	.st10{fill:#CDD7DB;}
+	.st11{fill:#EBEDEF;}
+	.st12{fill:#F9BF2C;}
+	.st13{fill:#FBD734;}
+	.st14{fill:#F5A557;}
+	.st15{fill:#F5B673;}
+	.st16{fill:#36464E;}
+	.st17{fill:#445A64;}
+</style>
+<g id="Capa_2" class="st0">
+	<rect class="st1" width="80" height="80"/>
+</g>
+<g id="Capa_4">
+	<g>
+		<path class="st2" d="M40,11.3v54c0,2-1.6,3.7-3.6,3.7H5.6c-2,0-3.6-1.7-3.6-3.7V7.7C2,5.7,3.6,4,5.6,4h24.1c1,0,3.6,0.3,6.2,2.1
+			C38.5,8,39.6,10.4,40,11.3z"/>
+		<rect x="8.2" y="10.3" class="st3" width="60.6" height="29.4"/>
+		<path class="st4" d="M14.3,17.1V25H6.1v-0.3C8.9,22.1,11.6,19.6,14.3,17.1z"/>
+		<polygon class="st5" points="70.8,16.6 70.8,50.9 69.3,55.4 6.1,55.4 6.1,25 14.3,25 14.3,16.6 		"/>
+		<g>
+			<rect x="21.5" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="30.8" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="40" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="49.2" y="21.8" class="st6" width="2.1" height="12.6"/>
+			<rect x="58.5" y="21.8" class="st6" width="2.1" height="12.6"/>
+		</g>
+		<path class="st7" d="M77.8,29.8l-7,21.1l-1.5,4.5L66,65.2c-0.7,2.1-2.9,3.8-4.9,3.8H4.6c-2,0-3.1-1.7-2.4-3.8l3.9-11.7L14,29.8
+			c0.7-2.1,2.9-3.8,4.9-3.8h56.6C77.4,26,78.5,27.7,77.8,29.8z"/>
+	</g>
+	<g>
+		<path class="st8" d="M61.2,72l-11.1-6.2l18.4-33.1c0.4-0.7,1.3-1,2-0.6l8.4,4.7c0.8,0.4,1,1.4,0.6,2.2L61.2,72z"/>
+		<path class="st9" d="M74.8,34.5L55.7,68.9l-5.6-3.1l18.3-32.9c0.5-0.8,1.6-1.1,2.5-0.5L74.8,34.5z"/>
+		
+			<rect x="57" y="39.4" transform="matrix(0.8744 0.4851 -0.4851 0.8744 34.6887 -23.7987)" class="st10" width="12.7" height="31.5"/>
+		
+			<rect x="44.8" y="50.4" transform="matrix(0.4851 -0.8744 0.8744 0.4851 -15.6751 80.5134)" class="st11" width="31.5" height="6.4"/>
+		
+			<rect x="56.1" y="42.5" transform="matrix(0.8744 0.4851 -0.4851 0.8744 35.3015 -23.2164)" class="st12" width="12.7" height="28.1"/>
+		
+			<rect x="45.7" y="51.9" transform="matrix(0.4851 -0.8744 0.8744 0.4851 -17.3863 80.5572)" class="st13" width="28.1" height="6.4"/>
+		<path class="st14" d="M48.6,78.4l1.5-12.5c0,0,0.1-0.1,0.1,0l11,6.1c0,0,0.1,0.1,0,0.1L51.4,80C50.3,80.9,48.4,79.8,48.6,78.4z"/>
+		<path class="st15" d="M55.7,68.9L49.5,80c-0.6-0.3-1-0.9-0.9-1.7l1.5-12.5c0-0.1,0.1-0.1,0.1,0L55.7,68.9z"/>
+		<path class="st16" d="M53.7,78.1l-2.3,1.9c-0.6,0.5-1.3,0.4-1.9,0.1c-0.6-0.3-1-0.9-0.9-1.7l0.4-3L53.7,78.1z"/>
+		<path class="st17" d="M51.3,76.7L49.5,80c-0.6-0.3-1-0.9-0.9-1.7l0.4-3L51.3,76.7z"/>
+	</g>
+</g>
+</svg>

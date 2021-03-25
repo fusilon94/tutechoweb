@@ -1,0 +1,69 @@
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+body
+{width: 100%;
+ min-height: 100%;
+ background-size: 100% 100%;}
+
+ #contenedor_total
+ {width: 100vw; height: 100vh; display: flex; flex-direction: column;}
+
+ header
+ {display: none;}
+
+/* ################################## CONTENIDO ################################################################ */
+
+.overlay{
+    display: none;
+}
+
+.popup{
+    display: none;
+}
+
+.contenido_pagina{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding: 0em;
+}
+
+.contrato_header {
+    display: none;
+}
+
+.contrato_global_wrap{
+    display: flex;
+}
+
+.left_contenedor{
+    display: none;
+}
+
+.contrato_contenedor {
+    display: block;
+    background-color: #fff;
+}
+
+.contrato_contenedor span.dato{
+    background-color: #fff;
+}
+
+
+
+

@@ -1,0 +1,111 @@
+.departamento_label {
+  text-transform: capitalize;
+}
+
+/* #######################  POPUP SUCCESS ################################# */
+.popup_success{
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(50% - 5em);
+  left: calc(50% - 10em);
+  width: 20em;
+  height: 10em;
+  background-color: #fff;
+  border: 1em solid #0984cc;
+  z-index: 3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.popup_success i.fa-exclamation-circle{
+  color: #0984cc;
+  font-size: 1.2em;
+  margin-right: 0.3em;
+}
+
+.popup_success_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0984cc;
+  border-radius: 50%;
+  padding: 0.1em 0.3em 0.2em 0.3em;
+  right: -0.5em;
+  top: -0.5em;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.popup_success_cerrar:hover{
+  -webkit-transform:translateY(-0.1em);
+  -moz-transform:translateY(-0.1em);
+  transform:translateY(-0.1em);
+}
+
+/* #######################  RESULTADOS ################################# */
+
+.resultados{
+  display: flex;
+  width: 95%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn_activar_barrio{
+  color: #fff;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  width: 15em;
+  height: 3.5em;
+  background-color: rgb(142, 138, 138);
+  cursor: pointer;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+}
+
+.btn_activar_barrio.Activo:hover{
+  background-color: #d02e2e;
+  border: 2px solid #b12626;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+}
+
+.btn_activar_barrio.Inactivo:hover{
+  background-color: #6dc321;
+  border: 2px solid #549818;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+}
+
+.info_barrio{
+ display: flex;
+ justify-content: center;
+ border: 1px solid rgb(52, 52, 52);
+ padding: 1em 1em 0.5em 1em;
+ flex-direction: column;
+ margin-top: 1em;
+}
+
+.info_barrio span{
+  color: rgb(57, 57, 57);
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}

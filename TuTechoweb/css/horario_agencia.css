@@ -1,0 +1,493 @@
+.contenedor_editor_sponsor_consola {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0em auto 2em auto;
+  background-color: #fff;
+}
+
+body{
+  position: relative;
+}
+.popup_overlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  background-color: rgba(0, 0, 0, 0.445);
+  visibility: hidden;
+}
+
+.popup{
+  display: flex;
+  background-color: #fff;
+  border-radius: 5px;
+  min-width: 20em;
+  min-height: 10em;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.cerrar_popup{
+  color: #fff;
+  position: absolute;
+  right: -1.5em;
+  top: -1.1em;
+}
+
+.cerrar_popup i{
+  font-size: 2em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cerrar_popup i:hover{
+  font-size: 2.05em;
+  color: #007fff;
+}
+
+.cerrar_popup i:active{
+  font-size: 1.95em;
+}
+
+.label_select_contenedor{
+  display: block;
+  width: 100%;
+  height: min-content;
+  text-align: center;
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: .5em .5em .5em .7em;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+}
+
+.all_params_container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.agencia_select_container{
+  width: 15em;
+  box-sizing: border-box;
+  color: #333333;
+  margin: 1em auto;
+}
+
+.agencia_select_container label {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    user-select: none;
+}
+
+.agencia_select_container select {
+    width: calc(100% - 1em);
+    margin-top: 0.5em;
+    font-size: 1.1em;
+    color: rgb(27, 23, 23);
+}
+
+/*############# ESTILOS TABLA HORARIOS ###############*/
+
+.titulo_tabla{
+    color: rgb(27, 27, 27);
+    margin-left: 1.4em;
+    font-weight: bold;
+    user-select: none;
+    margin-top: 0.5em;
+}
+
+.linea_naranja{
+    border: none;
+    margin-left: 2.2em;
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
+    border-top: 10px solid #e5bf00;
+    background: none;
+    width: 5.5em;
+}
+
+.week_wrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0.5em 1.5em;
+}
+
+.day_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0.5em;
+}
+
+.day_label{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+    text-align: center;
+    text-indent: 0;
+    padding: 0.3em 0.5em 0.1em 0.5em;
+    background-color: #007fff;
+    color: #fff;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+}
+
+.inputs_day_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #007fff;
+    border-radius: 11px;
+    padding: 1.2em 1.3em 1.4em 1.3em;
+}
+
+.day_sub_label{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.sub_label_text{
+    font-weight: bold;
+    font-size: 1.1em;
+    color: rgb(15, 15, 15);
+    margin-right: 1em;
+    user-select: none;
+}
+
+.check_sub_label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em 0.5em;
+    background-color: #e5bf00;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 3px;
+}
+
+.check_sub_label.inactivo{
+  background-color: #5c5c5c;
+}
+
+.check_sub_label:active{
+    font-size: 0.98em;
+}
+
+.selects_day_wrap{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0.5em 0em;
+}
+
+
+.select_day{
+    color: rgb(15, 15, 15);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.select_day option{
+    color: rgb(15, 15, 15);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.select_tarde{
+  color: rgb(15, 15, 15);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.select_tarde option{
+  color: rgb(15, 15, 15);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.select_day_spacer{
+    color: rgb(15, 15, 15);
+    font-weight: bold;
+    margin: 0em 1em;
+    user-select: none;
+}
+
+.guardar_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 2em;
+  margin: 1em auto;
+  background-color: #007fff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.guardar_btn:active{
+  font-size: 1.15em;
+}
+
+/* ################# ESTILOS LISTA EXCEPCIONES ##################### */
+
+.excepciones_config{
+  display: flex;
+  align-items: center;
+  border: 4px solid rgb(41, 41, 41);
+  border-radius: 5px;
+  margin: 1em 2.5em;
+  padding: 1em;
+}
+
+.config_wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.btn_agregar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 2em;
+  margin: 1em auto;
+  background-color: #007fff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+
+.btn_agregar:active{
+  font-size: 1.05em;
+}
+
+.input_config{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.input_config label{
+  font-size: 1em;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  user-select: none;
+}
+
+.config_excepcion_select{
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  user-select: none;
+}
+
+.config_excepcion_select option{
+  color: rgb(27, 27, 27);
+  font-weight: bold;
+}
+
+.date_picker_config{
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  user-select: none;
+  width: 10em;
+}
+
+.descripcion_config{
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  user-select: none;
+  width: 20em;
+}
+
+.excepciones_list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1em 2.5em;
+  padding: 1em;
+}
+
+.excepcion_tipo_label{
+  display: flex;
+  margin-bottom: 1em;
+  width: 100%;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  font-size: 1.1em;
+  user-select: none;
+}
+
+.excepciones_curso_wrap{
+  display: flex;
+  flex-direction: column;
+}
+
+.excepciones_feriados_wrap{
+  display: flex;
+  flex-direction: column;
+}
+
+.excepcion_row{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.excepcion_text{
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  color: rgb(27, 27, 27);
+  user-select: none;
+}
+
+.excepcion_text .fas{
+  font-size: 0.6em;
+  margin-right: 0.6em;
+  color: #007fff;
+}
+
+.excepcion_text .fas.new{
+  font-size: 0.6em;
+  margin-right: 0.6em;
+  color: #ffe600;
+}
+
+.excepcion_text p{
+  margin-right: 0.2em;
+}
+
+.borrar_excepcion_wrap{
+  display: flex;
+  align-items: center;
+  margin-left: 1.5em;
+}
+
+.trash_excepcion{
+  color: rgb(27, 27, 27);
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.trash_excepcion:hover{
+  color: #d12222;
+}
+
+.confirmar_borrar_excepcion{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  padding: 0.2em 0.5em;
+  background-color: #d12222;
+  border-radius: 3px;
+  margin-left: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.confirmar_borrar_excepcion:active{
+  font-size: 0.98em;
+}
+
+.confirmar_borrar_excepcion.activado{
+  display: flex;
+}
+
+/* ############################################ RESPONSIVE #################################################### */
+
+@media screen and (max-width:1040px){
+  .input_config{
+    margin-top: 0.5em;
+  }
+
+}
+
+@media screen and (max-width:700px){
+  .contenedor_editor_sponsor_consola{
+    min-height: 30em;
+  }
+
+}
+
+@media screen and (max-width:680px){
+  .excepciones_config{
+    flex-direction: column;
+  }
+
+}
+
+@media screen and (max-width:610px){
+  .descripcion_config{
+    width: 15em;
+  }
+
+  .date_picker_config{
+    width: 15em;
+  }
+
+  .config_excepcion_select{
+    width: 15em;
+  }
+
+}
+
+
+@media screen and (max-width:520px){
+
+  .contenedor_editor_sponsor_consola{
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width:415px){
+  .descripcion_config{
+    width: 12em;
+  }
+
+  .date_picker_config{
+    width: 12em;
+  }
+
+  .config_excepcion_select{
+    width: 12em;
+  }
+
+}

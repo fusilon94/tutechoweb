@@ -1,0 +1,1559 @@
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {height: 100vh;
+    max-height: 100vh;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+.leaflet-bar .leaflet-control-zoom-out {
+  background-position: 2px -24px !important;
+  font-size: 18px !important;
+}
+
+.leaflet-bar .leaflet-control-zoom-in {
+  background-position: 2px -24px !important;
+  font-size: 18px !important;
+}
+
+body
+{width: 100vw;
+ min-height: 100vh;
+ background-size: 100% 100%;
+position: relative;}
+
+#fondo
+{width: 100%;
+ position: fixed;
+ z-index: -10;
+ background-size: 100% 100%;
+ background-image: url(../../objetos/bg_image.jpeg);
+ height: 100vh;}
+
+ #contenedor_total
+ {width: 100%; height: 100%; display: flex; flex-direction: column;}
+
+ header
+ {width: 100%;
+  top: 0;
+  z-index: 20;}
+
+header nav{
+  background-color: rgba(23, 22, 22, 0.97);
+  width: 100%;
+  box-shadow: 0px 6px 20px #F9F9F9;
+}
+
+#contenedor_menu_boton {display:none;}
+
+#menu {display: flex;}
+#menu ul.ulmenu
+{width: 100%;
+ display: flex;}    /*  este flex permite la distribution del menu  */
+#menu ul.ulmenu li.limenu
+{margin: 3px auto;
+ display: flex;          /*flex para que el <a> englobe su contenido */
+ border-radius: 6px;
+ border: 2px solid transparent;}
+#menu ul.ulmenu li.limenu.hover_menu:hover {border: 2px solid white;}
+#menu ul.ulmenu li.limenu a
+{display: block;
+ padding: 5px 15px;}
+#menu ul.ulmenu li.limenu a.a_menu img
+{display: block;
+ margin: 0 auto;}
+#menu ul.ulmenu li.limenu a p
+{text-align: center;
+ margin: 5px auto;
+ font-size: 1em;
+ color: white;}
+
+.logo_img{
+  height: 50px;
+}
+
+.regreso_boton_div_contenedor{
+  position: absolute;
+  top: 0.5em;
+  width: 15em;
+}
+
+
+/* ############################################# CONTENIDO ##################################################### */
+
+.popup_overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    background-color: rgba(0, 0, 0, 0.445);
+    visibility: hidden;
+}
+
+.popup{
+display: flex;
+background-color: #fff;
+border-radius: 5px;
+min-width: 40em;
+min-height: 10em;
+position: relative;
+padding: 1em 2em;
+}
+
+.cerrar_popup{
+color: #fff;
+position: absolute;
+right: -1.5em;
+top: -1.1em;
+}
+
+.cerrar_popup i{
+font-size: 2em;
+cursor: pointer;
+user-select: none;
+}
+
+.cerrar_popup i:hover{
+font-size: 2.05em;
+color: #007fff;
+}
+
+.cerrar_popup i:active{
+font-size: 1.95em;
+}
+
+.popup_contenido{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.global_warp {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  max-height: 85%;
+}
+
+.agenda_wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 0;
+  width: 90%;
+}
+
+.tabs_wrap{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.tab_agenda{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(50, 50, 50);
+    font-weight: bold;
+    padding: 0.9em 2em;
+    user-select: none;
+}
+
+.tab_agenda.activo{
+    background-color: #0984CC;
+}
+
+.tab_agenda:not(.activo):hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.tab_agenda img{
+    width: 1.8em;
+    margin-bottom: 0.3em;
+    margin-right: 0.3em;
+}
+
+.tab_agenda i{
+    font-size: 1.6em;
+}
+
+.tab_agenda p{
+    margin-left: 0.3em;
+}
+
+.tab_hash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(50, 50, 50);
+    font-weight: bold;
+    padding: 1.2em 2em;
+}
+
+.tab_hash.activo{
+    background-color: #0984CC;
+}
+
+.tab_hash:not(.activo):hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.agregar_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    visibility: hidden;
+}
+
+.agregar_btn.activo{
+    visibility: unset;
+}
+
+.agregar_btn i.fa-plus-circle{
+    font-size: 3em;
+    color: #0984CC;
+}
+
+.agregar_btn:hover i.fa-plus-circle{
+    color: #269ee4;
+}
+
+.agregar_btn:active i.fa-plus-circle{
+    font-size: 2.95em;
+}
+
+
+
+.agenda_contenido{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.96);
+    width: 100%;
+    min-height: 30em;
+    padding-top: 2.2em;
+}
+
+.barra_busqueda_wrap{
+    display: flex;
+    position: absolute;
+    top: 0.8em;
+    right: 1em;
+    border: 2px solid #3d3d3d;
+    width: 13em;
+    border-radius: 5px;
+    background-color: #0984CC;
+}
+
+.barra_busqueda_wrap input{
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 10em;
+    color: #3b3b3b;
+    padding-left: 0.5em;
+}
+
+.barra_busqueda_wrap span.fa-search{
+    color: #fff;
+    text-align: center;padding-left: 0.1em;
+}
+
+.barra_selects_agenda_wrap{
+    display: flex;
+    position: absolute;
+    top: 0.2em;
+    right: 1em;
+    visibility: hidden;
+}
+
+.selects_agenda_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 1em;
+}
+
+.selects_agenda_wrap label{
+    font-size: 0.9em;
+    color: #464545;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    user-select: none
+}
+
+.selects_agenda_wrap select{
+    font-size: 1em;
+    color: #3b3b3b;
+    font-weight: bold;
+    min-width: 10em;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0.15em;
+}
+
+.selects_agenda_wrap option{
+    font-size: 1em;
+    color: #3b3b3b;
+    font-weight: bold;
+    padding: 0.15em;
+}
+
+.barra_selects_hash_inmuebles_wrap{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0.2em;
+    right: 1em;
+    visibility: hidden;
+}
+
+.barra_selects_agente_wrap{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0.2em;
+    right: 1em;
+    visibility: hidden;
+}
+
+.selects_agenda_wrap input{
+    font-size: 1em;
+    color: #3b3b3b;
+    font-weight: bold;
+    min-width: 10em;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0.15em;
+    border: 1px solid #6e6d6d;
+}
+
+.buscar_referencia_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    background-color: #007fff;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    margin-top: 0.7em;
+}
+
+.buscar_referencia_btn:hover{
+    background-color: #1087fd;
+}
+
+.buscar_referencia_btn:active{
+    transform: scale(0.98);
+}
+
+.buscar_agente_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    background-color: #007fff;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    margin-top: 0.7em;
+}
+
+.buscar_agente_btn:hover{
+    background-color: #1087fd;
+}
+
+.buscar_agente_btn:active{
+    transform: scale(0.98);
+}
+
+.titulos_wrap{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.titulo{
+    color: #3b3b3b;
+    user-select: none;
+}
+
+.titulo p{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.titulo_nombre{
+    width: 15em;
+}
+
+.titulo_telefono{
+    width: 10em;
+}
+
+.titulo_email{
+    width: 12em;
+}
+
+.titulo_info{
+    width: 14em;
+}
+
+.titulo.empty{
+    opacity: 0;
+    width: 8em;
+}
+
+hr.barra_titulos{
+    width: 95%;
+    margin: 0.3em auto 0 auto;
+}
+
+.resultados_wrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: overlay;
+    padding-bottom: 5em;
+}
+
+.elemento_agenda{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 1em 0;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.elemento_agenda:hover{
+    background-color: rgba(0, 0, 0, 0.034);
+}
+
+.elemento_agenda_vacio{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 1em 0;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.elemento_agenda_vacio:hover{
+    background-color: rgba(0, 0, 0, 0.034);
+}
+
+.elemento_nombre{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 15em;
+    height: 100%;
+}
+
+.elemento_nombre_foto{
+    width: 2.5em;
+    margin-right: 0.5em;
+    border-radius: 50%;
+}
+
+.elemento_telefono{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10em; 
+    height: 100%;
+}
+
+.elemento_telefono_whatsapp{
+    visibility: hidden;
+}
+
+.elemento_telefono_whatsapp.activo{
+    visibility: unset;
+}
+
+.elemento_email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12em;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.elemento_info{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 14em;
+    text-align: center;
+    height: 100%;
+    max-height: 1.1em;
+    overflow-y: hidden;
+}
+
+.elemento_actions{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 8em;
+    opacity: 0;
+    height: 100%;
+}
+
+.elemento_actions.activo{
+    opacity: 1;
+}
+
+.elemento_actions i{
+    font-size: 1.3em;
+}
+
+.elemento_star i.fa-star{
+    color: rgb(59, 59, 59);
+}
+
+.elemento_star:not(.activo) i.fa-star:hover{
+    color: rgb(22, 22, 22);
+    font-size: 1.35em;
+}
+
+.elemento_star.activo i.fa-star:hover{
+    color: rgb(255, 208, 0);
+    font-size: 1.35em;
+}
+
+.elemento_star.activo i.fa-star{
+    color: rgb(255, 219, 0);
+}
+
+.elemento_edit i.fa-edit{
+    color: rgb(59, 59, 59);
+}
+
+.elemento_edit i.fa-edit:hover{
+    color: rgb(22, 22, 22);
+    font-size: 1.35em;
+}
+
+.elemento_more{
+    position: relative;
+}
+
+.elemento_more i.fa-ellipsis-v{
+    color: rgb(59, 59, 59);
+}
+
+.elemento_more i.fa-ellipsis-v:hover{
+    color: rgb(22, 22, 22);
+    font-size: 1.35em;
+}
+
+.menu_more{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    background-color: #cecbcb;
+    width: 6em;
+    visibility: hidden;
+    z-index: 30;
+    border-radius: 3px;
+}
+
+.menu_more.activo{
+    visibility: unset;
+}
+
+.menu_more p {
+    color: #3b3b3b;
+    font-weight: bold;
+}
+
+.menu_more_opcion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 0.3em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu_more_opcion:hover{
+    background-color: #e0e0e0;
+}
+
+.opcion_visita i{
+    font-size: 1em;
+    color: #007fff;
+    margin-right: 0.2em;
+}
+
+.opcion_eliminar i{
+    font-size: 1em;
+    color: #cf2424;
+    margin-right: 0.5em;
+}
+
+.opcion_eliminar{
+    display: none;
+}
+
+.opcion_eliminar.activo{
+    display: flex;
+}
+
+.opcion_visita{
+    display: none;
+}
+
+.opcion_visita.activo{
+    display: flex;
+}
+
+.opcion_compartir{
+    display: none;
+}
+
+.opcion_compartir.activo{
+    display: flex;
+}
+
+/* ###################### POPUP VISITA ########################## */
+
+.contacto_visita_select_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 23em;
+    margin: 1.5em auto;
+}
+
+.contacto_visita_select_wrap label{
+    font-size: 1.1em;
+    color: #464545;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    user-select: none;
+}
+
+.contacto_visita_select_wrap select{
+    display: flex;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.2em;
+    cursor: pointer;
+}
+
+.contacto_visita_select_wrap select option{
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.2em;
+    cursor: pointer;
+    display: flex;
+}
+
+.enviar_visita_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em auto;
+    padding: 0.5em 3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    background-color: #007fff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.enviar_visita_btn:hover{
+    background-color: #1087fd;
+}
+
+.enviar_visita_btn:active{
+    transform: scale(0.98);
+}
+
+
+/* ######################  POPUP CONTACTO ####################### */
+
+
+.contacto_tag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 10em;
+    top: -2em;
+    right: calc(50% - 5em);
+    user-select: none;
+    color: #fff;
+    background-color: #007fff;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.5em 2em;
+}
+
+.popup_cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em 0em;
+}
+
+.popup_cabecera_edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em 0em;
+}
+
+.popup_cabecera_titulo{
+    display: flex;
+    align-items: center;
+}
+
+.popup_cabecera_titulo img{
+    width: 3.5em;
+    margin-right: 1.5em;
+    border-radius: 50%;
+}
+
+.popup_cabecera_titulo p{
+    font-size: 1.2em;
+    color: #3b3b3b;
+    font-weight: bold;
+    user-select: none;
+}
+
+.popup_cabecera_actions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 8em;
+}
+
+.popup_cabecera_actions i{
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.cabecera_star i.fa-star{
+    color: rgb(59, 59, 59);
+}
+
+.cabecera_star:not(.activo) i.fa-star:hover{
+    color: rgb(22, 22, 22);
+    font-size: 1.35em;
+}
+
+.cabecera_star.activo i.fa-star:hover{
+    color: rgb(255, 208, 0);
+    font-size: 1.35em;
+}
+
+.cabecera_star.activo i.fa-star{
+    color: rgb(255, 219, 0);
+}
+
+.cabecera_edit i.fa-edit{
+    color: rgb(59, 59, 59);
+}
+
+.cabecera_edit i.fa-edit:hover{
+    color: rgb(22, 22, 22);
+    font-size: 1.35em;
+}
+
+.cabecera_more i.fa-ellipsis-v{
+    color: rgb(59, 59, 59);
+}
+
+.cabecera_more i.fa-ellipsis-v:hover{
+    color: rgb(22, 22, 22);
+    font-size: 1.35em;
+}
+
+hr.cabecera_line{
+    width: 100%;
+    margin-bottom: 1.8em;
+}
+
+.popup_contacto_contenido {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.popup_contacto_email{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2.1em;
+    flex-wrap: wrap;
+}
+
+.popup_contacto_email i.fa-at{
+    font-size: 1.5em;
+    color: #007fff;
+    margin-right: 0.5em;
+}
+
+.popup_contacto_email p{
+    font-size: 1.1em;
+    color: #3d3d3d;
+    font-weight: bold;
+}
+
+.popup_contacto_mail_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em 1.3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #007fff;
+    margin: 0em 1em;
+    visibility: hidden;
+}
+
+.popup_contacto_mail_btn.activo{
+    visibility: unset;
+}
+
+.popup_contacto_mail_btn:hover{
+    background-color: #1b8dff;
+}
+
+.popup_contacto_mail_btn:active i.fa-envelope{
+    font-size: 1.45em;
+}
+
+.popup_contacto_mail_btn i.fa-envelope {
+    font-size: 1.5em;
+    color: #fff;
+    margin-right: 0.5em;
+}
+.popup_contacto_mail_btn p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.popup_contacto_mail_tutecho_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em 1.3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #414141;
+    margin: 0em 1em 0em 0em;
+}
+
+.popup_contacto_mail_tutecho_btn:hover{
+    background-color: #5c5c5c;
+}
+
+.popup_contacto_mail_tutecho_btn:active{
+    transform: scale(0.98);
+}
+
+.popup_contacto_mail_tutecho_btn img{
+    width: 1.52em;
+    margin-right: 0.5em;
+}
+
+.popup_contacto_mail_tutecho_btn p{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.popup_contacto_telefono{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2.1em;
+    flex-wrap: wrap;
+}
+
+.popup_contacto_telefono i.fa-phone{
+    font-size: 1.5em;
+    color: #007fff;
+    margin-right: 0.5em;
+}
+
+.popup_contacto_telefono p{
+    font-size: 1.1em;
+    color: #3d3d3d;
+    font-weight: bold;
+}
+
+.popup_contacto_call_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em 1.3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #007fff;
+    margin: 0em 1em;
+}
+
+.popup_contacto_call_btn:hover{
+    background-color: #1b8dff;
+}
+
+.popup_contacto_call_btn:active{
+    transform: scale(0.98);
+}
+
+.popup_contacto_call_btn p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.popup_contacto_whatsapp_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.05em 1.3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #ededed;
+    margin: 0em 1em 0em 0em;
+    visibility: hidden;
+}
+
+.popup_contacto_whatsapp_btn.activo{
+    visibility: unset;
+}
+
+.popup_contacto_whatsapp_btn:hover{
+    background-color: #e2e0e0;
+}
+
+.popup_contacto_whatsapp_btn:active{
+    transform: scale(0.98);
+}
+
+.icon_stacks_whatsapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon_stacks_whatsapp i.fa-whatsapp {
+    color: #38bf5a;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.icon_stacks_whatsapp i.fa-circle {
+    color: #fff;
+    font-size: 1.2em;
+}
+.popup_contacto_whatsapp_btn p{
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.popup_contacto_info{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 2.1em;
+}
+
+.popup_contacto_info i.fa-info{
+    font-size: 1.5em;
+    color: #007fff;
+    margin-right: 0.8em;
+    margin-left: 0.3em;
+    
+}
+
+.popup_contacto_info p {
+    display: flex;
+    width: 100%;
+    max-width: 30em;
+    flex-wrap: wrap;
+    text-align: justify;
+    color: #3b3b3b;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.btn_guardar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 3em;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #007fff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    width: fit-content;
+    margin: 0.2em auto 1em auto;
+}
+
+.btn_guardar:hover{
+    background-color: #1389ff;
+}
+
+.btn_guardar:active{
+    transform: scale(0.98);
+}
+
+.error_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 0.3em;
+    color: #e03131;
+    visibility: hidden;
+}
+
+/* ########################### ESTILOS GENERALES DE LOS INPUTS ########################## */
+
+
+.popup_contenido input[type="text"]{
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px solid #eee;
+    -webkit-transition:.4s ease all;
+    -moz-transition:.4s ease all;
+    transition: .4s ease all;
+    padding-top: 1em;
+    margin-top: -1em;
+}
+
+.popup_contenido input[type="text"].borde_rojo{
+    border-color: #d62a2a;
+}
+
+
+.popup_contenido input[type="text"]::placeholder{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.9em;
+    -webkit-transform:translateY(0px);
+    -moz-transform:translateY(0px);
+       transform:translateY(0px);
+     -webkit-transition:.4s;
+     -moz-transition:.4s;
+       transition:.4s;
+}
+
+.popup_contenido input[type="text"]:hover {
+    color: #3b3b3b;
+    outline:none;
+    border-bottom:2px solid #009688;
+  }
+  .popup_contenido input[type="text"]:focus {
+    color: #3b3b3b;
+    outline:none;
+    border-bottom:2px solid #009688;
+  }
+  .popup_contenido input[type="text"]:active:focus {
+    color: #3b3b3b;
+    outline:none;
+    border-bottom:2px solid #009688;
+  }
+  
+  .popup_contenido input[type="text"]:hover::placeholder {
+    color:#009688;
+    position:relative;
+    -webkit-transform:translateY(-1.3em);
+    -moz-transform:translateY(-1.3em);
+    transform:translateY(-1.3em);
+  }
+  .popup_contenido input[type="text"]:focus::placeholder {
+    color:#009688;
+    position:relative;
+    -webkit-transform:translateY(-1.3em);
+    -moz-transform:translateY(-1.3em);
+    transform:translateY(-1.3em);
+  }
+  .popup_contenido input[type="text"]:active:focus::placeholder {
+    color:#009688;
+    position:relative;
+    -webkit-transform:translateY(-1.3em);
+    -moz-transform:translateY(-1.3em);
+    transform:translateY(-1.3em);
+  }
+
+
+
+/* ########################### POPUP EDICION CONTACTO ############################### */
+
+.contacto_tag_edicion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 14em;
+    top: -2em;
+    right: calc(50% - 7em);
+    user-select: none;
+    color: #fff;
+    background-color: #007fff;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.5em 2em;
+}
+
+.popup_cabecera_titulo input{
+    display: flex;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3b3b3b;
+    padding: 0.3em;
+}
+
+.cabecera_male{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7em 1.2em;
+    background-color: #5c5c5c;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.cabecera_male.activo{
+    background-color: #007fff;
+}
+
+.cabecera_male:not(.activo):hover {
+    background-color: #696969;
+}
+
+.cabecera_male:not(.activo):active{
+    transform: scale(0.98);
+}
+
+.cabecera_female{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7em 1.2em;
+    background-color: #5c5c5c;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.cabecera_female.activo{
+    background-color: #007fff;
+}
+
+.cabecera_female:not(.activo):hover {
+    background-color: #696969;
+}
+
+.cabecera_female:not(.activo):active{
+    transform: scale(0.98);
+}
+
+.btns_popup_wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.popup_contacto_email input {
+    display: flex;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #3b3b3b;
+    padding: 0.3em;
+    border: none;
+    border-bottom: 2px solid #414141;
+    width: 18em;
+}
+
+
+.popup_contacto_telefono input{
+    display: flex;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #3b3b3b;
+    padding: 0.3em;
+    border: none;
+    border-bottom: 2px solid #414141;
+    width: 18em;
+    margin-right: 1em;
+}
+
+.popup_contacto_info textarea{
+    display: flex;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #3b3b3b;
+    padding: 0.3em;
+    width: 85%;
+    min-height: 5em;
+    resize: none;
+}
+
+.popup_contacto_info textarea.borde_rojo{
+    border-color: #d62a2a;
+}
+
+.btn_whatsapp_edicion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.05em 1.3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #ededed;
+    margin: 0em 1em 0em 0em;
+}
+
+.btn_whatsapp_edicion.activo {
+    background-color: #81f361db;
+}
+
+.btn_whatsapp_edicion:not(.activo):hover{
+    background-color: #e2e0e0;
+}
+
+.btn_whatsapp_edicion:active{
+    transform: scale(0.98);
+}
+
+
+/* ####################### POPUP COMPARTIR CONTACTO ########################### */
+
+
+.contacto_compartir_tag{
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 0.5em 3em;
+    border-radius: 8px;
+    background-color: #646464;
+    margin-top: 1.5em;
+}
+
+.contacto_compartir_tag img{
+    width: 3.5em;
+    margin-right: 1.5em;
+    border-radius: 50%;
+}
+
+.contacto_compartir_tag p{
+    font-size: 1.2em;
+    color: #ffffff;
+    font-weight: bold;
+    user-select: none;
+}
+
+.contacto_compartir_input_wrap{
+    display: flex;
+    align-items: center;
+}
+
+.contacto_compartir_input_wrap input{
+    margin: 1.5em auto 0.8em auto !important;
+    width: 16em;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.compartir_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em auto;
+    padding: 0.5em 3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    background-color: #007fff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.compartir_btn:hover{
+    background-color: #1087fd;
+}
+
+.compartir_btn:active{
+    transform: scale(0.98);
+}
+
+
+.mensage_success{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/* POPUP ENVIAR MENSAGE INTERNO */
+
+.mensaje_interno_text{
+    display: flex;
+    width: 100%;
+    min-height: 10em;
+    margin: 0.6em auto 0 auto;
+    color: #3b3b3b;
+    font-weight: bold;
+    line-height: 1.4em;
+    padding: 1em;
+    font-size: 1.1em;
+}
+
+.mensaje_interno_label{
+    display: flex;
+    margin-top: 1.5em;
+    font-size: 1em;
+    font-weight: bold;
+    color: #5c5c5c;
+}
+
+.enviar_mensaje_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em auto;
+    padding: 0.5em 3em;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    background-color: #007fff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.enviar_mensaje_btn:hover{
+    background-color: #1087fd;
+}
+
+.enviar_mensaje_btn:active{
+    transform: scale(0.98);
+}
+
+
+/* ###################################  RESPONSIVE ############################################################# */
+
+
+@media screen and (max-width:1150px){
+  .regreso_boton_div_contenedor{font-size: 0.8em; top: 0.2em;}
+  .logo_img{height: 35px}
+  .global_warp{
+    height: 100%;
+  }
+}
+
+@media screen and (max-width:1100px){
+    .titulo_info{
+        display: none;
+    }
+    .elemento_info{
+        display: none;
+    }
+
+}
+
+
+@media screen and (max-width:980px){
+
+    .tabs_wrap p{
+        display: none;
+    }
+    .tab_agenda i{
+        margin-right: 0em;
+    }
+}
+
+@media screen and (max-width:850px){
+
+    .titulo_email{
+        display: none;
+    }
+    .elemento_email{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:700px){
+    .popup {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width:630px){
+
+    .titulo.empty{
+        display: none;
+    }
+    .elemento_actions{
+        display: none;
+    }
+    
+    .tabs_wrap {
+        font-size: 0.9em;
+    }
+    .barra_selects_agenda_wrap {
+        font-size: 0.8em;
+        top: 0.5em;
+    }
+    .barra_selects_hash_inmuebles_wrap {
+        font-size: 0.8em;
+        top: 0.5em;
+    }
+    .barra_selects_agente_wrap {
+        font-size: 0.8em;
+        top: 0.5em;
+    }
+}
+
+@media screen and (max-width:560px){
+
+    .cerrar_popup {
+        color: #4e4e4e;
+        right: 1em;
+        top: 1em;
+        z-index: 100;
+    }
+    .tab_agenda{
+        padding: 0.5em 1.4em;  
+    }
+
+    .tab_agenda i{
+        font-size: 1.2em;
+    }
+    .agregar_btn {
+        top: 0.6em;
+    }
+    .agregar_btn i {
+        font-size: 2.5em !important;
+    }
+}
+
+@media screen and (max-width:530px){
+
+    .agenda_wrap{
+        margin: 1em 0 0 0;
+        width: 100%;
+    }
+    .popup {
+        min-width: unset;
+    }
+    .popup_contacto_email {
+        height: 5em
+    }
+    .popup_contacto_telefono {
+        height: 5em
+    }
+
+}
+
+
+@media screen and (max-width:450px){
+
+    .titulo_telefono{
+        display: none;
+    }
+    .elemento_telefono{
+        display: none;
+    }
+    #referencia {
+        width: 10em;
+    }
+    #agente_id {
+        width: 10em;
+    }
+    .popup_contacto_info {
+        overflow-y: overlay;
+        max-height: 16em;
+    }
+
+    .popup_cabecera_edit {
+        flex-direction: column;
+    }
+    .telefono_contacto_input {
+        width: 12em !important;
+    }
+    .btn_whatsapp_edicion {
+        margin: 0 auto;
+    }
+
+    .regreso_boton_div_contenedor a{
+        font-size: 0.9em;
+    }
+    
+
+}

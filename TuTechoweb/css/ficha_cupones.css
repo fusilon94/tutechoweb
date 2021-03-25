@@ -1,0 +1,555 @@
+/* ################### POPUP AVISO ADVERTENCIA ########################## */
+
+.overlay_popup_aviso_advertencia{
+    display: flex;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    z-index: 3;
+}
+
+.popup_aviso_advertencia{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(50% - 6em);
+  left: calc(50% - 15em);
+  width: 30em;
+  min-height: 15em;
+  background-color: #fff;
+  border: 1em solid #e91e32;
+  z-index: 4;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 0.5em;
+}
+
+.popup_aviso_advertencia p{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  cursor: default;
+  text-align: center;
+}
+
+.popup_aviso_advertencia p i{
+  margin-right: 0.3em;
+  font-size: 1.2em;
+  align-self: flex-start;
+}
+
+.popup_aviso_botones_container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.popup_aviso_botones_container span.btn_aceptar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em;
+  padding: 0.5em;
+  background-color: #d6d6d8;
+  box-sizing: border-box;
+  border: 1px solid #645f5f;
+  color: #454545;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.popup_aviso_botones_container span.btn_aceptar:hover{
+  background-color: #007fff;
+  color: #fff;
+}
+
+.popup_aviso_botones_container span.btn_cancelar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em;
+  padding: 0.5em;
+  background-color: #d6d6d8;
+  box-sizing: border-box;
+  border: 1px solid #645f5f;
+  color: #454545;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.popup_aviso_botones_container span.btn_cancelar:hover{
+  background-color: #d02424;
+  color: #fff;
+}
+
+.popup_aviso_botones_container span i{
+  margin-right: 0.3em;
+  font-size: 1.2em;
+}
+
+
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+#fondo
+{width: 100%;
+ position: fixed;
+ z-index: -10;
+ background-size: 100% 100%;
+ background-image: url(../objetos/bg_image.jpeg);
+ height: 100vh;}
+
+body
+{width: 100%;
+ min-height: 100%;
+ background-size: 100% 100%;}
+
+#contenedor_total
+{width: 100%; height: calc(100% - 132px); display: flex; flex-direction: column;}
+
+
+/* ##########    BARRA DE NAVEGACION Y LOGOTYPO ########### */
+
+
+header
+{width: 100%;
+ position: sticky;
+ top: 0;
+ z-index: 20;}
+
+#contenedor_menu_boton {display:none;}
+
+
+header nav
+{width: 100%;
+ background-color:rgba(0,0,0,0.83);
+ box-shadow: 0px 6px 20px #F9F9F9;}
+
+#menu {display: flex;}
+#menu ul.ulmenu
+{width: 100%;
+ display: flex;}    /*  este flex permite la distribution del menu  */
+#menu ul.ulmenu li.limenu
+{margin: 3px auto;
+ display: flex;          /*flex para que el <a> englobe su contenido */
+ border-radius: 6px;
+ border: 2px solid transparent;}
+#menu ul.ulmenu li.limenu.hover_menu:hover {border: 2px solid white;}
+#menu ul.ulmenu li.limenu a
+{display: block;
+ padding: 5px 15px;}
+#menu ul.ulmenu li.limenu a.a_menu img
+{display: block;
+ margin: 0 auto;}
+#menu ul.ulmenu li.limenu a p
+{text-align: center;
+ margin: 5px auto;
+ font-size: 1em;
+ color: white;}
+
+.logo_img {height: 95px;}
+.menu_icons_style {width: 65px;}
+.menu_boton {cursor: pointer;}
+
+
+main
+{width: 95%;
+ margin: 60px auto 100px auto;
+ background-color: rgba(0,0,0,0.88);
+ position: relative;}
+
+
+/* ##################### CODIGOS MARCO ESTILO DE LA PAGINA ################################ */
+
+.regreso_boton_div_contenedor {
+    width: 100%;
+    padding: 1em 0.5em 1em 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.regreso_boton_div_contenedor a:hover span.regreso_boton {color: #0984CC;}
+
+.regreso_boton_div_contenedor a {
+    display: flex;
+    align-items: center;
+    width: 15em;
+}
+
+.regreso_boton_div_contenedor a span {
+    color: white;
+    margin: 0em 0.2em;
+}
+
+
+.titulo {
+	font-weight: 500;
+	color: #B8711B;
+	text-align: center;
+	margin: 10px 0 30px 0;
+  cursor: default;
+}
+
+.barra {
+	border:none;
+	margin: 0px auto 5px auto;
+	border-top:10px solid #B8711B;
+	background: none;
+	color:none;
+  width: 50%;
+}
+
+.btn_imprimir{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 1.1em;
+  width: 10.5em;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background-color: rgb(142, 138, 138);
+  cursor: pointer;
+  padding: 0.3em 1em;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+  margin-right: 1em;
+}
+
+.btn_imprimir:hover{
+  background-color: #007fff;
+  border: 2px solid #003eff;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+}
+
+.btn_imprimir img{
+  width: 3em;
+  height: 3em;
+}
+
+/* ######################## FICHA CUPONES ############################################################ */
+
+#ficha_cupones{
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 216mm;
+  padding-bottom: 3em;
+}
+
+.salto_pagina{
+  display:block;
+	page-break-before:always;
+  width: 100%;}
+
+.cupon_tutecho_logo{
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 0.5em 1em;
+  border-radius: 15px;
+}
+
+.cupon_tutecho_titulo{
+  font-size: 1em;
+  color: #4a4848;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cupon_tutecho_instruccion{
+  position: absolute;
+  color: #4a4848;
+  bottom: -2em;
+  left: -4em;
+}
+
+.cupon_fixed_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6cm;
+  height: 15cm;
+  transform: scale(0.85);
+  margin-right: -1.8em;
+  margin-bottom: -4em;
+}
+
+.cupon_fixed_container_back{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6cm;
+  height: 15cm;
+  transform: scale(0.85);
+  margin-right: -1.8em;
+  margin-bottom: -4em;
+}
+
+.QR_cupones_container{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  margin: 0 auto 0 -1.5em;
+  justify-content: flex-start;
+}
+
+.popup_sponsor{
+  border: 1px solid #4a4848;
+  border-radius: 10px;
+  width: 15cm;
+  height: 6cm;
+  padding: 0.8em;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  transform: rotate(-90deg);
+}
+
+.popup_sponsor_back{
+  border: 1px solid #4a4848;
+  border-radius: 10px;
+  width: 15cm;
+  height: 6cm;
+  padding: 0.8em;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  transform: rotate(90deg);
+}
+
+.popup_sponsor_info_container{
+  background-color: #ffffff;
+  width: 100%;
+  height: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.2em 1em;
+  box-sizing: border-box;
+}
+
+.popup_promo_zona{
+  width: 60%;
+  position: absolute;
+  left: 1em;
+  box-sizing: border-box;
+  height: 11.5em;
+  display: flex;
+  z-index: 2;
+}
+
+.popup_promo_qr{
+  width: 60%;
+  position: absolute;
+  left: 1em;
+  box-sizing: border-box;
+  height: 12em;
+  z-index: 2;
+  padding-left: 2em;
+}
+
+.popup_sponsor_info{
+  width: 40%;
+  position: absolute;
+  right: 1.5em;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5em;
+  box-sizing: border-box;
+}
+
+.popup_sponsor_titulo{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
+
+.popup_sponsor_titulo span.logo_preview{
+  display: flex;
+  width: 3.7em;
+  height: 3.7em;
+  border: 1px solid #4a4848;
+  margin-right: 0.5em;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.popup_sponsor_titulo span.logo_preview.filled{
+  border: none;
+  color: rgba(255, 255, 255, 0);
+  background-repeat: no-repeat;
+}
+
+.popup_sponsor_titulo label{
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #4a4848;
+}
+
+.popup_sponsor_info span.fa{margin-bottom: 0.4em; cursor: default;}
+
+.popup_sponsor_info span.fa::before{
+  margin-right: 0.3em;
+  color: #0984cc;
+}
+
+.popup_sponsor_direccion{margin-left: 0.5em;}
+.popup_sponsor_contacto{margin-left: 0.5em;}
+.popup_sponsor_web{margin-left: 0.5em;}
+
+
+.info_promo_1_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}
+
+.info_promo_2_container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.info_promo_2_container span{
+  color: #333333;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+
+}
+
+.promo_cuadro1_texto2{
+  margin-right: 0.3em;
+}
+
+.ilustracion_fondo_container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ilustracion_fondo{
+  position: absolute;
+  z-index: 1;
+  width: calc(60% - 0.8em);
+  height: 12em;
+  top: calc(50% - 6em);
+  left: 0.8em;
+  background-repeat: round;
+  background-size: cover;
+}
+
+.ilustracion_filtro{
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.66);
+  width: calc(60% - 0.8em);
+  height: 12em;
+  top: calc(50% - 6em);
+  left: 0.8em;
+}
+
+.info_adicional_container{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border: 2px solid rgb(57, 57, 57);
+  border-top: none;
+  width: 35em;
+  margin-top: 0.5em;
+  border-radius: 8px;
+  padding: 0.8em 0;
+}
+
+.info_adicional_container h2{
+  width: 100%;
+  color: #454545;
+  text-align: center;
+  margin-bottom: 0.3em;
+}
+
+.info_adicional_container .elemento_info_acicional_barrio{
+  width: 100%;
+  padding: 0.3em 0.5em 0.3em 0.8em;
+  font-size: 0.9em;
+}
+
+.info_adicional_container .elemento_info_acicional{
+  width: 50%;
+  padding: 0.3em 0.5em 0.3em 0.8em;
+  font-size: 0.9em;
+}
+
+.info_adicional_container .info_label{
+  color: #454545;
+  font-weight: bold;
+  margin-right: 0.3em;
+}
+
+.validez_cupon{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  font-size: 0.7em;
+  justify-content: flex-end;
+  padding-right: 2em;
+  color: rgb(255, 255, 255);
+}
+
+.validez_cupon span{
+  margin-left: 0.2em;
+}

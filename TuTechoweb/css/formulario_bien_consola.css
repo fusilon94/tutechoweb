@@ -1,0 +1,736 @@
+
+.departamento_label {
+  text-transform: capitalize;
+}
+
+.regreso_boton_div_contenedor {width: 100%; padding: 1em 0.5em 1em 1em;}
+
+.regreso_boton_div_contenedor a {display: flex; align-items: center; width: 15em;}
+
+.regreso_boton_div_contenedor a span {color: white; margin: 0em 0.2em;}
+
+.regreso_boton_div_contenedor a:hover span.regreso_boton {color: #0984CC;}
+
+
+
+#formulario_registro_bien {padding: 0 1.5em 0 1.5em;}
+
+.error { margin: 1.5em;}
+.error ul span {color: white; font-size: 1.3em;}
+
+span.fa-star {color: rgb(221, 154, 25)}
+h3 i.fa-circle {color: rgb(242, 48, 42); font-size: 1.1em; display: none;}
+
+#dialog {width: 30%;}
+
+label {
+      display: block;
+      margin-top: 1.5em;
+    }
+
+.titulo_formulario{
+  text-align: center;
+  color: white;
+  padding: 1em 0em;
+}
+
+.barra_separadora {
+  border:none;
+	margin: 1.5em auto;
+	border-top:10px solid #828281;
+	background: none;
+	color:black;
+  width: 100%;
+}
+
+.campo_foto {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  color: #ecf0f1;
+  border: 3px dashed gray;
+  margin-top: 1.5em;
+}
+
+
+.campo_foto input { /* el padding rellena el contenedor y es calculado de acuerdo a su altura-input.height/2 */
+  z-index: 10;
+  opacity: 0; /* el boton del input no es visible */
+  font-size: 0em; /* y fue enchiquecido al maximo de modo a que no moleste en pantallas menores*/
+  padding: 147px 140px;
+  cursor: pointer;
+  position: absolute;
+
+}
+
+.campo_foto label { /* el label del input rellena todo el contenedor */
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  opacity: 0.8;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  line-height: 50px;
+  text-transform: uppercase;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.campo_foto label p{
+  display: block;
+  text-align: center;
+  padding: 0.5em;
+  background-color: #aaa8a8;
+}
+
+.campo_foto label span{
+  text-transform: none;
+  text-decoration: underline #007fff;
+  color: #007fff;
+}
+
+.thumb_foto_normal {
+  display: flex;
+  position: absolute;
+  z-index: 11;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumb_foto_normal_p_container{
+  display: flex;
+  opacity: 0.8;
+  position: absolute;
+  z-index: 12;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumb_foto_normal_p{
+  display: block;
+  text-align: center;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgb(41, 144, 228);
+  font-size: 1.5em;
+  text-decoration: underline #007fff;
+}
+
+.thumb_foto_normal_p360{
+  display: block;
+  text-align: center;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgb(41, 144, 228);
+  font-size: 0.8em;
+  text-decoration: underline #007fff;
+}
+
+.return_change_foto {
+  position: absolute;
+  right: 0;
+  z-index: 11;
+  cursor: pointer;
+  visibility: hidden;
+  color: black;
+}
+
+.return_foto {
+  margin-top: 0.3em;
+  margin-right: 0.3em;
+  font-size: 2em;
+}
+
+.return_foto:hover {
+  color: rgb(15, 96, 215);
+  font-size: 2.2em;
+}
+
+.return_foto360 {
+  margin-top: 0.1em;
+  margin-right: 0.1em;
+  font-size: 0.9em;
+}
+
+.return_foto360:hover {
+  color: rgb(15, 96, 215);
+  font-size: 1em;
+}
+
+.contenedor_foto_360_titulo {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;}
+
+.campo_foto_360 {
+  width: 4.5em;
+  height: 4.5em;
+  position: relative;
+  overflow: hidden;
+  color: #ecf0f1;
+  border: 3px dashed gray;
+  margin-top: 0.5em;
+}
+
+.campo_foto_360 input { /* el padding rellena el contenedor y es calculado de acuerdo a su altura-input.height/2 */
+  z-index: 10;
+  opacity: 0; /* el boton del input no es visible */
+  font-size: 0em; /* y fue enchiquecido al maximo de modo a que no moleste en pantallas menores*/
+  padding: 4.5em 4.5em;
+  cursor: pointer;
+  position: absolute;
+
+}
+
+.campo_foto_360 label { /* el label del input rellena todo el contenedor */
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  opacity: 0.8;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  line-height: 50px;
+  text-transform: uppercase;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.campo_foto_360 label p{
+  display: block;
+  text-align: center;
+  padding: 0.5em;
+  text-transform: none;
+  color: #007fff;
+}
+
+.campo_foto_360 label i{
+  display: none;
+  text-align: center;
+  padding: 0.5em;
+  text-transform: none;
+  color: #52ff00;
+  font-size: 2.5em;
+}
+
+#boton_mas_fotos_contenedor{
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-around;
+  margin-top: 2em;
+}
+
+#boton_mas_fotos {
+  display: flex;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+#boton_mas_fotos:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+#boton_mas_fotos:hover p{
+  color: white;
+}
+
+
+#boton_mas_fotos i{
+  color: rgb(88, 235, 28);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+#boton_mas_fotos p{
+  color: #454545;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.section_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.elemento_formulario_bien {
+  flex-basis: 30%;
+  flex-grow: 0;
+
+}
+
+.elemento_relleno {
+  width: 30%;
+}
+
+.titulo_h2 {
+  display: block;
+  width: 100%;
+}
+
+.elemento_de_linea {
+  flex-basis: 100%;
+  flex-grow: 0;
+}
+
+.info_ventana_boton {
+  display: block;
+  width: 2.5em;
+  height: 2.5em;
+  margin: 30px 0px 10px 0px;
+  cursor: pointer;
+}
+
+/* ################################## INPUT BUTTON DESIGN MENU OPCION ####################################################### */
+
+#boton_opcion_formulario_contenedor{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  padding: 0 0 2em 0;
+}
+
+.boton_opcion_formulario {
+  display: flex;
+  max-width: 700px;
+  width: 100%;
+  margin: 2em auto 0 auto;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_opcion_formulario:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+.boton_opcion_formulario:hover p{
+  color: white;
+}
+
+.boton_opcion_formulario:hover i{
+  color: white;
+}
+
+
+.boton_opcion_formulario i{
+  color: rgb(169, 31, 217);
+  margin-right: 0.5em;
+  font-size: 2.5em;
+}
+
+.boton_opcion_formulario p{
+  color: #454545;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+/* #################### INPUT BUTTON DESIGN MENU BORRADOR FORMULARIO ###################### */
+
+#boton_borrador_formulario_contenedor{
+  flex-direction: column;
+  flex-basis: 100%;
+  max-width: 700px;
+  margin: -2.1em auto 2em auto;
+  border: 2px solid rgb(167, 167, 167);
+  display: none;
+  padding: 1em 0;
+}
+
+#boton_bienes_formulario_contenedor{
+  flex-direction: column;
+  flex-basis: 100%;
+  max-width: 700px;
+  margin: 1em auto 2em auto;
+  border: 2px solid rgb(167, 167, 167);
+  padding: 1em 0;
+}
+
+.boton_borrador_mini_contenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.boton_borrador_formulario {
+  display: flex;
+  max-width: 240px;
+  width: 100%;
+  margin: 1em 1em 1em 0;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+.boton_borrador_formulario:hover p{
+  color: white;
+}
+
+.boton_borrador_formulario:hover i{
+  color: white;
+}
+
+
+.boton_borrador_formulario i{
+  color: rgb(233, 147, 19);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_borrador_formulario p{
+  color: #454545;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+/* #################### INPUT BUTTON DESIGN FORMULARIO BORRADOR - BORRAR ###################### */
+
+.boton_borrador_formulario_borrar {
+  display: flex;
+  max-width: 55px;
+  width: 100%;
+  margin: 1em 0 1em 0;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario_borrar:hover {
+  border: 1px solid black;
+}
+
+.boton_borrador_formulario_borrar:hover i{
+  color: rgb(11, 11, 14);
+}
+
+
+.boton_borrador_formulario_borrar i{
+  color: rgb(136, 136, 136);
+  font-size: 2em;
+}
+
+/* #################### INPUT BUTTON DESIGN FORMULARIO BORRADOR - BORRAR CONFIRMACION ###################### */
+
+.boton_borrador_formulario_borrar_confirmar {
+  display: none;
+  max-width: 140px;
+  width: 100%;
+  margin: 1em 0em 1em 1em;
+  padding: 0.85em 0.5em 0.5em 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario_borrar_confirmar:hover {
+  background-color: rgb(156, 18, 51);
+  border: 1px solid rgb(115, 9, 19);
+}
+
+.boton_borrador_formulario_borrar_confirmar:hover p{
+  color: white;
+}
+
+.boton_borrador_formulario_borrar_confirmar p{
+  color: #454545;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* ################################## INPUT BUTTON DESIGN FORMULARIO ####################################################### */
+
+button {font-size: 1.2em;}
+
+#boton_submit_form {display: none;}
+
+
+#boton_fin_formulario_contenedor{
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  justify-content: space-around;
+}
+
+.boton_fin_formulario {
+  display: flex;
+  margin: 2em 1.5em 2em 0;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_fin_formulario:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+.boton_fin_formulario:hover p{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-desktop{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-save{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-download{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-clipboard-check{
+  color: white;
+}
+
+.boton_fin_formulario i.fa-desktop{
+  color: rgb(13, 189, 147);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_fin_formulario i.fa-save{
+  color: rgb(31, 150, 217);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_fin_formulario i.fa-download{
+  color: rgb(169, 31, 217);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_fin_formulario i.fa-clipboard-check{
+  color: rgb(169, 31, 217);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_fin_formulario p{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #454545;
+  text-align: center;
+}
+
+/* ################################## CHECKBOX DESIGN ####################################################### */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.checkbox_container {
+  flex-basis: 30%;
+  display: flex;
+  position: relative;
+}
+
+.checkbox_container input {
+  position: absolute;
+  left: -9999px;
+}
+
+.checkbox_container label {
+  display: block;
+  position: relative;
+  margin:  27px 20px 13px 0px;
+  padding: 10px 28px 10px 47px;
+  border: 3px solid #fff;
+  border-radius: 0px;
+  color: #fff;
+  background-color: #6a8494;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s, box-shadow .2s;
+  font-size: 1.1em;
+}
+
+.checkbox_container label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 15px;
+  width: 22px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  transition: background-color .2s;
+}
+
+.checkbox_container label:hover, .checkbox_container input:focus + label {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+
+.checkbox_container input:checked + label {
+  background-color: #ab576c;
+}
+
+.checkbox_container input:checked + label::before {
+  background-color: #fff;
+}
+
+.form-submit-button {
+background: #0066A2;
+color: white;
+border-style: outset;
+border-color: #0066A2;
+height: 50px;
+width: 200px;
+font: bold 17px arial, sans-serif;
+text-shadow:none;
+margin: 0.5em auto;
+float: right;
+cursor: pointer;
+}
+
+.form-submit-button:hover{
+  background: #007fff;
+}
+
+/* ####################    ESTILOS RESPONSIVE    ########################### */
+
+@media screen and (max-width:970px) {
+
+  .section_container{
+    justify-content: flex-start;
+  }
+
+  .elemento_formulario_bien {
+    flex-basis: 40%;
+  }
+
+  .elemento_relleno {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:800px) {
+
+  .section_container{
+    justify-content: space-between;
+  }
+
+  .elemento_formulario_bien {
+    flex-basis: 45%;
+  }
+
+  .elemento_relleno {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width:700px) {
+
+  .elemento_formulario_bien {
+    flex-basis: 48%;
+  }
+
+  .elemento_relleno {
+    width: 48%;
+  }
+
+}
+
+@media screen and (max-width:665px) {
+
+  .section_container{
+    justify-content: center;
+  }
+
+  .elemento_formulario_bien {
+    flex-basis: 80%;
+  }
+
+  .elemento_relleno {
+    width: 80%;
+  }
+
+  .elemento_de_linea {
+    flex-basis: 80%;
+  }
+
+}
+
+@media screen and (max-width:470px) {
+  .boton_fin_formulario {
+    margin: 1em 1.5em 1em 0;
+  }
+
+}
+
+@media screen and (max-width:460px) {
+
+  .elemento_formulario_bien {
+    flex-basis: 96%;
+  }
+
+  .elemento_relleno {
+    width: 96%;
+  }
+
+  .elemento_de_linea {
+    flex-basis: 96%;
+  }
+
+  }
+
+@media screen and (max-width:400px) {
+
+#formulario_registro_bien {padding: 0 0 0 0;}
+
+}

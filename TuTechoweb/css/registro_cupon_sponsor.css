@@ -1,0 +1,989 @@
+
+input::-webkit-input-placeholder {
+  font-size: 0.8em;
+}
+input::-moz-placeholder {
+  font-size: 0.8em;
+}
+input:-ms-input-placeholder {
+  font-size: 0.8em;
+}
+input::placeholder {
+  font-size: 0.8em;
+}
+
+
+.regreso_boton_div_contenedor {
+    width: 100%;
+    padding: 1em 0.5em 1em 1em;
+}
+
+.regreso_boton_div_contenedor a:hover span.regreso_boton {color: #0984CC;}
+
+.regreso_boton_div_contenedor a {
+    display: flex;
+    align-items: center;
+    width: 15em;
+}
+
+.regreso_boton_div_contenedor a span {
+    color: white;
+    margin: 0em 0.2em;
+}
+
+.popup_errores{
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(50% - 5em);
+  left: calc(50% - 10em);
+  width: 20em;
+  height: 10em;
+  background-color: #fff;
+  border: 1em solid #e91e32;
+  z-index: 3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.popup_errores i.fa-exclamation-circle{
+  color: #e91e32;
+  font-size: 1.2em;
+  margin-right: 0.3em;
+}
+
+.popup_errores_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0984cc;
+  border-radius: 50%;
+  padding: 0.1em 0.3em 0.2em 0.3em;
+  right: -0.5em;
+  top: -0.5em;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.popup_errores_cerrar:hover{
+  -webkit-transform:translateY(-0.1em);
+  -moz-transform:translateY(-0.1em);
+  transform:translateY(-0.1em);
+}
+
+
+.titulo_formulario {
+    text-align: center;
+    color: white;
+    padding: 1em 0em;
+}
+
+#formulario_registro_sponsor{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.contenedor_plataforma_sponsor_edicion{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.pop_up_visualizer{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+}
+
+.pop_up_visualizer h2{
+  color: #fff;
+  cursor: default;}
+
+.boton_ver_vista_preliminar{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 4em;
+  border: 4px solid #007fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 0.5em 0;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 1.1em;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  transition: .3s;
+}
+
+.boton_ver_vista_preliminar:hover{background-color: rgba(26, 29, 42, 0.39);}
+
+.relative_container{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.sticky_container{
+  width: 100%;
+  position: sticky;
+  top: 12em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup_visible{
+  display: flex;
+}
+
+
+/* ############################# Cupon SPONSOR ############################## */
+
+.popup_sponsor{
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 35em;
+  height: 14em;
+  padding: 0.8em;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.popup_sponsor:not(.popup_visible){
+  display: none;
+}
+
+.popup_sponsor_info_container{
+  background-color: #ffffff;
+  width: 100%;
+  height: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.2em 1em;
+  box-sizing: border-box;
+}
+
+.popup_promo_zona{
+  width: 60%;
+  position: absolute;
+  left: 1em;
+  box-sizing: border-box;
+  height: 11.5em;
+  display: flex;
+  z-index: 2;
+}
+
+.popup_sponsor_info{
+  width: 40%;
+  position: absolute;
+  right: 1.5em;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5em;
+  box-sizing: border-box;
+}
+
+.popup_sponsor_titulo{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
+
+.popup_sponsor_titulo span.logo_preview{
+  display: flex;
+  width: 3.7em;
+  height: 3.7em;
+  border: 1px solid #4a4848;
+  margin-right: 0.5em;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.popup_sponsor_titulo span.logo_preview.filled{
+  border: none;
+  color: rgba(255, 255, 255, 0);
+  background-repeat: no-repeat;
+}
+
+.popup_sponsor_titulo label{
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #4a4848;
+}
+
+.popup_sponsor_info span.fa{margin-bottom: 0.4em; cursor: default;}
+
+.popup_sponsor_info span.fa::before{
+  margin-right: 0.3em;
+  color: #0984cc;
+}
+
+.popup_sponsor_direccion{margin-left: 0.5em;}
+.popup_sponsor_contacto{margin-left: 0.5em;}
+.popup_sponsor_web{margin-left: 0.5em;}
+
+.info_promo_1_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}
+
+.info_promo_2_container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.info_promo_2_container span{
+  color: #333333;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+
+}
+
+.promo_cuadro1_texto2{
+  margin-right: 0.3em;
+}
+
+.ilustracion_fondo_container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ilustracion_fondo{
+  position: absolute;
+  z-index: 1;
+  width: calc(60% - 0.8em);
+  height: 12em;
+  top: calc(50% - 6em);
+  left: 0.8em;
+  background-repeat: round;
+  background-size: cover;
+}
+
+.ilustracion_filtro{
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.66);
+  width: calc(60% - 0.8em);
+  height: 12em;
+  top: calc(50% - 6em);
+  left: 0.8em;
+}
+
+.validez_cupon{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  font-size: 0.7em;
+  justify-content: flex-end;
+  padding-right: 1.3em;
+  color: rgb(218, 218, 218);
+}
+
+.validez_cupon span{
+  margin-left: 0.2em;
+}
+
+
+/* ########################### CONFIGURACION SPONSOR ################################# */
+
+.configuracion_sponsor{
+  width: 40%;
+  background-color: #fff;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2em;
+}
+
+.configuracion_sponsor h2{
+  border: 1px solid #003eff;
+    background: #007fff;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    position: relative;
+    padding: .5em .5em .5em .7em;
+    text-align: center;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.configuracion_sponsor_paquete1{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 95%;
+}
+
+.configuracion_sponsor_paquete2{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 95%;
+}
+
+.configuracion_sponsor_paquete3{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 95%;
+  margin-top: 0.3em;
+}
+
+.configuracion_sponsor_paquete4{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 95%;
+  margin-top: 1em;
+}
+
+.configuracion_sponsor_paquete5{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 95%;
+}
+
+
+.elemento_formulario_sponsor{
+  width: 22em;
+  box-sizing: border-box;
+  color: #333333;
+  margin: auto;
+}
+
+.elemento_formulario_sponsor label{
+  display: block;
+  margin-top: 1.5em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.elemento_formulario_sponsor input{
+  width: 90%;
+  margin-top: 0.5em;
+  font-size: 1.1em;
+  color: rgb(27, 23, 23);
+}
+
+.elemento_formulario_sponsor select{
+  width: 70%;
+  margin-top: 0.5em;
+  font-size: 1.1em;
+  color: rgb(27, 23, 23);
+}
+
+
+.galeria_ilustraciones{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-evenly;
+width: 100%;
+padding: 0em 1em;
+box-sizing: border-box;
+border: 1px solid #333333;
+margin-top: 0.5em;
+margin-bottom: 1.5em;
+height: 3em;
+}
+
+.galeria_ilustraciones span.ilustracion{
+  display: flex;
+  width: 3.5em;
+  margin: 0.3em;
+  cursor: pointer;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 6px;
+}
+
+.galeria_ilustraciones span.ilustracion:hover{
+  border: 3px solid rgb(153, 153, 152);
+}
+
+.galeria_ilustraciones span.ilustracion img{
+  width: 100%;
+}
+
+.galeria_colores{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0.5em 0.5em;
+  box-sizing: border-box;
+  border: 1px solid #333333;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  cursor: pointer;
+}
+
+.galeria_colores span.color_borde{
+  display: flex;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 7px;
+  border: 3px solid rgb(255, 255, 255);
+  margin: 0.5em;
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+  -webkit-transform:translateY(0px);
+     transform:translateY(0px);
+  cursor: pointer;
+}
+
+.galeria_colores span.color_borde:hover{
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+  -webkit-transform:translateY(-0.2em);
+  -moz-transform:translateY(-0.2em);
+  transform:translateY(-0.2em);
+}
+
+.seguridad_extra_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4a4848;
+  border-radius: 8px;
+  color: #4a4848;
+  background-color: rgb(201, 197, 197);
+  width: 16em;
+  padding: 0.8em;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0.5em auto;
+  font-size: 1.1em;
+  -webkit-transition:.3s;
+  -moz-transition:.3s;
+    transition:.3s;
+}
+
+.seguridad_extra_btn:hover{
+  background-color: #007fff;
+  border: 1px solid #003eff;
+
+  color: white;
+  -webkit-transition:.3s;
+  -moz-transition:.3s;
+    transition:.3s;
+}
+
+.seguridad_extra_btn:active{
+  font-size: 1.08em;
+}
+
+.seguridad_extra_btn.active{
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: white;
+}
+
+/* ######################### INPUTS PROPIOS DEL CUPON ################################## */
+
+
+
+.promo_var4_radio_container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1em 0em 0em 0em;
+}
+
+.promo_var4_radio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4a4848;
+  color: #4a4848;
+  background-color: rgb(201, 197, 197);
+  width: 8em;
+  padding: 0.5em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.promo_var4_radio:hover{
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: white;
+}
+
+.promo_var4_radio.active{
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: white;
+}
+
+.color_texto_opcion{
+  display: flex;
+  width: 2em;
+  height: 2em;
+  border-radius: 7px;
+  border: 3px solid rgb(255, 255, 255);
+  margin: 0.2em 0.1em;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  transition: .2s;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.color_texto_opcion:hover{
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+  -webkit-transform:translateY(-0.2em);
+  -moz-transform:translateY(-0.2em);
+  transform:translateY(-0.2em);
+}
+
+.galeria_colores_contenedor_texto{
+  margin-top: 1.5em;
+}
+
+.promo_btn_gran_container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.promo_btn_mini_container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 45%;
+  border: 2px solid #4a4848;
+  border-radius: 8px;
+  padding: 0.3em 0;
+}
+
+.promo_btn_posicion{
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.promo_btn_posicion i{
+  color: #4a4848;
+  font-size: 2.5em;
+}
+
+.promo_btn_posicion i:hover{
+  color: #007fff;
+}
+
+.promo_info_sponsor_btn_posicion{
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.promo_info_sponsor_btn_posicion i{
+  color: #4a4848;
+  font-size: 2.5em;
+}
+
+.promo_info_sponsor_btn_posicion i:hover{
+  color: #007fff;
+}
+
+.promo_info_btn_mini_container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 45%;
+  border: 2px solid #4a4848;
+  border-radius: 8px;
+  padding: 0.3em 0;
+  margin: 0.5em auto 0em auto;
+}
+
+.promo_info_btn_posicion{
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.promo_info_btn_posicion i{
+  color: #4a4848;
+  font-size: 2.5em;
+}
+
+.promo_info_btn_posicion i:hover{
+  color: #007fff;
+}
+
+
+
+.ui-slider{
+  margin-top: 1em;
+}
+
+.ui-widget.ui-widget-content{
+  border-radius: 5px;
+}
+
+.ui-slider-range-min{
+  background: #007fff;
+}
+
+.ui-slider-handle.ui-corner-all.ui-state-default{
+  background: #5f5f60;
+  border: 1px solid rgb(91, 91, 91);
+  border-radius: 3px;
+}
+
+.ui-slider-handle.ui-corner-all.ui-state-default:hover{
+  background: #007fff;
+  border: 1px solid #003eff;
+}
+
+
+
+/* ######################## BOTONES FIN FORMULARIO SPONSOR ########################### */
+
+button {font-size: 1.2em;}
+
+#boton_submit_form {display: none;}
+
+
+#boton_fin_formulario_contenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 6em;
+  align-items: center;
+}
+
+.boton_fin_formulario {
+  display: flex;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+}
+
+.boton_fin_formulario:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+.boton_fin_formulario:hover p{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-save{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-download{
+  color: white;
+}
+
+.boton_fin_formulario:hover i.fa-clipboard-check{
+  color: white;
+}
+
+.boton_fin_formulario i.fa-download{
+  color: rgb(169, 31, 217);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_fin_formulario i.fa-clipboard-check{
+  color: rgb(169, 31, 217);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_fin_formulario p{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #454545;
+  text-align: center;
+}
+
+.fa-circle{color: rgb(228, 46, 46); font-size: 1.1em; margin-right: 0.3em;}
+
+
+
+
+/* ############################# RESPONSIVE ############################## */
+
+@media screen and (max-width:1000px){
+
+  .sticky_container{
+    position: unset;
+    top: unset;
+  }
+  .regreso_boton_div_contenedor{height: 3em;}
+
+  .titulo_formulario{height: 3.5em;}
+
+  .elemento_formulario_sponsor{width: 18em;}
+
+  .contenedor_plataforma_sponsor_edicion{
+    flex-direction: column;
+  }
+
+  .pop_up_visualizer{
+    width: 95%;
+    margin: auto;
+    position: sticky;
+    top: 7.2em;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+  }
+
+  .boton_ver_vista_preliminar{
+    display: flex;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+  }
+
+  .boton_ver_vista_preliminar.active{
+    background-color: #007fff;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+  }
+
+  .popups_container{
+    width: 100%;
+  }
+
+  .popups_container:not(.visible){
+    padding-bottom: 0em;
+    visibility: hidden;
+    height: 0em;
+  }
+
+  .popups_container.visible{
+    padding-bottom: 2em;
+    visibility: visible;
+    height: unset;
+  }
+
+  .popup_sponsor{margin: 1em auto 0.5em auto;}
+
+  .configuracion_sponsor{
+    width: 95%;
+    margin: auto;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    }
+
+  .configuracion_sponsor h2{
+    position: sticky;
+    top: -3px;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .configuracion_sponsor_paquete1{
+    width: 50%
+  }
+
+  .configuracion_sponsor_paquete2{
+    width: 50%
+  }
+
+  .popup_sponsor_mapa_config{
+    width: 90%;
+    margin: 2em auto 1em auto;
+  }
+
+  .configuracion_sponsor_paquete3{
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 1em auto 0em auto;
+    flex-wrap: wrap;
+  }
+
+  .configuracion_sponsor_paquete4{
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: auto;
+  }
+
+  .galeria_ilustraciones_contenedor{
+    width: 50%;
+    padding: 0em 0.5em;
+  }
+
+  .galeria_ilustraciones{
+    overflow-y: scroll;
+  }
+
+  .galeria_colores_contenedor{
+    width: 50%;
+    padding: 0em 0.5em;
+  }
+
+  .configuracion_sponsor_paquete5{
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .boton_fin_formulario_contenedor{flex-basis: unset;}
+
+}
+
+@media screen and (max-width:800px){
+  .configuracion_sponsor{width: 100%;}
+  .pop_up_visualizer{width: 100%; top: 6em;}
+}
+
+@media screen and (max-width:600px){
+    .configuracion_sponsor_paquete1{
+      width: 100%;
+    }
+
+    .configuracion_sponsor_paquete2{
+      width: 100%;
+    }
+
+    .elemento_formulario_sponsor{width: 25em;}
+
+    .configuracion_sponsor_paquete3{
+      width: 100%;
+    }
+
+    .configuracion_sponsor_paquete4{
+      width: 100%;
+    }
+
+    .configuracion_sponsor_paquete5{
+      width: 100%;
+      justify-content: center;
+      padding: 0em;
+    }
+
+}
+
+@media screen and (max-width:570px){
+
+    .popup_sponsor{display: none;}
+
+    .configuracion_sponsor_paquete3{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .configuracion_sponsor_paquete4{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .galeria_ilustraciones_contenedor{width: 90%;}
+
+    .galeria_ilustraciones{
+      overflow-y: visible;
+    }
+
+    .galeria_colores_contenedor{width: 90%;}
+
+    .configuracion_sponsor_paquete5 .elemento_formulario_sponsor{
+      margin: 0;
+    }
+
+}
+
+
+@media screen and (max-width:500px){
+    .titulo_formulario{
+      height: 3em;
+      padding: 0.8em 0em;
+      font-size: 1.35em;
+    }
+
+    .elemento_formulario_sponsor{
+      width: 22em;
+    }
+
+}
+
+@media screen and (max-width:480px){
+  #boton_fin_formulario_contenedor{
+    flex-direction: column;
+    height: unset;
+  }
+
+  .boton_fin_formulario{margin: 0.5em 0em;}
+
+}
+
+@media screen and (max-width:430px){
+
+  .elemento_formulario_sponsor{width: 20em;}
+
+  .popup_errores{
+    left: calc(50% - 8em);
+    top: calc(50% - 4em);
+    width: 16em;
+    height: 8em;
+    font-size: 1.1em;
+    border: 0.8em solid #e91e32;
+  }
+
+}

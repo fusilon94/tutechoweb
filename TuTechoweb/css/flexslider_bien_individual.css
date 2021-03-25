@@ -1,0 +1,158 @@
+/* ######################## Enlaces hacia los font-awesome icons ######################## */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/font_awesome/fontawesome-webfont.eot?v=4.7.0');
+  src: url('../fonts/font_awesome/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../fonts/font_awesome/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/font_awesome/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../fonts/font_awesome/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../fonts/font_awesome/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;}
+
+/* ########################### Forma global del slider ############## */
+.flexslider.bien_individual_slider
+{width: 100%;
+ max-width: 870px;
+ margin: 3em auto;
+ display: flex;
+ flex-direction: column;
+ position: relative;
+ z-index: 1;}
+
+.slides.bien_individual_slides
+{width: 100%;
+ border: 5px solid white;
+ border-radius: 4px;
+ box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.7);}
+.slides.bien_individual_slides li
+{width: 100%;
+ margin-bottom: -5px}  /* solucion para el margin-bottom automatico que aparece, weird */
+.slides.bien_individual_slides li img
+{width: 100%;}
+.slides.bien_individual_slides li video
+{width: 100%; z-index: 3;}
+
+/* ############################# Paginacion, puntos que muestran que imagen se muestra ################### */
+
+#bien_individual_slider .flex-control-nav.flex-control-thumbs       /* Corresponde al contenedor de los puntos de paginacion */
+{width: 100%;
+ background-color: rgba(0,0,0,0.99);
+ border: 2px solid rgba(255,255,255,0.3);
+ align-self: center;                /* para alinearse a si mismo */
+ border-radius: 4px;
+ box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.8);
+ display: flex;
+ flex-wrap: nowrap;
+ justify-content: flex-start;
+ align-items: center;
+ position: relative;
+ z-index: 3;
+ overflow-x: scroll;}
+#bien_individual_slider .flex-control-nav.flex-control-thumbs::-webkit-scrollbar {height: 0.5em;}
+#bien_individual_slider .flex-control-nav.flex-control-thumbs::-webkit-scrollbar-track
+{background-color: rgba(255,255,255,1);}
+#bien_individual_slider .flex-control-nav.flex-control-thumbs::-webkit-scrollbar
+{width: 7px;}
+#bien_individual_slider .flex-control-nav.flex-control-thumbs::-webkit-scrollbar-thumb
+{background-color: #0984CC;}
+
+#bien_individual_slider .flex-control-nav li   /* elementos del mini slider */
+{margin: 0 3px;
+ width: 23%;
+ flex-shrink: 0;}
+#bien_individual_slider .flex-control-nav li img /* elementos del mini slider */
+ {width: 100%;
+  cursor: pointer;
+  opacity: 0.6;
+  }
+
+#bien_individual_slider .flex-control-nav li img.flex-active{
+  opacity: 1;
+  border: 2px solid #fff
+}
+
+
+/* ################################ Botones de navegacion ############################## */
+
+.flex-direction-nav
+{z-index: 3;}
+
+.flex-direction-nav a
+{display: flex;
+ width: 50px;
+ height: 50px;
+ background-color: #1A89DF;
+ justify-content: center;
+ align-items: center;
+ border: 2px solid rgba(255,255,255,0.3);
+ border-radius: 5px;
+ box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.8);
+ position: absolute;      /* permite posicionar indep del contenedor, y relative al padre, flexslider */
+ top: 40%;              /* positiona las flechas a altura media del slider, su top */
+ margin-top: -30px;       /* para concidir medio del boton y medio del slider */
+ transition: all 0.3s ease-in-out;   /* todas los efectos duraran 0.3 segundos */
+ opacity: 0;}
+
+.flex-direction-nav a::before
+{content: "\f104";        /* numero serie del icono escogido, segun el font_awesome.css */
+ font: normal normal normal 14px/1 FontAwesome;
+ text-rendering: auto;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;       /* caracteristicas standar de fontawesome */
+
+ font-size: 50px;
+ color: white;}
+
+.flex-direction-nav a.flex-next::before {content: "\f105"}  /* solo se especifica el nuevo content */
+
+.flex-direction-nav a.flex-prev  /*no se especifica el icono ya que se puso arriba */
+{left: 0px;}
+
+.flex-direction-nav a.flex-next
+{right: 0px;}
+
+.flexslider.bien_individual_slider:hover .flex-direction-nav .flex-prev /* la animation */
+{opacity: 1; left: 15px;}
+.flexslider.bien_individual_slider:hover .flex-direction-nav .flex-next
+{opacity: 1; right: 15px;}
+/* ################################ Caption (TEXTO) ########################################### */
+
+.caption
+{position: absolute;
+ top: 0;
+ z-index: 2;
+ width: 100%;
+ height: 100%;
+ display: flex;
+ justify-content: flex-start;
+ align-items: flex-end;}
+
+.caption h2
+{font-size: 4em;
+ color: rgba(255,255,255,0.4);
+ text-shadow: 3px 3px 2px rgba(0,0,0,0.2);}
+.caption:hover h2
+{color: rgba(255,255,255,1);}
+
+/* ############################# RESPONSIVE ############################## */
+
+@media screen and (max-width:800px){
+
+.flexslider.bien_individual_slider {}
+
+.flex-direction-nav a {opacity: 1;}
+.flex-direction-nav a.flex-prev {left: 15px;}
+.flex-direction-nav a.flex-next {right: 15px;}
+
+.caption h2 {font-size: 3.5em;}
+}
+
+@media screen and (max-width:600px){
+
+.caption h2 {font-size: 3em;}
+
+.flexslider.bien_individual_slider {width: 100%; border-radius: 0px; border: none;}
+
+.flex-direction-nav a {top: auto;}  /* para que se ponga al mismo nivel que la paginacion */
+}
+
+@media screen and (max-width:400px){
+  .caption h2 {font-size: 2.5em;}
+}

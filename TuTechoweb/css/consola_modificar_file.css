@@ -1,0 +1,470 @@
+/* ######################## POPUP MENU ACTIVACION ############################# */
+
+.popup_activacion{
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  align-items: center;
+  position: fixed;
+  top: calc(50% - 35vh);
+  left: 10%;
+  width: 80%;
+  height: 70vh;
+  background-color: #fff;
+  border: 1em solid #0984cc;
+  z-index: 20;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1em 2em;
+}
+
+.popup_activacion_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0984cc;
+  border-radius: 50%;
+  padding: 0.1em 0.3em 0.2em 0.3em;
+  right: -0.5em;
+  top: -0.5em;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.popup_acordion{
+  width: 100%;
+}
+
+.opcion_activar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.elemento_formulario{
+  width: 22em;
+  box-sizing: border-box;
+  color: #333333;
+}
+
+.elemento_formulario label{
+  display: block;
+  margin-top: 1.5em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.elemento_formulario input{
+  width: 90%;
+  margin-top: 0.5em;
+  font-size: 1.1em;
+  color: rgb(27, 23, 23);
+}
+
+.tutecho_bien_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4a4848;
+  border-radius: 5px;
+  color: #4a4848;
+  background-color: rgb(201, 197, 197);
+  width: 16em;
+  padding: 0.8em;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0.5em auto;
+  font-size: 1.1em;
+}
+
+.tutecho_bien_btn:hover{
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: white;
+}
+
+.tutecho_bien_btn:active{
+  font-size: 1.08em;
+}
+
+.tutecho_bien_btn.active{
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: white;
+}
+
+.parametro_individual{
+  width: 19em;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.parametro_individual label{
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgb(50, 50, 50);
+  margin-bottom: 0.2em;
+}
+
+.parametro_individual .ui-widget.ui-widget-content{
+  font-size: 1.3em;
+}
+
+.activar_btn{
+  display: flex;
+  width: 20em;
+  padding: 0.5em 2em;
+  border: 2px solid #4a4848;
+  border-radius: 5px;
+  background-color: rgb(201, 197, 197);
+  color: #4a4848;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 4em;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.activar_btn:hover{
+  border: 2px solid #c1a105;
+  background-color: #e5bf00;
+  color: #fff;
+}
+
+.opcion_reportar_error{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lista_btn{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.reporte_btn{
+  display: flex;
+  padding: 0.5em 2em;
+  margin: 1em;
+  border: 2px solid #4a4848;
+  border-radius: 5px;
+  background-color: rgb(201, 197, 197);
+  color: #4a4848;
+  font-size: 1.1em;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+}
+
+.reporte_btn:hover{
+  border: 2px solid #003eff;
+  background-color: #007fff;
+  color: #fff;
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+}
+
+.reporte_btn:active{
+  font-size: 1.08em;
+}
+
+.reporte_btn.active{
+  background-color: #007fff;
+  border: 2px solid #003eff;
+  color: white;
+}
+
+.reportar_btn{
+  display: flex;
+  width: 20em;
+  padding: 0.5em 2em;
+  border: 2px solid #4a4848;
+  border-radius: 5px;
+  background-color: rgb(201, 197, 197);
+  color: #4a4848;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 2em;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+}
+
+.reportar_btn:hover{
+  border: 2px solid #c1a105;
+  background-color: #e5bf00;
+  color: #fff;
+  -webkit-transition:.2s;
+  -moz-transition:.2s;
+    transition:.2s;
+}
+
+/* ######################### POPUP AVISO SUCCES ############################### */
+
+.popup_success{
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(50% - 5em);
+  left: calc(50% - 10em);
+  width: 20em;
+  height: 10em;
+  background-color: #fff;
+  border: 1em solid #0984cc;
+  z-index: 3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.popup_success i.fa-exclamation-circle{
+  color: #0984cc;
+  font-size: 1.2em;
+  margin-right: 0.3em;
+}
+
+.popup_success_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0984cc;
+  border-radius: 50%;
+  padding: 0.1em 0.3em 0.2em 0.3em;
+  right: -0.5em;
+  top: -0.5em;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.popup_success_cerrar:hover{
+  -webkit-transform:translateY(-0.1em);
+  -moz-transform:translateY(-0.1em);
+  transform:translateY(-0.1em);
+}
+
+/* ################### CONTENIDO PAGINA ######################### */
+
+.contenedor_borradores{
+  flex-direction: column;
+  flex-basis: 100%;
+  max-width: 700px;
+  margin: 1em auto 2em auto;
+  border: 2px solid rgb(167, 167, 167);
+  padding: 1em 0;
+}
+
+.boton_borrador_mini_contenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.boton_borrador_formulario {
+  display: flex;
+  max-width: 26em;
+  width: 100%;
+  margin: 1em auto;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+.boton_borrador_formulario:hover p{
+  color: white;
+}
+
+.boton_borrador_formulario:hover i{
+  color: white;
+}
+
+
+.boton_borrador_formulario i{
+  color:rgb(233, 147, 19);
+  margin-right: 0.5em;
+  font-size: 2em;
+}
+
+.boton_borrador_formulario p{
+  display: flex;
+  flex-wrap: wrap;
+  color: #454545;
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0 auto;
+}
+
+.boton_borrador_formulario p span.nombre{
+  margin-right: 0.3em;
+}
+
+
+
+.boton_borrador_formulario_borrar {
+  display: flex;
+  max-width: 55px;
+  width: 100%;
+  margin: 1em 0 1em 0;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario_borrar:hover {
+  border: 1px solid black;
+}
+
+.boton_borrador_formulario_borrar:hover i{
+  color: rgb(11, 11, 14);
+}
+
+
+.boton_borrador_formulario_borrar i{
+  color: rgb(136, 136, 136);
+  font-size: 2em;
+}
+
+
+.boton_borrador_formulario_borrar_confirmar {
+  display: none;
+  max-width: 140px;
+  width: 100%;
+  margin: 1em 0em 1em 1em;
+  padding: 0.85em 0.5em 0.5em 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario_borrar_confirmar:hover {
+  background-color: rgb(99, 156, 18);
+  border: 1px solid rgb(79, 125, 14);
+}
+
+.boton_borrador_formulario_borrar_confirmar:hover p{
+  color: white;
+}
+
+.boton_borrador_formulario_borrar_confirmar p{
+  color: #454545;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* ######################### POPUP AVISO SUCCES ############################### */
+
+.popup_success{
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(50% - 5em);
+  left: calc(50% - 10em);
+  width: 20em;
+  height: 10em;
+  background-color: #fff;
+  border: 1em solid #0984cc;
+  z-index: 3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.popup_success i.fa-exclamation-circle{
+  color: #0984cc;
+  font-size: 1.2em;
+  margin-right: 0.3em;
+}
+
+.popup_success_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0984cc;
+  border-radius: 50%;
+  padding: 0.1em 0.3em 0.2em 0.3em;
+  right: -0.5em;
+  top: -0.5em;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.popup_success_cerrar:hover{
+  -webkit-transform:translateY(-0.1em);
+  -moz-transform:translateY(-0.1em);
+  transform:translateY(-0.1em);
+}
+
+
+/* ############################################ RESPONSIVE #################################################### */
+
+@media screen and (max-width:615px){
+
+  .boton_borrador_formulario{
+    width: calc(100% - 6em);
+    max-width: none;
+  }
+
+}
+
+@media screen and (max-width:580px){
+
+  .previsualizacion_container {
+    left: calc(50% - 11em);
+  }
+  .info_adicional_container{
+    width: 22em;
+  }
+  .info_adicional_container .elemento_info_acicional{
+    width: 100%;
+  }
+
+}

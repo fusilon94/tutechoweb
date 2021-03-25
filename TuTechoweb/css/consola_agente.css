@@ -1,0 +1,235 @@
+::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(29, 29, 29, 0.3);
+	background-color: rgb(114, 113, 113);
+}
+
+span.fa-check-square {color: rgb(13, 217, 21); font-size: 1.3em;}
+
+.desconeccion_boton_div_contenedor {width: 100%; padding: 1em 0.5em 0.5em 1em;}
+
+.desconeccion_boton_div_contenedor a {display: flex; align-items: center; width: 15em;}
+
+.desconeccion_boton_div_contenedor a span {color: white; margin: 0em 0.2em;}
+
+.desconeccion_boton_div_contenedor a:hover span.regreso_boton {color: #0984CC;}
+
+
+.regreso_boton_div_contenedor {
+    width: 100%;
+    padding: 1em 0.5em 1em 1em;
+}
+
+.regreso_boton_div_contenedor a:hover span.regreso_boton {color: #0984CC;}
+
+.regreso_boton_div_contenedor a {
+    display: flex;
+    align-items: center;
+    width: 15em;
+}
+
+.regreso_boton_div_contenedor a span {
+    color: white;
+    margin: 0em 0.2em;
+}
+
+
+.pais_selector{
+  display: flex;
+  position: absolute;
+  top: -2.3em;
+  right: 0;
+  background-color:rgba(0,0,0,0.88);
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5em;
+  align-items: center;
+}
+
+.pais_selector:hover{
+  background-color:rgba(51, 51, 51, 0.88);
+}
+
+.pais_selector_flag{
+  display: flex;
+  width: 2em;
+  margin-left: 0.5em;
+}
+
+.pais_selector_text{
+  color: #fff;
+  font-weight: bold;
+}
+
+.pais_list_overlay{
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(51, 51, 51, 0.42);
+  z-index: 30;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.pais_list{
+  display: flex;
+  background-color: #fff;
+  border-radius: 3px;
+  flex-direction: column;
+  max-width: 80%;
+  max-height: 80vh;
+  padding: 0.5em;
+  overflow-y: overlay;
+  position: relative;
+}
+
+.cerrar_pais_list{
+  display: flex;
+  position: sticky;
+  justify-content: flex-end;
+  margin-right: 0.5em;
+  margin-bottom: -1em;
+  top: 0;
+  right: 0;
+}
+
+.cerrar_pais_list i{
+  font-size: 1.8em;
+  color: rgb(46, 45, 45);
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+}
+
+.cerrar_pais_list i:active{
+  font-size: 1.75em;
+}
+
+.cerrar_pais_list i:hover{
+  color: rgb(24, 24, 24);
+}
+
+.pais_list h2{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 0.5em 0;
+  user-select: none;
+}
+
+.pais_list hr{
+  margin: 0em auto 1em auto;
+  width: 80%;
+}
+
+.lista_btn_paises{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.pais_opcion{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 40px;
+  background-color: transparent;
+  border: 4px solid #fff;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.pais_opcion:hover{
+  border: 4px solid rgb(58, 58, 58);
+}
+
+.pais_opcion:active p{
+  font-size: 1.15em;
+}
+
+.pais_opcion img{
+  width: 65px;
+  display: block;
+  margin: 0 auto;
+}
+
+.pais_opcion p{
+  text-align: center;
+  margin: 5px auto;
+  font-size: 1.2em;
+  color: rgb(24, 24, 24);
+  vertical-align: bottom;
+  user-select: none;
+}
+
+.titulo {
+	font-weight: 500;
+	color: #B8711B;
+	text-align: center;
+	margin: 0.8em 0 0.5em 0;
+  cursor: default;
+}
+
+.barra {
+	border:none;
+	margin: 0px auto 1em auto;
+	border-top:10px solid #B8711B;
+	background: none;
+	color:none;
+  width: 50%;
+}
+
+.contenedor_comandos_consola {
+  display: flex;
+  width: 90%;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  margin: auto;}
+
+.comando_consola {
+  margin: 3px auto;
+  display: flex;}
+
+.comando_consola a {
+  display: block;
+  padding: 5px 40px;}
+
+.comando_consola a:hover {
+ background-color: rgba(255, 255, 255, 0.1)}
+
+.comando_consola a img {
+  width: 65px;
+  display: block;
+  margin: 0 auto;}
+
+.comando_consola a p {
+  text-align: center;
+  margin: 5px auto;
+  font-size: 1em;
+  color: white;}
+
+
+/* ################################ RESPONSIVE ################################################# */
+
+
+@media screen and (max-width:1000px){
+	.regreso_boton_div_contenedor{height: 3em;}
+}

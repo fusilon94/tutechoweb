@@ -1,0 +1,553 @@
+
+.departamento_label {
+  text-transform: capitalize;
+}
+
+/* ######################################### SPONSOR PREVISUALIZACION ################################# */
+
+.overlay_sponsor_previsualizacion{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  visibility: hidden;
+}
+
+.overlay_sponsor_previsualizacion.active{
+  visibility: visible;
+}
+
+    /* ############################# POPUP CUPON ############################## */
+
+    .previsualizacion_container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      left: calc(50% - 17.5em);
+      top: calc(50% - 12em);
+      box-sizing: border-box;
+    }
+
+
+    .popup_sponsor{
+      border: 1px solid black;
+      border-radius: 10px;
+      width: 35em;
+      height: 14em;
+      padding: 0.8em;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .popup_sponsor:not(.popup_visible){
+      display: none;
+    }
+
+    .popup_sponsor_info_container{
+      background-color: #ffffff;
+      width: 100%;
+      height: 98%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0.2em 1em;
+      box-sizing: border-box;
+    }
+
+    .popup_promo_zona{
+      width: 60%;
+      position: absolute;
+      left: 1em;
+      box-sizing: border-box;
+      height: 11.5em;
+      display: flex;
+      z-index: 2;
+    }
+
+    .popup_sponsor_info{
+      width: 40%;
+      position: absolute;
+      right: 1.5em;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      padding-left: 0.5em;
+      box-sizing: border-box;
+    }
+
+    .popup_sponsor_titulo{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 0.5em;
+    }
+
+    .popup_sponsor_titulo span.logo_preview{
+      display: flex;
+      width: 3.7em;
+      height: 3.7em;
+      border: 1px solid #4a4848;
+      margin-right: 0.5em;
+      justify-content: center;
+      align-items: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .popup_sponsor_titulo span.logo_preview.filled{
+      border: none;
+      color: rgba(255, 255, 255, 0);
+      background-repeat: no-repeat;
+    }
+
+    .popup_sponsor_titulo label{
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #4a4848;
+    }
+
+    .popup_sponsor_info span.fa{margin-bottom: 0.4em; cursor: default;}
+
+    .popup_sponsor_info span.fa::before{
+      margin-right: 0.3em;
+      color: #0984cc;
+    }
+
+    .popup_sponsor_direccion{margin-left: 0.5em;}
+    .popup_sponsor_contacto{margin-left: 0.5em;}
+    .popup_sponsor_web{margin-left: 0.5em;}
+
+
+    .info_promo_1_container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      position: absolute;
+      top: 0.5em;
+      left: 0.5em;
+    }
+
+    .info_promo_2_container{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      align-self: flex-end;
+    }
+
+    .info_promo_2_container span{
+      color: #333333;
+      font-size: 1em;
+      font-weight: bold;
+      margin-bottom: 0.3em;
+
+    }
+
+    .promo_cuadro1_texto2{
+      margin-right: 0.3em;
+    }
+
+    .ilustracion_fondo_container{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .ilustracion_fondo{
+      position: absolute;
+      z-index: 1;
+      width: calc(60% - 0.8em);
+      height: 12em;
+      top: calc(50% - 6em);
+      left: 0.8em;
+      background-repeat: round;
+      background-size: cover;
+    }
+
+    .ilustracion_filtro{
+      position: absolute;
+      z-index: 2;
+      background-color: rgba(255, 255, 255, 0.66);
+      width: calc(60% - 0.8em);
+      height: 12em;
+      top: calc(50% - 6em);
+      left: 0.8em;
+    }
+
+    .info_adicional_container{
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #fff;
+      border: 2px solid rgb(57, 57, 57);
+      border-top: none;
+      width: 35em;
+      margin-top: 0.5em;
+      border-radius: 8px;
+      padding: 0.8em 0;
+    }
+
+    .info_adicional_container h2{
+      width: 100%;
+      color: #454545;
+      text-align: center;
+      margin-bottom: 0.3em;
+    }
+
+    .info_adicional_container .elemento_info_acicional_barrio{
+      width: 100%;
+      padding: 0.3em 0.5em 0.3em 0.8em;
+      font-size: 0.9em;
+    }
+
+    .info_adicional_container .elemento_info_acicional{
+      width: 50%;
+      padding: 0.3em 0.5em 0.3em 0.8em;
+      font-size: 0.9em;
+    }
+
+    .info_adicional_container .info_label{
+      color: #454545;
+      font-weight: bold;
+      margin-right: 0.3em;
+    }
+
+    .validez_cupon{
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      width: 100%;
+      font-size: 0.7em;
+      justify-content: flex-end;
+      padding-right: 1.3em;
+      color: rgb(218, 218, 218);
+    }
+
+    .validez_cupon span{
+      margin-left: 0.2em;
+    }
+
+
+/* #########################################  CONTENIDO DE LA PAGINA ################################## */
+.contenedor_inactivar_sponsor_consola {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: calc(100% - 4em);
+  margin: 0em auto 2em auto;
+  background-color: #fff;
+  min-height: 26em;
+  align-content: flex-start;
+}
+
+.label_select_contenedor{
+  display: block;
+  width: 100%;
+  height: min-content;
+  text-align: center;
+  background-color: #007fff;
+  border: 1px solid #003eff;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: .5em .5em .5em .7em;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.select_contenedor{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 30%;
+  padding: 0em 1em 1em 1em;
+  box-sizing: border-box;
+
+}
+
+.elemento_formulario_sponsor{
+  width: 15em;
+  box-sizing: border-box;
+  color: #333333;
+  margin: 0 auto;
+}
+
+.elemento_formulario_sponsor label {
+    display: block;
+    margin-top: 1.5em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.elemento_formulario_sponsor select {
+    width: calc(100% - 1em);
+    margin-top: 0.5em;
+    font-size: 1.1em;
+    color: rgb(27, 23, 23);
+}
+
+.label_resultadors_contenedor{
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: .5em .5em 0.5em .7em;
+  box-sizing: border-box;
+}
+
+.resultados_sponsors{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 1em 1em 1em 1em;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.resultados_container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+/* ###############################   BOTONES RESULTADO 'ACTIVOS' ####################################### */
+
+.boton_borrador_mini_contenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.boton_borrador_formulario {
+  display: flex;
+  max-width: 17em;
+  width: 100%;
+  margin: 1em 0.4em 0em 0;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario:hover {
+  background-color: #007fff;
+  border: 1px solid #003eff;
+}
+
+.boton_borrador_formulario:hover p{
+  color: white;
+}
+
+.boton_borrador_formulario:hover i{
+  color: white;
+}
+
+
+.boton_borrador_formulario i{
+  color: #007fff;
+  margin-right: 0.5em;
+  font-size: 1.3em;
+}
+
+.boton_borrador_formulario p{
+  display: flex;
+  flex-wrap: wrap;
+  color: #454545;
+  text-align: center;
+  font-size: 1em;
+}
+
+.boton_borrador_formulario p span.nombre{
+  margin-right: 0.3em;
+}
+
+
+
+.boton_borrador_formulario_borrar {
+  display: flex;
+  max-width: 55px;
+  width: 100%;
+  align-self: center;
+  margin: 1em 0em 0em 0;
+  padding: 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario_borrar:hover {
+  border: 1px solid black;
+}
+
+.boton_borrador_formulario_borrar:hover i{
+  color: rgb(11, 11, 14);
+}
+
+
+.boton_borrador_formulario_borrar i{
+  color: rgb(136, 136, 136);
+  font-size: 1.3em;
+}
+
+
+
+
+.boton_borrador_formulario_borrar_confirmar {
+  display: none;
+  max-width: 6em;
+  width: 100%;
+  align-self: center;
+  margin: 1em 0em 0em 0.4em;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  border: 1px solid #645f5f;
+  border-radius: 3px;
+  background-color: #d6d6d8;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-grow: 0;
+}
+
+.boton_borrador_formulario_borrar_confirmar:hover {
+  background-color: rgb(156, 18, 51);
+  border: 1px solid rgb(115, 9, 19);
+}
+
+.boton_borrador_formulario_borrar_confirmar:hover p{
+  color: white;
+}
+
+.boton_borrador_formulario_borrar_confirmar p{
+  color: #454545;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+
+/* ######################### POPUP AVISO SUCCES ############################### */
+
+.popup_success{
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: calc(50% - 5em);
+  left: calc(50% - 10em);
+  width: 20em;
+  height: 10em;
+  background-color: #fff;
+  border: 1em solid #0984cc;
+  z-index: 3;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.popup_success i.fa-exclamation-circle{
+  color: #0984cc;
+  font-size: 1.2em;
+  margin-right: 0.3em;
+}
+
+.popup_success_cerrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0984cc;
+  border-radius: 50%;
+  padding: 0.1em 0.3em 0.2em 0.3em;
+  right: -0.5em;
+  top: -0.5em;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  cursor: pointer;
+}
+
+.popup_success_cerrar:hover{
+  -webkit-transform:translateY(-0.1em);
+  -moz-transform:translateY(-0.1em);
+  transform:translateY(-0.1em);
+}
+
+/* ############################################ RESPONSIVE #################################################### */
+
+@media screen and (max-width:700px){
+  .contenedor_editor_sponsor_consola{
+    min-height: 30em;
+  }
+
+  .select_contenedor{
+    width: 100%;
+  }
+
+  .resultados_sponsors{
+    width: 100%;
+  }
+
+
+}
+
+
+@media screen and (max-width:520px){
+
+  .contenedor_editor_sponsor_consola{
+    width: 100%;
+  }
+
+
+}
+
+@media screen and (max-width:460px){
+
+  .label_select_contenedor{
+    font-size: 1em;
+  }
+
+
+}
+
+@media screen and (max-width:380px){
+
+  .label_select_contenedor{
+    font-size: 0.9em;
+  }
+
+
+}

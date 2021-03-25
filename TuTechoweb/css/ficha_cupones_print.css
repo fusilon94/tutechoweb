@@ -1,0 +1,348 @@
+.overlay_popup_aviso_advertencia{
+    display: none;
+}
+
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+#fondo
+{display: none;}
+
+body
+{width: 100%;
+ min-height: 100%;}
+
+#contenedor_total
+{width: 100%}
+
+
+/* ##########    BARRA DE NAVEGACION Y LOGOTYPO ########### */
+
+
+header
+{display: none;}
+
+#contenedor_menu_boton {display:none;}
+
+
+header nav
+{display: none;}
+
+
+main
+{width: 100%;}
+
+
+/* ##################### CODIGOS MARCO ESTILO DE LA PAGINA ################################ */
+
+.regreso_boton_div_contenedor {
+    display: none;
+}
+
+.titulo {
+display: none;
+}
+
+.barra {
+display: none;
+}
+
+.btn_imprimir{
+  display: none;
+}
+
+/* ######################## FICHA CUPONES ############################################################ */
+
+#ficha_cupones{
+  background-color: #fff;
+    display: block;
+    width: 216mm;
+    padding: 0 0.993em;
+}
+
+.salto_pagina{
+  display:block;
+	page-break-before:always;
+  width: 100%;}
+
+.cupon_tutecho_logo{
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 0.5em 1em;
+  border-radius: 15px;
+}
+
+.cupon_tutecho_titulo{
+  font-size: 1em;
+  color: #4a4848;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cupon_tutecho_instruccion{
+  position: absolute;
+  color: #4a4848;
+  bottom: -2em;
+  left: -4em;
+}
+
+.cupon_fixed_container{
+  display: inline-block;
+  width: 5.1cm;
+  height: 12.75cm;
+  position: relative;
+  margin-top: 1.75em;
+}
+
+.cupon_fixed_container_back{
+  display: inline-block;
+  width: 5.1cm;
+  height: 12.75cm;
+  position: relative;
+  direction: ltr;
+  margin-top: 1.75em;
+}
+
+.QR_cupones_container{
+  width: 100%;
+  display: block;
+  direction: rtl;
+}
+
+.popup_sponsor{
+  border: 1px solid #4a4848;
+  border-radius: 10px;
+  width: 15cm;
+  height: 6cm;
+  padding: 0.8em;
+  position: absolute;
+  top: calc(50% - 3cm);
+  left: calc(50% - 7.5cm);
+  box-sizing: border-box;
+  transform: rotate(-90deg)scale(0.85);
+}
+
+.popup_sponsor_back{
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  width: 15cm;
+  height: 6cm;
+  padding: 0.8em;
+  position: absolute;
+  top: calc(50% - 3cm);
+  left: calc(50% - 7.5cm);
+  box-sizing: border-box;
+  transform: rotate(90deg)scale(0.85);
+}
+
+.popup_sponsor_info_container{
+  background-color: #ffffff;
+  width: 100%;
+  height: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.2em 1em;
+  box-sizing: border-box;
+}
+
+.popup_promo_zona{
+  width: 60%;
+  position: absolute;
+  left: 1em;
+  box-sizing: border-box;
+  height: 11.5em;
+  display: flex;
+  z-index: 2;
+}
+
+.popup_promo_qr{
+  width: 60%;
+  position: absolute;
+  left: 1em;
+  box-sizing: border-box;
+  height: 12em;
+  z-index: 2;
+  padding-left: 2em;
+}
+
+.popup_sponsor_info{
+  width: 40%;
+  position: absolute;
+  right: 1.5em;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5em;
+  box-sizing: border-box;
+}
+
+.popup_sponsor_titulo{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
+
+.popup_sponsor_titulo span.logo_preview{
+  display: flex;
+  width: 3.7em;
+  height: 3.7em;
+  border: 1px solid #4a4848;
+  margin-right: 0.5em;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.popup_sponsor_titulo span.logo_preview.filled{
+  border: none;
+  color: rgba(255, 255, 255, 0);
+  background-repeat: no-repeat;
+}
+
+.popup_sponsor_titulo label{
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #4a4848;
+}
+
+.popup_sponsor_info span.fa{margin-bottom: 0.4em; cursor: default;}
+
+.popup_sponsor_info span.fa::before{
+  margin-right: 0.3em;
+  color: #0984cc;
+}
+
+.popup_sponsor_direccion{margin-left: 0.5em;}
+.popup_sponsor_contacto{margin-left: 0.5em;}
+.popup_sponsor_web{margin-left: 0.5em;}
+
+
+.info_promo_1_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}
+
+.info_promo_2_container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.info_promo_2_container span{
+  color: #333333;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+
+}
+
+.promo_cuadro1_texto2{
+  margin-right: 0.3em;
+}
+
+.ilustracion_fondo_container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ilustracion_fondo{
+  position: absolute;
+  z-index: 1;
+  width: calc(60% - 0.8em);
+  height: 12em;
+  top: calc(50% - 6em);
+  left: 0.8em;
+  background-repeat: round;
+  background-size: cover;
+}
+
+.ilustracion_filtro{
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.66);
+  width: calc(60% - 0.8em);
+  height: 12em;
+  top: calc(50% - 6em);
+  left: 0.8em;
+}
+
+.info_adicional_container{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border: 2px solid rgb(57, 57, 57);
+  border-top: none;
+  width: 35em;
+  margin-top: 0.5em;
+  border-radius: 8px;
+  padding: 0.8em 0;
+}
+
+.info_adicional_container h2{
+  width: 100%;
+  color: #454545;
+  text-align: center;
+  margin-bottom: 0.3em;
+}
+
+.info_adicional_container .elemento_info_acicional_barrio{
+  width: 100%;
+  padding: 0.3em 0.5em 0.3em 0.8em;
+  font-size: 0.9em;
+}
+
+.info_adicional_container .elemento_info_acicional{
+  width: 50%;
+  padding: 0.3em 0.5em 0.3em 0.8em;
+  font-size: 0.9em;
+}
+
+.info_adicional_container .info_label{
+  color: #454545;
+  font-weight: bold;
+  margin-right: 0.3em;
+}
+
+.validez_cupon{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  font-size: 0.7em;
+  justify-content: flex-end;
+  padding-right: 2em;
+  color: rgb(255, 255, 255);
+}
+
+.validez_cupon span{
+  margin-left: 0.2em;
+}

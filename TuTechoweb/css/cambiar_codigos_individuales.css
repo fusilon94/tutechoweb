@@ -1,0 +1,212 @@
+.regreso_boton_div_contenedor {width: 100%; padding: 0.5em 0.5em 0.5em 1em;}
+
+.regreso_boton_div_contenedor a {display: flex; align-items: center; width: 15em;}
+
+.regreso_boton_div_contenedor a span {color: white; margin: 0em 0.2em;}
+
+.regreso_boton_div_contenedor a:hover span.regreso_boton {color: #0984CC;}
+
+.popup_success{
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: calc(50% - 5em);
+    left: calc(50% - 10em);
+    width: 20em;
+    height: 10em;
+    background-color: #fff;
+    border: 1em solid #0984cc;
+    z-index: 3;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .popup_success i.fa-exclamation-circle{
+    color: #0984cc;
+    font-size: 1.2em;
+    margin-right: 0.3em;
+  }
+  
+  .popup_success_cerrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #0984cc;
+    border-radius: 50%;
+    padding: 0.1em 0.3em 0.2em 0.3em;
+    right: -0.5em;
+    top: -0.5em;
+    font-size: 1.5em;
+    color: #fff;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    cursor: pointer;
+  }
+  
+  .popup_success_cerrar:hover{
+    -webkit-transform:translateY(-0.1em);
+    -moz-transform:translateY(-0.1em);
+    transform:translateY(-0.1em);
+  }
+
+.titulo {
+	font-weight: 500;
+	color: #B8711B;
+	text-align: center;
+	margin: 60px 0 30px 0;
+}
+
+.barra {
+	border:none;
+	margin: 0px auto 5px auto;
+	border-top:10px solid #B8711B;
+	background: none;
+	color:none;
+  width: 50%;
+}
+
+.formulario {
+	background: #2C2C47;
+	padding: 30px 30px 20px 30px;
+	margin: 0px auto 20px auto;
+    width: 30em;
+}
+
+.instruciones{
+    display: flex;
+    width: 100%;
+    margin: 1em 0;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1em;
+    user-select: none;
+}
+
+.instruciones i{
+    font-size: 1.5em;
+    color: #1392db;
+}
+
+.instruciones p{
+    font-size: 1.1em;
+    color: #fff;
+    margin-left: 0.5em;
+}
+
+.formulario .form-group {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.formulario input[type="password"] {
+	padding: 15px;
+	font-size: 16px;
+	line-height: 18px;
+	border: none;
+	vertical-align: top;
+}
+
+.formulario input[type="password"].borde_rojo {
+    border: 2px solid #ce2222;
+}
+
+.formulario .icono {
+	padding: 15px;
+	text-align: center;
+	width: 48px;
+	max-height: 48px;
+	font-size: 18px;
+	line-height: 18px;
+	background: #c8c8c8;
+	display: inline-block;
+	color:#6b6b6b;
+	vertical-align: top;
+}
+
+.formulario .icono.izquierda {
+	margin-right: 4px;
+}
+
+.formulario .codigo_actual,
+.formulario .new_codigo,
+.formulario .new_codigo2 {
+	width: calc(100% - 54px);
+	-webkit-border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	-ms-border-radius: 0 3px 3px 0;
+	-o-border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0;
+}
+
+.formulario .password_btn {
+	width: calc(100% - 105px);
+}
+
+.btn_cambiar_codigos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 2em;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #0984CC;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    margin: 0 auto;
+}
+
+.btn_cambiar_codigos:hover{
+    background-color: #1392db;
+}
+
+.btn_cambiar_codigos:active{
+    background-color: #1392db;
+    font-size: 1.05em;
+}
+
+.sin_codigos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    user-select: none;
+}
+
+.sin_codigos p{
+    color: #347ca5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.sin_codigos p:hover{
+    color: #ffffff;
+}
+
+/* ####################   RESPONSIVE   ################################## */
+
+@media screen and (max-width:510px){
+    .formulario {
+        width: 25em;
+    }
+}
+
+
+@media screen and (max-width:420px){
+    .formulario {
+        width: 23em;
+    }
+}
+
+@media screen and (max-width:380px){
+    .formulario {
+        width: 21em;
+    }
+}
