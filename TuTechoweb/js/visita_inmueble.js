@@ -1,6 +1,79 @@
 $(document).ready(function(){
   jQuery(function($){
 
+    //CONTADOR TIEMPO EN MINUTOS
+    let t;
+    let count = 0;
+    let start_date;
+
+    function cddisplay() {
+      $(".timer_visita_count").html(count);
+    }
+
+    function countup() {
+      // starts count
+      start_date = new Date().getTime();
+      t = setInterval(compare_dates, 1000);  
+    }
+
+    function compare_dates(){
+
+      const actual_date = new Date().getTime();
+
+      const delta = Math.round((actual_date - start_date)/60000);
+
+      count = delta;
+      cddisplay();
+    };
+    
+    function cdstop() {
+        // pauses count
+        clearInterval(t);
+    }
+    
+    function cdreset() {
+        // resets count
+        cdstop();
+        count = 0;
+        cddisplay();
+    }
+
+    $(".timer_visita").on("click", function(){
+      if ($(this).hasClass('terminado')) {
+        return
+      };
+
+      if ($(this).hasClass('activo')) {
+        $(this).removeClass('activo');
+        cdstop();
+        $(this).addClass('terminado');
+        $(".timer_controls").css("visibility", "unset");
+      }else{
+        $(this).addClass('activo');
+        countup();
+      }
+    });
+
+    $(".reset_timer_buton").on("click", function(){
+      cdreset();
+      $('.timer_visita').removeClass('activo').removeClass('terminado');
+      $(".timer_visita_count").html("0");
+      $(".timer_controls").css("visibility", "hidden");
+    });
+
+    $(".timer_up").on("click", function(){
+      if (!$(".timer_visita").hasClass('terminado')) {return}
+      count += 1;
+      $(".timer_visita_count").html(count);
+    });
+
+    $(".timer_down").on("click", function(){
+      if (!$(".timer_visita").hasClass('terminado')) {return}
+      if (count == 0) return
+      count -= 1;
+      $(".timer_visita_count").html(count);
+    });
+
 
     // COLOLAR EL MAPA
     const inmueble_lat = $("#mapa_lat").val();
@@ -36,16 +109,28 @@ $(document).ready(function(){
 
       if ($(".visita_fail_btn").hasClass("activo")) {
         status_selected = 0;
+        $(".reset_timer_buton").css("visibility", "hidden");
+        $(".timer_controls").css("visibility", "hidden");
       }else if($(".visita_exito_btn").hasClass("activo")){
         status_selected = 1;
+        $(".reset_timer_buton").css("visibility", "hidden");
+        $(".timer_controls").css("visibility", "hidden");
       }else{
         status_selected = "";
+        $(".reset_timer_buton").css("visibility", "unset");
+        $(".timer_controls").css("visibility", "unset");
       };
+
+      $(".timer_visita").removeClass('activo');
+      $(".timer_visita").addClass('terminado');
+      cdstop();
+      
+      const tiempo_visita = count;
 
       $.ajax({
         type: "POST",
         url: "process-request-visita-inmueble.php",
-        data: { action_sent: 'update_status', agencia_tag_sent : agencia_tag_default, visita_key_sent: visita_key_default, agente_id_sent : agente_selected, status_sent : status_selected }
+        data: { action_sent: 'update_status', agencia_tag_sent : agencia_tag_default, visita_key_sent: visita_key_default, agente_id_sent : agente_selected, status_sent : status_selected, tiempo_visita_sent: tiempo_visita}
       }).done(function(data){
 
         if (data == 'error') {
@@ -65,16 +150,28 @@ $(document).ready(function(){
 
       if ($(".visita_fail_btn").hasClass("activo")) {
         status_selected = 0;
+        $(".reset_timer_buton").css("visibility", "hidden");
+        $(".timer_controls").css("visibility", "hidden");
       }else if($(".visita_exito_btn").hasClass("activo")){
         status_selected = 1;
+        $(".reset_timer_buton").css("visibility", "hidden");
+        $(".timer_controls").css("visibility", "hidden");
       }else{
         status_selected = "";
+        $(".reset_timer_buton").css("visibility", "unset");
+        $(".timer_controls").css("visibility", "unset");
       };
+
+      $(".timer_visita").removeClass('activo');
+      $(".timer_visita").addClass('terminado');
+      cdstop();
+
+      const tiempo_visita = count;
 
       $.ajax({
         type: "POST",
         url: "process-request-visita-inmueble.php",
-        data: { action_sent: 'update_status', agencia_tag_sent : agencia_tag_default, visita_key_sent: visita_key_default, agente_id_sent : agente_selected, status_sent : status_selected }
+        data: { action_sent: 'update_status', agencia_tag_sent : agencia_tag_default, visita_key_sent: visita_key_default, agente_id_sent : agente_selected, status_sent : status_selected, tiempo_visita_sent: tiempo_visita }
       }).done(function(data){
 
         if (data == 'error') {

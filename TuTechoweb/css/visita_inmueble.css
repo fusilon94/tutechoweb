@@ -253,6 +253,110 @@ header nav{
   user-select: none;
 }
 
+.timer_visita_wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0.8em auto 0.8em 1.2em;
+}
+
+.timer_visita{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.6em 3em;
+  border-radius: 5px;
+  background-color: #696969;
+  user-select: none;
+}
+
+.timer_visita:hover{
+  background-color: #757575;
+}
+
+.timer_visita.activo{
+  background-color: #007fff;
+}
+
+.timer_visita.terminado{
+  background-color: rgba(227, 144, 18, 1);
+}
+
+.timer_visita.terminado i{
+  color: #fff
+}
+
+.timer_visita:active{
+  transform: scale(0.98);
+}
+
+.timer_visita i{
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #4fcc30;
+}
+
+.timer_visita p{
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 0.1em;
+}
+
+.timer_visita_count{
+  margin-left:0.8em;
+  margin-right: 0.5em;
+}
+
+.reset_timer_buton{
+  margin-left: 1em;
+  margin-top: 0.2em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.reset_timer_buton:hover i{
+  transform: scale(1.05);
+}
+
+.reset_timer_buton:active i{
+  transform: scale(0.98);
+}
+
+.reset_timer_buton i{
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #bdbcbc;
+}
+
+.timer_controls{
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.5em;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  background-color: #757575;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.timer_controls i.timer_up{
+  padding: 0.25em 0.5em 0.1em 0.5em;
+  color: #fff;
+}
+
+.timer_controls i.timer_down{
+  padding: 0.1em 0.5em 0.25em 0.5em;
+  color: #fff;
+}
+
+.timer_controls i:hover{
+  background-color: #8b8b8b;
+}
+
 .mapa_contenedor{
   display: flex;
   width: 100%;

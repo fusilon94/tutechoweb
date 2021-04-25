@@ -96,7 +96,7 @@ header nav{
   display: flex;
   flex-direction: column;
   border-radius: 9px;
-  width: 90%;
+  width: 95%;
   max-height: calc(100vh - 6em);
   margin-top: 1em;
   background: rgba(32, 32, 32, 0.97);
@@ -104,6 +104,7 @@ header nav{
   position: relative;
   overflow-x: hidden;
   overflow-y: overlay;
+  font-size: 0.8em;
 }
 
 /* ########### CABECERA ############### */
@@ -179,7 +180,7 @@ header nav{
   height: calc(100% - 3.5em);
   top: 3.5em;
   right: -24em;
-  background-color: #4a4848;
+  background-color: #2b2b2b;
   padding: 0.5em;
   border-bottom-right-radius: 9px;
   z-index: 2;
@@ -211,7 +212,7 @@ header nav{
 .categoria{
   display: flex;
   width: 100%;
-  padding: 1.5em 0.8em;
+  padding: 1.2em 0.8em 1.2em 2em;
   cursor: pointer;
   align-items: center;
 }
@@ -222,24 +223,15 @@ header nav{
 }
 
 .categoria.activo{
-    background-color: #696767;
-}
-.categoria img {
-    width: 2.5em;
-    margin-right: 0.5em;
-}
-.categoria p{
-  font-size: 1.1em;
-  font-weight: bold;
-  user-select: none;
+    background-color: #007fff;
 }
 
 .categoria img{
-  width: 2.5em;
+  width: 3.2em;
   margin-right: 0.8em;
 }
 .categoria p{
-  font-size: 1.2em;
+  font-size: 1.25em;
   color: #fff;
   font-weight: bold;
 }
@@ -276,7 +268,7 @@ header nav{
 .graph_consola{
   display: flex;
   flex-direction: column;
-  margin: 1.5em 2em;
+  margin: 1.5em 2em 1em 2em;
   width: calc(100% - 4em);
 }
 
@@ -344,7 +336,7 @@ header nav{
     padding: 0 1em;
     border-radius: 3px;
     border-top-left-radius: 0px;
-    min-height: 18em;
+    min-height: 30em;
     background-color: #f3f3f3;
     overflow-x: overlay;
     overflow-y: overlay;
@@ -446,12 +438,16 @@ hr.barra_titulos {
 }
 
 .graph_container{
-  display: flex;
   width: 100%;
   border-top-right-radius: 3px;
+  justify-content: center;
   
-  min-height: 23em;
+  min-height: 28em;
   background-color: #f3f3f3;
+}
+
+.modebar-btn{
+  font-size: 23px!important;
 }
 
 .actions_graph_wrap{
@@ -461,8 +457,72 @@ hr.barra_titulos {
   border-bottom-left-radius: 3px;
 
   min-height: 3em;
-  background-color: #e7e7e7;
+  background-color: #d4d4d4;
+  padding: 0.8em 2em;
+  justify-content: space-evenly;
 }
+
+/* ##################### NAVEGACION #################### */
+/* BOTON SIMPLE */
+.boton_simple{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 2em;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  background-color: #4a4848;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.boton_simple.activo{
+  background-color: #007fff;
+}
+
+.boton_simple:not(.activo):hover{
+  background-color: #585757;
+}
+
+.boton_simple:active{
+  transform: scale(0.98);
+}
+
+/* RADIO BUTONS */
+.check_box_radio_group{
+  display: flex;
+  align-items: center;
+}
+
+.radio_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 2em;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  background-color: #4a4848;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0 0.5em;
+}
+
+.radio_btn.activo{
+  background-color: #007fff;
+}
+
+.radio_btn:not(.activo):hover{
+  background-color: #585757;
+}
+
+.radio_btn:active{
+  transform: scale(0.98);
+}
+
 
 /* ######## GRAPH CHOICES FOR THE SAME CATEGORY ######### */
 .sub_categorias_wrap{
@@ -471,19 +531,19 @@ hr.barra_titulos {
   margin-top: 1em;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 0 2em;
+  padding: 0 1em;
 }
 
 .sub_categorie_btn{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.8em 2.5em;
+  padding: 0.8em 1.5em;
   cursor: pointer;
   user-select: none;
   border-radius: 3px;
   background-color: #555454;
-  margin: 0.5em 2em;
+  margin: 0.5em 0.4em;
 }
 
 .sub_categorie_btn.activo{
@@ -499,7 +559,7 @@ hr.barra_titulos {
 }
 
 .sub_categorie_btn img{
-    width: 2.5em;
+    width: 1.8em;
     margin-right: 0.5em;
 }
 .sub_categorie_btn p{
@@ -508,6 +568,7 @@ hr.barra_titulos {
   color: #fff;
   user-select: none;
 }
+
 
 /* ###################################  RESPONSIVE ############################################################# */
 

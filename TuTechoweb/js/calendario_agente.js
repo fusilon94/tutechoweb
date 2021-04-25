@@ -7,9 +7,24 @@
 $(document).ready(function(){
   jQuery(function($){
 
+    function get_contactos() {
+      let contactos;
+
+      $.ajax({
+        type: "POST",
+        url: "process-request-calendario.php",
+        data: { fecha_tag_sent: 'get_contactos', agente_id_sent: agente_id_default },
+        async: false,
+      }).done(function(data){
+        contactos = data;
+      });
+      return contactos;
+    };
+
     // CODIGO BOTON AGREGAR EVENTO
 
     $(".calendario_contendor").on("click", ".day_agregar_btn", function(event){
+      
 
       let date_selected = $(this).parent().attr("id");
 
@@ -36,6 +51,13 @@ $(document).ready(function(){
             <input type="text" class="inmueble_referencia" placeholder="Referencia Inmueble">
 
             <input type="text" class="hora_tarea" placeholder="Hora de la tarea" value="">
+
+            <span class=\"visitante_wrap\">
+              <select id='visitante' style='width: 200px;'>
+                <option value=''>Selecciona Visitante</option>
+                ${get_contactos()} 
+              </select>
+            </span>
 
             <span class="error_wrap_tarea"></span>
 
@@ -74,6 +96,8 @@ $(document).ready(function(){
 
       `);
 
+      $("#visitante").select2();
+
       $(".popup_overlay").css("opacity", 1).css("visibility", "unset");
 
       $('.hora_tarea').clockTimePicker({
@@ -110,9 +134,11 @@ $(document).ready(function(){
       if ($(this).hasClass("btn_registro_opcion")) {
         $(".btn_visita_opcion").removeClass("activo");
         $(".btn_registro_opcion").addClass("activo");
+        $(".visitante_wrap").css("display", "none");
       }else if($(this).hasClass("btn_visita_opcion")){
         $(".btn_registro_opcion").removeClass("activo");
         $(".btn_visita_opcion").addClass("activo");
+        $(".visitante_wrap").css("display", "flex");
       };
 
     });
@@ -200,11 +226,16 @@ $(document).ready(function(){
 
       const fecha_selected = $(".popup_date").val();
       let tipo_tarea;
+      let visitante = '';
 
       if ($(".btn_registro_opcion").hasClass("activo")) {
         tipo_tarea = 'registro';
       }else if($(".btn_visita_opcion").hasClass("activo")){
         tipo_tarea = 'visita';
+        if ($("#visitante option:selected").attr("value") !== '') {
+          visitante = {'nombre': $("#visitante option:selected").attr("value"), 'telefono': $("#visitante option:selected").attr("telefono")};
+        };
+        
       };
 
       const referencia_inmueble = $(".inmueble_referencia").val();
@@ -237,37 +268,45 @@ $(document).ready(function(){
 
       }else{
 
-        $.ajax({
-            type: "POST",
-            url: "process-request-calendario.php",
-            data: { fecha_tag_sent: 'refresh_agente', date_tag_sent : fecha_selected, tipo_tarea_sent : tipo_tarea, hora_tarea_sent : hora_tarea, referencia_sent : referencia_inmueble, agencia_tag_sent : agencia_tag_default, agente_id_sent : agente_id_default, past_events_sent : past_event }
-        }).done(function(data){
+        if (tipo_tarea == 'visita' && visitante == '') {
+          $(".error_wrap_tarea").html("Quedan espacios por llenar").css("visibility", "unset");
+        }else{
 
-          if (data == 'error') {
-              $(".error_wrap_tarea").html("La referencia NO existe").css("visibility", "unset");
-            
-          }else if(data == 'error_fecha_limite'){
-              $(".error_wrap_tarea").html("Tiene sólo 3 dias para registrar tareas").css("visibility", "unset");
-          }else{
-            const cuadro_id = "#" + fecha_selected;
+            $.ajax({
+              type: "POST",
+              url: "process-request-calendario.php",
+              data: { fecha_tag_sent: 'refresh_agente', date_tag_sent : fecha_selected, tipo_tarea_sent : tipo_tarea, hora_tarea_sent : hora_tarea, referencia_sent : referencia_inmueble, agencia_tag_sent : agencia_tag_default, agente_id_sent : agente_id_default, past_events_sent : past_event, visitante_sent: visitante }
+          }).done(function(data){
 
-            $(".calendario_contendor").html(data);
+              if (data == 'error') {
+                  $(".error_wrap_tarea").html("La referencia NO existe").css("visibility", "unset");
+                
+              }else if(data == 'error_fecha_limite'){
+                  $(".error_wrap_tarea").html("Tiene sólo 3 dias para registrar tareas").css("visibility", "unset");
+              }else{
+                const cuadro_id = "#" + fecha_selected;
 
-            $(".calendario_contendor").scrollTop(0);           
+                $(".calendario_contendor").html(data);
 
-            const t = $(".calendario_contendor").offset().top;
-            
-            $(".calendario_contendor").scrollTop($(cuadro_id).offset().top - t - 5);// Sepone el scroll en el dia de hoy
-            let titulo_first = $(cuadro_id).attr("mes") + " " + $(cuadro_id).attr("year");
+                $(".calendario_contendor").scrollTop(0);           
 
-            $(".cabecera_titulo").html(titulo_first).attr("data", $(cuadro_id).attr("id").slice(3));
+                const t = $(".calendario_contendor").offset().top;
+                
+                $(".calendario_contendor").scrollTop($(cuadro_id).offset().top - t - 5);// Sepone el scroll en el dia de hoy
+                let titulo_first = $(cuadro_id).attr("mes") + " " + $(cuadro_id).attr("year");
 
-            $(".popup_overlay").css("opacity", 0).css("visibility", "hidden");
+                $(".cabecera_titulo").html(titulo_first).attr("data", $(cuadro_id).attr("id").slice(3));
 
-          };
+                $(".popup_overlay").css("opacity", 0).css("visibility", "hidden");
 
-          
-        });
+              };
+
+              
+          });
+
+        };
+
+        
 
       };
       

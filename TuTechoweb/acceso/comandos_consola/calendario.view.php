@@ -27,6 +27,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" href="../../css/jquery-ui.css">
       <link rel="stylesheet" href="../../css/calendario.css">
+      <link rel="stylesheet" href="../../css/select2.min.css">
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
 
       <script>
@@ -59,6 +60,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <script src="../../js/consola_agente_admin.js"></script>
       <script src="../../js/popup_ficha_bien_detalle_inmueble.js"></script>
       <script src="../../js/jquery-clock-timepicker.min.js"></script>
+      <script src="../../js/select2.min.js"></script>
       <script src="../../js/calendario_general.js"></script>
       <script src="../../js/calendario_<?= $js_file ?>.js"></script>
       <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="crossorigin=""></script>

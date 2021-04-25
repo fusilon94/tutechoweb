@@ -870,59 +870,6 @@ $(document).ready(function(){
 
     });
 
-    // CODIGO BOTONES RESPUESTA AGENTE
-
-    $('.popup_overlay').on('click', ".agente_option:not(.activo)", function(){
-      const container = $(this).parent();
-      container.find(".agente_option").removeClass("activo");
-      $(this).addClass("activo");
-
-      let respuesta_agente;
-      if($(this).hasClass("btn_confirmar")){
-        respuesta_agente = true;
-      }else if($(this).hasClass("btn_rechazar")){
-        respuesta_agente = false;
-      };
-
-
-      //LLAMADA
-      
-      let agencia_selected = agencia_tag_default;
-      let agente_selected = agente_id_default;
-      const past_event =  $("#past_event_check").val();
-
-      if ($("#agencia_select").length) {
-        if ($("#agencia_select option:selected").val() !== '') {
-          agencia_selected = $("#agencia_select option:selected").val();
-        };
-      };
-
-      if ($("#agente_select").length) {
-        if ($("#agente_select option:selected").val() !== '') {
-          agente_selected = $("#agente_select option:selected").val();
-        };
-      };
-
-      const contenedor = $(this).parent().parent().parent().parent();
-      const referencia = contenedor.attr("titulo");
-      const hora = contenedor.attr('hora');
-      const fecha_actual = $(".popup_date").val();
-      const tipo = contenedor.attr("data");
-      
-      
-      $.ajax({
-        type: "POST",
-        url: "process-request-calendario.php",
-        data: { fecha_tag_sent: 'exito_tarea', tipo_sent: tipo, agencia_tag_sent : agencia_selected, past_events_sent : past_event, agente_id_sent : agente_selected, respuesta_sent: respuesta_agente, fecha_sent : fecha_actual, hora_sent : hora, referencia_sent : referencia }
-      }).done(function(data){
-
-
-      })
-        
-
-    });
-
-
     // CODIGO AGREGAR EVENTO DESDE EL POPUP DIA
 
     $('.popup_overlay').on('click', ".popup_agregar_evento_btn", function(){

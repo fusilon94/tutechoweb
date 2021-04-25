@@ -148,18 +148,20 @@ if(isset($_POST["action_sent"])){
 
     }else if ($action == 'update_status') {
 
-      if (isset($_POST["agente_id_sent"]) && isset($_POST['agencia_tag_sent']) && isset($_POST['visita_key_sent']) && isset($_POST['status_sent'])) {
+      if (isset($_POST["agente_id_sent"]) && isset($_POST['agencia_tag_sent']) && isset($_POST['visita_key_sent']) && isset($_POST['status_sent']) && isset($_POST["tiempo_visita_sent"])) {
         
         $agente_id = $_POST["agente_id_sent"];
         $agencia_tag = $_POST['agencia_tag_sent'];
         $visita_key = $_POST['visita_key_sent'];
         $status = $_POST['status_sent'];
+        $tiempo_visita = $_POST["tiempo_visita_sent"];
 
         $json_path_tareas= '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/agentes_tareas.json';
         $json = file_get_contents($json_path_tareas);
         $data = json_decode($json, true);
 
         $data[$agente_id]['visita'][$visita_key]['exito_check'] = $status;
+        $data[$agente_id]['visita'][$visita_key]['tiempo'] = $tiempo_visita;
 
         $data_json = json_encode($data);// transformar el array en codigo json
         file_put_contents($json_path_tareas, $data_json); // FINALMENTE se guarda el data en un Json file

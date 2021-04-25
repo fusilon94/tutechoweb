@@ -15,8 +15,6 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
   $nivel_acceso = $_SESSION['nivel_acceso'];
   $array_acceso = [1];
-  
-
 
 }else {
   header('Location: ../login.php');
@@ -24,9 +22,10 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
 // LISTA DE REQUIRES ############################
 
-require '../../currency_get_code.php';
+// require '../../currency_get_code.php';
+require 'data_day_visitas.php';
 
 
 $_SESSION['exito_bien_registrado'] = 'Datos Tutecho Actualizados Exitosamente';
-header('Location: ../login.php');
+// header('Location: ../login.php');
  ?>

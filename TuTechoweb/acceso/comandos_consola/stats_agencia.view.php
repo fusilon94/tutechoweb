@@ -12,7 +12,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#2d89ef">
 <meta name="theme-color" content="#ffffff">
-      <title>Stats Personal</title>
+      <title>Stats Agencia</title>
       <meta http-equiv="content-type" content="text/html; charset=utf-8">
       <meta name="Description" content="#">
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -43,7 +43,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="crossorigin=""></script>
       <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
       <script src="../../js/stats_functions.js"></script>
-      <script src="../../js/consola_stats_personal.js"></script>
+      <script src="../../js/consola_stats_agencia.js"></script>
      
  </head>
  <body>
@@ -82,11 +82,8 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 
         <div class="cabecera">
           <span class="cabecera_nombre">
-            <img src="../../objetos/hombre_icono_min_blue.svg" alt="foto">
-            <p>Nombre Apellido - Cargo - Rango</p>
-          </span>
-          <span class="cabecera_agencia">
-            <p>Agencia</p>
+            <img src="../../objetos/agencias_consola.svg" alt="foto">
+            <p>Agencia Irpavi - La Paz</p>
           </span>
         </div>
 

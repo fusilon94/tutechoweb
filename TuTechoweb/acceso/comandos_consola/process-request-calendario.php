@@ -45,6 +45,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         $lista_dias_nombres = ['Monday' =>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday' => 'Thursday', 'Friday' => 'Friday', 'Saturday' => 'Saturday', 'Sunday' => 'Sunday'];
     };//sumar acá otros idiomas
 
+    function getNumberFormat($numero) {
+        
+        if ($numero !== '') {
+            preg_match_all('!\d+!', $numero, $matches);
+
+            $string_telefono = implode($matches[0]);
+            
+            
+            $digits = ltrim($string_telefono, '0');
+            
+            return $digits;
+        }else{
+            return '';
+        };
+      };
 
     function day_fill_events($date, $agencia_tag, $agente_id, $extra){
 
@@ -723,27 +738,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                 };
             };
 
-            function check_limit_response_agente($fecha){
-
-                $day_selected = new DateTime(date('d-m-Y',strtotime($fecha)));
-                $today = new DateTime(date("d-m-Y", time()));
-
-                if ($today >= $day_selected) {
-                    return "activo";
-                }else {
-                    return "";
-                };
-            };
-
-            function check_response_edit($comparacion, $valor){
-
-                if ($comparacion == $valor) {
-                    return 'activo';
-                }else {
-                    return '';
-                };
-            };
-
             function get_agente_name($agente_id, $conexion){
                 // SE CONSULTA EL NOMBRE DEL AGENTE SOLICITADO
                 $consulta_agente_nombre =	$conexion->prepare("SELECT nombre, apellido FROM agentes WHERE id = :id");
@@ -926,14 +920,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                                             <i class=\"fas fa-search\" aria-hidden=\"true\"></i><p><span class=\"nombre\">Datos Inmueble</span></p>
                                         </div>
 
-                                        <span class=\"validacion_tarea " . check_limit_response_agente($value['fecha']) . "\">
-                                            <p>Exito Tarea:</p>
-                                            <div class=\"btn_actions_agente\">
-                                                <span class=\"agente_option btn_confirmar  " . check_response_edit('true', $value['exito_check']) . "\">Si</span>
-                                                <span class=\"agente_option btn_rechazar  " . check_response_edit('false', $value['exito_check']) . "\">No</span>
-                                            </div>
-                                        </span>
-
                                         
                                     </span>
 
@@ -1086,13 +1072,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                                             <i class=\"fas fa-search\" aria-hidden=\"true\"></i><p><span class=\"nombre\">Ficha Inmueble</span></p>
                                         </span>
 
-                                        <span class=\"validacion_tarea " . check_limit_response_agente($value['fecha']) . "\">
-                                            <p>Exito Tarea:</p>
-                                            <div class=\"btn_actions_agente\">
-                                                <span class=\"agente_option btn_confirmar  " . check_response_edit('true', $value['exito_check']) . "\">Si</span>
-                                                <span class=\"agente_option btn_rechazar  " . check_response_edit('false', $value['exito_check']) . "\">No</span>
-                                            </div>
+                                        <span class=\"visitante_info_wrap\">
+                                            <a class=\"visitante_call_btn\" href=\"tel:" . getNumberFormat($value['visitante_telefono']) . "\" >
+                                                <i class=\"fa fa-phone\"></i>
+                                            </a>
+                                            <a class=\"visitante_whatsapp_btn fa-stack\" href=\"https://api.whatsapp.com/send?phone=" . getNumberFormat($value['visitante_telefono']) . "\" target=\"_blank\">
+                                                <i class=\"fab fa-whatsapp fa-stack-2x\"></i>
+                                                <i class=\"fa fa-circle\"></i>
+                                            </a>
+                                            <span class=\"visitante_info\">
+                                                <p>Visitante: " . $value['visitante_nombre'] . "</p>
+                                                <p>Contacto: " . $value['visitante_telefono'] . "</p>
+                                            </span>
                                         </span>
+
+                                        
+
                                     </span>
 
 
@@ -1526,6 +1521,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                           };
                       };
                   };
+                  $visitante = $_POST['visitante_sent'];
                 };
     
                 if ($tabla !== '') {
@@ -1543,16 +1539,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                                     "fecha" => $_POST['date_tag_sent'],
                                     "referencia" => $referencia,
                                     "hora" => $hora_tarea,
-                                    "fotografo_check" => '',//confirmacion del fotografo, true o false
-                                    "exito_check" => ''// exito en el registro true o false
+                                    "fotografo_check" => ''//confirmacion del fotografo, true o false
+
                                 ];
                             }elseif ($_SESSION['nivel_acceso'] == 10) {//agente express
                                 $new_element = [//se estructura los datos del nuevo contacto en forma de array
                                     "fecha" => $_POST['date_tag_sent'],
                                     "referencia" => $referencia,
                                     "hora" => $hora_tarea,
-                                    "fotografo_check" => true,//confirmacion del fotografo, true o false
-                                    "exito_check" => ''// exito en el registro true o false
+                                    "fotografo_check" => true//confirmacion del fotografo, true o false
                                 ];
                             };
         
@@ -1562,7 +1557,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                                 "fecha" => $_POST['date_tag_sent'],
                                 "referencia" => $referencia,
                                 "hora" => $hora_tarea,
-                                "exito_check" => ''// exito en el registro true o false
+                                "visitante_nombre" => $visitante['nombre'],
+                                "visitante_telefono" => $visitante['telefono'],
+                                "exito_check" => "",
+                                "tiempo" => ""
                             ];
                         
                         };
@@ -1713,8 +1711,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                     $new_element = [//se estructura los datos del nuevo contacto en forma de array
                         "fecha" => $_POST['date_tag_sent'],
                         "descripcion" => $descripcion,
-                        "hora" => $hora_tarea,
-                        "exito_check" => ''// exito en el registro true o false
+                        "hora" => $hora_tarea
                     ];               
     
                 }elseif ($tipo_tarea == 'salida') {
@@ -1722,8 +1719,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                     $new_element = [//se estructura los datos del nuevo contacto en forma de array
                         "fecha" => $_POST['date_tag_sent'],
                         "descripcion" => $descripcion,
-                        "hora" => $hora_tarea,
-                        "exito_check" => ''// exito en el registro true o false
+                        "hora" => $hora_tarea
                     ];
                 
                 };
@@ -2111,51 +2107,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
             
         };
 
-        
-
-    }elseif ($fecha_tag == 'exito_tarea' && isset($_POST['agencia_tag_sent']) && isset($_POST['agente_id_sent']) && isset($_POST['past_events_sent']) && isset($_POST['respuesta_sent']) && isset($_POST['tipo_sent']) && isset($_POST['fecha_sent']) && isset($_POST['hora_sent']) && isset($_POST['referencia_sent'])) {
-        
-        $agencia_tag = $_POST["agencia_tag_sent"];
-        $agente_id = $_POST["agente_id_sent"];
-        $past_events = $_POST["past_events_sent"];
-
-        $respuesta_agente = $_POST['respuesta_sent'];
-        $tipo = $_POST['tipo_sent'];
-        $fecha_actual = $_POST['fecha_sent'];
-        $hora = $_POST['hora_sent'];
-        $referencia = $_POST['referencia_sent'];
-
-        if ($tipo == 'visitas_agente') {
-            $categoria = 'visita';
-        }elseif($tipo == 'registros_agente') {
-            $categoria = 'registro';
-        };
-       
-
-        $json_path_agentes_tareas = '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/agentes_tareas.json';
-
-
-        $json = file_get_contents($json_path_agentes_tareas);
-        $data = json_decode($json, true);
-
-        
-        $tareas = $data[$agente_id][$categoria];
-
-        foreach ($tareas as $key => $tarea) {
-
-            if($tarea['fecha'] == $fecha_actual && $tarea['referencia'] == $referencia && $tarea['hora'] == $hora) {
-                $data[$agente_id][$categoria][$key]['exito_check'] = $respuesta_agente;
-    
-                $data_json = json_encode($data);// transformar el array en codigo json
-                file_put_contents($json_path_agentes_tareas, $data_json); // FINALMENTE se guarda el data en un Json file
-            }else {
-                $exito = "error";
-            };
-            
-        };
-
-        
-
     } elseif ($fecha_tag == 'check_element' && isset($_POST['agente_id_sent']) && isset($_POST['action_sent']) && isset($_POST['key_check_sent']) && isset($_POST['fecha_sent']) && isset($_POST['key_to_do_sent']) && isset($_POST['titulo_sent'])) {
         
         $agente_id = $_POST["agente_id_sent"];
@@ -2228,6 +2179,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         };
 
 
+    }elseif ($fecha_tag == 'get_contactos' && isset($_POST['agente_id_sent'])) {
+        $agente_id = $_POST["agente_id_sent"];
+
+        $json_path_contactos_personales = '../../agentes/' . $_COOKIE['tutechopais'] . '/' . $agente_id . '/contactos_personales.json';
+        $json = file_get_contents($json_path_contactos_personales);
+        $data = json_decode($json, true);
+
+        foreach ($data as $contacto) {
+            echo"<option value=\"" . $contacto['nombre'] . "\" telefono=\"" . $contacto['telefono'] . "\">" . $contacto['nombre'] . " " . $contacto['telefono'] . "</option>";
+        };
     };
   };
   

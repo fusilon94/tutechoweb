@@ -190,7 +190,35 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
                 echo"
                     </div>
                     <div class=\"cabecera_parte1_right\">" . $datos_visita['fecha'] . "&nbsp&nbsp<i class=\"far fa-clock\"></i>&nbsp" . $datos_visita['hora'] . "</div>
-                
+                    
+                </div>
+                <div class=\"timer_visita_wrap\">
+                    <span class=\"timer_controls\">
+                        <i class=\"fas fa-sort-up timer_up\"></i>
+                        <i class=\"fas fa-sort-down timer_down\"></i>
+                    </span>
+                    <span class=\"timer_visita ";
+                        if($datos_visita['tiempo'] !== ''){
+                            echo "terminado";
+                        };
+                    echo"\">
+                        <i class=\"fas fa-stopwatch\"></i>
+                        <p class=\"timer_visita_count\">";
+                        if($datos_visita['tiempo'] !== ''){
+                            echo $datos_visita['tiempo'];
+                        }else{
+                            echo "0";
+                        };
+                        echo"</p>
+                        <p>Minutos</p>
+                    </span>
+                    <span class=\"reset_timer_buton\" ";
+                    if($datos_visita['tiempo'] !== ''){
+                        echo "style='visibility: hidden'";
+                    };
+                    echo">
+                        <i class=\"fas fa-undo-alt\"></i>
+                    </span>
                 </div>
                 <div class=\"resumen_parte2\">";
                 if ($tabla !== 'terreno') {
@@ -230,6 +258,41 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 
             <div class="agentes_container">
                 <?php
+                
+                        //CONTACTO VISITANTE
+                        echo"
+                        <div class=\"agente_wrap disponible\">
+                            <p class=\"contacto_title\">Visitante</p>
+                            <img src=\"../../objetos/hombre_icono_min_blue.svg?t=" . time() . "\" alt=\"Foto\" class=\"foto_agente\">
+                            <span class=\"info_agente_wrap\">
+                            <p class=\"nombre_agente\">" . $datos_visita['visitante_nombre'] . "</p>";
+                            if ($datos_visita['visitante_telefono'] !== '') {
+                                echo"
+                                <span class=\"contacto_agente\">
+                                    <span class=\"fa-stack icon_stacks_whatsapp\">
+                                    <i class=\"fa fa-whatsapp fa-stack-2x\"></i>
+                                    <i class=\"fa fa-circle\"></i>
+                                    </span>
+                                    <p class=\"agente_telefono\">" . $datos_visita['visitante_telefono'] . "</p>
+                                </span>
+                                <span class=\"call_btns_wrap\">
+                                    <a class=\"contacto_call_btn\" href=\"tel:" . getNumberFormat($datos_visita['visitante_telefono']) . "\"><p>Llamar</p></a>
+                                    <a class=\"contacto_whatsapp_btn\" href=\"https://api.whatsapp.com/send?phone=" . getNumberFormat($datos_visita['visitante_telefono']) . "\" target=\"_blank\">
+                                        <span class=\"fa-stack icon_stacks_whatsapp\">
+                                            <i class=\"fab fa-whatsapp fa-stack-2x\"></i>
+                                            <i class=\"fa fa-circle\"></i>
+                                        </span>
+                                        <p>WhatsApp</p>
+                                    </a>
+                                </span>
+                                ";
+                            };
+                            
+                            echo"
+                        </div>
+                        ";
+
+
 
                         //CONTACTO PROPIETARIO
                         echo"

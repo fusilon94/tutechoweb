@@ -12,7 +12,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
   };
 
   $nivel_acceso = $_SESSION['nivel_acceso'];
-  $array_acceso = [1,2,3,4,5,6,7,10,11,12];
+  $array_acceso = [1,2,3,11,12];
   $usuario = $_SESSION['usuario'];
   if (in_array($nivel_acceso, $array_acceso) !== false){
     //Todo OK
@@ -47,5 +47,5 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 };
 
 
-require 'stats_personales.view.php';
+require 'stats_agencia.view.php';
  ?>

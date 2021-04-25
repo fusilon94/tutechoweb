@@ -1935,6 +1935,99 @@ font-size: 1.95em;
   margin-bottom: 0.5em;
 }
 
+
+.visitante_info_wrap{
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0em;
+}
+
+.visitante_call_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.8em;
+  padding: 0.5em 0.6em;
+  background-color: #d6d6d8;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #645f5f;
+}
+
+.visitante_call_btn:hover{
+  background-color: #007fff;
+}
+
+.visitante_call_btn:hover i{
+  color: #fff;
+}
+
+.visitante_call_btn i{
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #007fff;
+}
+
+.visitante_call_btn:active{
+  transform: scale(0.98);
+}
+
+.visitante_whatsapp_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.8em;
+  padding: 1.09em 1.2em;
+  background-color: #d6d6d8;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #645f5f;
+}
+
+.visitante_whatsapp_btn:hover{
+  background-color: #007fff;
+}
+
+.visitante_whatsapp_btn i.fa-whatsapp {
+  color: #38bf5a;
+  font-size: 1.9em;
+  font-weight: bold;
+}
+
+.visitante_whatsapp_btn i.fa-circle {
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.visitante_whatsapp_btn:active{
+  transform: scale(0.98);
+}
+
+.visitante_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  color: #383838;
+  padding: 0.5em 0.3em;
+  cursor: default;
+}
+
+.visitante_wrap{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+  /* visibility: hidden; */
+}
+
+.select2-container{
+  color:#2e2e2e !important;
+  font-weight: bold !important;
+}
 /* ###################################  RESPONSIVE ############################################################# */
 
 @media screen and (max-width:1350px){
