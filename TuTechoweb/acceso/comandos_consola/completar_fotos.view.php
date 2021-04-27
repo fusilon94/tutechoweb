@@ -64,6 +64,36 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
           $(fotocampo).prop('disabled', true).val("").trigger("change");
 
         }
+
+        function check_jpg(element){
+          var fileExtension = ['jpg'];
+          if($(element).val() !== ""){
+            if ($.inArray($(element).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+              $(".popup_success_text").html("Solo se admiten imagenes .jpg");
+              $(".popup_success").css("visibility", "unset");
+              $(element).val("").trigger("change");
+            };
+          };
+        };
+
+        function check(element){
+          var foto360 = $(element).val();
+          var id = $(element).data('id');
+          if (foto360 == '') {
+            $("label[for='" + id + "'] p").css('display', 'block');
+            $("label[for='" + id + "'] i").css('display', 'none');
+          }else {
+            var fileExtension = ['jpg'];
+            if ($.inArray($(element).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+              $(".popup_success_text").html("Solo se admiten imagenes JPG");
+              $(".popup_success").css("visibility", "unset");
+            }else{
+              $("label[for='" + id + "'] p").css('display', 'none');
+              $("label[for='" + id + "'] i").css('display', 'block');
+            };
+          };
+
+        };
       </script>
 
 

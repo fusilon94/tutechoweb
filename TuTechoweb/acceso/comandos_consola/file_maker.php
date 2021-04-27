@@ -46,7 +46,11 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
       };
     }else {
       $pais_sent = $_COOKIE['tutechopais'];
-      $conexion_load = $tutechodb;
+      try {
+        $conexion_load = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
+      } catch (PDOException $e) { //en caso de error de conexion repostarlo
+        echo "Error: " . $e->getMessage();
+      };
     };
 
     function generateRandomString($length) {

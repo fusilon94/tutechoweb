@@ -472,6 +472,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
     ':atractivo' => $atractivo
     ));
 
+    require('data_day_registros.php');
+
     echo "Bien Inmueble activado exitosamente";
 
 };

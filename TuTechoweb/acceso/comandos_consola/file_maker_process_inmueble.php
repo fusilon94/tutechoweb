@@ -83,10 +83,6 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
     $estado = 'En ' . ucfirst($tipo_file);
 
 
-    // if (condition) {
-    //     # code...
-    // }
-    // strpos($a, 'are')
 
     if(isset($_POST['barrio'])){
         $location_tag = $_POST['barrio'];

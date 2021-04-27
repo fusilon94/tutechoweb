@@ -10,19 +10,9 @@
     return $randomString;
   };
 
-  function get_tabla($referencia) {//CHECK TIPO BIEN SEGUN REFERENCIA
-    if (strpos($referencia, 'C') !== false) {
-      return "casa";
-    };
-    if (strpos($referencia, 'D') !== false) {
-      return "departamento";
-    };
-    if (strpos($referencia, 'L') !== false) {
-      return "local";
-    };
-    if (strpos($referencia, 'T') !== false) {
-      return "terreno";
-    };
+  function get_tabla($referencia) {
+    $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
+    return $dict[$referencia[5]];
   };
 
 

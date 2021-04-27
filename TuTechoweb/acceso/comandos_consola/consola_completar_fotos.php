@@ -12,7 +12,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
   };
 
   $nivel_acceso = $_SESSION['nivel_acceso'];
-  $array_acceso = [1,3,11,12,8,10];
+  $array_acceso = [1,3,7,11,12,8,10];
   $usuario = $_SESSION['usuario'];
   if (in_array($nivel_acceso, $array_acceso) !== false){
     //Todo OK
@@ -59,7 +59,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     $consulta_formularios_terreno_nuevos->execute();//SE PASA EL ID DEL AGENTE
     $formularios_terreno_nuevos = $consulta_formularios_terreno_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-  }elseif ($nivel_acceso == 3 || $nivel_acceso == 8){ //acceso jefe de agencia local y fotografo
+  }elseif ($nivel_acceso == 3 || $nivel_acceso == 7){ //acceso jefe de agencia local y fotografo
 
     $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM casa WHERE validacion_agente = 1 AND validacion_fotografo = 0 AND agencia_registro_id = :agencia_registro_id ");
     $consulta_formularios_casa_nuevos->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL ID DEL AGENTE
@@ -107,7 +107,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
       ]);//SE PASA EL ID DEL AGENTE
     $formularios_terreno_nuevos = $consulta_formularios_terreno_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-  }else;
+  };
 
 
 }else {
