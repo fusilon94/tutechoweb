@@ -116,7 +116,7 @@ jQuery(function($){
     $('.popup_success').css('visibility',  'hidden');
   });
 
-// CODIGO BOTON CREAR AGENCIA ########################################################
+// CODIGO BOTON CREAR FILE ########################################################
 
 $(".boton_crear_file").on('click', function(){
 

@@ -28,19 +28,19 @@ if(isset($_POST["referencia_sent"]) && isset($_POST["pais_sent"]) && isset($_POS
 
     if ($tabla == 'borradores_casa') {
 
-        $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble, superficie_terreno FROM $tabla WHERE referencia = :referencia");
+        $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble, superficie_terreno, conciliador, conciliacion_tipo FROM $tabla WHERE referencia = :referencia");
         $consulta_datos_inmueble->execute([':referencia' => $referencia]);
         $datos_inmueble = $consulta_datos_inmueble->fetch(PDO::FETCH_ASSOC);
 
     }elseif ($tabla == 'borradores_departamento' || $tabla == 'borradores_local') {
 
-        $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble FROM $tabla WHERE referencia = :referencia");
+        $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble, conciliador, conciliacion_tipo FROM $tabla WHERE referencia = :referencia");
         $consulta_datos_inmueble->execute([':referencia' => $referencia]);
         $datos_inmueble = $consulta_datos_inmueble->fetch(PDO::FETCH_ASSOC);
 
     }elseif ($tabla == 'borradores_terreno') {
 
-        $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_terreno FROM $tabla WHERE referencia = :referencia");
+        $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_terreno, conciliador, conciliacion_tipo FROM $tabla WHERE referencia = :referencia");
         $consulta_datos_inmueble->execute([':referencia' => $referencia]);
         $datos_inmueble = $consulta_datos_inmueble->fetch(PDO::FETCH_ASSOC);
 
@@ -52,19 +52,19 @@ if(isset($_POST["referencia_sent"]) && isset($_POST["pais_sent"]) && isset($_POS
 
         if ($tabla == 'casa') {
 
-            $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble, superficie_terreno FROM $tabla WHERE referencia = :referencia");
+            $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble, superficie_terreno, conciliador, conciliacion_tipo FROM $tabla WHERE referencia = :referencia");
             $consulta_datos_inmueble->execute([':referencia' => $referencia]);
             $datos_inmueble = $consulta_datos_inmueble->fetch(PDO::FETCH_ASSOC);
     
         }elseif ($tabla == 'departamento' || $tabla == 'local') {
     
-            $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble FROM $tabla WHERE referencia = :referencia");
+            $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_inmueble, conciliador, conciliacion_tipo FROM $tabla WHERE referencia = :referencia");
             $consulta_datos_inmueble->execute([':referencia' => $referencia]);
             $datos_inmueble = $consulta_datos_inmueble->fetch(PDO::FETCH_ASSOC);
     
         }elseif ($tabla == 'terreno') {
     
-            $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_terreno FROM $tabla WHERE referencia = :referencia");
+            $consulta_datos_inmueble = $conexion->prepare("SELECT propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, propietario_tipo_doc, direccion, direccion_complemento, pais, departamento, ciudad, barrio, location_tag, base_imponible, avaluo, impuestos, mantenimiento, precio, pre_venta, exclusivo, contrato_especial, contrato_especial_comentario, gestion_acordada, anticretico, agencia_registro_id, superficie_terreno, conciliador, conciliacion_tipo FROM $tabla WHERE referencia = :referencia");
             $consulta_datos_inmueble->execute([':referencia' => $referencia]);
             $datos_inmueble = $consulta_datos_inmueble->fetch(PDO::FETCH_ASSOC);
     

@@ -28,9 +28,40 @@ $(document).ready(function(){
         console.log(datos_file);
     });
 
-    function tipo_doc(dato){if(dato == datos_file['propietario_tipo_doc']){return 'selected';}else{return '';};};
-    function button_state(dato){if(datos_file[dato] == 1){return 'active';}else{return '';};};
-    function contrato_especial_comentario(){if(datos_file['contrato_especial'] == 0){return 'disabled';}else{return '';};};
+    function tipo_doc(dato){
+        return (dato == datos_file['propietario_tipo_doc'] ? 'selected' : '');
+    };
+    function button_state(dato){
+        return (datos_file[dato] == 1 ? 'active' : '');
+    };
+    function contrato_especial_comentario(){
+        return (datos_file['contrato_especial'] == 0 ? 'disabled' : '');
+    };
+    function conciliacion_tipo(dato){
+        if (dato == '1 Mes') {
+            $(".opcion_mes").addClass('activo');
+        }else if(dato == '10%'){
+            $(".opcion_porcentage").addClass('activo');
+        };
+        
+        $("#opcion_conciliacion").val(dato);
+    };
+
+    function get_contactos() {
+        let contactos;
+    
+        $.ajax({
+            type: "POST",
+            url: "process-request-agentes.php",
+            data: { conciliador_sent :  datos_file['conciliador'] },
+            async: false,
+        }).done(function(data){
+            contactos = data;
+            console.log(data);
+            console.log(datos_file['conciliador']);
+        });
+        return contactos;
+    };
 
 // ########## POBLADO DEL INPUTS CONTENDOR
 
@@ -227,6 +258,54 @@ $(document).ready(function(){
             <textarea name="contrato_especial_comentario" id="contrato_especial_comentario" rows="1" class="pregunta_textarea" oninput="auto_grow(this)" ${contrato_especial_comentario()}>${datos_file['contrato_especial_comentario']}</textarea>
         </span>
     `);
+
+    if (agencia_express == 0) {
+        $(".inputs_contenedor").append(`
+            <span class="input_wrap">
+                <label for="conciliador">Conciliador - OPCIONAL: </label>
+                <select id='conciliador' name='conciliador' style='width: 400px;'>
+                <option value=''>Sin Conciliador</option>
+                ${get_contactos()} 
+                </select>
+            </span>
+
+            <span class="input_wrap opcion_conciliador_wrap_input">
+                <label for="opcion_conciliador_wrap">Opcion Conciliador: </label>
+                <div class="opcion_conciliador_wrap">
+                    <span class="opcion_mes opcion_conciliador" value="1 Mes">1 Mes</span>
+                    <span class="opcion_porcentage opcion_conciliador" value="10%">10%</span>
+                </div>
+                <input type="hidden" name="opcion_conciliacion" class="opcional" id="opcion_conciliacion" value="">
+            </span>
+        `);
+
+        $("#conciliador").select2();
+        if (datos_file['conciliador'] !== '') {
+            $(".opcion_conciliador_wrap_input").css("visibility", "unset");  
+        };
+
+        $("#conciliador").on("change", function(){
+            const conciliador = $("#conciliador option:selected").attr("value");
+            
+            if (conciliador == '') {
+                $(".opcion_conciliador_wrap_input").css("visibility", "hidden");
+                $(".opcion_conciliador").removeClass("activo");
+                $("#opcion_conciliacion").val("").addClass("opcional");
+            }else{
+                $(".opcion_conciliador_wrap_input").css("visibility", "unset");
+                $("#opcion_conciliacion").removeClass("opcional");
+            };
+        });
+
+        $(".opcion_conciliador").on("click", function(){
+            $(".opcion_conciliador").removeClass("activo");
+            $(this).addClass("activo");
+            const opcion_selected = $(this).attr('value');
+            $("#opcion_conciliacion").val(opcion_selected);
+        });
+
+        conciliacion_tipo(datos_file['conciliacion_tipo']);
+    };
 
 // ########## POBLADO DEL DRAGS CONTENDOR
 

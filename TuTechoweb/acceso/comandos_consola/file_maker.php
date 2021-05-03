@@ -111,6 +111,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
   // MODO EDICION ###############################################################################################################
   $modo_edicion = '';
   $id_file = '';
+  $agencia_tipo = 0;
 
   if(isset($_SESSION['id_file'])){
     $modo_edicion = '_edicion';
@@ -127,12 +128,12 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     $tutechodb_internacional = "tutechodb_internacional";
 
     try {
-    $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
+    $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
     } catch (PDOException $e) { //en caso de error de conexion repostarlo
     echo "Error: " . $e->getMessage();
     };
 
-    $consulta_moneda = $conexion->prepare(" SELECT moneda_code, moneda FROM paises WHERE pais = :pais");
+    $consulta_moneda = $conexion_internacional->prepare(" SELECT moneda_code, moneda FROM paises WHERE pais = :pais");
     $consulta_moneda->execute([':pais' => $pais]);
     $info_moneda = $consulta_moneda->fetch(PDO::FETCH_ASSOC);
 
@@ -145,9 +146,20 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     }else {
       $documento_mode = $_SESSION['tipo_doc_selected'] . $modo_edicion;
     };
+
+    $consulta_agencia_id =	$conexion->prepare("SELECT agencia_id FROM agentes WHERE usuario = :usuario");
+    $consulta_agencia_id->execute([':usuario' => $_SESSION['usuario']]);
+    $agencia_id	=	$consulta_agencia_id->fetch(PDO::FETCH_ASSOC);
+
+    $consulta_agencia_express =	$conexion->prepare("SELECT express FROM agencias WHERE id = :id");
+    $consulta_agencia_express->execute([':id' => $agencia_id['agencia_id']]);
+    $agencia_express	=	$consulta_agencia_express->fetch(PDO::FETCH_ASSOC);
+
+    $agencia_tipo = $agencia_express['express'];
+
     
   }else {
-    // header('Location: consola_crear_file.php');
+    header('Location: consola_crear_file.php');
   };
 
   

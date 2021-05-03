@@ -20,6 +20,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" type="text/css" href="../../estilos.css">
       <link rel="stylesheet" href="../../css/font_awesome.css">
       <link rel="stylesheet" href="../../css/consola_agente.css">
+      <link rel="stylesheet" href="../../css/select2.min.css">
       <link rel="stylesheet" href="../../css/file_maker.css">
       <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
       <!-- <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css"> -->
@@ -30,11 +31,13 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
         const id_file = "<?= $id_file; ?>";
         const tipo_file_recieved = "<?= $tipo_file_received; ?>";
         const tipo_doc = "<?= $documento; ?>";
+        const agencia_express = "<?= $agencia_tipo; ?>";
       </script>
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
       <script src="../../js/js.cookie.js"></script>
       <script src="../../js/menu.js"></script>
       <script type="text/javascript" src="../../js/jquery.uploadPreview.min.js"></script>
+      <script src="../../js/select2.min.js"></script>
       <script src="../../js/file_maker.js"></script>
       <script src="../../js/file_maker_<?= $documento_mode ?>.js"></script>
 
@@ -108,11 +111,11 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 
  </body>
  <?php
-  // unset($_SESSION['tipo_doc_selected']);// SIEMPRE DESTRUIR ESTA VARIABLE DE SESSION PARA PODER ACCEDER AL REGISTRO SPONSOR NORMAL SIN PROBLEMAS
-  // unset($_SESSION['pais_selected']);
-  // unset($_SESSION['tipo_file_selected']);
-  // if (isset($_SESSION['id_file'])) {
-  //   unset($_SESSION['id_file']);
-  // };
+  unset($_SESSION['tipo_doc_selected']);// SIEMPRE DESTRUIR ESTA VARIABLE DE SESSION PARA PODER ACCEDER AL REGISTRO SPONSOR NORMAL SIN PROBLEMAS
+  unset($_SESSION['pais_selected']);
+  unset($_SESSION['tipo_file_selected']);
+  if (isset($_SESSION['id_file'])) {
+    unset($_SESSION['id_file']);
+  };
  ?>
 </html>

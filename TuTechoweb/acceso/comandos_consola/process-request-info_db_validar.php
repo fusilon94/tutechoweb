@@ -36,19 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
       }else {
           if ($tabla == "borradores_casa") {
 
-            $consulta_datos_db =	$conexion->prepare("SELECT location_tag, direccion, direccion_complemento, anticretico, pre_venta, exclusivo, estado, mantenimiento, avaluo, base_imponible, precio, superficie_inmueble, superficie_terreno, contrato_especial, contrato_especial_comentario, gestion_acordada FROM $tabla WHERE referencia=:referencia ");
+            $consulta_datos_db =	$conexion->prepare("SELECT location_tag, direccion, direccion_complemento, anticretico, pre_venta, exclusivo, estado, mantenimiento, avaluo, base_imponible, precio, superficie_inmueble, superficie_terreno, contrato_especial, contrato_especial_comentario, gestion_acordada, conciliador, conciliacion_tipo FROM $tabla WHERE referencia=:referencia ");
             $consulta_datos_db->execute([':referencia' => $id]);
             $datos_db = $consulta_datos_db->fetch(PDO::FETCH_ASSOC);
 
           }else if($tabla == "borradores_departamento" || $tabla == "borradores_local"){
 
-            $consulta_datos_db =	$conexion->prepare("SELECT location_tag, direccion, direccion_complemento, anticretico, pre_venta, exclusivo, estado, mantenimiento, avaluo, base_imponible, precio, superficie_inmueble  contrato_especial, contrato_especial_comentario, gestion_acordada FROM $tabla WHERE referencia=:referencia ");
+            $consulta_datos_db =	$conexion->prepare("SELECT location_tag, direccion, direccion_complemento, anticretico, pre_venta, exclusivo, estado, mantenimiento, avaluo, base_imponible, precio, superficie_inmueble  contrato_especial, contrato_especial_comentario, gestion_acordada, conciliador, conciliacion_tipo FROM $tabla WHERE referencia=:referencia ");
             $consulta_datos_db->execute([':referencia' => $id]);
             $datos_db = $consulta_datos_db->fetch(PDO::FETCH_ASSOC);
 
           }else if($tabla == "borradores_terreno"){
 
-            $consulta_datos_db =	$conexion->prepare("SELECT location_tag, direccion, direccion_complemento, anticretico, pre_venta, exclusivo, estado, mantenimiento, avaluo, base_imponible, precio, superficie_terreno contrato_especial, contrato_especial_comentario, gestion_acordada FROM $tabla WHERE referencia=:referencia ");
+            $consulta_datos_db =	$conexion->prepare("SELECT location_tag, direccion, direccion_complemento, anticretico, pre_venta, exclusivo, estado, mantenimiento, avaluo, base_imponible, precio, superficie_terreno contrato_especial, contrato_especial_comentario, gestion_acordada, conciliador, conciliacion_tipo FROM $tabla WHERE referencia=:referencia ");
             $consulta_datos_db->execute([':referencia' => $id]);
             $datos_db = $consulta_datos_db->fetch(PDO::FETCH_ASSOC);
             

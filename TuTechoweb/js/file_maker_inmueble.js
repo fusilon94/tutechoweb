@@ -1,6 +1,19 @@
 $(document).ready(function(){
     jQuery(function($){
 
+    function get_contactos() {
+        let contactos;
+    
+        $.ajax({
+            type: "POST",
+            url: "process-request-agentes.php",
+            async: false,
+        }).done(function(data){
+            contactos = data;
+        });
+        return contactos;
+    };
+
     let tipo_bien;
 
     if(id_file == ''){
@@ -212,7 +225,51 @@ $(document).ready(function(){
             <label for="contrato_especial_comentario">Explique el motivo: </label>
             <textarea name="contrato_especial_comentario" id="contrato_especial_comentario" rows="1" class="pregunta_textarea" oninput="auto_grow(this)" disabled></textarea>
         </span>
+        
     `);
+
+    if (agencia_express == 0) {
+        $(".inputs_contenedor").append(`
+            <span class="input_wrap">
+                <label for="conciliador">Conciliador - OPCIONAL: </label>
+                <select id='conciliador' name='conciliador' style='width: 400px;'>
+                <option value=''>Sin Conciliador</option>
+                ${get_contactos()} 
+                </select>
+            </span>
+
+            <span class="input_wrap opcion_conciliador_wrap_input">
+                <label for="opcion_conciliador_wrap">Opcion Conciliador: </label>
+                <div class="opcion_conciliador_wrap">
+                    <span class="opcion_mes opcion_conciliador">1 Mes</span>
+                    <span class="opcion_porcentage opcion_conciliador">10%</span>
+                </div>
+                <input type="hidden" name="opcion_conciliacion" class="opcional" id="opcion_conciliacion" value="">
+            </span>
+        `);
+
+        $("#conciliador").select2();
+
+        $("#conciliador").on("change", function(){
+            const conciliador = $("#conciliador option:selected").attr("value");
+            
+            if (conciliador == '') {
+                $(".opcion_conciliador_wrap_input").css("visibility", "hidden");
+                $(".opcion_conciliador").removeClass("activo");
+                $("#opcion_conciliacion").val("").addClass("opcional");
+            }else{
+                $(".opcion_conciliador_wrap_input").css("visibility", "unset");
+                $("#opcion_conciliacion").removeClass("opcional");
+            };
+        });
+
+        $(".opcion_conciliador").on("click", function(){
+            $(".opcion_conciliador").removeClass("activo");
+            $(this).addClass("activo");
+            const opcion_selected = $(this).text();
+            $("#opcion_conciliacion").val(opcion_selected);
+        });
+    };
 
 // ########## POBLADO DEL DRAGS CONTENDOR
 

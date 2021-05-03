@@ -71,6 +71,18 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
         $gestion = 0;
     };
 
+    if (isset($_POST['conciliador'])) {
+        $conciliador = filter_var($_POST['conciliador'], FILTER_SANITIZE_STRING);
+    }else {
+        $conciliador = '';
+    };
+
+    if (isset($_POST['opcion_conciliacion']) && $conciliador !== '') {
+        $opcion_conciliacion = filter_var($_POST['opcion_conciliacion'], FILTER_SANITIZE_STRING);
+    }else {
+        $opcion_conciliacion = '';
+    };
+
 
     $tipo_bien = filter_var($_POST['tipo_inmueble'], FILTER_SANITIZE_STRING);
     $date = new DateTime();
@@ -144,7 +156,7 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
         $tabla = "borradores_" . $tipo_bien;
     
         if ($tipo_bien == "casa") {
-            $statement = $conexion_load->prepare("INSERT INTO $tabla (referencia, tipo_bien, precio, base_imponible, mantenimiento, avaluo, estado, exclusivo, pre_venta, anticretico, pais, departamento, ciudad, barrio, location_tag, direccion, direccion_complemento, superficie_inmueble, superficie_terreno, superficie_terreno_medida, impuestos, impuestos_moneda, propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, contrato_especial, contrato_especial_comentario, gestion_acordada, jefe_agencia_id, agencia_registro_id, propietario_tipo_doc) VALUES (:referencia, :tipo_bien, :precio, :base_imponible, :mantenimiento, :avaluo, :estado, :exclusivo, :pre_venta, :anticretico, :pais, :departamento, :ciudad, :barrio, :location_tag, :direccion, :direccion_complemento, :superficie_inmueble, :superficie_terreno, :superficie_terreno_medida, :impuestos, :impuestos_moneda, :propietario_nombre, :propietario_apellido, :propietario_telefono, :propietario_email, :propietario_direccion, :propietario_carnet, :contrato_especial, :contrato_especial_comentario, :gestion_acordada, :jefe_agencia_id, :agencia_registro_id, :propietario_tipo_doc)"); //preparar la consulata INSERT
+            $statement = $conexion_load->prepare("INSERT INTO $tabla (referencia, tipo_bien, precio, base_imponible, mantenimiento, avaluo, estado, exclusivo, pre_venta, anticretico, pais, departamento, ciudad, barrio, location_tag, direccion, direccion_complemento, superficie_inmueble, superficie_terreno, superficie_terreno_medida, impuestos, impuestos_moneda, propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, contrato_especial, contrato_especial_comentario, gestion_acordada, jefe_agencia_id, agencia_registro_id, propietario_tipo_doc, conciliador, conciliacion_tipo) VALUES (:referencia, :tipo_bien, :precio, :base_imponible, :mantenimiento, :avaluo, :estado, :exclusivo, :pre_venta, :anticretico, :pais, :departamento, :ciudad, :barrio, :location_tag, :direccion, :direccion_complemento, :superficie_inmueble, :superficie_terreno, :superficie_terreno_medida, :impuestos, :impuestos_moneda, :propietario_nombre, :propietario_apellido, :propietario_telefono, :propietario_email, :propietario_direccion, :propietario_carnet, :contrato_especial, :contrato_especial_comentario, :gestion_acordada, :jefe_agencia_id, :agencia_registro_id, :propietario_tipo_doc, :conciliador, :conciliacion_tipo)"); //preparar la consulata INSERT
             $statement->execute([
                 ':referencia' => $referencia,
                 ':tipo_bien' => $tipo_bien,
@@ -179,13 +191,15 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
                 ':gestion_acordada' => $gestion,
                 ':jefe_agencia_id' => $registrador['id'],
                 ':agencia_registro_id' => $agencia_id,
-                ':propietario_tipo_doc' => $tipo_doc_identidad
+                ':propietario_tipo_doc' => $tipo_doc_identidad,
+                ':conciliador' => $conciliador,
+                ':conciliacion_tipo' => $opcion_conciliacion
                 ]);
 
 
         } else if ($tipo_bien == "departamento" || $tipo_bien == "local"){
 
-            $statement = $conexion_load->prepare("INSERT INTO $tabla (referencia, tipo_bien, precio, base_imponible, mantenimiento, avaluo, estado, exclusivo, pre_venta, anticretico, pais, departamento, ciudad, barrio, location_tag, direccion, direccion_complemento, superficie_inmueble, impuestos, impuestos_moneda, propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, contrato_especial, contrato_especial_comentario, gestion_acordada, jefe_agencia_id, agencia_registro_id, propietario_tipo_doc) VALUES (:referencia, :tipo_bien, :precio, :base_imponible, :mantenimiento, :avaluo, :estado, :exclusivo, :pre_venta, :anticretico, :pais, :departamento, :ciudad, :barrio, :location_tag, :direccion, :direccion_complemento, :superficie_inmueble, :impuestos, :impuestos_moneda, :propietario_nombre, :propietario_apellido, :propietario_telefono, :propietario_email, :propietario_direccion, :propietario_carnet, :contrato_especial, :contrato_especial_comentario, :gestion_acordada, :jefe_agencia_id, :agencia_registro_id, :propietario_tipo_doc)"); //preparar la consulata INSERT
+            $statement = $conexion_load->prepare("INSERT INTO $tabla (referencia, tipo_bien, precio, base_imponible, mantenimiento, avaluo, estado, exclusivo, pre_venta, anticretico, pais, departamento, ciudad, barrio, location_tag, direccion, direccion_complemento, superficie_inmueble, impuestos, impuestos_moneda, propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, contrato_especial, contrato_especial_comentario, gestion_acordada, jefe_agencia_id, agencia_registro_id, propietario_tipo_doc, conciliador, conciliacion_tipo) VALUES (:referencia, :tipo_bien, :precio, :base_imponible, :mantenimiento, :avaluo, :estado, :exclusivo, :pre_venta, :anticretico, :pais, :departamento, :ciudad, :barrio, :location_tag, :direccion, :direccion_complemento, :superficie_inmueble, :impuestos, :impuestos_moneda, :propietario_nombre, :propietario_apellido, :propietario_telefono, :propietario_email, :propietario_direccion, :propietario_carnet, :contrato_especial, :contrato_especial_comentario, :gestion_acordada, :jefe_agencia_id, :agencia_registro_id, :propietario_tipo_doc, :conciliador, :conciliacion_tipo)"); //preparar la consulata INSERT
             $statement->execute([
                 ':referencia' => $referencia,
                 ':tipo_bien' => $tipo_bien,
@@ -218,14 +232,16 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
                 ':gestion_acordada' => $gestion,
                 ':jefe_agencia_id' => $registrador['id'],
                 ':agencia_registro_id' => $agencia_id,
-                ':propietario_tipo_doc' => $tipo_doc_identidad
+                ':propietario_tipo_doc' => $tipo_doc_identidad,
+                ':conciliador' => $conciliador,
+                ':conciliacion_tipo' => $opcion_conciliacion
                 ]);
 
 
 
         } else if ($tipo_bien == "terreno"){
             
-            $statement = $conexion_load->prepare("INSERT INTO $tabla (referencia, tipo_bien, precio, base_imponible, mantenimiento, avaluo, estado, exclusivo, pre_venta, anticretico, pais, departamento, ciudad, barrio, location_tag, direccion, direccion_complemento, superficie_terreno, superficie_terreno_medida, impuestos, impuestos_moneda, propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, contrato_especial, contrato_especial_comentario, gestion_acordada, jefe_agencia_id, agencia_registro_id, propietario_tipo_doc) VALUES (:referencia, :tipo_bien, :precio, :base_imponible, :mantenimiento, :avaluo, :estado, :exclusivo, :pre_venta, :anticretico, :pais, :departamento, :ciudad, :barrio, :location_tag, :direccion, :direccion_complemento, :superficie_terreno, :superficie_terreno_medida, :impuestos, :impuestos_moneda, :propietario_nombre, :propietario_apellido, :propietario_telefono, :propietario_email, :propietario_direccion, :propietario_carnet, :contrato_especial, :contrato_especial_comentario, :gestion_acordada, :jefe_agencia_id, :agencia_registro_id, :propietario_tipo_doc)"); //preparar la consulata INSERT
+            $statement = $conexion_load->prepare("INSERT INTO $tabla (referencia, tipo_bien, precio, base_imponible, mantenimiento, avaluo, estado, exclusivo, pre_venta, anticretico, pais, departamento, ciudad, barrio, location_tag, direccion, direccion_complemento, superficie_terreno, superficie_terreno_medida, impuestos, impuestos_moneda, propietario_nombre, propietario_apellido, propietario_telefono, propietario_email, propietario_direccion, propietario_carnet, contrato_especial, contrato_especial_comentario, gestion_acordada, jefe_agencia_id, agencia_registro_id, propietario_tipo_doc, conciliador, conciliacion_tipo) VALUES (:referencia, :tipo_bien, :precio, :base_imponible, :mantenimiento, :avaluo, :estado, :exclusivo, :pre_venta, :anticretico, :pais, :departamento, :ciudad, :barrio, :location_tag, :direccion, :direccion_complemento, :superficie_terreno, :superficie_terreno_medida, :impuestos, :impuestos_moneda, :propietario_nombre, :propietario_apellido, :propietario_telefono, :propietario_email, :propietario_direccion, :propietario_carnet, :contrato_especial, :contrato_especial_comentario, :gestion_acordada, :jefe_agencia_id, :agencia_registro_id, :propietario_tipo_doc, :conciliador, :conciliacion_tipo)"); //preparar la consulata INSERT
             $statement->execute([
                 ':referencia' => $referencia,
                 ':tipo_bien' => $tipo_bien,
@@ -259,7 +275,9 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
                 ':gestion_acordada' => $gestion,
                 ':jefe_agencia_id' => $registrador['id'],
                 ':agencia_registro_id' => $agencia_id,
-                ':propietario_tipo_doc' => $tipo_doc_identidad
+                ':propietario_tipo_doc' => $tipo_doc_identidad,
+                ':conciliador' => $conciliador,
+                ':conciliacion_tipo' => $opcion_conciliacion
             ]);
 
         };
@@ -277,7 +295,7 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
         };
     
         if ($tipo_bien == "casa") {
-            $statement2 = $conexion_load->prepare("UPDATE $tabla SET tipo_bien = :tipo_bien , precio = :precio , base_imponible = :base_imponible, mantenimiento = :mantenimiento, avaluo = :avaluo, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, departamento = :departamento, ciudad = :ciudad, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_inmueble = :superficie_inmueble, superficie_terreno = :superficie_terreno, superficie_terreno_medida = :superficie_terreno_medida, impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_direccion = :propietario_direccion, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, contrato_especial_comentario = :contrato_especial_comentario, gestion_acordada = :gestion_acordada, jefe_agencia_id = :jefe_agencia_id, agencia_registro_id = :agencia_registro_id, propietario_tipo_doc = :propietario_tipo_doc WHERE referencia = :referencia"); //preparar la consulata INSERT
+            $statement2 = $conexion_load->prepare("UPDATE $tabla SET tipo_bien = :tipo_bien , precio = :precio , base_imponible = :base_imponible, mantenimiento = :mantenimiento, avaluo = :avaluo, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, departamento = :departamento, ciudad = :ciudad, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_inmueble = :superficie_inmueble, superficie_terreno = :superficie_terreno, superficie_terreno_medida = :superficie_terreno_medida, impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_direccion = :propietario_direccion, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, contrato_especial_comentario = :contrato_especial_comentario, gestion_acordada = :gestion_acordada, jefe_agencia_id = :jefe_agencia_id, agencia_registro_id = :agencia_registro_id, propietario_tipo_doc = :propietario_tipo_doc, conciliador =  :conciliador, conciliacion_tipo = :conciliacion_tipo WHERE referencia = :referencia"); //preparar la consulata INSERT
             $statement2->execute([
                 ':referencia' => $referencia_edicion,
                 ':tipo_bien' => $tipo_bien,
@@ -312,12 +330,14 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
                 ':gestion_acordada' => $gestion,
                 ':jefe_agencia_id' => $registrador['id'],
                 ':agencia_registro_id' => $agencia_id,
-                ':propietario_tipo_doc' => $tipo_doc_identidad
+                ':propietario_tipo_doc' => $tipo_doc_identidad,
+                ':conciliador' => $conciliador,
+                ':conciliacion_tipo' => $opcion_conciliacion
                 ]);
 
         } else if ($tipo_bien == "departamento" || $tipo_bien == "local"){
 
-            $statement = $conexion_load->prepare("UPDATE $tabla SET tipo_bien = :tipo_bien , precio = :precio , base_imponible = :base_imponible, mantenimiento = :mantenimiento, avaluo = :avaluo, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, departamento = :departamento, ciudad = :ciudad, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_inmueble = :superficie_inmueble, impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_direccion = :propietario_direccion, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, contrato_especial_comentario = :contrato_especial_comentario, gestion_acordada = :gestion_acordada, jefe_agencia_id = :jefe_agencia_id, agencia_registro_id = :agencia_registro_id, propietario_tipo_doc = :propietario_tipo_doc WHERE referencia = :referencia"); //preparar la consulata INSERT
+            $statement = $conexion_load->prepare("UPDATE $tabla SET tipo_bien = :tipo_bien , precio = :precio , base_imponible = :base_imponible, mantenimiento = :mantenimiento, avaluo = :avaluo, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, departamento = :departamento, ciudad = :ciudad, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_inmueble = :superficie_inmueble, impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_direccion = :propietario_direccion, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, contrato_especial_comentario = :contrato_especial_comentario, gestion_acordada = :gestion_acordada, jefe_agencia_id = :jefe_agencia_id, agencia_registro_id = :agencia_registro_id, propietario_tipo_doc = :propietario_tipo_doc, conciliador =  :conciliador, conciliacion_tipo = :conciliacion_tipo WHERE referencia = :referencia"); //preparar la consulata INSERT
             $statement->execute([
                 ':referencia' => $referencia_edicion,
                 ':tipo_bien' => $tipo_bien,
@@ -350,14 +370,16 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
                 ':gestion_acordada' => $gestion,
                 ':jefe_agencia_id' => $registrador['id'],
                 ':agencia_registro_id' => $agencia_id,
-                ':propietario_tipo_doc' => $tipo_doc_identidad
+                ':propietario_tipo_doc' => $tipo_doc_identidad,
+                ':conciliador' => $conciliador,
+                ':conciliacion_tipo' => $opcion_conciliacion
                 ]);
 
 
 
         } else if ($tipo_bien == "terreno"){
             
-            $statement = $conexion_load->prepare("UPDATE $tabla SET tipo_bien = :tipo_bien , precio = :precio , base_imponible = :base_imponible, mantenimiento = :mantenimiento, avaluo = :avaluo, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, departamento = :departamento, ciudad = :ciudad, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_terreno = :superficie_terreno, superficie_terreno_medida = :superficie_terreno_medida, impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_direccion = :propietario_direccion, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, contrato_especial_comentario = :contrato_especial_comentario, gestion_acordada = :gestion_acordada, jefe_agencia_id = :jefe_agencia_id, agencia_registro_id = :agencia_registro_id, propietario_tipo_doc = :propietario_tipo_doc WHERE referencia = :referencia"); //preparar la consulata INSERTconsulata INSERT
+            $statement = $conexion_load->prepare("UPDATE $tabla SET tipo_bien = :tipo_bien , precio = :precio , base_imponible = :base_imponible, mantenimiento = :mantenimiento, avaluo = :avaluo, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, departamento = :departamento, ciudad = :ciudad, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_terreno = :superficie_terreno, superficie_terreno_medida = :superficie_terreno_medida, impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_direccion = :propietario_direccion, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, contrato_especial_comentario = :contrato_especial_comentario, gestion_acordada = :gestion_acordada, jefe_agencia_id = :jefe_agencia_id, agencia_registro_id = :agencia_registro_id, propietario_tipo_doc = :propietario_tipo_doc, conciliador =  :conciliador, conciliacion_tipo = :conciliacion_tipo WHERE referencia = :referencia"); //preparar la consulata INSERTconsulata INSERT
             $statement->execute([
                 ':referencia' => $referencia_edicion,
                 ':tipo_bien' => $tipo_bien,
@@ -391,7 +413,9 @@ if(isset($_POST['nombre_cliente']) || isset($_POST['apellido_cliente']) && isset
                 ':gestion_acordada' => $gestion,
                 ':jefe_agencia_id' => $registrador['id'],
                 ':agencia_registro_id' => $agencia_id,
-                ':propietario_tipo_doc' => $tipo_doc_identidad
+                ':propietario_tipo_doc' => $tipo_doc_identidad,
+                ':conciliador' => $conciliador,
+                ':conciliacion_tipo' => $opcion_conciliacion
             ]);
 
         };
