@@ -69,7 +69,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
           };
 
           $statement_json_editar = $conexion->prepare(
-            "UPDATE $tabla_bien_received SET vr_json = 'VR.json', editor_tourvr_id = :editor_tourvr_id, ultima_edicion_tourvr = :ultima_edicion_tourvr WHERE referencia = :referencia");
+            "UPDATE $tabla_bien_received SET vr_json = 1, editor_tourvr_id = :editor_tourvr_id, ultima_edicion_tourvr = :ultima_edicion_tourvr WHERE referencia = :referencia");
 
           $statement_json_editar->execute(array(
             ':referencia' => $referencia_received,
@@ -84,7 +84,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
       }else {
 
           $statement_json = $conexion->prepare(
-        		"UPDATE $tabla_bien_received SET vr_json = 'VR.json', creador_tourvr = :creador_tourvr, fecha_creacion_tourvr = :fecha_creacion_tourvr, tourvr_visibilidad = 1 WHERE referencia = :referencia");
+        		"UPDATE $tabla_bien_received SET vr_json = 1, creador_tourvr = :creador_tourvr, fecha_creacion_tourvr = :fecha_creacion_tourvr, tourvr_visibilidad = 1 WHERE referencia = :referencia");
 
         	$statement_json->execute(array(
             ':referencia' => $referencia_received,
@@ -109,7 +109,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
   $modo = '';
 
   $VR_json_path = '..\..\bienes_inmuebles' . '\\' . $_COOKIE['tutechopais'] . "\\" . $referencia . '\\' . 'VR.json';
-  $VR_json = '';
+  $vr_json = 0;
   if (file_exists($VR_json_path)) {
     $VR_json = json_decode(file_get_contents($VR_json_path), true);
     $modo = 'edicion';

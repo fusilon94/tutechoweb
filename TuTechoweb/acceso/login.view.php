@@ -18,7 +18,7 @@
       <link rel="stylesheet" href="../css/font_awesome.css">
       <link rel="stylesheet" href="../css/login_styles.css">
 
-      <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
+      <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../js/jquery-latest.js';"></script>
       <script src="../js/js.cookie.js"></script>
       <script src="../js/slider.js"></script>
       <script src="../js/jquery.flexslider.js"></script>
@@ -107,7 +107,7 @@
       	  		  <div>
       	  		       <ul>
       	  			       <li><a href="../contenido/pie/quienes_somos.html">Quiénes somos</a></li>
-      	  			       <li><a href="../contenido/m5/contacto.html">Contacto</a></li>
+      	  			       <li><a href="../contenido/pie/propietario_login.php">Propietario</a></li>
       	  			       <li><a href="acceso.php">Acceso</a></li>
       	  		       </ul>
       	  	 	       <ul>

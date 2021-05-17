@@ -168,7 +168,7 @@ if(isset($php_view_entry_control)){} else{header('Location: index.php');}; //par
       	  		  <div>
       	  		       <ul>
       	  			       <li><a href="../pie/quienes_somos.html">Quiénes somos</a></li>
-      	  			       <li><a href="contacto.html">Contacto</a></li>
+      	  			       <li><a href="propietario_consola.php">Propietario</a></li>
       	  			       <li><a href="../../acceso/acceso.php">Acceso</a></li>
       	  		       </ul>
       	  	 	       <ul>

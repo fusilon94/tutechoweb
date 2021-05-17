@@ -10,28 +10,30 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 };
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitud por AJAX
-    // Conexion con la database
+  // Conexion con la database
 
-    $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
+  $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
 
-    try {
-      $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
-    } catch (PDOException $e) { //en caso de error de conexion repostarlo
-      echo "Error: " . $e->getMessage();
-    };
+  try {
+    $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
+  } catch (PDOException $e) { //en caso de error de conexion repostarlo
+    echo "Error: " . $e->getMessage();
+  };
 
-    $tutechodb_internacional = "tutechodb_internacional";
-    try {
-      $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
-    } catch (PDOException $e) { //en caso de error de conexion repostarlo
-      echo "Error: " . $e->getMessage();
-    };
+  $tutechodb_internacional = "tutechodb_internacional";
+  try {
+    $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
+  } catch (PDOException $e) { //en caso de error de conexion repostarlo
+    echo "Error: " . $e->getMessage();
+  };
 
-    $consulta_pais_moneda =	$conexion_internacional->prepare("SELECT moneda, moneda_code, impuesto_transferencia_factor FROM paises WHERE pais=:pais ");
-    $consulta_pais_moneda->execute(['pais' => $_COOKIE['tutechopais']]);//SE PASA LA REFERENCIA
-    $pais_moneda = $consulta_pais_moneda->fetch(PDO::FETCH_ASSOC);
-    
-// REQUEST ALL INFO OF THE THUMBNAIL'S REFERENCE CLICKED AND CREATE THE CORRESPONDING POPUP_FICHA_BIEN TO BE SHOWN
+  $consulta_pais_moneda =	$conexion_internacional->prepare("SELECT moneda, moneda_code, impuesto_transferencia_factor, time_zone_php FROM paises WHERE pais=:pais ");
+  $consulta_pais_moneda->execute(['pais' => $_COOKIE['tutechopais']]);//SE PASA LA REFERENCIA
+  $pais_moneda = $consulta_pais_moneda->fetch(PDO::FETCH_ASSOC);
+
+  date_default_timezone_set($pais_moneda['time_zone_php']);
+
+  // REQUEST ALL INFO OF THE THUMBNAIL'S REFERENCE CLICKED AND CREATE THE CORRESPONDING POPUP_FICHA_BIEN TO BE SHOWN
 
     if (isset($_POST["ficha_bien_requested"]) && isset($_POST["ficha_bien_tipo_requested"]) && isset($_POST["estado"]) && isset($_POST["agente_sent"])) {
       $ficha_bien_requested = $_POST["ficha_bien_requested"];
@@ -235,16 +237,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
               if ($tipo_bien_requested !== 'terreno') {
                 echo "<span class=\"resumen_superficie_tag\">" . number_format(ceil($info_ficha_bien['superficie_inmueble']), 0, '.', ' ') . " m<sup>2</sup></span>";
               };
-                if ($tipo_bien_requested == 'casa' || $tipo_bien_requested == 'departamento') {
-                  echo "<span class=\"resumen_dormitorios_tag\"><img src=\"../../objetos/bed_icon.svg\" alt=\"Dormitorios: \">x" . $info_ficha_bien['dormitorios'] . "</span>";
+
+              if ($tipo_bien_requested == 'casa' || $tipo_bien_requested == 'departamento') {
+                echo "<span class=\"resumen_dormitorios_tag\"><img src=\"../../objetos/bed_icon.svg\" alt=\"Dormitorios: \">x" . $info_ficha_bien['dormitorios'] . "</span>";
+              };
+              if ($tipo_bien_requested == 'casa' || $tipo_bien_requested == 'departamento' || $tipo_bien_requested == 'local') {
+                echo "<span class=\"resumen_parqueos_tag\"><img src=\"../../objetos/car_icon.svg\" alt=\"Parqueos: \">x" . $info_ficha_bien['parqueos'] . "</span>";
+              };
+
+
+              $asignacion_text = 'BOLSA COMÚN'; 
+
+              if($info_ficha_bien['conciliador'] !== '' && $info_ficha_bien['conciliacion_tipo'] == '1 Mes'){
+
+                $today = new DateTime(date('d-m-Y', strtotime('today')));
+                $fecha_limite = new DateTime(date("d-m-Y", strtotime($info_ficha_bien['conciliacion_fecha_limite'])));
+
+                if ($today <= $fecha_limite) {
+
+                  $consulta_conciliador =	$conexion->prepare("SELECT nombre, apellido FROM agentes WHERE id=:id");
+                  $consulta_conciliador->execute([':id' => $info_ficha_bien['conciliador']]);//SE PASA EL BARRIO
+                  $conciliador = $consulta_conciliador->fetch(PDO::FETCH_ASSOC);
+
+                  $asignacion_text = strtoupper($conciliador['nombre']) . ' ' . strtoupper($conciliador['apellido']) . ' - hasta el ' . $info_ficha_bien['conciliacion_fecha_limite'];
+
                 };
-                if ($tipo_bien_requested == 'casa' || $tipo_bien_requested == 'departamento' || $tipo_bien_requested == 'local') {
-                  echo "<span class=\"resumen_parqueos_tag\"><img src=\"../../objetos/car_icon.svg\" alt=\"Parqueos: \">x" . $info_ficha_bien['parqueos'] . "</span>";
-                };
+
+              }; 
 
               echo"</div>
             </div>
             <div class=\"ficha_contenido_descripcion\">
+              <h3>Asignación: " . $asignacion_text . "</h3>
               <h3>Descripción:</h3>
               <p>" . $info_ficha_bien['descripcion_bien'] . "</p>
             </div>";

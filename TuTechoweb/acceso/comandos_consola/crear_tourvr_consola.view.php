@@ -134,58 +134,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
   <div class="contenedor_borradores">
 
     <?php
-    foreach ($formularios_casa_nuevos as $formularios) {
-      echo "
-      <div class=\"boton_borrador_mini_contenedor\">
-        <div id=\"" . $formularios['referencia'] . "\" name=\"" . $formularios['tipo_bien'] . "\" class=\"boton_borrador_formulario\">
-          <i class=\"fas fa-search\" aria-hidden=\"true\"></i><p><span class='nombre'>" . $formularios['referencia'] . "</span></p>
-        </div>
-        <div class=\"boton_borrador_formulario_borrar\" onclick=\"confirmacion(this)\">
-          <i class=\"fas fa-globe\" aria-hidden=\"true\"></i>
-        </div>
-        <div class=\"boton_borrador_formulario_borrar_confirmar\" onclick=\"confirmacion_borrar(this)\">
-          <p>CREAR?</p>
-        </div>
-      </div>
-
-      ";
-    };
-
-    foreach ($formularios_departamento_nuevos as $formularios) {
-      echo "
-      <div class=\"boton_borrador_mini_contenedor\">
-        <div id=\"" . $formularios['referencia'] . "\" name=\"" . $formularios['tipo_bien'] . "\" class=\"boton_borrador_formulario\">
-          <i class=\"fas fa-search\" aria-hidden=\"true\"></i><p><span class='nombre'>" . $formularios['referencia'] . "</span></p>
-        </div>
-        <div class=\"boton_borrador_formulario_borrar\" onclick=\"confirmacion(this)\">
-          <i class=\"fas fa-globe\" aria-hidden=\"true\"></i>
-        </div>
-        <div class=\"boton_borrador_formulario_borrar_confirmar\" onclick=\"confirmacion_borrar(this)\">
-          <p>CREAR?</p>
-        </div>
-      </div>
-
-      ";
-    };
-
-    foreach ($formularios_local_nuevos as $formularios) {
-      echo "
-      <div class=\"boton_borrador_mini_contenedor\">
-        <div id=\"" . $formularios['referencia'] . "\" name=\"" . $formularios['tipo_bien'] . "\" class=\"boton_borrador_formulario\">
-          <i class=\"fas fa-search\" aria-hidden=\"true\"></i><p><span class='nombre'>" . $formularios['referencia'] . "</span></p>
-        </div>
-        <div class=\"boton_borrador_formulario_borrar\" onclick=\"confirmacion(this)\">
-          <i class=\"fas fa-globe\" aria-hidden=\"true\"></i>
-        </div>
-        <div class=\"boton_borrador_formulario_borrar_confirmar\" onclick=\"confirmacion_borrar(this)\">
-          <p>CREAR?</p>
-        </div>
-      </div>
-
-      ";
-    };
-
-    foreach ($formularios_terreno_nuevos as $formularios) {
+    foreach ($formularios_nuevos as $formularios) {
       echo "
       <div class=\"boton_borrador_mini_contenedor\">
         <div id=\"" . $formularios['referencia'] . "\" name=\"" . $formularios['tipo_bien'] . "\" class=\"boton_borrador_formulario\">

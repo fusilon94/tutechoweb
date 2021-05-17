@@ -25,24 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
       $referencia = $_POST["referencia_sent"];
       $tabla = 'borradores_' . $_POST["tabla_sent"];
 
-      $consulta_info_form =	$conexion->prepare("SELECT estado, exclusivo, fotos360_solicitados, vr_solicitado, anticretico, pre_venta, pais, ciudad, departamento, barrio, direccion, direccion_complemento, propietario_nombre, propietario_apellido, propietario_telefono FROM $tabla WHERE referencia=:referencia ");
+      $consulta_info_form =	$conexion->prepare("SELECT estado, exclusivo, anticretico, pre_venta, pais, ciudad, departamento, barrio, direccion, direccion_complemento, propietario_nombre, propietario_apellido, propietario_telefono FROM $tabla WHERE referencia=:referencia ");
       $consulta_info_form->execute([':referencia' => $referencia]);//SE PASA EL NOMBRE DEL SPONSOR
       $info_form = $consulta_info_form->fetch(PDO::FETCH_ASSOC);
 
       $exclusivo = 'ESTANDAR';
-      $fotos_360 = '';
-      $vr = '';
       $anticretico = 'NO';
       $pre_venta = 'NO';
 
       if ($info_form['exclusivo'] == 1) {
         $exclusivo = "EXCLUSIVO";
-        if ($info_form['fotos360_solicitados'] == 1) {
-          $fotos_360 = 'SI';
-        };
-        if ($info_form['vr_solicitado'] == 1) {
-          $vr = 'SI';
-        };
       };
 
       if ($info_form['anticretico'] == 1) {
@@ -66,20 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
               <div class=\"elemento_info_acicional\"><span class=\"info_label\">Barrio:</span><span class=\"info_text\">" . $info_form['barrio'] . "</span></div>
               <div class=\"elemento_info_acicional_barrio\"><span class=\"info_label\">Dirección:</span><span class=\"info_text\">" . $info_form['direccion'] . "</span></div>
               <div class=\"elemento_info_acicional_barrio\"><span class=\"info_label\">Complemento:</span><span class=\"info_text\">" . $info_form['direccion_complemento'] . "</span></div>
-              <div class=\"elemento_info_acicional_barrio\"><span class=\"info_label\">Contrato:</span><span class=\"info_text\">" . $exclusivo . "</span></div>";
-              if ($exclusivo == 'EXCLUSIVO') {
-                if ($fotos_360 !== '') {
-                  echo "
-                  <div class=\"elemento_info_acicional\"><span class=\"info_label\">Fotos 360°:</span><span class=\"info_text\">" . $fotos_360 . "</span></div>
-                  ";
-                };
-                if ($vr !== '') {
-                  echo "
-                  <div class=\"elemento_info_acicional\"><span class=\"info_label\">Tour Virtual:</span><span class=\"info_text\">" . $vr . "</span></div>
-                  ";
-                };
-              };
-              echo "
+              <div class=\"elemento_info_acicional_barrio\"><span class=\"info_label\">Contrato:</span><span class=\"info_text\">" . $exclusivo . "</span></div>
               <div class=\"elemento_info_acicional\"><span class=\"info_label\">Anticretico:</span><span class=\"info_text\">" . $anticretico . "</span></div>
               <div class=\"elemento_info_acicional\"><span class=\"info_label\">Pre-Venta:</span><span class=\"info_text\">" . $pre_venta . "</span></div>
               <div class=\"elemento_info_acicional_barrio\"><span class=\"info_label\">Propietario:</span><span class=\"info_text\">" . $info_form['propietario_nombre'] . ' ' . $info_form['propietario_apellido'] . "</span></div>

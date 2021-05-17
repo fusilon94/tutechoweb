@@ -28,9 +28,9 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     };
 
 
-    $consulta_paises = $conexion_internacional->prepare(" SELECT pais FROM paises WHERE activo = 1 ");
+    $consulta_paises = $conexion_internacional->prepare(" SELECT pais, vr_activo, vr_exclusivo FROM paises WHERE activo = 1 ");
     $consulta_paises->execute();
-    $paises = $consulta_paises->fetchAll(PDO::FETCH_COLUMN, 0);
+    $paises = $consulta_paises->fetchAll(PDO::FETCH_ASSOC);
 
 
     $formularios_casa_nuevos = [];
@@ -39,9 +39,9 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     $formularios_terreno_nuevos = [];
 
 
-    foreach ($paises as $pais) {
+    foreach ($paises as $pais_datos) {
 
-      $tutechodb = "tutechodb_" . $pais;
+      $tutechodb = "tutechodb_" . $pais_datos['pais'];
 
       try {
         $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
@@ -50,24 +50,60 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
       };
 
 
-      $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais FROM casa WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
-      $consulta_formularios_casa_nuevos->execute([':visibilidad' => 'no_visible']);//SE PASA EL ID DEL AGENTE
+      $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais, vr_json, exclusivo FROM casa WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
+      $consulta_formularios_casa_nuevos->execute([':visibilidad' => 'no_visible']);
       $formularios_casa_nuevos_especial = $consulta_formularios_casa_nuevos->fetchAll(PDO::FETCH_ASSOC);
   
-      $consulta_formularios_departamento_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais FROM departamento WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
-      $consulta_formularios_departamento_nuevos->execute([':visibilidad' => 'no_visible']);//SE PASA EL ID DEL AGENTE
+      $consulta_formularios_departamento_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais, vr_json, exclusivo FROM departamento WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
+      $consulta_formularios_departamento_nuevos->execute([':visibilidad' => 'no_visible']);
       $formularios_departamento_nuevos_especial = $consulta_formularios_departamento_nuevos->fetchAll(PDO::FETCH_ASSOC);
   
-      $consulta_formularios_local_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais FROM local WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
-      $consulta_formularios_local_nuevos->execute([':visibilidad' => 'no_visible']);//SE PASA EL ID DEL AGENTE
+      $consulta_formularios_local_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais, vr_json, exclusivo FROM local WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
+      $consulta_formularios_local_nuevos->execute([':visibilidad' => 'no_visible']);
       $formularios_local_nuevos_especial = $consulta_formularios_local_nuevos->fetchAll(PDO::FETCH_ASSOC);
   
-      $consulta_formularios_terreno_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais FROM terreno WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
-      $consulta_formularios_terreno_nuevos->execute([':visibilidad' => 'no_visible']);//SE PASA EL ID DEL AGENTE
+      $consulta_formularios_terreno_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, pais, vr_json, exclusivo FROM terreno WHERE revision_form_solicitada = '' AND revision_fotos_solicitada = '' AND revision_vr_solicitada = '' AND visibilidad = :visibilidad AND validacion_agente = 1 AND validacion_fotografo = 1 AND validacion_jefe_agencia = 1 ");
+      $consulta_formularios_terreno_nuevos->execute([':visibilidad' => 'no_visible']);
       $formularios_terreno_nuevos_especial = $consulta_formularios_terreno_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
+      //SE FILTRAN SEGUN REQUERIMIENTOS DE VR/EXCLUSIVIDAD
+      if ($pais_datos['vr_activo'] == 1) {
 
+        $formularios_casa_nuevos_especial = array_filter($formularios_casa_nuevos_especial, function($formulario) use($pais_datos) {
+          if ($pais_datos['vr_exclusivo'] == 1 && $formulario['vr_json'] == 1 && $formulario['exclusivo'] == 1) {
+            return true;
+          }elseif ($pais_datos['vr_exclusivo'] == 0 && $formulario['vr_json'] == 1) {
+            return true;
+          };
+        });
+        
+        $formularios_departamento_nuevos_especial = array_filter($formularios_departamento_nuevos_especial, function($formulario) use($pais_datos){
+          if ($pais_datos['vr_exclusivo'] == 1 && $formulario['vr_json'] == 1 && $formulario['exclusivo'] == 1) {
+            return true;
+          }elseif ($pais_datos['vr_exclusivo'] == 0 && $formulario['vr_json'] == 1) {
+            return true;
+          };
+        });
+        $formularios_local_nuevos_especial = array_filter($formularios_local_nuevos_especial, function($formulario) use($pais_datos){
+          if ($pais_datos['vr_exclusivo'] == 1 && $formulario['vr_json'] == 1 && $formulario['exclusivo'] == 1) {
+            return true;
+          }elseif ($pais_datos['vr_exclusivo'] == 0 && $formulario['vr_json'] == 1) {
+            return true;
+          };
+        });
+        $formularios_terreno_nuevos_especial = array_filter($formularios_terreno_nuevos_especial, function($formulario) use($pais_datos){
+          if ($pais_datos['vr_exclusivo'] == 1 && $formulario['vr_json'] == 1 && $formulario['exclusivo'] == 1) {
+            return true;
+          }elseif ($pais_datos['vr_exclusivo'] == 0 && $formulario['vr_json'] == 1) {
+            return true;
+          };
+        });
+        
+      };
 
+      
+
+      //SE SUMAN LOS RESULTADOS DE TODOS LOS PAISES
       foreach ($formularios_casa_nuevos_especial as $formulario) {
         $formularios_casa_nuevos[] = $formulario;
       };

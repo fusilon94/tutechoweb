@@ -10,6 +10,11 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 };
 
 
+function get_tabla($referencia) {
+    $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
+    return $dict[$referencia[5]];
+};
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitud por AJAX
     // Conexion con la database
 
@@ -710,21 +715,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                 };
             };
 
-            function get_registro_table($referencia){
-                $tabla= '';
-                if (strpos($referencia, 'C') !== false) { $tabla = "casa";}
-                else { if (strpos($referencia, 'D') !== false) { $tabla = "departamento";}
-                  else { if (strpos($referencia, 'L') !== false) { $tabla = "local";}
-                    else { if (strpos($referencia, 'T') !== false) { $tabla = "terreno";}
-                          else {
-                            $tabla = ''; 
-                          };
-                      };
-                  };
-              };
-
-              return $tabla;
-            };
 
             function check_limit_response_fotografo($fecha){
 
@@ -916,7 +906,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                                             <p>Validación Fotógrafo: ... </p>" . check_fotografo_response($value['fotografo_check']) . "
                                         </span>
 
-                                        <div id=\"" . $value['referencia'] . "\" class=\"boton_info_inmueble\" name=\"" . get_registro_table($value['referencia']) . "\">
+                                        <div id=\"" . $value['referencia'] . "\" class=\"boton_info_inmueble\" name=\"" . get_tabla($value['referencia']) . "\">
                                             <i class=\"fas fa-search\" aria-hidden=\"true\"></i><p><span class=\"nombre\">Datos Inmueble</span></p>
                                         </div>
 
@@ -1031,14 +1021,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
                         foreach ($array_count_visita as $key => $value) {
 
-                            if (strpos($value['referencia'], 'C') !== false) { $tabla = "casa";}
-                                else { if (strpos($value['referencia'], 'D') !== false) { $tabla = "departamento";}
-                                    else { if (strpos($value['referencia'], 'L') !== false) { $tabla = "local";}
-                                        else { if (strpos($value['referencia'], 'T') !== false) { $tabla = "terreno";}
-                                            else {$tabla = '';};
-                                        };
-                                    };
-                                };
+                            $tabla = get_tabla($value['referencia']);
 
                             // SE CONSULTA EL ESTADO DEL BIEN
                             $consulta_estado =	$conexion->prepare("SELECT estado FROM $tabla WHERE referencia = :referencia");
@@ -1504,29 +1487,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                 $tabla = '';
 
                 if ($tipo_tarea == 'registro') {
-                    if (strpos($referencia, 'C') !== false) { $tabla = "borradores_casa";}
-                    else { if (strpos($referencia, 'D') !== false) { $tabla = "borradores_departamento";}
-                      else { if (strpos($referencia, 'L') !== false) { $tabla = "borradores_local";}
-                        else { if (strpos($referencia, 'T') !== false) { $tabla = "borradores_terreno";}
-                              else {$tabla = '';};
-                          };
-                      };
-                  };
+                    $tabla = 'borradores_' . get_tabla($referencia);
                 }elseif($tipo_tarea == 'visita'){
-                    if (strpos($referencia, 'C') !== false) { $tabla = "casa";}
-                    else { if (strpos($referencia, 'D') !== false) { $tabla = "departamento";}
-                      else { if (strpos($referencia, 'L') !== false) { $tabla = "local";}
-                        else { if (strpos($referencia, 'T') !== false) { $tabla = "terreno";}
-                              else {$tabla = '';};
-                          };
-                      };
-                  };
-                  $visitante = $_POST['visitante_sent'];
+                    $tabla = get_tabla($referencia);
+                    
+                    $visitante = $_POST['visitante_sent'];
                 };
     
                 if ($tabla !== '') {
                     
-                    $consulta_referencia_exist = $conexion->prepare("SELECT referencia FROM $tabla WHERE referencia = :referencia");
+                    $consulta_referencia_exist = $conexion->prepare("SELECT referencia, conciliador, conciliacion_tipo, conciliacion_fecha_limite FROM $tabla WHERE referencia = :referencia");
                     $consulta_referencia_exist->execute([":referencia" => $referencia]);
                     $referencia_exist = $consulta_referencia_exist->fetch(PDO::FETCH_ASSOC);
     
@@ -1563,37 +1533,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                                 "tiempo" => ""
                             ];
                         
+
                         };
-     
-                        $json_path_agentes_tareas = '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/agentes_tareas.json';
-        
-                        $json_agentes_tareas = file_get_contents($json_path_agentes_tareas);
-                        $data_agentes_tareas = json_decode($json_agentes_tareas, true);
-        
-                        if (!array_key_exists($agente_id, $data_agentes_tareas)) {
-                            $data_agentes_tareas[$agente_id] = array();
-                            $data_agentes_tareas[$agente_id]['registro'] = array();
-                            $data_agentes_tareas[$agente_id]['visita'] = array();
+
+                        $reservado = 0;
+
+                        if ($referencia_exist['conciliador'] !== '' && $referencia_exist['conciliacion_tipo'] == '1 Mes') {
+
+                            $today_compare = new DateTime(date('d-m-Y', strtotime('today')));
+                            $fecha_limite_conciliador = new DateTime(date("d-m-Y", strtotime($referencia_exist['conciliacion_fecha_limite'])));
+
+                            if ($today_compare <= $fecha_limite_conciliador) {
+                                $reservado = 1;
+                            };
+                            
                         };
-        
-                        array_push($data_agentes_tareas[$agente_id][$tipo_tarea], $new_element);
-        
-                        $data_json = json_encode($data_agentes_tareas);// transformar el array en codigo json
-        
-                        file_put_contents($json_path_agentes_tareas, $data_json); // FINALMENTE se guarda el data en un Json file
-    
-                        $week = date('w',strtotime($_POST["date_tag_sent"]));
-                        if ($week == 0) {
-                            $delta = '-6 day';
-                        }else {
-                            $delta = '-'.($week-1).' day';
-                        };
-                        $monday_week = date('d-m-Y', strtotime($delta, strtotime($_POST["date_tag_sent"])));
-        
-                        $start_date = date('d-m-Y',strtotime('-63 day', strtotime($monday_week)));//9 semanas atras empezando en lunes
-                        $end_date = date('d-m-Y',strtotime('+84 day', strtotime($monday_week)));// 12 semanas adelante 
                         
-                        week_constructor($start_date, $end_date, $lista_meses, $lista_dias_nombres, $agencia_tag, $agente_id, $past_events);
+                        $consulta_usuario_id = $conexion->prepare("SELECT id FROM agentes WHERE usuario =:usuario");
+                        $consulta_usuario_id->execute([":usuario" => $_SESSION['usuario']]);
+                        $usuario_id = $consulta_usuario_id->fetch(PDO::FETCH_ASSOC);
+
+
+                        if ($reservado == 1 && $referencia_exist['conciliador'] !== $usuario_id['id']) {
+                            echo"error_reservado";
+                        }else{
+                            $json_path_agentes_tareas = '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/agentes_tareas.json';
+        
+                            $json_agentes_tareas = file_get_contents($json_path_agentes_tareas);
+                            $data_agentes_tareas = json_decode($json_agentes_tareas, true);
+            
+                            if (!array_key_exists($agente_id, $data_agentes_tareas)) {
+                                $data_agentes_tareas[$agente_id] = array();
+                                $data_agentes_tareas[$agente_id]['registro'] = array();
+                                $data_agentes_tareas[$agente_id]['visita'] = array();
+                            };
+            
+                            array_push($data_agentes_tareas[$agente_id][$tipo_tarea], $new_element);
+            
+                            $data_json = json_encode($data_agentes_tareas);// transformar el array en codigo json
+            
+                            file_put_contents($json_path_agentes_tareas, $data_json); // FINALMENTE se guarda el data en un Json file
+        
+                            $week = date('w',strtotime($_POST["date_tag_sent"]));
+                            if ($week == 0) {
+                                $delta = '-6 day';
+                            }else {
+                                $delta = '-'.($week-1).' day';
+                            };
+                            $monday_week = date('d-m-Y', strtotime($delta, strtotime($_POST["date_tag_sent"])));
+            
+                            $start_date = date('d-m-Y',strtotime('-63 day', strtotime($monday_week)));//9 semanas atras empezando en lunes
+                            $end_date = date('d-m-Y',strtotime('+84 day', strtotime($monday_week)));// 12 semanas adelante 
+                            
+                            week_constructor($start_date, $end_date, $lista_meses, $lista_dias_nombres, $agencia_tag, $agente_id, $past_events);
+                        };
+                        
         
                     }else {
                         echo"error";

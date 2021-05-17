@@ -41,7 +41,7 @@ $(document).ready(function(){
         }).done(function(data){
           $('.popup_ficha_bien').html(data);
           $("body").addClass('ficha_active');
-          });
+        });
 
   });
 

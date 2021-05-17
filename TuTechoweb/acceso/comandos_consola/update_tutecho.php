@@ -28,4 +28,4 @@ require 'data_day_visitas.php';
 
 $_SESSION['exito_bien_registrado'] = 'Datos Tutecho Actualizados Exitosamente';
 // header('Location: ../login.php');
- ?>
+?>

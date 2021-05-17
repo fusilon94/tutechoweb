@@ -177,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si se envio datos por POST guardar
       			));
 
             $statement_registrar_mas2 = $conexion->prepare(
-      				"UPDATE $tabla_to_update SET impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_direccion = :propietario_direccion, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_carnet = :propietario_carnet, vr_solicitado = :vr_solicitado, fotos360_solicitados = :fotos360_solicitados, contrato_especial = :contrato_especial, gestion_acordada = :gestion_acordada, validacion_jefe_agencia = :validacion_jefe_agencia, jefe_agencia_id = :jefe_agencia_id, fecha_validacion_jefe_agencia = :fecha_validacion_jefe_agencia, avaluo = :avaluo, comision = :comision, propietario_tipo_doc = :propietario_tipo_doc, contrato_especial_comentario = :contrato_especial_comentario, agente_designado_id = :agente_designado_id WHERE referencia = :referencia");
+      				"UPDATE $tabla_to_update SET impuestos = :impuestos, impuestos_moneda = :impuestos_moneda, propietario_nombre = :propietario_nombre, propietario_apellido = :propietario_apellido, propietario_direccion = :propietario_direccion, propietario_telefono = :propietario_telefono, propietario_email = :propietario_email, propietario_carnet = :propietario_carnet, contrato_especial = :contrato_especial, gestion_acordada = :gestion_acordada, validacion_jefe_agencia = :validacion_jefe_agencia, jefe_agencia_id = :jefe_agencia_id, fecha_validacion_jefe_agencia = :fecha_validacion_jefe_agencia, avaluo = :avaluo, comision = :comision, propietario_tipo_doc = :propietario_tipo_doc, contrato_especial_comentario = :contrato_especial_comentario, agente_designado_id = :agente_designado_id, conciliador = :conciliador, conciliacion_tipo = :conciliacion_tipo, conciliacion_fecha_limite = :conciliacion_fecha_limite WHERE referencia = :referencia");
 
       			$statement_registrar_mas2->execute(array(
       				':referencia' => $referencia_received,
@@ -189,8 +189,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si se envio datos por POST guardar
               ':propietario_telefono' => $info_bien_all['propietario_telefono'],
               ':propietario_email' => $info_bien_all['propietario_email'],
               ':propietario_carnet' => $info_bien_all['propietario_carnet'],
-              ':vr_solicitado' => $info_bien_all['vr_solicitado'],
-              ':fotos360_solicitados' => $info_bien_all['fotos360_solicitados'],
               ':contrato_especial' => $info_bien_all['contrato_especial'],
               ':gestion_acordada' => $info_bien_all['gestion_acordada'],
               ':validacion_jefe_agencia' => $info_bien_all['validacion_jefe_agencia'],
@@ -200,7 +198,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si se envio datos por POST guardar
               ':comision' => $info_bien_all['comision'],
               ':propietario_tipo_doc' => $info_bien_all['propietario_tipo_doc'],
               ':contrato_especial_comentario' => $info_bien_all['contrato_especial_comentario'],
-              ':agente_designado_id' => $info_bien_all['agente_designado_id']
+              ':agente_designado_id' => $info_bien_all['agente_designado_id'],
+              ':conciliador' => $info_bien_all['conciliador'],
+              ':conciliacion_tipo' => $info_bien_all['conciliacion_tipo'],
+              ':conciliacion_fecha_limite' => $info_bien_all['conciliacion_fecha_limite']
       			));
 
             $statement_borrar =	$conexion->prepare("DELETE FROM $tabla_bien_received WHERE referencia = :referencia");

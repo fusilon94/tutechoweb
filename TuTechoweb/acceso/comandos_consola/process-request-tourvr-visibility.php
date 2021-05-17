@@ -29,38 +29,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         $bienes = array();
 
         if ($agencia !== '0') {//acceso fotografo y jefe de agencia
-          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM casa WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM casa WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_casa->execute([':location_tag' => $barrio, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $casa = $consulta_casa->fetchAll();
 
-          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM departamento WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM departamento WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_departamento->execute([':location_tag' => $barrio, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $departamento = $consulta_departamento->fetchAll();
 
-          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM local WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM local WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_local->execute([':location_tag' => $barrio, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $local = $consulta_local->fetchAll();
 
-          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM terreno WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM terreno WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_terreno->execute([':location_tag' => $barrio, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $terreno = $consulta_terreno->fetchAll();
 
           $bienes = array_merge($casa, $departamento, $local, $terreno);
 
         }else {//acceso admin
-          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM casa WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM casa WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_casa->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $casa = $consulta_casa->fetchAll();
 
-          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM departamento WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM departamento WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_departamento->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $departamento = $consulta_departamento->fetchAll();
 
-          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM local WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM local WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_local->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $local = $consulta_local->fetchAll();
 
-          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM terreno WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, tourvr_visibilidad FROM terreno WHERE location_tag=:location_tag AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_terreno->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $terreno = $consulta_terreno->fetchAll();
 
@@ -82,38 +82,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         $bienes = array();
 
         if ($agencia !== '0') {//acceso fotografo y jefe de agencia
-          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM casa WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM casa WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_casa->execute([':referencia' => $referencia, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $casa = $consulta_casa->fetchAll();
 
-          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM departamento WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM departamento WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_departamento->execute([':referencia' => $referencia, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $departamento = $consulta_departamento->fetchAll();
 
-          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM local WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM local WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_local->execute([':referencia' => $referencia, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $local = $consulta_local->fetchAll();
 
-          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM terreno WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 'VR.json' ");
+          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM terreno WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 1 ");
           $consulta_terreno->execute([':referencia' => $referencia, ':agencia_registro_id' => $agencia]);//SE PASA EL BARRIO O POBLADO
           $terreno = $consulta_terreno->fetchAll();
 
           $bienes = array_merge($casa, $departamento, $local, $terreno);
 
         }else {//acceso admin
-          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM casa WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_casa =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM casa WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_casa->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $casa = $consulta_casa->fetchAll();
 
-          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM departamento WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_departamento =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM departamento WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_departamento->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $departamento = $consulta_departamento->fetchAll();
 
-          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM local WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_local =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM local WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_local->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $local = $consulta_local->fetchAll();
 
-          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM terreno WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 'VR.json' ");
+          $consulta_terreno =	$conexion->prepare("SELECT referencia, tipo_bien, visibilidad, location_tag, tourvr_visibilidad FROM terreno WHERE referencia=:referencia AND validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 1 ");
           $consulta_terreno->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $terreno = $consulta_terreno->fetchAll();
 

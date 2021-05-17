@@ -59,8 +59,8 @@
 	margin-right: 4px;
 }
 
-.formulario .usuario,
-.formulario .password {
+.formulario .apellido,
+.formulario .referencia {
 	width: calc(100% - 54px);
 	-webkit-border-radius: 0 3px 3px 0;
 	-moz-border-radius: 0 3px 3px 0;
@@ -69,7 +69,7 @@
 	border-radius: 0 3px 3px 0;
 }
 
-.formulario .password_btn {
+.formulario .referencia {
 	width: calc(100% - 105px);
 }
 
@@ -129,4 +129,11 @@
 	color: white;
 	font-size: 20px;
 	margin-left: 3px;
+}
+
+.error{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 1em;
 }

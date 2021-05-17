@@ -278,28 +278,29 @@ $(document).ready(function(){
               data: { fecha_tag_sent: 'refresh_agente', date_tag_sent : fecha_selected, tipo_tarea_sent : tipo_tarea, hora_tarea_sent : hora_tarea, referencia_sent : referencia_inmueble, agencia_tag_sent : agencia_tag_default, agente_id_sent : agente_id_default, past_events_sent : past_event, visitante_sent: visitante }
           }).done(function(data){
 
-              if (data == 'error') {
-                  $(".error_wrap_tarea").html("La referencia NO existe").css("visibility", "unset");
-                
-              }else if(data == 'error_fecha_limite'){
-                  $(".error_wrap_tarea").html("Tiene sólo 3 dias para registrar tareas").css("visibility", "unset");
-              }else{
-                const cuadro_id = "#" + fecha_selected;
+            if (data == 'error') {
+                $(".error_wrap_tarea").html("La referencia NO existe").css("visibility", "unset");
+            }else if(data == 'error_fecha_limite'){
+                $(".error_wrap_tarea").html("Tiene sólo 3 dias para registrar tareas").css("visibility", "unset");
+            }else if(data == 'error_reservado'){
+                $(".error_wrap_tarea").html("Este bien esta reservado").css("visibility", "unset");
+            }else{
+              const cuadro_id = "#" + fecha_selected;
 
-                $(".calendario_contendor").html(data);
+              $(".calendario_contendor").html(data);
 
-                $(".calendario_contendor").scrollTop(0);           
+              $(".calendario_contendor").scrollTop(0);           
 
-                const t = $(".calendario_contendor").offset().top;
-                
-                $(".calendario_contendor").scrollTop($(cuadro_id).offset().top - t - 5);// Sepone el scroll en el dia de hoy
-                let titulo_first = $(cuadro_id).attr("mes") + " " + $(cuadro_id).attr("year");
+              const t = $(".calendario_contendor").offset().top;
+              
+              $(".calendario_contendor").scrollTop($(cuadro_id).offset().top - t - 5);// Sepone el scroll en el dia de hoy
+              let titulo_first = $(cuadro_id).attr("mes") + " " + $(cuadro_id).attr("year");
 
-                $(".cabecera_titulo").html(titulo_first).attr("data", $(cuadro_id).attr("id").slice(3));
+              $(".cabecera_titulo").html(titulo_first).attr("data", $(cuadro_id).attr("id").slice(3));
 
-                $(".popup_overlay").css("opacity", 0).css("visibility", "hidden");
+              $(".popup_overlay").css("opacity", 0).css("visibility", "hidden");
 
-              };
+            };
 
               
           });

@@ -26,6 +26,21 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     echo "Error: " . $e->getMessage();
   };
 
+  $tutechodb_internacional = "tutechodb_internacional";
+  try {
+    $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
+  } catch (PDOException $e) { //en caso de error de conexion repostarlo
+    echo "Error: " . $e->getMessage();
+  };
+
+  $consulta_pais_datos = $conexion_internacional->prepare("SELECT vr_activo, vr_exclusivo FROM paises WHERE pais=:pais");
+  $consulta_pais_datos->execute(['pais' => $_COOKIE['tutechopais']]);
+  $pais_datos	= $consulta_pais_datos->fetch();
+  
+  if ($pais_datos['vr_activo'] == 0) {//SI NO ESTA HABILITADO EL VR EN ESTE PAIS ENTONCES NO TIENE PORQUE ESTAR AQUI
+    header('Location: ../acceso.php');
+  };
+  
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $referencia = $_POST['nuevo_bien_referencia'];
     $tipo_bien = $_POST['nuevo_bien_tabla'];
@@ -43,40 +58,49 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
   if ($agencia_id == 0) {//acceso del admin
 
-    $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM casa WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM casa WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_casa_nuevos->execute();//SE PASA EL ID DEL AGENTE
     $formularios_casa_nuevos = $consulta_formularios_casa_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-    $consulta_formularios_departamento_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM departamento WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_departamento_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM departamento WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_departamento_nuevos->execute();//SE PASA EL ID DEL AGENTE
     $formularios_departamento_nuevos = $consulta_formularios_departamento_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-    $consulta_formularios_local_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM local WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_local_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM local WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_local_nuevos->execute();//SE PASA EL ID DEL AGENTE
     $formularios_local_nuevos = $consulta_formularios_local_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-    $consulta_formularios_terreno_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM terreno WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_terreno_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM terreno WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_terreno_nuevos->execute();//SE PASA EL ID DEL AGENTE
     $formularios_terreno_nuevos = $consulta_formularios_terreno_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
+
   }else { //acceso del fotografo de la agencia en cuestion, o bien del jefe de esa agencia
 
-    $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM casa WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_casa_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM casa WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_casa_nuevos->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL ID DEL AGENTE
     $formularios_casa_nuevos = $consulta_formularios_casa_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-    $consulta_formularios_departamento_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM departamento WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_departamento_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM departamento WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_departamento_nuevos->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL ID DEL AGENTE
     $formularios_departamento_nuevos = $consulta_formularios_departamento_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-    $consulta_formularios_local_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM local WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_local_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM local WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_local_nuevos->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL ID DEL AGENTE
     $formularios_local_nuevos = $consulta_formularios_local_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
-    $consulta_formularios_terreno_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien FROM terreno WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_solicitado = 1 AND vr_json = '' ");
+    $consulta_formularios_terreno_nuevos = $conexion->prepare(" SELECT referencia, tipo_bien, exclusivo FROM terreno WHERE validacion_agente = 1 AND validacion_fotografo = 1 AND agencia_registro_id = :agencia_registro_id AND vr_json = 0 AND visibilidad = 'no_visible' AND inactivo = 0 ");
     $consulta_formularios_terreno_nuevos->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL ID DEL AGENTE
     $formularios_terreno_nuevos = $consulta_formularios_terreno_nuevos->fetchAll(PDO::FETCH_ASSOC);
 
+  };
+
+  $formularios_nuevos = array_merge($formularios_casa_nuevos, $formularios_departamento_nuevos, $formularios_local_nuevos, $formularios_terreno_nuevos);
+  
+  if ($pais_datos['vr_exclusivo'] == 1) {
+    $formularios_nuevos = array_filter($formularios_nuevos, function($formulario) {
+      return ($formulario['exclusivo'] == 1);
+    });
   };
 
 
