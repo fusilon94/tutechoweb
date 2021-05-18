@@ -166,7 +166,7 @@ if(isset($_POST["referencia_sent"])){
 
   // ################## HTML RESPONSE #########################
 
-  $nombre_propietario = $info_bien['propietario_nombre'] . " " . $info_bien['propietario_apellido'];
+  $nombre_propietario = ucfirst($info_bien['propietario_nombre']) . " " . ucfirst($info_bien['propietario_apellido']);
   [$etiqueta, $etiqueta_class] = getEtiquetaInfo($info_bien);
 
 
@@ -185,46 +185,59 @@ if(isset($_POST["referencia_sent"])){
   <div class=\"datos_left_wrap\">
     <div class=\"resumen_inmueble\">
         <span class=\"etiqueta_especial " . $etiqueta_class . "\"><p>" . $etiqueta . "</p></span>
-        <img src=\"" . str_replace("#", "%23", $foto_portada_path) . "?t=" . time() . "\" alt=\"foto\" class=\"foto_inmueble\">
+        <span class=\"foto_container\">
+          <img src=\"" . str_replace("#", "%23", $foto_portada_path) . "?t=" . time() . "\" alt=\"foto\" class=\"foto_inmueble\">
+        </span>
         <span class=\"datos_inmueble_wrap\">
-            <span class=\"datos_inmueble_top\">
+          <span class=\"datos_inmueble_top\">
+
+            <span class=\"datos_inmueble_left\">
                 <span class=\"dato_direccion\">
-                    <p>Dirección: " . $info_bien['location_tag'] . "</p>
+                    <p class=\"mini_label\">Dirección: </p>
+                    <p class=\"mini_info\">" . ucfirst($info_bien['location_tag']) . "</p>
                 </span>
-                <span class=\"dato_precio\">
-                    <p>Precio: " . $info_bien['precio'] . " " . $moneda . $moneda_code . "</p>
-                </span>
-            </span>
-            <span class=\"datos_inmueble_middle\">
                 <span class=\"dato_tipo_inmueble\">
-                    <p>Tipo: " . $info_bien['tipo_bien'] . "</p>
+                    <p class=\"mini_label\">Tipo: </p>
+                    <p class=\"mini_info\">" . ucfirst($info_bien['tipo_bien']) . "</p>
+                </span>
+                
+            </span>
+            <span class=\"datos_inmueble_right\">
+                <span class=\"dato_precio\">
+                    <p class=\"mini_label\">Precio: </p>
+                    <p class=\"mini_info\">" . $info_bien['precio'] . " " . $moneda . $moneda_code . "</p>
                 </span>
                 <span class=\"dato_estado\">
-                    <p>Estado: " . $info_bien['estado'] . "</p>
+                    <p class=\"mini_label\">Estado: </p>
+                    <p class=\"mini_info\">" . $info_bien['estado'] . "</p>
                 </span>
             </span>
-            <span class=\"datos_inmueble_bottom\">
-                <span class=\"dato_superficie\">
-                <p>" . $superficie . "</p>
+
+          </span>  
+          <span class=\"datos_inmueble_bottom\">
+              <span class=\"dato_superficie\">
+              <p class=\"mini_info\">" . $superficie . "</p>
+              </span>";
+
+
+              if (isset($info_bien['dormitorios'])) {
+                echo"
+                <span class=\"dato_dormitorios\">
+                <img src=\"../../objetos/bed_icon.svg\" alt=\"\">
+                <p class=\"mini_info\">x" . $info_bien['dormitorios'] . "</p>
+                </span>
+                ";
+              };
+
+              if (isset($info_bien['parqueos'])) {
+                echo"
+                <span class=\"dato_parqueos\">
+                <img src=\"../../objetos/car_icon.svg\" alt=\"\">
+                <p class=\"mini_info\">x" . $info_bien['parqueos'] . "</p>
                 </span>";
-
-
-                if (isset($info_bien['dormitorios'])) {
-                  echo"
-                  <span class=\"dato_dormitorios\">
-                    <p>x" . $info_bien['dormitorios'] . "</p>
-                  </span>
-                  ";
-                };
-
-                if (isset($info_bien['parqueos'])) {
-                  echo"
-                  <span class=\"dato_parqueos\">
-                    <p>x" . $info_bien['parqueos'] . "</p>
-                  </span>";
-                };
-             
-            echo"</span>
+              };
+            
+          echo"</span>
         </span>
     </div>
 
@@ -249,7 +262,7 @@ if(isset($_POST["referencia_sent"])){
           
         }else{
           echo"
-            <h2>Todavía sín propuestas</h2>
+          <h2 class=\"ningun_resultado\">-- Todavía sín propuestas --</h2>
           ";
         };
 
@@ -264,28 +277,64 @@ if(isset($_POST["referencia_sent"])){
   // ################### HISTORIAL DE VISITAS #########################
   echo"
   <div class=\"historial_visitas\">
-    <h2 class=\"visitas_titulo\">Historial de Visitas: </h2>
+    <h2 class=\"visitas_titulo\">Visitas Pendientes: </h2>
     <div class=\"contenedor_visitas\">";
 
       if (!empty($visitas_inmueble)) {
-        
-        foreach ($visitas_inmueble as $visita) {
-          echo"
-            <div class=\"visita_wrap " . $visita['pendiente'] . "\">
-              <span class=\"agente_foto\"><img src=\"" . $visita['foto'] . "?t=" . time() . "\" alt=\"\"></span>
-              <span class=\"agente_info\">
-                <span class=\"agente_nombre\">" . $visita['agente'] . "</span>
-                <span class=\"fecha_visita\">" . $visita['fecha'] . " - " . $visita['hora'] . "</span>
-              </span>
-            </div>
-          ";
+
+        if(isset(array_count_values(array_column($visitas_inmueble, 'pendiente'))['pendiente'])){
+
+          foreach ($visitas_inmueble as $visita) {
+            echo"
+              <div class=\"visita_wrap\">
+                <span class=\"agente_foto\"><img src=\"" . $visita['foto'] . "?t=" . time() . "\" alt=\"\"></span>
+                <span class=\"agente_info\">
+                  <span class=\"agente_nombre\">" . $visita['agente'] . "</span>
+                  <span class=\"fecha_visita\">" . $visita['fecha'] . " - " . $visita['hora'] . "</span>
+                </span>
+              </div>
+            ";
+          };
+
+        }else{
+          echo"<h2 class=\"ningun_resultado\">-- Ninguna visita pendiente --</h2>";
         };
         
       } else {
-        echo"<h2>Ninguna visita de momento</h2>";
+        echo"<h2 class=\"ningun_resultado\">-- Ninguna visita pendiente --</h2>";
       };
     
       
+    echo"
+    </div>
+
+    <h2 class=\"visitas_titulo\">Visitas Pasadas: </h2>
+    <div class=\"contenedor_visitas\">";
+
+      if (!empty($visitas_inmueble)) {
+
+        if(isset(array_count_values(array_column($visitas_inmueble, 'pendiente'))[''])){
+
+          foreach ($visitas_inmueble as $visita) {
+            echo"
+              <div class=\"visita_wrap\">
+                <span class=\"agente_foto\"><img src=\"" . $visita['foto'] . "?t=" . time() . "\" alt=\"\"></span>
+                <span class=\"agente_info\">
+                  <span class=\"agente_nombre\">" . $visita['agente'] . "</span>
+                  <span class=\"fecha_visita\">" . $visita['fecha'] . " - " . $visita['hora'] . "</span>
+                </span>
+              </div>
+            ";
+          };
+
+        }else{
+          echo"<h2 class=\"ningun_resultado\">-- Ningún registro de visitas --</h2>";
+        };
+        
+      } else {
+        echo"<h2 class=\"ningun_resultado\">-- Ningún registro de visitas --</h2>";
+      };
+
     echo"
     </div>
   </div>

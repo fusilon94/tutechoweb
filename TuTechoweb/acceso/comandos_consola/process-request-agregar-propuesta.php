@@ -93,7 +93,7 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
                 <span class=\"col propuesta\">" . $propuesta['monto'] . " " . $moneda . "</span>
                 <span class=\"col actions\">";
     
-              if($propuesta['agente'] == $agente_id){
+              if($propuesta['agente'] == $agente_id || $_SESSION['nivel_acceso'] == 1 || $_SESSION['nivel_acceso'] == 11 || $_SESSION['nivel_acceso'] == 12){
                 echo"
                     <span class=\"propuesta_action editar\"><i class=\"fa fa-edit\"></i></span>
                     <span class=\"propuesta_action borrar\"><i class=\"fa fa-trash-alt\"></i></span>
@@ -170,8 +170,10 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
         
       }elseif ($action_sent == 'editar_propuesta') {
         if(isset($_POST["referencia_sent"]) || isset($_POST['propuesta_id_sent'])){
+
+          $propuesta = $propuestas_json[$_POST["propuesta_id_sent"]];
           
-          $contactos_json_path = '../../agentes/' . $_COOKIE['tutechopais'] . '/' . $agente_id . '/contactos_personales.json';
+          $contactos_json_path = '../../agentes/' . $_COOKIE['tutechopais'] . '/' . $propuesta['agente'] . '/contactos_personales.json';
           if (!file_exists($contactos_json_path)) {
               $json_constructor = array();
               $json_data = json_encode($json_constructor);
@@ -186,7 +188,7 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
             return '';
           };
 
-          $propuesta = $propuestas_json[$_POST["propuesta_id_sent"]];
+          
     
           echo"
             <h2>Editar Propuesta</h2>
@@ -280,7 +282,7 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
 
           $propuesta_editada = [
             "fecha" => $propuesta_original['fecha'],
-            "agente" =>  $agente_id,
+            "agente" =>  $propuesta_original['agente'],
             "monto" => $_POST['monto'],
             "contacto" => $_POST["cliente"],
             "telefono" => $_POST['telefono'],

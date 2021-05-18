@@ -21,7 +21,7 @@ body
  background-size: 100% 100%;}
 
  #contenedor_total
- {width: 100%; height: calc(100vh); display: flex; flex-direction: column;}
+ {width: 100%; display: flex; flex-direction: column;}
 
  header
  {width: 100%;
@@ -88,7 +88,6 @@ header nav{
   width: calc(100vw - 4em);
   margin: 1.8em auto;
   background-color: rgba(0, 0, 0, 0.856);
-  height: calc(100vh - 8em);
 }
 
 .bienvenida{
@@ -105,15 +104,15 @@ header nav{
 
 .contenedor_datos{
   display: flex;
-  margin: 1em 1.3em;
-  justify-content: space-between;
+  margin: 1em 1em;
+  justify-content: space-evenly;
   height: 100%;
 }
 
 .datos_left_wrap{
   display: flex;
   flex-direction: column;
-  width: 30em;
+  width: 32em;
   height: 100%;
 }
 
@@ -126,7 +125,7 @@ header nav{
   margin-bottom: 1.5em;
 }
 
-.etiqueta_especial
+.etiqueta_especial.pre_venta
  {position: absolute;
   left: -0.5em; top: 0.4em;
   z-index: 2;
@@ -140,10 +139,38 @@ header nav{
   padding: 0.6em 0;
   text-align: center;}
 
+.etiqueta_especial.anticretico
+{position: absolute;
+  left: -0.5em; top: 0.4em;
+  z-index: 2;
+  background-color: #e39012;
+  color: white;
+  width: 30%; max-width: 30%;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.6em 0;
+  text-align: center;}
+
+.etiqueta_especial.exclusivo
+ {position: absolute;
+  left: -0.5em; top: 0.4em;
+  z-index: 2;
+  background-color: rgba(234, 12, 77, 1);
+  color: white;
+  width: 30%; max-width: 30%;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.6em 0;
+  text-align: center;}
+
 
 .etiqueta_especial p {font-size: 1.2em;}
 
-.etiqueta_especial::after
+.etiqueta_especial.anticretico::after
  {position: absolute;
   left: 0em;
   bottom: -0.6em;
@@ -155,10 +182,41 @@ header nav{
   border-color: transparent #e39012 transparent transparent;
 }
 
+.etiqueta_especial.pre_venta::after
+ {position: absolute;
+  left: 0em;
+  bottom: -0.6em;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0.6em 0.6em 0;
+  border-color: transparent #e39012 transparent transparent;
+}
+
+.etiqueta_especial.exclusivo::after
+ {position: absolute;
+  left: 0em;
+  bottom: -0.6em;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0.6em 0.6em 0;
+  border-color: transparent rgba(234, 12, 77, 1) transparent transparent;
+}
+
+
+.foto_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.959);
+}
+
 .foto_inmueble{
-  width: 23em;
-  aspect-ratio: 4 / 3;
-  margin: 0 auto;
+  width: 25em;
+  aspect-ratio: 4 / 3,5;
 }
 
 .datos_inmueble_wrap{
@@ -170,61 +228,95 @@ header nav{
 
 .datos_inmueble_top{
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.3em;
+  justify-content: space-evenly;
 }
 
-.datos_inmueble_top span{
+.datos_inmueble_left{
+  display: flex;
+  flex-direction: column;
+}
+
+.datos_inmueble_left span{
   display: flex;
   width: 100%;
-  padding-left: 4.3em;
+  margin: 0.3em 0.5em;
 }
 
-.datos_inmueble_top span p{
+.datos_inmueble_left span p.mini_label{
   font-size: 1.1em;
   font-weight: bold;
-  color: rgb(29, 29, 29);
+  color: rgb(19, 19, 19);
   user-select: none;
 }
 
-.datos_inmueble_middle{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.3em;
-}
-
-.datos_inmueble_middle span{
-  display: flex;
-  width: 100%;
-  padding-left: 4.3em;
-}
-
-.datos_inmueble_middle span p{
+.datos_inmueble_left span p.mini_info{
   font-size: 1.1em;
   font-weight: bold;
-  color: rgb(29, 29, 29);
+  color: rgb(44, 44, 44);
   user-select: none;
+  margin-left: 0.6em;
+}
+
+.datos_inmueble_right{
+  display: flex;
+  flex-direction: column;
+}
+
+.datos_inmueble_right span{
+  display: flex;
+  width: 100%;
+  margin: 0.3em 0.5em;
+}
+
+.datos_inmueble_right span p.mini_label{
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgb(19, 19, 19);
+  user-select: none;
+}
+
+.datos_inmueble_right span p.mini_info{
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgb(44, 44, 44);
+  user-select: none;
+  margin-left: 0.6em;
 }
 
 .datos_inmueble_bottom{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0em 0.5em;
 }
 
 .datos_inmueble_bottom span{
   display: flex;
   width: 100%;
   justify-content: center;
+  margin: 0.3em 0.5em;
+  align-items: center;
 }
 
-.datos_inmueble_bottom span p{
+.datos_inmueble_bottom span img {
+  width: 2.4em;
+  margin-right: 0.3em;
+}
+
+.datos_inmueble_bottom span p.mini_info{
   font-size: 1.1em;
   font-weight: bold;
-  color: rgb(29, 29, 29);
+  color: rgb(44, 44, 44);
   user-select: none;
+  margin-left: 0.4em;
+}
+
+.datos_inmueble_bottom span.dato_superficie p.mini_info{
+  display: flex;
+  border: 4px dashed #51d0f1;
+  padding: 0.4em 0.5em;
+  cursor: default;
 }
 
 
@@ -290,14 +382,13 @@ header nav{
 
 
 
-
-
 .historial_visitas{
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: rgba(255, 255, 255, 0.918);
-  width: calc(100% - 40em);
+  min-width: 25em;
+  width: 45%;
   height: 100%;
 }
 
@@ -329,6 +420,18 @@ header nav{
   background-color: rgba(211, 211, 211, 0.733);
 }
 
+h2.ningun_resultado{
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  color: rgb(54, 54, 54);
+  font-weight: bold;
+  user-select: none;
+  cursor: default;
+  padding-left: 1.5em;
+  margin: 0.5em 0em 1em 0em;
+}
+
 .agente_foto img{
   width: 2.5em;
   margin-right: 0.5em;
@@ -350,3 +453,71 @@ header nav{
   user-select: none;
 }
 
+
+@media screen and (max-width:1045px){
+
+  .contenido {
+    font-size: 0.9em;
+  }
+
+
+}
+@media screen and (max-width:960px){
+
+  .historial_visitas {
+    margin-left: 1em;
+  }
+
+}
+
+@media screen and (max-width:850px){
+
+  .contenedor_datos {
+    flex-direction: column;
+    align-items: center;
+  }
+  .historial_visitas {
+    width: 32em;
+    margin-top: 1.5em;
+    margin-left: 0em;
+  }
+
+}
+
+@media screen and (max-width:550px){
+
+  .contenido {
+    margin: 1.8em 0;
+    width: 98%;
+    align-self: center;
+  }
+  header {
+    font-size: 0.9em;
+  }
+
+}
+
+@media screen and (max-width:490px){
+
+  .contenido {
+    font-size: 0.85em;
+  }
+  .datos_left_wrap {
+    width: 97%;
+  }
+  .historial_visitas {
+    width: 97%;
+    min-width: unset;
+  }
+  .contenedor_datos {
+    margin: 1em 0em
+  }
+}
+
+@media screen and (max-width:450px){
+
+  .contenido {
+    font-size: 0.75em;
+  }
+
+}
