@@ -555,7 +555,7 @@ main {
     line-height: 1.8em;
 }
 
-.btn_borrar_confirmar{
+.btn_enviar_reclamo{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -571,11 +571,11 @@ main {
 }
 
 
-.btn_borrar_confirmar:hover{
+.btn_enviar_reclamo:hover{
     background-color: #1392db;
 }
 
-.btn_borrar_confirmar:active{
+.btn_enviar_reclamo:active{
     background-color: #1392db;
     font-size: 1.05em;
 }

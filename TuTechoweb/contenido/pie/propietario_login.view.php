@@ -23,6 +23,8 @@
       <script src="../../js/slider.js"></script>
       <script src="../../js/jquery.flexslider.js"></script>
       <script>
+        
+
         $(document).ready(function () {
           jQuery(function ($) {
             $("body").on("keyup", function(event) {
@@ -75,7 +77,7 @@
             <hr class="barra">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="formulario" name="login" autocomplete="off">
               <div class="form-group">
-                <i class="icono izquierda fa fa-user"></i><input type="text" name="apellido" class="apellido" placeholder="Apellido">
+                <i class="icono izquierda fa fa-key"></i><input type="text" name="apellido" class="apellido" placeholder="Código Secreto">
               </div>
 
               <div class="form-group">

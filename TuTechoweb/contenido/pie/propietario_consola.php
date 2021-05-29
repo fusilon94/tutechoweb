@@ -1,10 +1,17 @@
-<?php
+<?php session_start(); //si se usan $_SESSION hay que poner esto al principio
 
 $php_view_entry_control = "algunvalor";
 
 if (!isset($_COOKIE['tutechopais'])) {
-  header('Location: tutechopais.php');
+  header('Location: ../../tutechopais.php');
 };
+
+if (!isset($_SESSION['propietario'])) {//si una SESSION a sido definida entonces dejar pasar, si no redirigir a login.php
+  header('Location: ../../index.php');
+};
+
+$referencia = $_SESSION['propietario'];
+
 
 $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
 
@@ -16,4 +23,4 @@ try {
 
 
 require 'propietario_consola.view.php';
- ?>
+?>

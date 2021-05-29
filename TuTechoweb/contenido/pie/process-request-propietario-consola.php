@@ -1,165 +1,166 @@
 <?php
 
 if(isset($_POST["referencia_sent"])){
-    // Capture selected departamento
-    $referencia = $_POST["referencia_sent"];
+  // Capture selected departamento
+  $referencia = $_POST["referencia_sent"];
 
-    function get_tabla($referencia) {
-      $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
-      return $dict[$referencia[5]];
-    };
+  function get_tabla($referencia) {
+    $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
+    return $dict[$referencia[5]];
+  };
 
-    // Conexion con la database
+  // Conexion con la database
 
-    $tutechodb_internacional = "tutechodb_internacional";
-    try {
-      $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
-    } catch (PDOException $e) { //en caso de error de conexion repostarlo
-      echo "Error: " . $e->getMessage();
-    };
+  $tutechodb_internacional = "tutechodb_internacional";
+  try {
+    $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
+  } catch (PDOException $e) { //en caso de error de conexion repostarlo
+    echo "Error: " . $e->getMessage();
+  };
 
-    $consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code, time_zone_php FROM paises WHERE pais=:pais ");
-    $consulta_pais_info->execute(['pais' => $_COOKIE['tutechopais']]);//SE PASA LA REFERENCIA
-    $pais_info = $consulta_pais_info->fetch(PDO::FETCH_ASSOC);
+  $consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code, time_zone_php FROM paises WHERE pais=:pais ");
+  $consulta_pais_info->execute(['pais' => $_COOKIE['tutechopais']]);//SE PASA LA REFERENCIA
+  $pais_info = $consulta_pais_info->fetch(PDO::FETCH_ASSOC);
+  
+  $moneda = $pais_info['moneda'];
+  $moneda_code = $pais_info['moneda_code'];
+  
+  date_default_timezone_set($pais_info['time_zone_php']);
+
+  
+  $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
+
+  try {
+    $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
+  } catch (PDOException $e) { //en caso de error de conexion repostarlo
+    echo "Error: " . $e->getMessage();
+  };
+
+
+  $tabla = get_tabla($referencia);
+
+  // Recuperar informacion de ciudades tipo C
+
+  if ($tabla == 'casa' || $tabla == 'departamento') {
     
-    $moneda = $pais_info['moneda'];
-    $moneda_code = $pais_info['moneda_code'];
+    $consulta_info_bien =	$conexion->prepare("SELECT exclusivo, pre_venta, tipo_bien, precio, dormitorios, parqueos, estado, anticretico, location_tag, superficie_inmueble, propietario_nombre, propietario_apellido, agencia_registro_id FROM $tabla WHERE referencia = :referencia ");
+    $consulta_info_bien->execute([':referencia' => $referencia]);
+    $info_bien	=	$consulta_info_bien->fetch(PDO::FETCH_ASSOC);
+
+    $superficie = $info_bien['superficie_inmueble'] . 'm<sup>2</sup>';
+
+  } elseif ($tabla == 'terreno') {
+
+    $consulta_info_bien =	$conexion->prepare("SELECT exclusivo, pre_venta, tipo_bien, precio, estado, anticretico, location_tag, superficie_terreno, superficie_terreno_medida, propietario_nombre, propietario_apellido, agencia_registro_id FROM $tabla WHERE referencia = :referencia ");
+    $consulta_info_bien->execute([':referencia' => $referencia]);
+    $info_bien	=	$consulta_info_bien->fetch(PDO::FETCH_ASSOC);
+
+    if ($info_bien['superficie_terreno_medida'] == 'hect') {
+      $superficie = $info_bien['superficie_terreno']/10000 . ' Hect';
+    }else {
+      $superficie = $info_bien['superficie_terreno'] . 'm<sup>2</sup>';
+    }
     
-    date_default_timezone_set($pais_info['time_zone_php']);
-
     
-    $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
+  } elseif ($tabla == 'local') {
 
-    try {
-    	$conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
-    } catch (PDOException $e) { //en caso de error de conexion repostarlo
-    	echo "Error: " . $e->getMessage();
-    };
+    $consulta_info_bien =	$conexion->prepare("SELECT exclusivo, pre_venta, tipo_bien, precio, parqueos, estado, anticretico, location_tag, superficie_inmueble, propietario_nombre, propietario_apellido, agencia_registro_id FROM $tabla WHERE referencia = :referencia ");
+    $consulta_info_bien->execute([':referencia' => $referencia]);
+    $info_bien	=	$consulta_info_bien->fetch(PDO::FETCH_ASSOC);
+    
+    $superficie = $info_bien['superficie_inmueble'] . 'm<sup>2</sup>';
+  };
 
-
-    $tabla = get_tabla($referencia);
-
-    // Recuperar informacion de ciudades tipo C
-
-    if ($tabla == 'casa' || $tabla == 'departamento') {
-      
-      $consulta_info_bien =	$conexion->prepare("SELECT exclusivo, pre_venta, tipo_bien, precio, dormitorios, parqueos, estado, anticretico, location_tag, superficie_inmueble, propietario_nombre, propietario_apellido, agencia_registro_id FROM $tabla WHERE referencia = :referencia ");
-      $consulta_info_bien->execute([':referencia' => $referencia]);
-      $info_bien	=	$consulta_info_bien->fetch(PDO::FETCH_ASSOC);
-
-      $superficie = $info_bien['superficie_inmueble'] . 'm<sup>2</sup>';
-
-    } elseif ($tabla == 'terreno') {
-
-      $consulta_info_bien =	$conexion->prepare("SELECT exclusivo, pre_venta, tipo_bien, precio, estado, anticretico, location_tag, superficie_terreno, superficie_terreno_medida, propietario_nombre, propietario_apellido, agencia_registro_id FROM $tabla WHERE referencia = :referencia ");
-      $consulta_info_bien->execute([':referencia' => $referencia]);
-      $info_bien	=	$consulta_info_bien->fetch(PDO::FETCH_ASSOC);
-
-      if ($info_bien['superficie_terreno_medida'] == 'hect') {
-        $superficie = $info_bien['superficie_terreno']/10000 . ' Hect';
-      }else {
-        $superficie = $info_bien['superficie_terreno'] . 'm<sup>2</sup>';
-      }
-      
-      
-    } elseif ($tabla == 'local') {
-
-      $consulta_info_bien =	$conexion->prepare("SELECT exclusivo, pre_venta, tipo_bien, precio, parqueos, estado, anticretico, location_tag, superficie_inmueble, propietario_nombre, propietario_apellido, agencia_registro_id FROM $tabla WHERE referencia = :referencia ");
-      $consulta_info_bien->execute([':referencia' => $referencia]);
-      $info_bien	=	$consulta_info_bien->fetch(PDO::FETCH_ASSOC);
-      
-      $superficie = $info_bien['superficie_inmueble'] . 'm<sup>2</sup>';
-    };
-
-    //SE TRAE LA IMAGEN DE PORTADA DEL INMUEBLE
-    $inmueble_file_path = '../../bienes_inmuebles/' . $_COOKIE['tutechopais'] . '/' . $referencia;
-    $foto_portada_path = $inmueble_file_path . '/portada.jpg';
+  //SE TRAE LA IMAGEN DE PORTADA DEL INMUEBLE
+  $inmueble_file_path = '../../bienes_inmuebles/' . $_COOKIE['tutechopais'] . '/' . $referencia;
+  $foto_portada_path = $inmueble_file_path . '/portada.jpg';
 
 
-    //SE TRAEN LAS TAREAS DEL AGENTE
-    $consulta_agencia =	$conexion->prepare("SELECT location_tag, departamento FROM agencias WHERE id = :id ");
-    $consulta_agencia->execute([':id' => $info_bien['agencia_registro_id']]);
-    $agencia	=	$consulta_agencia->fetch(PDO::FETCH_ASSOC);
+  //SE TRAEN LAS TAREAS DEL AGENTE
+  $consulta_agencia =	$conexion->prepare("SELECT location_tag, departamento FROM agencias WHERE id = :id ");
+  $consulta_agencia->execute([':id' => $info_bien['agencia_registro_id']]);
+  $agencia	=	$consulta_agencia->fetch(PDO::FETCH_ASSOC);
 
-    $agencia_tag = $agencia['departamento'] . "_" . $agencia['location_tag'];
-    $json_tareas_path = '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/agentes_tareas.json';
+  $agencia_tag = $agencia['departamento'] . "_" . $agencia['location_tag'];
+  $json_tareas_path = '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/agentes_tareas.json';
 
-    if (file_exists($json_tareas_path)) {
-      $tareas_json = json_decode(file_get_contents($json_tareas_path), true);
+  if (file_exists($json_tareas_path)) {
+    $tareas_json = json_decode(file_get_contents($json_tareas_path), true);
 
-      $visitas_inmueble = [];
-      foreach ($tareas_json as $agente_id => $datos_agente) {
+    $visitas_inmueble = [];
+    foreach ($tareas_json as $agente_id => $datos_agente) {
 
-        $consulta_agente =	$conexion->prepare("SELECT nombre, apellido FROM agentes WHERE id = :id ");
-        $consulta_agente->execute([':id' => $agente_id]);
-        $agente	=	$consulta_agente->fetch(PDO::FETCH_ASSOC);
+      $consulta_agente =	$conexion->prepare("SELECT nombre, apellido FROM agentes WHERE id = :id ");
+      $consulta_agente->execute([':id' => $agente_id]);
+      $agente	=	$consulta_agente->fetch(PDO::FETCH_ASSOC);
 
-        $agente_nombre = $agente['nombre'] . ' ' . $agente['apellido'];
+      $agente_nombre = $agente['nombre'] . ' ' . $agente['apellido'];
 
-        foreach ($datos_agente['visita'] as $datos_visita) {
+      foreach ($datos_agente['visita'] as $datos_visita) {
+        
+        if ($datos_visita['referencia'] == $referencia) {
           
-          if ($datos_visita['referencia'] == $referencia) {
-            
-            $array_constructor = [];
-            $array_constructor['agente'] = $agente_nombre;
-            $array_constructor['fecha'] = $datos_visita['fecha'];
-            $array_constructor['hora'] = $datos_visita['hora'];
-            $array_constructor['pendiente'] = 'pendiente';
-            $array_constructor['foto'] = '../../agentes/' . $_COOKIE['tutechopais'] . '/' . $agente_id . '/foto_plomo_min.jpg';
+          $array_constructor = [];
+          $array_constructor['agente'] = $agente_nombre;
+          $array_constructor['agente_id'] = $agente_id;
+          $array_constructor['fecha'] = $datos_visita['fecha'];
+          $array_constructor['hora'] = $datos_visita['hora'];
+          $array_constructor['pendiente'] = 'pendiente';
+          $array_constructor['foto'] = '../../agentes/' . $_COOKIE['tutechopais'] . '/' . $agente_id . '/foto_plomo_min.jpg';
 
-            $today = new DateTime(date('d-m-Y', strtotime('today')));
-            $fecha_visita = new DateTime(date("d-m-Y", strtotime($datos_visita['fecha'])));
+          $today = new DateTime(date('d-m-Y', strtotime('today')));
+          $fecha_visita = new DateTime(date("d-m-Y", strtotime($datos_visita['fecha'])));
 
-            if ($fecha_visita < $today) {
-              $array_constructor['pendiente'] = '';
-            };
-            
-
-            $visitas_inmueble[] = $array_constructor;
-
+          if ($fecha_visita < $today) {
+            $array_constructor['pendiente'] = '';
           };
+          
+
+          $visitas_inmueble[] = $array_constructor;
 
         };
 
-
       };
 
-      function sortFunction( $a, $b ) {
-          return strtotime($a["fecha"]) - strtotime($b["fecha"]);
-      }
-      usort($visitas_inmueble, "sortFunction");
-      
+
     };
 
-
-    $propuestas_json_path = $inmueble_file_path . '/propuestas.json';
-
+    function sortFunction( $a, $b ) {
+        return strtotime($a["fecha"]) - strtotime($b["fecha"]);
+    }
+    usort($visitas_inmueble, "sortFunction");
     
-    if (file_exists($propuestas_json_path)) {
-      $propuestas_json = json_decode(file_get_contents($propuestas_json_path), true);
-    };
+  };
 
-    function getEtiquetaInfo($info_bien) {
-      if ($info_bien['exclusivo'] == 1) {
-        $etiqueta = "EXCLUSIVO";
-        $etiqueta_class = "exclusivo";
-        return [$etiqueta, $etiqueta_class];
-      };
-      if ($info_bien['pre_venta'] == 1) {
-        $etiqueta = "PRE VENTA";
-        $etiqueta_class = "pre_venta";
-        return [$etiqueta, $etiqueta_class];
-      };
-      if ($info_bien['anticretico'] == 1) {
-        $etiqueta = "ANTICRETICO";
-        $etiqueta_class = "anticretico";
-        return [$etiqueta, $etiqueta_class];
-      }else {
-        $etiqueta = "";
-        $etiqueta_class = "hidden";
-        return [$etiqueta, $etiqueta_class];
-      };
+
+  $propuestas_json_path = $inmueble_file_path . '/propuestas.json';
+
+  
+  if (file_exists($propuestas_json_path)) {
+    $propuestas_json = json_decode(file_get_contents($propuestas_json_path), true);
+  };
+
+  function getEtiquetaInfo($info_bien) {
+    if ($info_bien['exclusivo'] == 1) {
+      $etiqueta = "EXCLUSIVO";
+      $etiqueta_class = "exclusivo";
+      return [$etiqueta, $etiqueta_class];
     };
+    if ($info_bien['pre_venta'] == 1) {
+      $etiqueta = "PRE VENTA";
+      $etiqueta_class = "pre_venta";
+      return [$etiqueta, $etiqueta_class];
+    };
+    if ($info_bien['anticretico'] == 1) {
+      $etiqueta = "ANTICRETICO";
+      $etiqueta_class = "anticretico";
+      return [$etiqueta, $etiqueta_class];
+    }else {
+      $etiqueta = "";
+      $etiqueta_class = "hidden";
+      return [$etiqueta, $etiqueta_class];
+    };
+  };
 
 
 
@@ -168,8 +169,6 @@ if(isset($_POST["referencia_sent"])){
 
   $nombre_propietario = ucfirst($info_bien['propietario_nombre']) . " " . ucfirst($info_bien['propietario_apellido']);
   [$etiqueta, $etiqueta_class] = getEtiquetaInfo($info_bien);
-
-
 
   echo"
   <p class=\"bienvenida\">
@@ -289,7 +288,7 @@ if(isset($_POST["referencia_sent"])){
               <div class=\"visita_wrap\">
                 <span class=\"agente_foto\"><img src=\"" . $visita['foto'] . "?t=" . time() . "\" alt=\"\"></span>
                 <span class=\"agente_info\">
-                  <span class=\"agente_nombre\">" . $visita['agente'] . "</span>
+                  <span class=\"agente_nombre\" agente_id=\"" . $visita['agente_id'] . "\">" . $visita['agente'] . "</span>
                   <span class=\"fecha_visita\">" . $visita['fecha'] . " - " . $visita['hora'] . "</span>
                 </span>
               </div>
@@ -320,9 +319,10 @@ if(isset($_POST["referencia_sent"])){
               <div class=\"visita_wrap\">
                 <span class=\"agente_foto\"><img src=\"" . $visita['foto'] . "?t=" . time() . "\" alt=\"\"></span>
                 <span class=\"agente_info\">
-                  <span class=\"agente_nombre\">" . $visita['agente'] . "</span>
+                  <span class=\"agente_nombre\"  agente_id=\"" . $visita['agente_id'] . "\">" . $visita['agente'] . "</span>
                   <span class=\"fecha_visita\">" . $visita['fecha'] . " - " . $visita['hora'] . "</span>
                 </span>
+                <span class=\"action_reclamo\" title=\"Dejar un reclamo\"><i class=\"fa fa-exclamation-triangle\"></i></span>
               </div>
             ";
           };
@@ -338,11 +338,77 @@ if(isset($_POST["referencia_sent"])){
     echo"
     </div>
   </div>
-  
   ";
-
-
   // SE CIERRA CONTENEDOR DATOS
   echo"</div>";
-}
+  
+} elseif (isset($_POST["referencia_reclamo_sent"]) || isset($_POST["agente_id_sent"]) || isset($_POST["agente_nombre_sent"]) || isset($_POST["fecha_sent"]) || isset($_POST["hora_sent"]) || isset($_POST["reclamo_sent"])){
+
+  function generateRandomString($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  };
+
+  $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
+  
+  try {
+    $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
+  } catch (PDOException $e) { //en caso de error de conexion repostarlo
+    echo "Error: " . $e->getMessage();
+  };
+
+  $referencia = $_POST["referencia_reclamo_sent"];
+  $agente_id = $_POST["agente_id_sent"];
+  $agente_nombre = $_POST["agente_nombre_sent"];
+  $fecha_visita = $_POST["fecha_sent"];
+  $hora_visita = $_POST["hora_sent"];
+  $reclamo_mensaje = filter_var($_POST["reclamo_sent"], FILTER_SANITIZE_STRING);
+
+
+  $consulta_agente_info =	$conexion->prepare("SELECT agencia_id FROM agentes WHERE id = :id");
+  $consulta_agente_info->execute([':id' => $agente_id]);
+  $agente_info	=	$consulta_agente_info->fetch(PDO::FETCH_ASSOC);
+
+  $consulta_agencia_info =	$conexion->prepare("SELECT departamento, location_tag FROM agencias WHERE id = :id");
+  $consulta_agencia_info->execute([':id' => $agente_info['agencia_id']]);
+  $agencia_info	=	$consulta_agencia_info->fetch(PDO::FETCH_ASSOC);
+
+  $agencia_tag = $agencia_info['departamento'] . '_' .$agencia_info['location_tag'];
+
+  $reclamos_json_path = '../../agencias/' . $_COOKIE['tutechopais'] . '/' . $agencia_tag . '/reclamos.json';
+  if (!file_exists($reclamos_json_path)) {
+      $json_constructor = array();
+      $json_data = json_encode($json_constructor);
+      file_put_contents($reclamos_json_path, $json_data);
+  };
+  $reclamos_json = json_decode(file_get_contents($reclamos_json_path), true);
+
+  
+  $reclamo = [
+    'referencia_inmueble' => $referencia,
+    'agente_id' => $agente_id,
+    'agente_nombre' => $agente_nombre,
+    'fecha_visita' => $fecha_visita,
+    'hora_visita' => $hora_visita,
+    'reclamo' => $reclamo_mensaje,
+    'comentario' => '',
+    'visto' => 0
+  ];
+
+  $reclamo_id = generateRandomString(6);
+  $reclamos_json[$reclamo_id] = $reclamo;
+
+  
+  //SE GUARDA EL DATA ACTUALIZADO EN SU DIRECTORIO
+  $json_final_data = json_encode($reclamos_json);
+  file_put_contents($reclamos_json_path, $json_final_data);
+
+  echo"exito";
+
+};
 ?>

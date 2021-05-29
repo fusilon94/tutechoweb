@@ -1,5 +1,5 @@
 <?php
-if(isset($php_view_entry_control)){} else{header('Location: index.php');}; //para evitar que alguien entre directamente al .view.php y porque en los view no se abre ninguna session
+if(isset($php_view_entry_control)){} else{header('Location: ../../index.php');}; //para evitar que alguien entre directamente al .view.php y porque en los view no se abre ninguna session
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,6 +20,10 @@ if(isset($php_view_entry_control)){} else{header('Location: index.php');}; //par
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
       <link rel="stylesheet" href="../../css/propietario_consola.css">
+
+      <script>
+      const referencia = "<?= $referencia; ?>";
+      </script>
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
       <script src="../../js/js.cookie.js"></script>
       <script src="../../js/menu.js"></script>
@@ -37,8 +41,22 @@ if(isset($php_view_entry_control)){} else{header('Location: index.php');}; //par
 
     <div class="popup_overlay">
         <div class="popup">
-            
-        </div>
+            <span class="popup_cerrar"><i class="fa fa-times"></i></span>
+            <div class="popup_content">
+
+
+            </div>
+            <span class="btn_enviar_reclamo">ENVIAR RECLAMO</span>
+        </div>    
+    </div>
+
+    <div class="popup_overlay_exito">
+        <div class="popup_exito">
+            <span class="popup_cerrar_exito"><i class="fa fa-times"></i></span>
+            <div class="popup_content_exito">
+              <p>Reclamo registrado exitosamente</p>
+            </div>
+        </div>    
     </div>
 
 <!-- BARRA DE NAVEGACION -->
@@ -78,4 +96,8 @@ if(isset($php_view_entry_control)){} else{header('Location: index.php');}; //par
   </div>
 
  </body>
+
+ <?php
+  // unset($_SESSION['propietario']);
+ ?>
 </html>
