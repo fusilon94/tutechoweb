@@ -70,6 +70,22 @@ body {
   height: 100%;
 }
 
+.tag_jefe_agencia{
+  display: flex;
+  position: absolute;
+  top: -0.6em;
+  left: calc(50% - 4.5em);
+  color: #fff;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  margin: 0em auto 0.5em auto;
+  padding: 0.3em 0.8em;
+  border-radius: 3px;
+  background-color: #007fff;
+  width: 9em;
+}
+
 /* ######################  POPUP CONTACTO ####################### */
 
 
@@ -79,7 +95,7 @@ body {
   align-items: center;
   position: absolute;
   width: 10em;
-  top: -2em;
+  top: -1.3em;
   right: calc(50% - 5em);
   user-select: none;
   color: #fff;
@@ -891,6 +907,7 @@ hr.cabecera_line{
   background-color: rgb(50, 50, 50);
   border-radius: 3px;
   cursor: pointer;
+  position: relative;
 }
 
 .agente_wrap:hover{

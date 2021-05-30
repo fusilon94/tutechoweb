@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
       $consulta_agencia_id->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
       $agencia_id = $consulta_agencia_id->fetch(PDO::FETCH_ASSOC);
 
-      $consulta_gerente =	$conexion->prepare("SELECT gerente_id FROM agencias WHERE id=:id ");
+      $consulta_gerente =	$conexion->prepare("SELECT jefe_agencia_id FROM agencias WHERE id=:id ");
       $consulta_gerente->execute([':id' => $agencia_id['agencia_registro_id']]);//SE PASA EL BARRIO O POBLADO
       $gerente = $consulta_gerente->fetch(PDO::FETCH_ASSOC);
 
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
       $statement_respuesta->execute(array(
         ':codigo' => $codigo,
-        ':agente_id' => $gerente['gerente_id'],
+        ':agente_id' => $gerente['jefe_agencia_id'],
         ':mensaje' => $mensaje,
         ':fecha_creacion' => $current_date,
         ':tipo' => 'autorizacion',

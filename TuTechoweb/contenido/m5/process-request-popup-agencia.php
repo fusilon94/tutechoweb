@@ -24,9 +24,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
       $agencia_id = $_POST["agenciaChoice"];
 
-      $consulta_agentes_disponibles =	$conexion->prepare("SELECT id, nombre, apellido, contacto, disponible FROM agentes WHERE activo = 1 AND (nivel_acceso = 4 OR nivel_acceso = 10) AND agencia_id = :agencia_id ORDER BY disponible DESC");
+      $consulta_agentes_disponibles =	$conexion->prepare("SELECT id, nombre, apellido, contacto, disponible FROM agentes WHERE activo = 1 AND (nivel_acceso = 4 OR nivel_acceso = 10) AND agencia_id = :agencia_id AND disponible = 1");
       $consulta_agentes_disponibles->execute([":agencia_id" => $agencia_id]);
       $agentes_disponibles	=	$consulta_agentes_disponibles->fetchAll(PDO::FETCH_ASSOC);
+      shuffle($agentes_disponibles);
+
+      $consulta_agentes_no_disponibles =	$conexion->prepare("SELECT id, nombre, apellido, contacto, disponible FROM agentes WHERE activo = 1 AND (nivel_acceso = 4 OR nivel_acceso = 10) AND agencia_id = :agencia_id AND disponible = 0");
+      $consulta_agentes_no_disponibles->execute([":agencia_id" => $agencia_id]);
+      $agentes_no_disponibles	=	$consulta_agentes_no_disponibles->fetchAll(PDO::FETCH_ASSOC);
+      shuffle($agentes_no_disponibles);
+
+      $consulta_jefe_agencia_id =	$conexion->prepare("SELECT jefe_agencia_id, express FROM agencias WHERE id = :id ");
+      $consulta_jefe_agencia_id->execute([":id" => $agencia_id]);
+      $jefe_agencia_id	=	$consulta_jefe_agencia_id->fetch(PDO::FETCH_ASSOC);
+
+      if ($jefe_agencia_id['express'] == 0) {
+        $consulta_jefe_agencia =	$conexion->prepare("SELECT id, nombre, apellido, contacto, disponible FROM agentes WHERE id = :id ");
+        $consulta_jefe_agencia->execute([":id" => $jefe_agencia_id['jefe_agencia_id']]);
+        $jefe_agencia	=	$consulta_jefe_agencia->fetch(PDO::FETCH_ASSOC);
+      };
 
       $consulta_agencia_info =	$conexion->prepare("SELECT id, departamento, ciudad, location_tag, direccion, direccion_complemento, telefono, mapa_coordenada_lat, mapa_coordenada_lng, mapa_zoom, express FROM agencias WHERE id = :id");
       $consulta_agencia_info->execute([":id" => $agencia_id]);
@@ -360,7 +376,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
           foreach ($agentes_disponibles as $agente) {
             echo"
-              <div class=\"agente_wrap " . (($agente['disponible'] == 1) ? "disponible" : "") . "\" data=\"" . $agente['id'] . "\">
+              <div class=\"agente_wrap disponible\" data=\"" . $agente['id'] . "\">
                 <img src=\"../../agentes/" . $_COOKIE['tutechopais'] . "/" . $agente['id'] . "/foto_blanco.jpg?t=" . time() . "\" alt=\"Foto\" class=\"foto_agente\">
                 <span class=\"info_agente_wrap\">
                   <p class=\"nombre_agente\">" . $agente['nombre'] . " " . $agente['apellido'] . "</p>";
@@ -376,7 +392,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
                     ";
                   };
                   
-                  echo"<span class=\"estado_agente " . (($agente['disponible'] == 1) ? "disponible" : "") . "\">" . (($agente['disponible'] == 1) ? "DISPONIBLE" : "NO DISPONIBLE") . "</span>
+                  echo"<span class=\"estado_agente disponible\">DISPONIBLE</span>
+                </span>
+              </div>
+            ";
+          };
+
+          foreach ($agentes_no_disponibles as $agente) {
+            echo"
+              <div class=\"agente_wrap\" data=\"" . $agente['id'] . "\">
+                <img src=\"../../agentes/" . $_COOKIE['tutechopais'] . "/" . $agente['id'] . "/foto_blanco.jpg?t=" . time() . "\" alt=\"Foto\" class=\"foto_agente\">
+                <span class=\"info_agente_wrap\">
+                  <p class=\"nombre_agente\">" . $agente['nombre'] . " " . $agente['apellido'] . "</p>";
+                  if ($agente['contacto'] !== '') {
+                    echo"
+                      <span class=\"contacto_agente\">
+                        <span class=\"fa-stack icon_stacks_whatsapp\">
+                          <i class=\"fa fa-whatsapp fa-stack-2x\"></i>
+                          <i class=\"fa fa-circle\"></i>
+                        </span>
+                        <p class=\"agente_telefono\">" . $agente['contacto'] . "</p>
+                      </span>
+                    ";
+                  };
+                  
+                  echo"<span class=\"estado_agente\">NO DISPONIBLE</span>
+                </span>
+              </div>
+            ";
+          };
+
+          if ($jefe_agencia_id['express'] == 0 && isset($jefe_agencia)) {
+            echo"
+              <div class=\"agente_wrap disponible\" data=\"" . $jefe_agencia['id'] . "\">
+                <span class=\"tag_jefe_agencia\">JEFE AGENCIA</span>
+                <img src=\"../../agentes/" . $_COOKIE['tutechopais'] . "/" . $jefe_agencia['id'] . "/foto_blanco.jpg?t=" . time() . "\" alt=\"Foto\" class=\"foto_agente\">
+                <span class=\"info_agente_wrap\">
+                  <p class=\"nombre_agente\">" . $jefe_agencia['nombre'] . " " . $jefe_agencia['apellido'] . "</p>";
+                  if ($jefe_agencia['contacto'] !== '') {
+                    echo"
+                      <span class=\"contacto_agente\">
+                        <span class=\"fa-stack icon_stacks_whatsapp\">
+                          <i class=\"fa fa-whatsapp fa-stack-2x\"></i>
+                          <i class=\"fa fa-circle\"></i>
+                        </span>
+                        <p class=\"agente_telefono\">" . $jefe_agencia['contacto'] . "</p>
+                      </span>
+                    ";
+                  };
+                  
+                  echo"<span class=\"estado_agente disponible\">DISPONIBLE</span>
                 </span>
               </div>
             ";

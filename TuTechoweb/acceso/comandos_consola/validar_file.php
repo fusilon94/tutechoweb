@@ -121,11 +121,11 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
         } elseif ($file_agente['nivel_acceso'] == 4 || $file_agente['nivel_acceso'] == 7) {
             // destinatarios jefe de agencia actual donde se regristró
-            $consulta_jefe_agencia =	$conexion->prepare("SELECT gerente_id FROM agencias WHERE id = :id");
+            $consulta_jefe_agencia =	$conexion->prepare("SELECT jefe_agencia_id FROM agencias WHERE id = :id");
             $consulta_jefe_agencia->execute([":id" => $file_agente['agencia_id']]);
             $jefe_agencia = $consulta_jefe_agencia->fetch(PDO::FETCH_ASSOC);
 
-            $id_destinatario = $jefe_agencia['gerente_id'];
+            $id_destinatario = $jefe_agencia['jefe_agencia_id'];
 
         } elseif ($file_agente['nivel_acceso'] == 5 || $file_agente['nivel_acceso'] == 10) {
             // destinatarios registrador (que seria la jefa de agencia central)
