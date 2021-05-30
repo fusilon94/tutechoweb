@@ -8,7 +8,7 @@ $(document).ready(function(){
   jQuery(function($){
 
 
-    $(".popup_cerrar").on("click", function(){
+    $(".popup_overlay").on("click", ".popup_cerrar", function(){
       $(".popup_overlay").css("visibility", "hidden");
     });
 
@@ -82,7 +82,7 @@ $(document).ready(function(){
                 $('.error_message').css('visibility', 'unset')
                 $('.error_message p').html('Referencia invalida');
             } else {
-                $(".popup_content").html(data);
+                $(".popup").html(data);
                 $(".lista_contactos_form").select2();
                 $(".popup_overlay").css("visibility", "unset");
 
@@ -110,7 +110,7 @@ $(document).ready(function(){
         });
     })
     
-    $('.guardar_btn').on('click', function(){
+    $('.popup_overlay').on('click', '.guardar_btn', function(){
 
         const referencia = $('.referencia').val();
         const action_sent = $('.modo').val();
@@ -176,7 +176,7 @@ $(document).ready(function(){
                 $('.error_message').css('visibility', 'unset')
                 $('.error_message p').html('Referencia invalida');
             } else {
-                $(".popup_content").html(data);
+                $(".popup").html(data);
                 $(".lista_contactos_form").select2();
                 $(".popup_overlay").css("visibility", "unset");
 
@@ -204,6 +204,33 @@ $(document).ready(function(){
         });
 
     });
+
+    $(".propuestas_contenedor").on("click", ".detalle", function(){
+
+      const referencia = $('.referencia').val();
+      const action_sent = 'detalle_propuesta';
+      const propuesta_id = $(this).parent().parent().attr("key");
+      $.ajax({
+          type: "POST",
+          url: "process-request-agregar-propuesta.php",
+          data: {
+              referencia_sent : referencia,
+              action_sent : action_sent,
+              propuesta_id_sent : propuesta_id
+          },
+      }).done(function(data){
+      
+          if (data === "error") {
+              $('.error_message').css('visibility', 'unset')
+              $('.error_message p').html('Referencia invalida');
+          } else {
+              $(".popup").html(data);
+              $(".popup_overlay").css("visibility", "unset");
+          }
+      
+      });
+
+  });
 
     $(".propuestas_contenedor").on("click", ".borrar", function(){
 

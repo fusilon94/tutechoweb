@@ -95,8 +95,12 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
     
               if($propuesta['agente'] == $agente_id || $_SESSION['nivel_acceso'] == 1 || $_SESSION['nivel_acceso'] == 11 || $_SESSION['nivel_acceso'] == 12){
                 echo"
-                    <span class=\"propuesta_action editar\"><i class=\"fa fa-edit\"></i></span>
-                    <span class=\"propuesta_action borrar\"><i class=\"fa fa-trash-alt\"></i></span>
+                    <span class=\"propuesta_action editar\" title=\"Editar\"><i class=\"fa fa-edit\"></i></span>
+                    <span class=\"propuesta_action borrar\" title=\"Borrar\"><i class=\"fa fa-trash-alt\"></i></span>
+                    ";
+              }else{
+                echo"
+                    <span class=\"propuesta_action detalle\" title=\"Ver Detalle\"><i class=\"fa fa-user\"></i></span>
                     ";
               };
                 echo"
@@ -122,7 +126,10 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
         };
         $contactos_json = json_decode(file_get_contents($contactos_json_path), true);
   
+
         echo"
+          <span class=\"popup_cerrar\"><i class=\"fa fa-times\"></i></span>
+          <div class=\"popup_content\">
           <h2>Agregar Propuesta</h2>
           <div class=\"form-group\">
             <i class=\"icono izquierda fa fa-hashtag\"></i>
@@ -164,7 +171,8 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
 
           <input class=\"modo\" type=\"hidden\" value=\"guardar_propuesta\">
           <input class=\"propuesta_id\" type=\"hidden\" value=\"\">
-        
+        </div>
+        <span class=\"guardar_btn\">GUARDAR</span>
         ";
   
         
@@ -187,10 +195,10 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
             };
             return '';
           };
-
-          
     
           echo"
+            <span class=\"popup_cerrar\"><i class=\"fa fa-times\"></i></span>
+            <div class=\"popup_content\">
             <h2>Editar Propuesta</h2>
             <div class=\"form-group\">
               <i class=\"icono izquierda fa fa-hashtag\"></i>
@@ -232,10 +240,55 @@ if(isset($_POST["referencia_sent"]) || isset($_POST['action_sent'])){
 
             <input class=\"modo\" type=\"hidden\" value=\"guardar_edicion\">
             <input class=\"propuesta_id\" type=\"hidden\" value=\"" . $_POST['propuesta_id_sent'] . "\">
-          
+          </div>
+          <span class=\"guardar_btn\">GUARDAR</span>
           ";
 
         };
+      }elseif($action_sent == 'detalle_propuesta'){
+
+        if(isset($_POST["referencia_sent"]) || isset($_POST['propuesta_id_sent'])){
+
+          $propuesta = $propuestas_json[$_POST["propuesta_id_sent"]];
+
+          $consulta_agente_id =	$conexion->prepare("SELECT nombre, apellido FROM agentes WHERE id = :id");
+          $consulta_agente_id->execute([':id' => $propuesta['agente']]);
+          $agente_info	=	$consulta_agente_id->fetch(PDO::FETCH_ASSOC);
+          
+          $agente_nombre = $agente_info['nombre'] . " " . $agente_info['apellido'];
+          
+          echo"
+            <span class=\"popup_cerrar\"><i class=\"fa fa-times\"></i></span>
+            <div class=\"popup_content\">
+            <h2>Detalle Propuesta</h2>
+            <div class=\"form-group\">
+              <i class=\"icono izquierda fa fa-hashtag\"></i>
+              <input type=\"text\" name=\"referencia_form\" class=\"referencia_form\" value=\"" . $_POST["referencia_sent"]  . "\" readonly>
+            </div>
+    
+            <div class=\"form-group\">
+              <i class=\"icono izquierda fa fa-user\"></i>
+              <input type=\"text\"  class=\"referencia_form\" style=\"cursor: default\" value=\"Agente: " . $agente_nombre  . "\" readonly>
+            </div>
+    
+            <div style=\"display : flex\">
+                <div class=\"form-group\">
+                    <i class=\"icono izquierda\" style=\"font-size: 1.2em\">$</i>
+                    <input type=\"text\" name=\"propuesta_monto_form\" class=\"propuesta_monto_form\" placeholder=\"Monto Propuesta\" value=\"" . $propuesta['monto']  . "\" readonly style=\"cursor: default\">
+                </div>
+    
+                <span class=\"precio_actual_form\"><p>Precio Actual:</p><p>" . $inmueble['precio'] . " " . $moneda . "</p></span>
+            </div>
+    
+            <div class=\"form-group\">
+                <textarea name=\"propuesta_comentario\" id=\"propuesta_comentario\" rows=\"1\" class=\"propuesta_comentario\" placeholder=\"Sin comentarios\" readonly style=\"cursor: default\">" . $propuesta['comentario'] . "</textarea>
+            </div>
+
+          </div>
+          ";
+
+        };
+
       }elseif ($action_sent == 'guardar_propuesta') {
         if(isset($_POST["cliente"]) || isset($_POST['monto']) || isset($_POST['comentario']) || isset($_POST['telefono'])){
             
