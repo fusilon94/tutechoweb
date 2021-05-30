@@ -147,7 +147,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
         </div>
       </div>
 
-      <span class="label_select_contenedor">- Busca Bien-Inmueble según Referencia o Poblado/Barrio -</span>
+      <span class="label_select_contenedor">- Busca Bien-Inmueble según Referencia, Poblado/Barrio o Dirección -</span>
       <div class="select_contenedor">
 
           <div class="elemento_formulario input_referencia_container">
@@ -187,6 +187,15 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
               </select>
           </div>
 
+          <div class="elemento_formulario" style="margin-top: 1.5em">
+            <hr><!-- barra separadora -->
+          </div>
+
+          <div class="elemento_formulario input_direccion_container">
+            <label for="input_direccion"> Dirección: </label>
+            <input type="text" id="input_direccion" name="input_direccion" value="" placeholder="Palabra clave">
+          </div>
+
 
       </div>
 
@@ -205,7 +214,6 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       </div>
 
       <input type="hidden" id="switch_value" name="switch_value" value="">
-      <input type="hidden" id="agencia_id" name="agencia_id" value="<?php echo $agencia_id;?>">
       <input type="hidden" id="agente_id" name="agente_id" value="<?php echo $usuario;?>">
 
     </div>

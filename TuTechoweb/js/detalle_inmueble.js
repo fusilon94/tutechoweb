@@ -107,11 +107,31 @@ $(document).ready(function(){
    $(".input_referencia_btn").on("click", function(){
      var referencia_picked = $("#input_referencia").val();
      $('.switch_sponsors').css('visibility', 'hidden');
+     $("#input_direccion").val('');
      $("#departamento").val('');
      $("#ciudad").empty().prop('disabled', true).val('');
      $("#barrio").empty().prop('disabled', true).val('');
      find_bien_inmueble_by_reference(referencia_picked);
    });
+
+// CODIGO PARA BUSCAR SEGUN DIRECCION ##########################################################################
+
+  $("#input_direccion").on("input", function(){
+    var direccion_key = $("#input_direccion").val();
+    if (direccion_key !== '') {
+      $('.switch_sponsors').css('visibility', 'hidden');
+      $("#input_referencia").val('');
+      $("#departamento").val('');
+      $("#ciudad").empty().prop('disabled', true).val('');
+      $("#barrio").empty().prop('disabled', true).val('');
+      find_bien_inmueble_by_direccion(direccion_key);
+    }else{
+      $('.resultados_container').empty();
+      $('.switch_sponsors').css('visibility', 'hidden');
+      $('#switch_value').val('');
+    };
+    
+  });
 
 // CODIGO DEL BOTON CONFIRMAR BORRAR ###########################################################################
 
@@ -129,7 +149,7 @@ $('.resultados_sponsors').on("click", ".boton_formulario_borrar_confirmar", func
   });
 });
 
-// SE DEFINE LA FUNCION QUE PERMITE TRAER LOS SPONSORS DE LA BASE DE DATOS #####################################
+// SE DEFINE LA FUNCION QUE PERMITE TRAER LOS RESULTADOS DE LA BASE DE DATOS #####################################
       var bienes_array = '';
       var location_tag = '';
       var agencia_id = $("#agencia_id").val();
@@ -158,7 +178,7 @@ $('.resultados_sponsors').on("click", ".boton_formulario_borrar_confirmar", func
 
                 bienes_array.forEach(function(bien){
                   if (bien['visibilidad'] == 'visible') {
-                    $('.resultados_container').append("<div class='boton_borrador_mini_contenedor'><div id='" + bien['referencia'] + "' name='" + bien['estado'] + "' class='boton_borrador_formulario'><i class='fas fa-search' aria-hidden='true'></i><p><span class='nombre'>" + bien['referencia'] + "</span></p></div></div>");
+                    $('.resultados_container').append("<div class='boton_borrador_mini_contenedor'><div id='" + bien['referencia'] + "' name='" + bien['estado'] + "' class='boton_borrador_formulario'><i class='fas fa-search' aria-hidden='true'></i><p><span class='nombre'>" + bien['referencia'] + " - " + location_tag + "</span></p></div></div>");
                   };
                 });
 
@@ -194,8 +214,43 @@ $('.resultados_sponsors').on("click", ".boton_formulario_borrar_confirmar", func
                 $('.resultados_container').append("<span class='label_resultadors_contenedor'>Bienes activos en: " + bienes_array[0]['location_tag'] + "</span>");
 
                   if (bienes_array[0]['visibilidad'] == 'visible') {
-                    $('.resultados_container').append("<div class='boton_borrador_mini_contenedor'><div id='" + bienes_array[0]['referencia'] + "' name='" + bienes_array[0]['estado'] + "' class='boton_borrador_formulario'><i class='fas fa-search' aria-hidden='true'></i><p><span class='nombre'>" + bienes_array[0]['referencia'] + "</span></p></div></div>");
+                    $('.resultados_container').append("<div class='boton_borrador_mini_contenedor'><div id='" + bienes_array[0]['referencia'] + "' name='" + bienes_array[0]['estado'] + "' class='boton_borrador_formulario'><i class='fas fa-search' aria-hidden='true'></i><p><span class='nombre'>" + bienes_array[0]['referencia'] + " - " + bienes_array[0]['location_tag'] +  "</span></p></div></div>");
                   };
+
+              };
+
+              if ($(".boton_borrador_mini_contenedor").length == 0) {
+                $('.resultados_container').append("- NO EXISTEN RESULTADOS -");
+              };
+
+            });
+          };
+
+          function find_bien_inmueble_by_direccion(direccion_param){
+            $.ajax({
+                type: "POST",
+                url: "process-request-detalle_inmueble_all.php",
+                data: { direccion_sent : direccion_param },
+                dataType: 'json'//SE ESPECIFICA QUE SE ESPERA DATA EN MODO JSON
+            }).done(function(data){
+              bienes_array = data;
+              $('.resultados_container').empty();//se vacian los resultados
+
+              if (Object.entries(bienes_array).length > 0) {//si no es un array vacio
+                $('.switch_sponsors').css('visibility', 'visible');
+                if ($('.switch_activos').hasClass('active') !== true) {
+                  $(".switch_activos").toggleClass("active");
+                };
+                if ($('.switch_inactivos').hasClass('active') == true) {
+                  $(".switch_inactivos").toggleClass("active");
+                };
+                $('#switch_value').val('activos');
+
+                bienes_array.forEach(function(bien){
+                  if (bien['visibilidad'] == 'visible') {
+                    $('.resultados_container').append("<div class='boton_borrador_mini_contenedor'><div id='" + bien['referencia'] + "' name='" + bien['estado'] + "' class='boton_borrador_formulario'><i class='fas fa-search' aria-hidden='true'></i><p><span class='nombre'>" + bien['referencia'] + " - " + bien['location_tag'] + "</span></p></div></div>");
+                  };
+                });
 
               };
 

@@ -82,6 +82,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
   };
 
+  if (isset($_POST["direccion_sent"])) {
+
+    $direccion_key = "%" . $_POST["direccion_sent"] . "%";
+
+    $bienes = array();
+
+    $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM casa WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_casa->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
+    $casa = $consulta_casa->fetchAll();
+
+    $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM departamento WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_departamento->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
+    $departamento = $consulta_departamento->fetchAll();
+
+    $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM local WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_local->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
+    $local = $consulta_local->fetchAll();
+
+    $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM terreno WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_terreno->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
+    $terreno = $consulta_terreno->fetchAll();
+
+    $bienes = array_merge($casa, $departamento, $local, $terreno);
+
+ 
+
+  if ($bienes !== '') {
+    echo json_encode($bienes);
+  };
+
+  }
+
+
 
 
 
