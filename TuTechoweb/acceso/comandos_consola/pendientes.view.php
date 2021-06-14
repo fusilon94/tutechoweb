@@ -38,7 +38,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  <!-- PARA AGREGAR MAS TIPOS DE PENDIENTES
 
   1-agregar al foreach del .view para la first charge (distinguir entre pendiente_agente et pendiente_grupal)
-    1.1- definir si se podra borrar a voluntad o bien se hara automaticamente pasado un tiempo o bien cumpliendo con una fecha_creacion
+    1.1- definir si se podra borrar a voluntad o bien se hara automaticamente pasado un tiempo o bien cumpliendo con una fecha_expiracion
     1.2- en caso de condicion, establecerla en el .js
   2-agregar el color de la etiqueta en el class
   3-agregar al foreach del process request para vistos y borrados (2 veces)
@@ -118,6 +118,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
              <?= ($pendiente_agente['tipo'] == 'contacto_compartido' ? 'contacto_compartido' : '') ?>
              <?= ($pendiente_agente['tipo'] == 'mensaje_interno' ? 'mensaje_interno' : '') ?>
              <?= ($pendiente_agente['tipo'] == 'check_list_compartido' ? 'check_list_compartido' : '') ?>
+             <?= ($pendiente_agente['tipo'] == 'transferencia_llave' ? 'transferencia_llave' : '') ?>
              ">
               <?= ucfirst($pendiente_agente['tipo']) ?>
             </span>
@@ -138,7 +139,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
               <?php elseif($pendiente_agente['tipo'] == 'agente_validado'): ?>
                 File ID: <?= $pendiente_agente['key_feature1']?>
                 </br>
-              <?php elseif($pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido'): ?>
+              <?php elseif($pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido' || $pendiente_agente['tipo'] == 'transferencia_llave'): ?>
                 Enviado por: <?= $pendiente_agente['key_feature1']?>
                 </br></br>
               <?php endif; ?>
@@ -149,7 +150,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
             <?php if ($pendiente_agente['tipo'] == 'reclamo' || $pendiente_agente['tipo'] == 'reclamo_file'): ?>
               <i class="fas fa-question-circle"></i>
             <?php endif; ?>
-            <?php if ($pendiente_agente['tipo'] == 'anuncio' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'agente_validado' || $pendiente_agente['tipo'] == 'inmueble_validado' || $pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido'): ?>
+            <?php if ($pendiente_agente['tipo'] == 'anuncio' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'agente_validado' || $pendiente_agente['tipo'] == 'inmueble_validado' || $pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido' || $pendiente_agente['tipo'] == 'transferencia_llave'): ?>
               <i class="fas fa-times-circle"></i>
             <?php endif; ?>
           </div>

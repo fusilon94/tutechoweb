@@ -425,6 +425,10 @@ main{
   background-color: #007fff;
 }
 
+.etiqueta.transferencia_llave{
+  background-color: #007fff;
+}
+
 .tag_corner{
   display: flex;
   position: absolute;
@@ -506,6 +510,20 @@ main{
 .btn_action p{
   font-size: 1.1em;
   color: #fff;
+}
+
+.btn_group{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.negar_trans_llave_btn{
+  background-color: rgb(221, 61, 61);
+}
+
+.negar_trans_llave_btn:hover{
+  background-color: rgb(223, 77, 77);
 }
 /* ############################################ RESPONSIVE #################################################### */
 

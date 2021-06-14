@@ -82,6 +82,20 @@ $('.pendientes_contenedor').on('click', '.pendiente_wrapper', function(){
     `);
   };
 
+  if ($(this).find('.etiqueta').hasClass("transferencia_llave")) {
+    $('.popup_contenido').append(`
+    <span class="btn_group">
+      <span class="negar_trans_llave_btn btn_action respuesta_trans_llave" data="${codigo}" respuesta="0">
+      <p>Refutar</p>
+      </span>
+
+      <span class="confirmar_trans_llave_btn btn_action respuesta_trans_llave" data="${codigo}"  respuesta="1">
+      <p>Aceptar</p>
+      </span>
+    </span>
+    `);
+  };
+
   $('.popup_pendiente_container').css('visibility', 'unset');
   $('body').addClass('popup_active');
 
@@ -98,6 +112,33 @@ $('.pendientes_contenedor').on('click', '.pendiente_wrapper', function(){
   };
 
 });
+
+$('.popup_contenido').on('click', '.respuesta_trans_llave', function() {
+  
+  const codigo = $(this).attr('data');
+  const respuesta = $(this).attr('respuesta');
+
+  $.ajax({
+    type: "POST",
+    url: "process-request-pendientes.php",
+    data: { codigo_pendiente : codigo, transferencia_llave_respuesta : respuesta }
+  }).done(function(data){
+    $('.popup_info_contenido').html(data);
+    $('.pop_up_info_container').css('visibility', 'unset');
+    $('.popup_pendiente_container').css('visibility', 'hidden');
+
+    var agente_id = $('#id_agente').val();
+    $.ajax({
+        type: "POST",
+        url: "process-request-pendientes.php",
+        data: { tipo_pendiente_sent : 'nuevos', agente_id_sent : agente_id }
+    }).done(function(data){
+        $('.pendientes_contenedor').html(data);
+    });
+
+
+  });
+})
 
 $('.popup_contenido').on('click', '.agregar_contacto_btn', function() {
   

@@ -9,6 +9,10 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
   header('Location: ../login.php');
 };
 
+function get_tabla($referencia) {
+  $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
+  return $dict[$referencia[5]];
+};
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitud por AJAX
     // Conexion con la database
@@ -192,6 +196,82 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
     
   };
 
+  //CODIGO PARA ACEPTAR SOLICITUD DE TRANSFERENCIA DE LLAVES
+
+  if(isset($_POST['transferencia_llave_respuesta']) && isset($_POST['codigo_pendiente'])){
+
+    $respuesta = $_POST['transferencia_llave_respuesta'];
+    $codigo_pendiente =  $_POST['codigo_pendiente'];
+
+    function generateRandomString($length) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+      $charactersLength = strlen($characters);
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $randomString;
+    };
+
+    $consulta_agente_id =	$conexion->prepare("SELECT id FROM agentes WHERE usuario = :usuario ");
+    $consulta_agente_id->execute([":usuario" => $_SESSION['usuario']]);
+    $agente_id	=	$consulta_agente_id->fetch(PDO::FETCH_ASSOC);
+
+    $consulta_datos_solicitud =	$conexion->prepare("SELECT key_feature2 FROM pendientes WHERE codigo = :codigo ");
+    $consulta_datos_solicitud->execute([":codigo" => $codigo_pendiente]);
+    $datos_solicitud_json	=	$consulta_datos_solicitud->fetch(PDO::FETCH_COLUMN, 0);
+
+    $datos_solicitud = json_decode($datos_solicitud_json, true);
+    $tabla = get_tabla($datos_solicitud['referencia']);
+
+    
+
+    if ($respuesta == 0) {//se negó la transferencia de llave(s)
+
+      // Borramos el pendiente
+      $borrar_agente =	$conexion->prepare("DELETE FROM pendientes WHERE codigo = :codigo");
+      $borrar_agente->execute(array(':codigo' => $codigo_pendiente));
+
+      $mensaje = "Se NEGÓ la transferencia de Llave(s) del inmueble Referencia: " . $datos_solicitud['referencia'];
+    }elseif ($respuesta == 1) {//se aceptó la transferencia de llave(s)
+
+      //se actualiza los datos del holder llaves
+      $statement_json = $conexion->prepare(
+        "UPDATE $tabla SET llave_holder = :llave_holder, llave_last_holder = :llave_last_holder WHERE referencia = :referencia");
+
+      $statement_json->execute(array(
+          ':llave_holder' => $datos_solicitud['llave_holder'],
+          ':llave_last_holder' => $datos_solicitud['llave_last_holder'],
+          ':referencia' => $datos_solicitud['referencia']
+      ));
+
+      // Borramos el pendiente
+      $borrar_agente =	$conexion->prepare("DELETE FROM pendientes WHERE codigo = :codigo");
+      $borrar_agente->execute(array(':codigo' => $codigo_pendiente));
+
+      $mensaje = "Se ACEPTÓ la transferencia de Llave(s) del inmueble Referencia: " . $datos_solicitud['referencia'];
+    };
+
+    $current_date = date("Y/m/d");
+    $codigo = generateRandomString(10);
+
+    $statement_respuesta = $conexion->prepare(
+      "INSERT INTO pendientes (codigo, agente_id, mensaje, fecha_creacion, tipo, key_feature1) VALUES (:codigo, :agente_id, :mensaje, :fecha_creacion, :tipo, :key_feature1)"
+    );
+
+    $statement_respuesta->execute(array(
+      ':codigo' => $codigo,
+      ':agente_id' => $datos_solicitud['llave_last_holder'],
+      ':mensaje' => $mensaje,
+      ':fecha_creacion' => $current_date,
+      ':tipo' => 'mensaje_interno',
+      ':key_feature1' => $datos_solicitud['llave_holder']
+    ));
+
+    echo "Respuesta Enviada Exitosamente";
+
+  };
+
 
   if (isset($_POST["tipo_pendiente_sent"]) && isset($_POST["agente_id_sent"])) {
 
@@ -315,6 +395,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
             if ($pendiente_agente['tipo'] == 'mensaje_interno') {
               echo " mensaje_interno";
             };
+            if ($pendiente_agente['tipo'] == 'transferencia_llave') {
+              echo " transferencia_llave";
+            };
 
         echo"\">
               " . ucfirst($pendiente_agente['tipo']) . "
@@ -330,7 +413,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
               echo "Tipo:&nbsp" . $pendiente_agente['key_feature2'] . "</br>File ID:&nbsp" . $pendiente_agente['key_feature1'] . "</br>";
             }elseif ($pendiente_agente['tipo'] == 'agente_validado') {
               echo "File ID:&nbsp" . $pendiente_agente['key_feature1'] . "</br>";
-            }elseif ($pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido') {
+            }elseif ($pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido' || $pendiente_agente['tipo'] == 'transferencia_llave') {
               echo "Enviado por:&nbsp" . $pendiente_agente['key_feature1'] . "</br></br>";
             };
               echo nl2br($pendiente_agente['mensaje']);
@@ -340,7 +423,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
             if ($pendiente_agente['tipo'] == 'reclamo' || $pendiente_agente['tipo'] == 'reclamo_file'){
               echo"<i class=\"fas fa-question-circle\"></i>";
             };
-            if ($pendiente_agente['tipo'] == 'anuncio' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'agente_validado' || $pendiente_agente['tipo'] == 'inmueble_validado' || $pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido'){
+            if ($pendiente_agente['tipo'] == 'anuncio' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'agente_validado' || $pendiente_agente['tipo'] == 'inmueble_validado' || $pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido' || $pendiente_agente['tipo'] == 'transferencia_llave'){
               echo"<i class=\"fas fa-times-circle\"></i>";
             };
           echo"</div>
@@ -453,6 +536,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
             if ($pendiente_agente['tipo'] == 'mensaje_interno') {
               echo " mensaje_interno";
             };
+            if ($pendiente_agente['tipo'] == 'transferencia_llave') {
+              echo " transferencia_llave";
+            };
         echo"\">
               " . ucfirst($pendiente_agente['tipo']) . "
             </span>
@@ -467,7 +553,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
               echo "Tipo:&nbsp" . $pendiente_agente['key_feature2'] . "</br>File ID:&nbsp" . $pendiente_agente['key_feature1'] . "</br>";
             }elseif ($pendiente_agente['tipo'] == 'agente_validado') {
               echo "File ID:&nbsp" . $pendiente_agente['key_feature1'] . "</br>";
-            }elseif ($pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido') {
+            }elseif ($pendiente_agente['tipo'] == 'contacto_compartido' || $pendiente_agente['tipo'] == 'mensaje_interno' || $pendiente_agente['tipo'] == 'check_list_compartido' || $pendiente_agente['tipo'] == 'transferencia_llave') {
               echo "Enviado por:&nbsp" . $pendiente_agente['key_feature1'] . "</br></br>";
             };
               echo nl2br($pendiente_agente['mensaje']);

@@ -27,19 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         $barrio = $_POST["barrio_sent"];
         $bienes = array();
 
-          $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad FROM casa WHERE location_tag=:location_tag AND validacion_agente = 1");
+          $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder FROM casa WHERE location_tag=:location_tag AND validacion_agente = 1");
           $consulta_casa->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $casa = $consulta_casa->fetchAll();
 
-          $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad FROM departamento WHERE location_tag=:location_tag AND validacion_agente = 1");
+          $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder FROM departamento WHERE location_tag=:location_tag AND validacion_agente = 1");
           $consulta_departamento->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $departamento = $consulta_departamento->fetchAll();
 
-          $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad FROM local WHERE location_tag=:location_tag AND validacion_agente = 1");
+          $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder FROM local WHERE location_tag=:location_tag AND validacion_agente = 1");
           $consulta_local->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $local = $consulta_local->fetchAll();
 
-          $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad FROM terreno WHERE location_tag=:location_tag AND validacion_agente = 1");
+          $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder FROM terreno WHERE location_tag=:location_tag AND validacion_agente = 1");
           $consulta_terreno->execute([':location_tag' => $barrio]);//SE PASA EL BARRIO O POBLADO
           $terreno = $consulta_terreno->fetchAll();
 
@@ -58,19 +58,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         $referencia = $_POST["reference_sent"];
         $bienes = array();
 
-          $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM casa WHERE referencia=:referencia AND validacion_agente = 1 ");
+          $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM casa WHERE referencia=:referencia AND validacion_agente = 1 ");
           $consulta_casa->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $casa = $consulta_casa->fetchAll();
 
-          $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM departamento WHERE referencia=:referencia AND validacion_agente = 1 ");
+          $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM departamento WHERE referencia=:referencia AND validacion_agente = 1 ");
           $consulta_departamento->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $departamento = $consulta_departamento->fetchAll();
 
-          $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM local WHERE referencia=:referencia AND validacion_agente = 1 ");
+          $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM local WHERE referencia=:referencia AND validacion_agente = 1 ");
           $consulta_local->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $local = $consulta_local->fetchAll();
 
-          $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM terreno WHERE referencia=:referencia AND validacion_agente = 1 ");
+          $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM terreno WHERE referencia=:referencia AND validacion_agente = 1 ");
           $consulta_terreno->execute([':referencia' => $referencia]);//SE PASA EL BARRIO O POBLADO
           $terreno = $consulta_terreno->fetchAll();
 
@@ -88,19 +88,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
     $bienes = array();
 
-    $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM casa WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM casa WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
     $consulta_casa->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
     $casa = $consulta_casa->fetchAll();
 
-    $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM departamento WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM departamento WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
     $consulta_departamento->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
     $departamento = $consulta_departamento->fetchAll();
 
-    $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM local WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM local WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
     $consulta_local->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
     $local = $consulta_local->fetchAll();
 
-    $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag FROM terreno WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
+    $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, location_tag, llave, llave_holder FROM terreno WHERE ((direccion LIKE ?) AND validacion_agente = 1) OR ((direccion_complemento LIKE ?) AND validacion_agente = 1) ");
     $consulta_terreno->execute([$direccion_key, $direccion_key]);//SE PASA EL BARRIO O POBLADO
     $terreno = $consulta_terreno->fetchAll();
 
