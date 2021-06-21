@@ -1,5 +1,6 @@
 <?php
 
+  $pais_selected = $_COOKIE['tutechopais'];
 
   $json_data_path = '../../data/' . $pais_selected . '/day_log.json';
   $tutechodb = "tutechodb_" . $pais_selected;
@@ -26,24 +27,21 @@
     $data[$date_to_log] = array();
   };
 
-  if (empty($data[$date_to_log]['conciliaciones'])) {//CHECK SI DENTRO DE LA ENTRADA DEL DIA EXISTE LA SECCION REGISTROS, sino la crea
-    $data[$date_to_log]['conciliaciones'] = array();
+  if (empty($data[$date_to_log]['conciliaciones_turbias'])) {//CHECK SI DENTRO DE LA ENTRADA DEL DIA EXISTE LA SECCION REGISTROS, sino la crea
+    $data[$date_to_log]['conciliaciones_turbias'] = array();
   };
 
-  $tipo_inmueble = get_tabla($id_file);
-
-  $conciliacion_id = generateRandomString(10);
-  while (isset($data[$date_to_log]['conciliaciones'][$conciliacion_id])) {
-    $conciliacion_id = generateRandomString(10);
+  $conciliacion_turbia_id = generateRandomString(10);
+  while (isset($data[$date_to_log]['conciliaciones_turbias'][$conciliacion_turbia_id])) {
+    $conciliacion_turbia_id = generateRandomString(10);
   };
 
   // Introducimos los nuevos datos del registro al $data
-  $data[$date_to_log]['conciliaciones'][$conciliacion_id] = array (
-    'tipo_inmueble' => $tipo_inmueble,
-    'tipo' => $conciliacion_tipo,
+  $data[$date_to_log]['conciliaciones_turbias'][$conciliacion_turbia_id] = array (
+
     'agente' => $conciliador,
-    'agencia' => $agencia_asociada['agencia_id'],
-    'referencia' => $id_file
+    'agencia' => $agencia_id,
+    'referencia' => $referencia
   );
 
   $json_final_data = json_encode($data);//SE GUARDA EL DATA ACTUALIZADO EN SU DIRECTORIO

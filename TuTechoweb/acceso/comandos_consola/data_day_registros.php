@@ -45,6 +45,7 @@
     file_put_contents($json_data_path, $json_data);
   };
 
+  // ya se inicializó el php_datetimezone en el archivo que llava/require a este php
   $date_to_log = date("d-m-Y", strtotime("today"));//TOMA LA FECHA DE HOY, ya que se cargan los datos al concluir el dia
 
   $json_contents = file_get_contents($json_data_path);//SE TRAE EL JSON DATA A SER COMPLETADO CON NUEVOS DATOS DEL DIA
@@ -75,7 +76,8 @@
     'tipo_inmueble' => $tipo_inmueble,
     'agente' => $inmueble_info['registrador_id'],
     'agencia' => $inmueble_info['agencia_registro_id'],
-    'fotografo' => $inmueble_info['fotografo_id']
+    'fotografo' => $inmueble_info['fotografo_id'],
+    'referencia' => $referencia
   );
 
   $json_final_data = json_encode($data);//SE GUARDA EL DATA ACTUALIZADO EN SU DIRECTORIO

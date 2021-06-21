@@ -10,8 +10,13 @@ if (!isset($_SESSION['propietario'])) {//si una SESSION a sido definida entonces
   header('Location: ../../index.php');
 };
 
-$referencia = $_SESSION['propietario'];
+function get_tabla($referencia) {
+  $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
+  return $dict[$referencia[5]];
+};
 
+$referencia = $_SESSION['propietario'];
+$tabla = get_tabla($referencia);
 
 $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
 
@@ -20,6 +25,11 @@ try {
 } catch (PDOException $e) { //en caso de error de conexion repostarlo
   echo "Error: " . $e->getMessage();
 };
+
+$consulta_check_encuesta =	$conexion->prepare("SELECT encuesta_propietario FROM $tabla WHERE referencia = :referencia ");
+$consulta_check_encuesta->execute([':referencia' => $referencia]);//SE PASA LA REFERENCIA
+$check_encuesta = $consulta_check_encuesta->fetch(PDO::FETCH_COLUMN, 0);
+
 
 
 require 'propietario_consola.view.php';

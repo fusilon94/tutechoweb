@@ -398,6 +398,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
             if ($pendiente_agente['tipo'] == 'transferencia_llave') {
               echo " transferencia_llave";
             };
+            if ($pendiente_agente['tipo'] == 'reclamo_conciliacion') {
+              echo " reclamo_conciliacion";
+            };
+            
 
         echo"\">
               " . ucfirst($pendiente_agente['tipo']) . "
@@ -407,7 +411,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
             <span class=\"fecha_creacion\">" . "&nbsp/&nbsp" . $pendiente_agente['fecha_creacion'] . "</span>
             </span>
             <span class=\"pendiente_contenido\">";
-           if ($pendiente_agente['tipo'] == 'reclamo' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'inmueble_validado'){
+           if ($pendiente_agente['tipo'] == 'reclamo' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'inmueble_validado' || $pendiente_agente['tipo'] == 'reclamo_conciliacion'){
                 echo "Referencia: " . $pendiente_agente['key_feature1'] . "</br>";
             }elseif ($pendiente_agente['tipo'] == 'reclamo_file') {
               echo "Tipo:&nbsp" . $pendiente_agente['key_feature2'] . "</br>File ID:&nbsp" . $pendiente_agente['key_feature1'] . "</br>";

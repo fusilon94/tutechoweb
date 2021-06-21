@@ -397,6 +397,10 @@ main{
   background-color: rgb(226, 94, 45);
 }
 
+.etiqueta.reclamo_conciliacion{
+  background-color: rgb(226, 94, 45);
+}
+
 .etiqueta.anuncio{
   background-color: #007fff;
 }

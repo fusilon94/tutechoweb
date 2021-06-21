@@ -119,6 +119,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
              <?= ($pendiente_agente['tipo'] == 'mensaje_interno' ? 'mensaje_interno' : '') ?>
              <?= ($pendiente_agente['tipo'] == 'check_list_compartido' ? 'check_list_compartido' : '') ?>
              <?= ($pendiente_agente['tipo'] == 'transferencia_llave' ? 'transferencia_llave' : '') ?>
+             <?= ($pendiente_agente['tipo'] == 'reclamo_conciliacion' ? 'reclamo_conciliacion' : '') ?>
              ">
               <?= ucfirst($pendiente_agente['tipo']) ?>
             </span>
@@ -128,7 +129,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
             </span>
             
             <span class="pendiente_contenido">
-              <?php if ($pendiente_agente['tipo'] == 'reclamo' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'inmueble_validado'): ?>
+              <?php if ($pendiente_agente['tipo'] == 'reclamo' || $pendiente_agente['tipo'] == 'autorizacion' || $pendiente_agente['tipo'] == 'inmueble_validado' || $pendiente_agente['tipo'] == 'reclamo_conciliacion'): ?>
                 Referencia: <?= $pendiente_agente['key_feature1']?>
               </br>
               <?php elseif($pendiente_agente['tipo'] == 'reclamo_file'): ?>

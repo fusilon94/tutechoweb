@@ -1,41 +1,50 @@
 <?php
 
+function generateRandomString($length) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
+};
+
+function get_tabla($referencia) {
+  $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
+  return $dict[$referencia[5]];
+};
+
+// Conexion con la database
+
+$tutechodb_internacional = "tutechodb_internacional";
+try {
+  $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
+} catch (PDOException $e) { //en caso de error de conexion repostarlo
+  echo "Error: " . $e->getMessage();
+};
+
+$consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code, time_zone_php FROM paises WHERE pais=:pais ");
+$consulta_pais_info->execute(['pais' => $_COOKIE['tutechopais']]);//SE PASA LA REFERENCIA
+$pais_info = $consulta_pais_info->fetch(PDO::FETCH_ASSOC);
+
+$moneda = $pais_info['moneda'];
+$moneda_code = $pais_info['moneda_code'];
+
+date_default_timezone_set($pais_info['time_zone_php']);
+
+$tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
+
+try {
+  $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
+} catch (PDOException $e) { //en caso de error de conexion repostarlo
+  echo "Error: " . $e->getMessage();
+};
+
+
 if(isset($_POST["referencia_sent"])){
   // Capture selected departamento
   $referencia = $_POST["referencia_sent"];
-
-  function get_tabla($referencia) {
-    $dict = ['C' => 'casa', 'D' => 'departamento', 'L' => 'local', 'T'=> 'terreno'];
-    return $dict[$referencia[5]];
-  };
-
-  // Conexion con la database
-
-  $tutechodb_internacional = "tutechodb_internacional";
-  try {
-    $conexion_internacional = new PDO('mysql:host=localhost;dbname=' . $tutechodb_internacional . ';charset=utf8', 'root', '');
-  } catch (PDOException $e) { //en caso de error de conexion repostarlo
-    echo "Error: " . $e->getMessage();
-  };
-
-  $consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code, time_zone_php FROM paises WHERE pais=:pais ");
-  $consulta_pais_info->execute(['pais' => $_COOKIE['tutechopais']]);//SE PASA LA REFERENCIA
-  $pais_info = $consulta_pais_info->fetch(PDO::FETCH_ASSOC);
-  
-  $moneda = $pais_info['moneda'];
-  $moneda_code = $pais_info['moneda_code'];
-  
-  date_default_timezone_set($pais_info['time_zone_php']);
-
-  
-  $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
-
-  try {
-    $conexion = new PDO('mysql:host=localhost;dbname=' . $tutechodb . ';charset=utf8', 'root', '');
-  } catch (PDOException $e) { //en caso de error de conexion repostarlo
-    echo "Error: " . $e->getMessage();
-  };
-
 
   $tabla = get_tabla($referencia);
 
@@ -344,16 +353,6 @@ if(isset($_POST["referencia_sent"])){
   
 } elseif (isset($_POST["referencia_reclamo_sent"]) || isset($_POST["agente_id_sent"]) || isset($_POST["agente_nombre_sent"]) || isset($_POST["fecha_sent"]) || isset($_POST["hora_sent"]) || isset($_POST["reclamo_sent"])){
 
-  function generateRandomString($length) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-  };
-
   $tutechodb = "tutechodb_" . $_COOKIE['tutechopais'];
   
   try {
@@ -410,5 +409,67 @@ if(isset($_POST["referencia_sent"])){
 
   echo"exito";
 
+}elseif (isset($_POST["preg_1_sent"]) && isset($_POST["preg_2_sent"]) && isset($_POST["preg_3_sent"]) && isset($_POST['referencia_encuesta_sent'])) {
+
+  $pregunta_marketing = $_POST["preg_1_sent"];
+  $pregunta_conciliacion = $_POST["preg_2_sent"];
+  $pregunta_trato_agencia = $_POST["preg_3_sent"];
+  
+  $referencia = $_POST["referencia_encuesta_sent"];
+  $tabla = get_tabla($referencia);
+
+
+  $consulta_datos =	$conexion->prepare("SELECT conciliador, agencia_registro_id FROM $tabla WHERE referencia = :referencia");
+  $consulta_datos->execute([':referencia' => $referencia]);
+  $datos	=	$consulta_datos->fetch(PDO::FETCH_ASSOC);
+
+  $conciliador = $datos['conciliador'];
+  $agencia_id = $datos['agencia_registro_id'];
+
+  $statement_encuesta = $conexion->prepare(
+    "UPDATE $tabla SET encuesta_propietario = :encuesta_propietario WHERE referencia = :referencia");
+
+  $statement_encuesta->execute(array(
+    ':encuesta_propietario' => 1,
+    ':referencia' => $referencia
+  ));
+
+  // GESTION DE LA RESPUESTA 1 y 3
+
+  require('../../acceso/comandos_consola/data_day_encuesta_propietario.php');
+
+  // GESTION DE LA RESPUESTA 2
+  if($conciliador !== '' && $pregunta_conciliacion == 2){ //si se registró conciliacion pero el propietario dice lo contrario
+
+    $codigo = generateRandomString(10);
+    $current_date = date("Y-m-d");
+
+    $consulta_agencia =	$conexion->prepare("SELECT jefe_agencia_id FROM agencias WHERE id = :id");
+    $consulta_agencia->execute([':id' => $agencia_id]);
+    $jefe_agencia_id	=	$consulta_agencia->fetch(PDO::FETCH_COLUMN, 0);
+    
+    $reclamo = "Se produjo una alerta de sistema.<br>El Bien Inmueble de referencia " . $referencia . " registra tener conciliador (ID:" . $conciliador . ") pero el propietario indica que no hubo conciliación alguna.<br>Se le solicita que realice un control de la situación.<br> Este evento será registrado para futuras auditorias.";
+
+    $statement_reclamo = $conexion->prepare(
+      "INSERT INTO pendientes (codigo, agente_id, mensaje, fecha_creacion, tipo, key_feature1) VALUES (:codigo, :agente_id, :mensaje, :fecha_creacion, :tipo, :key_feature1)"
+    );
+
+    $statement_reclamo->execute(array(
+      ':codigo' => $codigo,
+      ':agente_id' => $jefe_agencia_id,
+      ':mensaje' => $reclamo,
+      ':fecha_creacion' => $current_date,
+      ':tipo' => 'reclamo_conciliacion',
+      ':key_feature1' => $referencia
+    ));
+
+    require('../../acceso/comandos_consola/data_day_conciliaciones_turbias.php');
+  };
+
+
+
+
+  
 };
+
 ?>

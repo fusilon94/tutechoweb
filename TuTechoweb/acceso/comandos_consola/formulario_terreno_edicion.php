@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si se envio datos por POST guardar
             ));
 
             $statement_registrar_mas = $conexion->prepare(
-      				"UPDATE $tabla_to_update SET tipo_bien = :tipo_bien, precio = :precio, mantenimiento = :mantenimiento, base_imponible = :base_imponible, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, ciudad = :ciudad, departamento = :departamento, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_terreno = :superficie_terreno, superficie_terreno_medida = :superficie_terreno_medida WHERE referencia = :referencia");
+      				"UPDATE $tabla_to_update SET tipo_bien = :tipo_bien, precio = :precio, mantenimiento = :mantenimiento, base_imponible = :base_imponible, estado = :estado, exclusivo = :exclusivo, pre_venta = :pre_venta, anticretico = :anticretico, pais = :pais, ciudad = :ciudad, departamento = :departamento, barrio = :barrio, location_tag = :location_tag, direccion = :direccion, direccion_complemento = :direccion_complemento, superficie_terreno = :superficie_terreno, superficie_terreno_medida = :superficie_terreno_medida, llave = :llave WHERE referencia = :referencia");
 
       			$statement_registrar_mas->execute(array(
       				':referencia' => $referencia_received,
@@ -173,7 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //si se envio datos por POST guardar
               ':direccion' => $info_bien_all['direccion'],
               ':direccion_complemento' => $info_bien_all['direccion_complemento'],
               ':superficie_terreno' => $info_bien_all['superficie_terreno'],
-              ':superficie_terreno_medida' => $info_bien_all['superficie_terreno_medida']
+              ':superficie_terreno_medida' => $info_bien_all['superficie_terreno_medida'],
+              ':llave' => $info_bien_all['llave']
       			));
 
             $statement_registrar_mas2 = $conexion->prepare(

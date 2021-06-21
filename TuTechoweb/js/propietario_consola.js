@@ -1,7 +1,41 @@
 $(document).ready(function(){
   jQuery(function($){
 
+    // Activar checkbox encuesta
+    $( "fieldset input" ).checkboxradio();
+    $( "fieldset" ).controlgroup();
 
+    $(".popup_exito input[type='radio']").on("change", function(){
+      const preg_1 = $('input[name="radio-1"]:checked').attr("respuesta");
+      const preg_2 = $('input[name="radio-2"]:checked').attr("respuesta");
+      const preg_3 = $('input[name="radio-3"]:checked').attr("respuesta");
+
+      if (preg_1 !== undefined && preg_2 !== undefined && preg_3 !== undefined) {
+        $(".btn_formulario_terminar").addClass("activo");
+      };
+    });
+
+    $(".btn_formulario_terminar").on("click", function(){
+      const preg_1 = $('input[name="radio-1"]:checked').attr("respuesta");
+      const preg_2 = $('input[name="radio-2"]:checked').attr("respuesta");
+      const preg_3 = $('input[name="radio-3"]:checked').attr("respuesta");
+
+      $.ajax({
+          type: "POST",
+          url: "process-request-propietario-consola.php",
+          data: { referencia_encuesta_sent: referencia, preg_1_sent : preg_1, preg_2_sent: preg_2, preg_3_sent : preg_3 },
+      }).done(function(data){
+        console.log(data);
+        $('.popup_cerrar_exito').removeClass('oculto');
+        $(".popup_overlay_exito").css("visibility", "hidden");
+
+      });
+
+
+    });
+
+
+    
     $.ajax({
         type: "POST",
         url: "process-request-propietario-consola.php",
@@ -72,6 +106,7 @@ $(document).ready(function(){
         }).done(function(data){
 
           if (data == 'exito') {
+            $(".popup_content_exito").html("<p>Reclamo registrado exitosamente</p>");
             $(".popup_overlay").css("visibility", "hidden");
             $(".popup_overlay_exito").css("visibility", "unset");
           }else{

@@ -629,12 +629,14 @@ h2.ningun_resultado{
   left: 0;
   width: 100vw;
   height: 100vh;
+  max-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.377);
   visibility: hidden;
   z-index: 100;
+  overflow-y: overlay;
 }
 
 .popup_exito{
@@ -650,7 +652,6 @@ h2.ningun_resultado{
   box-sizing: border-box;
   border-radius: 10px;
   color: #333;
-  font-size: 1.2em;
   font-weight: bold;
   padding: 1em 1em 0.5em 1em;
 }
@@ -677,6 +678,9 @@ h2.ningun_resultado{
   transform: translateY(0px);
   cursor: pointer;
 }
+.popup_cerrar_exito.oculto {
+  visibility: hidden;
+}
 
 .popup_cerrar_exito:hover{
   -webkit-transform:translateY(-0.1em);
@@ -693,6 +697,58 @@ h2.ningun_resultado{
   justify-content: center;
   align-items: center;
 }
+
+/* ####### CUESTIONARIO ####### */
+
+h1 {
+  user-select: none;
+}
+
+.popup_content_exito fieldset{
+ margin: 0.5em 0em;
+ width: 100%;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+}
+
+.popup_content_exito fieldset legend{
+  text-indent: 0.2em;
+  user-select: none;
+}
+
+.popup_content_exito fieldset label{
+  margin: 0.5em !important;
+  border-radius: 3px;
+  user-select: none;
+}
+
+.btn_formulario_terminar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(167, 167, 167);
+  color: #fff;
+  font-size: 1.2em;
+  border-radius: 3px;
+  font-weight: bold;
+  margin: 0.5em auto 0 auto;
+  padding: 0.5em 2em;
+  user-select: none;
+}
+
+.btn_formulario_terminar.activo{
+  cursor: pointer;
+  background-color: #0984CC;
+}
+
+.btn_formulario_terminar.activo:active{
+  transform: scale(0.95);
+}
+
+
+/* ################## RESPONSIVE ####################### */
 
 @media screen and (max-width:1045px){
 
@@ -751,6 +807,9 @@ h2.ningun_resultado{
   }
   .contenedor_datos {
     margin: 1em 0em
+  }
+  .popup_exito {
+    font-size: 0.9em;
   }
 }
 

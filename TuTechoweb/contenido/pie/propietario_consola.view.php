@@ -20,9 +20,10 @@ if(isset($php_view_entry_control)){} else{header('Location: ../../index.php');};
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
       <link rel="stylesheet" href="../../css/propietario_consola.css">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
       <script>
-      const referencia = "<?= $referencia; ?>";
+        const referencia = "<?= $referencia; ?>";
       </script>
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
       <script src="../../js/js.cookie.js"></script>
@@ -50,11 +51,53 @@ if(isset($php_view_entry_control)){} else{header('Location: ../../index.php');};
         </div>    
     </div>
 
-    <div class="popup_overlay_exito">
+    <div class="popup_overlay_exito" <?php if($check_encuesta == 0) { echo"style='visibility: unset'"; } ;?>>
         <div class="popup_exito">
-            <span class="popup_cerrar_exito"><i class="fa fa-times"></i></span>
+            <span class="popup_cerrar_exito <?php if($check_encuesta == 0) { echo"oculto"; } ;?>"><i class="fa fa-times"></i></span>
             <div class="popup_content_exito">
-              <p>Reclamo registrado exitosamente</p>
+              	<?php if($check_encuesta == 0) { echo"
+
+                  <h1>Antes de empezar:</h1>
+
+                  <fieldset>
+                    <legend>Conoció la marca TuTecho por: </legend>
+                    
+                    <label for=\"preg1_1\">Un agente</label>
+                    <input type=\"radio\" name=\"radio-1\" id=\"preg1_1\" respuesta=\"1\">
+                    <label for=\"preg1_2\">Amigos</label>
+                    <input type=\"radio\" name=\"radio-1\" id=\"preg1_2\" respuesta=\"2\">
+                    <label for=\"preg1_3\">Internet</label>
+                    <input type=\"radio\" name=\"radio-1\" id=\"preg1_3\" respuesta=\"3\">
+                    <label for=\"preg1_4\">Televisión</label>
+                    <input type=\"radio\" name=\"radio-1\" id=\"preg1_4\" respuesta=\"4\">
+                    <label for=\"preg1_5\">Otros</label>
+                    <input type=\"radio\" name=\"radio-1\" id=\"preg1_5\" respuesta=\"5\">
+                    
+                  </fieldset>
+
+                  <fieldset>
+                  <legend>Para registrar su Inmueble usted: </legend>
+                  
+                    <label for=\"preg2_1\">fue contactado por un Agente</label>
+                    <input type=\"radio\" name=\"radio-2\" id=\"preg2_1\" respuesta=\"1\">
+                    <label for=\"preg2_2\">contactó directamente a TuTecho</label>
+                    <input type=\"radio\" name=\"radio-2\" id=\"preg2_2\" respuesta=\"2\">
+
+                  </fieldset>
+
+                  <fieldset>
+                    <legend>El trato que recibió fue: </legend>
+                    
+                    <label for=\"preg3_1\">Bueno</label>
+                    <input type=\"radio\" name=\"radio-3\" id=\"preg3_1\" respuesta=\"1\">
+                    <label for=\"preg3_2\">Malo</label>
+                    <input type=\"radio\" name=\"radio-3\" id=\"preg3_2\" respuesta=\"2\">
+                    
+                  </fieldset>
+                  
+                  <span class=\"btn_formulario_terminar\">TERMINAR</span>
+                  
+                  "; } ;?>
             </div>
         </div>    
     </div>
