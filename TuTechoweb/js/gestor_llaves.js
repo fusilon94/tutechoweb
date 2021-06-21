@@ -54,6 +54,7 @@ $(document).ready(function () {
     });
 
     $('.overlay_popup').toggleClass('opened');
+    $("body").toggleClass("popup_active");
   })
 
 
@@ -95,6 +96,7 @@ $(document).ready(function () {
 
 
     $('.overlay_popup').toggleClass('opened');
+    $("body").toggleClass("popup_active");
   })
 
   $(".popup_content").on('click', '.retornar_confirmar_btn', function(){
@@ -131,6 +133,7 @@ $(document).ready(function () {
       <span class="popup_boton btn_retirar" referencia="${referencia_key}">Retirar LLave(s)</span>
     `);
     $('.overlay_popup').toggleClass('opened');
+    $("body").toggleClass("popup_active");
   });
 
   $(".overlay_popup").on("click", ".btn_retirar", function(){
@@ -179,6 +182,7 @@ $(document).ready(function () {
 
 
     $('.overlay_popup').toggleClass('opened');
+    $("body").toggleClass("popup_active");
   });
 
   $('.overlay_popup').on('click', '#agregar_contacto', function(){
