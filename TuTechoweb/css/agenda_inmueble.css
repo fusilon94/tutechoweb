@@ -304,11 +304,17 @@ margin: 30px auto 70px auto;
   top: 0.5em;
   right: 0.5em;
   cursor: pointer;
+  visibility: hidden;
 }
 .resumen_key i {
   font-size: 1.5em;
   color: #e5bf00;
 }
+
+.resumen_key.activo{
+visibility: unset;
+}
+
 .resumen_foto {
   width: 12em;
   margin-right: 1.5em;

@@ -162,7 +162,13 @@ font-size: 1.95em;
     overflow-y: overlay;
 }
 
-
+.aviso_llave{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: #292c2c;
+}
 /* ##################### FILTROS ########################### */
 
 .filtros_overlay{

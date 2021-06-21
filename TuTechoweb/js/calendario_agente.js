@@ -298,7 +298,25 @@ $(document).ready(function(){
 
               $(".cabecera_titulo").html(titulo_first).attr("data", $(cuadro_id).attr("id").slice(3));
 
-              $(".popup_overlay").css("opacity", 0).css("visibility", "hidden");
+              $.ajax({
+                type: "POST",
+                url: "process-request-calendario.php",
+                data: { fecha_tag_sent: 'check_llave', referencia_check_llave : referencia_inmueble }
+              }).done(function(data){
+                console.log(data);
+                if (data == 1) {
+                  $(".popup").html(`
+                    <span class="cerrar_popup"><i class="fas fa-times-circle"></i></span>
+                    <h2 class='aviso_llave'>Aviso: Este inmueble requiere LLave(s) para su visita</h2>
+                  `);
+                }else if(data == 0){
+                  $(".popup_overlay").css("opacity", 0).css("visibility", "hidden");
+                };            
+                
+              });
+
+
+              
 
             };
 

@@ -268,8 +268,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
               echo"</div>
             </div>
             <div class=\"ficha_contenido_descripcion\">
-              <h3>Asignación: " . $asignacion_text . "</h3>
-              <h3>Descripción:</h3>
+              <h3>Asignación: " . $asignacion_text . "</h3>";
+              
+              if ($info_ficha_bien['llave'] == 1) {
+                echo"
+                  <h3>IMPORTANTE: Visita requiere Llave(s)</h3>
+                ";
+              };
+              
+            echo"<h3>Descripción:</h3>
               <p>" . $info_ficha_bien['descripcion_bien'] . "</p>
             </div>";
 

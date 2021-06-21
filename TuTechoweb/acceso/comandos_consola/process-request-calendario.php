@@ -1496,7 +1496,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
     
                 if ($tabla !== '') {
                     
-                    $consulta_referencia_exist = $conexion->prepare("SELECT referencia, conciliador, conciliacion_tipo, conciliacion_fecha_limite FROM $tabla WHERE referencia = :referencia");
+                    $consulta_referencia_exist = $conexion->prepare("SELECT referencia, conciliador, conciliacion_tipo, conciliacion_fecha_limite, llave FROM $tabla WHERE referencia = :referencia");
                     $consulta_referencia_exist->execute([":referencia" => $referencia]);
                     $referencia_exist = $consulta_referencia_exist->fetch(PDO::FETCH_ASSOC);
     
@@ -2174,6 +2174,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
 
 
     }elseif ($fecha_tag == 'get_contactos' && isset($_POST['agente_id_sent'])) {
+        
         $agente_id = $_POST["agente_id_sent"];
 
         $json_path_contactos_personales = '../../agentes/' . $_COOKIE['tutechopais'] . '/' . $agente_id . '/contactos_personales.json';
@@ -2183,6 +2184,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
         foreach ($data as $contacto) {
             echo"<option value=\"" . $contacto['nombre'] . "\" telefono=\"" . $contacto['telefono'] . "\">" . $contacto['nombre'] . " " . $contacto['telefono'] . "</option>";
         };
+
+    }elseif ($fecha_tag == 'check_llave' && isset($_POST['referencia_check_llave'])) {
+
+        $referencia = $_POST['referencia_check_llave'];
+        $tabla = get_tabla($referencia);
+
+        $consulta_check_llave = $conexion->prepare("SELECT llave FROM $tabla WHERE referencia = :referencia");
+        $consulta_check_llave->execute([":referencia" => $referencia]);
+        $check_llave = $consulta_check_llave->fetch(PDO::FETCH_COLUMN, 0);
+
+
+        echo $check_llave;
+
+        
     };
   };
   
