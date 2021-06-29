@@ -118,9 +118,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {// Verificar que se envio la solicitu
       echo json_encode($bienes);
     };
 
-  }
+  };
 
-    
+  if ( isset($_POST["agencia_llavero_sent"]) ) {
+
+      $agencia_id = $_POST["agencia_llavero_sent"];
+      $bienes = array();
+
+      $consulta_casa =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder, location_tag FROM casa WHERE validacion_agente = 1 AND agencia_registro_id = :agencia_registro_id AND llave = 1 ");
+      $consulta_casa->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL BARRIO O POBLADO
+      $casa = $consulta_casa->fetchAll();
+
+      $consulta_departamento =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder, location_tag FROM departamento WHERE validacion_agente = 1 AND agencia_registro_id = :agencia_registro_id AND llave = 1 ");
+      $consulta_departamento->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL BARRIO O POBLADO
+      $departamento = $consulta_departamento->fetchAll();
+
+      $consulta_local =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder, location_tag FROM local WHERE validacion_agente = 1 AND agencia_registro_id = :agencia_registro_id AND llave = 1 ");
+      $consulta_local->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL BARRIO O POBLADO
+      $local = $consulta_local->fetchAll();
+
+      $consulta_terreno =	$conexion->prepare("SELECT referencia, estado, visibilidad, llave, llave_holder, location_tag FROM terreno WHERE validacion_agente = 1 AND agencia_registro_id = :agencia_registro_id AND llave = 1 ");
+      $consulta_terreno->execute([':agencia_registro_id' => $agencia_id]);//SE PASA EL BARRIO O POBLADO
+      $terreno = $consulta_terreno->fetchAll();
+
+      $bienes = array_merge($casa, $departamento, $local, $terreno);
+
+
+    if ($bienes !== '') {
+      echo json_encode($bienes);
+    };
+
+  };
 
 
 

@@ -12,7 +12,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#2d89ef">
 <meta name="theme-color" content="#ffffff">
-      <title>Gestor de Llaves</title>
+      <title>Llaves Agencia</title>
       <meta http-equiv="content-type" content="text/html; charset=utf-8">
       <meta name="Description" content="#">
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -22,7 +22,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/font_awesome.css">
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link rel="stylesheet" href="../../css/ficha_bien_detalle_inmueble.css">
-      <link rel="stylesheet" href="../../css/gestor_llaves.css">
+      <link rel="stylesheet" href="../../css/llaves_agencia.css">
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" type="text/css" href="../../css/flexslider_bien_individual.css">
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
@@ -54,8 +54,8 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <script src="../../js/jquery.flexslider.js"></script>
       <script src="../../js/consola_agente_jquery-ui.min.js"></script>
       <script src="../../js/consola_agente_admin.js"></script>
-      <script src="../../js/gestor_llaves.js"></script>
-      <script src="../../js/popup_ficha_bien_detalle_inmueble.js"></script>
+      <script src="../../js/llaves_agencia.js"></script>
+      <script src="../../js/popup_ficha_bien_llavero_agencia.js"></script>
       <script src="../../js/select2.min.js"></script>
       <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="crossorigin=""></script>
       <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
@@ -63,15 +63,36 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  </head>
  <body>
 
- <div class="overlay_popup">
-        <div class="popup">
-          <span class="popup_cerrar"><i class="fa fa-times"></i></span>
-          <div class="popup_content">
+ <?php
+  if (isset($exito)) {
+    echo"
+    <div class=\"overlay_popup opened\">
+            <div class=\"popup\">
+              <span class=\"popup_cerrar\"><i class=\"fa fa-times\"></i></span>
+              <div class=\"popup_content\">
+                $exito
+              </div>
+            </div>
             
-          </div>
-        </div>
-        
-</div>
+    </div>
+    ";
+  }else {
+    echo"
+    <div class=\"overlay_popup\">
+            <div class=\"popup\">
+              <span class=\"popup_cerrar\"><i class=\"fa fa-times\"></i></span>
+              <div class=\"popup_content\">
+                
+              </div>
+            </div>
+            
+    </div>
+    ";
+  };
+
+ ?>
+
+ 
 
  <div id="fondo"></div>
       <div id="contenedor_total">
@@ -96,13 +117,11 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 <!-- CONTENIDO PRINCIPAL -->
 <main>
   <div class="regreso_boton_div_contenedor">
-  <a href="bien_inmueble_consola.php">
+  <a href="agencias_consola.php">
     <span class="fas fa-arrow-circle-left fa-2x regreso_boton"></span>
     <span><p>VOLVER ATRÁS</p></span>
   </a>
   </div>
-
-  <span class="retornar_btn">Retornar Llaves</span>
 
   <div class="select_keys_container">
 
@@ -179,7 +198,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
         </div>
       </div>
 
-      <span class="label_select_contenedor">- Busca Bien-Inmueble según Referencia, Poblado/Barrio o Dirección -</span>
+      <span class="label_select_contenedor">- Consola Modificar Llavero -</span>
       <div class="select_contenedor">
 
           <div class="elemento_formulario input_referencia_container">
