@@ -345,16 +345,21 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
             if ($datos_precio['exclusivo'] == 1) {
               if ($data['venta']['lotes']['exclusivo']['tipo'] == 'fijo') {
                 $comision = $data['venta']['lotes']['exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data['venta']['lotes']['exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data['venta']['lotes']['exclusivo']['monto']/100);
+                $comision_factor = $data['venta']['lotes']['exclusivo']['monto']/100;
               };
             }else{
               if ($data['venta']['lotes']['no_exclusivo']['tipo'] == 'fijo') {
                 $comision = $data['venta']['lotes']['no_exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data['venta']['lotes']['no_exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data['venta']['lotes']['no_exclusivo']['monto']/100);
+                $comision_factor = $data['venta']['lotes']['no_exclusivo']['monto']/100;
               }elseif ($data['venta']['lotes']['no_exclusivo']['tipo'] == 'no_disponible') {
                 $comision = $datos_precio['precio'] * 0.03; //NO SE SUPONE QUE PASE ESTO, A NO SER QUE SEA UN DESCUIDO DEL ADMIN
+                $comision_factor = 0.03;
               };
             };
             
@@ -363,16 +368,21 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
             if ($datos_precio['exclusivo'] == 1) {
               if ($data['alquiler']['lotes']['exclusivo']['tipo'] == 'fijo') {
                 $comision = $data['alquiler']['lotes']['exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data['alquiler']['lotes']['exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data['alquiler']['lotes']['exclusivo']['monto']/100);
+                $comision_factor = $data['alquiler']['lotes']['exclusivo']['monto']/100;
               };
             }else{
               if ($data['alquiler']['lotes']['no_exclusivo']['tipo'] == 'fijo') {
                 $comision = $data['alquiler']['lotes']['no_exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data['alquiler']['lotes']['no_exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data['alquiler']['lotes']['no_exclusivo']['monto']/100);
+                $comision_factor = $data['alquiler']['lotes']['no_exclusivo']['monto']/100;
               }elseif ($data['alquiler']['lotes']['no_exclusivo']['tipo'] == 'no_disponible') {
                 $comision = $datos_precio['precio']; //NO SE SUPONE QUE PASE ESTO, A NO SER QUE SEA UN DESCUIDO DEL ADMIN
+                $comision_factor = $comision;
               };
             };
             
@@ -413,16 +423,21 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
             if ($datos_precio['exclusivo'] == 1) {
               if ($data_set['exclusivo']['tipo'] == 'fijo') {
                 $comision = $data_set['exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data_set['exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data_set['exclusivo']['monto']/100);
+                $comision_factor = $data_set['exclusivo']['monto']/100;
               };
             }else {
               if ($data_set['no_exclusivo']['tipo'] == 'fijo') {
                 $comision = $data_set['no_exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data_set['no_exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data_set['no_exclusivo']['monto']/100);
-              }elseif ($data_set['no_exclusivo']['tipo'] == 'no_disponible') {
+                $comision_factor = $data_set['no_exclusivo']['monto']/100;
+              }elseif ($data_set['no_exclusivo']['tipo'] == 'no_disponible') {//NO SE SUPONE QUE PASE ESTO
                 $comision = $datos_precio['precio'] * 0.03;
+                $comision_factor = 0.03;
               };
             };
 
@@ -459,16 +474,21 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
             if ($datos_precio['exclusivo'] == 1) {
               if ($data_set['exclusivo']['tipo'] == 'fijo') {
                 $comision = $data_set['exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data_set['exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data_set['exclusivo']['monto']/100);
+                $comision_factor = $data_set['exclusivo']['monto']/100;
               };
             }else {
               if ($data_set['no_exclusivo']['tipo'] == 'fijo') {
                 $comision = $data_set['no_exclusivo']['monto'];
+                $comision_factor = $comision;
               }elseif ($data_set['no_exclusivo']['tipo'] == 'porcentage') {
                 $comision = $datos_precio['precio']*($data_set['no_exclusivo']['monto']/100);
-              }elseif ($data_set['no_exclusivo']['tipo'] == 'no_disponible') {
+                $comision_factor = $data_set['no_exclusivo']['monto']/100;
+              }elseif ($data_set['no_exclusivo']['tipo'] == 'no_disponible') {//NO SE SUPONE QUE PASE ESTO
                 $comision = $datos_precio['precio'];
+                $comision_factor = $comision;
               };
             };
 
@@ -478,12 +498,13 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
         $current_date = date("d-m-Y");
 
         $statement_activate_agente = $conexion->prepare(
-          "UPDATE $tabla SET validacion_jefe_agencia = 1, fecha_validacion_jefe_agencia = :fecha_validacion_jefe_agencia, comision = :comision, agente_designado_id = :agente_designado_id, conciliacion_fecha_limite = :conciliacion_fecha_limite  WHERE referencia = :referencia");
+          "UPDATE $tabla SET validacion_jefe_agencia = 1, fecha_validacion_jefe_agencia = :fecha_validacion_jefe_agencia, comision = :comision, agente_designado_id = :agente_designado_id, conciliacion_fecha_limite = :conciliacion_fecha_limite, comision_factor = :comision_factor  WHERE referencia = :referencia");
   
         $statement_activate_agente->execute(array(
           ':fecha_validacion_jefe_agencia' => $current_date,
           ':referencia' => $id_file,
           ':comision' => $comision,
+          ':comision_factor' => $comision_factor,
           ':agente_designado_id' => $agente_designado,
           ':conciliacion_fecha_limite' => $conciliacion_fecha_limite
         ));

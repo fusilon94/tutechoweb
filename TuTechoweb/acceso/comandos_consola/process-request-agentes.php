@@ -44,6 +44,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
     } else {
 
+      echo "<option value=\"\"></option>";
       foreach ($agentes as $agente) {
         echo "<option value=\"" . $agente['id'] . "\">" . $agente['nombre'] . " " . $agente['apellido'] . "</option>";
       };

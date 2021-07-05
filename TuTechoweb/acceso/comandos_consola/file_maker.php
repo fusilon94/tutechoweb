@@ -105,7 +105,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     };
 
     
-    // header('Location: consola_registro_documentos.php');
+    header('Location: consola_registro_documentos.php');
   };
 
   // MODO EDICION ###############################################################################################################
