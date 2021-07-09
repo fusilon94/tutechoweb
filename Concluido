@@ -1,0 +1,15 @@
+[master 7ac4152] Cierre_FILE.php + consola + DATA CIERRE
+ 20 files changed, 1561 insertions(+), 12 deletions(-)
+ create mode 100644 TuTechoweb/acceso/comandos_consola/cierre_file_consola.php
+ create mode 100644 TuTechoweb/acceso/comandos_consola/cierre_file_consola.view.php
+ create mode 100644 TuTechoweb/acceso/comandos_consola/data_day_cierres.php
+ create mode 100644 TuTechoweb/acceso/comandos_consola/file_cierre.php
+ create mode 100644 TuTechoweb/acceso/comandos_consola/file_cierre.view.php
+ create mode 100644 TuTechoweb/acceso/comandos_consola/process-request-datos-file-inmueble-cierre.php
+ create mode 100644 TuTechoweb/acceso/comandos_consola/process-request-id-check-file-cierre.php
+ create mode 100644 TuTechoweb/css/cierre_file_consola.css
+ create mode 100644 TuTechoweb/js/cierre_file_consola.js
+ create mode 100644 TuTechoweb/js/file_cierre.js
+ create mode 100644 TuTechoweb/js/file_cierre_anulacion.js
+ create mode 100644 TuTechoweb/js/file_cierre_conclusion.js
+ create mode 100644 TuTechoweb/objetos/cierre_file.svg

@@ -33,21 +33,24 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
       header('Location: consola_registro_documentos.php');
     };
 
+
+    $pais_selected = $_COOKIE['tutechopais'];
+    if ($nivel_acceso == 1 || $nivel_acceso == 11 || $nivel_acceso == 12) {
+      $pais_selected = $_POST['pais'];
+    };
+
     try {
       $conexion_internacional = new PDO('mysql:host=localhost;dbname=tutechodb_internacional;charset=utf8', 'root', '');
     } catch (PDOException $e) { //en caso de error de conexion repostarlo
       echo "Error: " . $e->getMessage();
     };
     $consulta_pais_info =	$conexion_internacional->prepare("SELECT time_zone_php FROM paises WHERE pais = :pais");
-    $consulta_pais_info->execute([":pais" => $pais]);
+    $consulta_pais_info->execute([":pais" => $pais_selected]);
     $pais_info	=	$consulta_pais_info->fetch(PDO::FETCH_ASSOC);
     date_default_timezone_set($pais_info['time_zone_php']);
 
 
-    $pais_selected = $_COOKIE['tutechopais'];
-    if ($nivel_acceso == 1 || $nivel_acceso == 11 || $nivel_acceso == 12) {
-      $pais_selected = $_POST['pais'];
-    };
+
 
     try {
       $conexion_load = new PDO('mysql:host=localhost;dbname=' . "tutechodb_" . $pais_selected  . ';charset=utf8', 'root', '');
@@ -109,7 +112,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
     };
 
-    $carpeta_destino = '../../bienes_inmuebles_files/' . $pais_sent . '/' . $referencia;
+    $carpeta_destino = '../../bienes_inmuebles_files/' . $pais_selected . '/' . $referencia;
 
     $keys_array_docs = array_keys($_FILES);
   
@@ -153,7 +156,28 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
       $_SESSION['mesage_file'] = "Cierre de File Inmueble Exitoso";
     };
 
+    function generateRandomString($length) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $charactersLength = strlen($characters);
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $randomString;
+    };
+
+    //DATA CIERRE
     require 'data_day_cierres.php';
+
+    if ($modo !== 'anulacion') {
+
+      //AGREGAR FACTURA
+      $facturacion = 'facturacion_cierre_' . $pais_selected . '.php';
+      require $facturacion;
+      
+    };
+
+
     
     header('Location: consola_registro_documentos.php');
     
