@@ -1,0 +1,363 @@
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+body
+{width: 100%;
+ min-height: 100%;
+ background-size: 100% 100%;}
+
+ #contenedor_total
+ {width: 100vw; height: 100vh; display: flex; flex-direction: column;}
+
+ header
+ {display: none;}
+
+/* ################################## CONTENIDO ################################################################ */
+
+.overlay{
+    display: none;
+}
+
+.popup{
+    display: none;
+}
+
+.contenido_pagina{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding: 0em;
+}
+
+.contrato_header {
+    display: none;
+}
+
+.contrato_global_wrap{
+    display: flex;
+}
+
+.left_contenedor{
+    display: none;
+}
+
+.contrato_contenedor {
+    display: block;
+    background-color: #fff;
+}
+
+.contrato_contenedor span.dato{
+    background-color: #fff;
+}
+
+
+/* ########################## FACTURA ############################# */
+
+.factura_up{
+    padding: 1em;
+    display: inline-block;
+    background-color: rgb(44, 44, 44);
+    color: #fff;
+    width: 100%;
+    font-size: 0.7em;
+    margin-bottom: 1em;
+}
+
+.factura_upper_left{
+ display: inline-block;
+ height: 100%;
+ width: 8cm;
+ vertical-align: middle;
+}
+
+.factura_logo{
+    display: block;
+    width: 3.5cm;
+    margin: 0em auto 0.5em auto;
+}
+
+.razon_social{
+    display: block;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.direccion_agencia{
+    display: block;
+    font-size: 0.9em;
+}
+
+.direccion_agencia p{
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+
+
+.factura_upper_right{
+    display: inline-block;
+    width: 6cm;
+    margin-left: 4cm;
+    vertical-align: middle;
+}
+
+.nit_agencia{
+display: block;
+text-align: center;
+font-size: 1.2em;
+font-weight: bold;
+line-height: 1.5em;
+}
+
+.numero_factura{
+display: block;
+text-align: center;
+font-size: 1.2em;
+font-weight: bold;
+line-height: 1.5em;
+}
+
+.numero_autorizacion{
+display: block;
+text-align: center;
+font-size: 1.2em;
+font-weight: bold;
+line-height: 1.5em;
+}
+
+.original{
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.2em 0em;
+    line-height: 1.5em;
+}
+
+.actividad_empresa{
+    display: block;
+    text-align: justify;
+    font-size: 0.9em;
+    margin-top: 1em;
+}
+
+.factura_upper_center{
+    display: block;
+    width: 100%;
+    margin: 0.5em 0em;
+}
+
+.class_titulo_factura{
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0.5em 0em;
+    color: #1d1d1d;
+}
+
+.factura_datos_emision{
+    width: 100%;
+    color: #111111;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.factura_fecha_emision{
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.factura_nombre_emision{
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.factura_nit_emision{
+    display: inline-block;
+    margin-left: 2cm;
+}
+
+.factura_cuerpo{
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-size: 0.85em;
+}
+
+.cuerpo_titulos{
+    width: 100%;
+    font-weight: bold;
+    color: #111111;
+}
+
+.contendor_objetos{
+    width: 100%;
+}
+
+.objeto_row{
+    display: block;
+    margin: 0.5em 0em;
+}
+
+.objeto_row_descuento{
+    display: block;
+    margin: 0.5em 0em;
+}
+
+.col1{
+    display: inline-block;
+    width: 1cm;
+    text-align: center;
+    padding: 0.2em;
+}
+
+.col1_row{
+    display: inline-block;
+    width: 1cm;
+    text-align: center;
+    padding: 0.2em;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+.col2{
+    display: inline-block;
+    width: 11cm;
+    text-align: center;
+    padding: 0.2em;
+}
+
+.col2_row{
+    display: inline-block;
+    width: 11cm;
+    text-align: justify;
+    padding: 0.2em 2em;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+.col2_row_descuento{
+    display: inline-block;
+    width: 11cm;
+    text-align: right;
+    padding: 0.2em 2em;
+    font-size: 0.9em;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.col3{
+    display: inline-block;
+    width: 2.5cm;
+    text-align: center;
+    padding: 0.2em;
+}
+
+.col3_row{
+    display: inline-block;
+    width: 2.5cm;
+    text-align: center;
+    padding: 0.2em;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+.col4{
+    display: inline-block;
+    width: 3.5cm;
+    text-align: center;
+    padding: 0.2em;
+}
+
+.col4_row{
+    display: inline-block;
+    width: 3.5cm;
+    text-align: center;
+    padding: 0.2em;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+.cuerpo_total_contenedor{
+    width: 100%;
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+.total_escrito{
+    display: inline-block;
+    font-weight: bold;
+    color: #111111;
+    width: 70%;
+}
+
+.total_monto{
+    display: inline-block;
+    text-align: right;
+    font-weight: bold;
+    color: #111111;
+    width: 25%;
+    padding-right: 1.9em;
+}
+
+.total_monto p{
+    display: inline-block;
+}
+
+.fecha_limite_emision{
+    display: block;
+    font-size: 0.8em;
+    margin-top: 1.5em;
+}
+
+.codigo_control{
+    display: block;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+}
+
+.codigo_qr_container{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.factura_footer{
+    width: 100%;
+    display: block;
+    margin-top: 2em;
+}
+
+.leyenda_sin{
+    display: block;
+    text-align: center;
+    font-size: 0.6em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.leyenda_consumidor{
+    display: block;
+    text-align: center;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+

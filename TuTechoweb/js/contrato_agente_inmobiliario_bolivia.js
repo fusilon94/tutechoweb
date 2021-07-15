@@ -289,6 +289,7 @@ $(document).ready(function(){
     };
 
 
+    $(".contrato_titulo").html("CONTRATO AGENTE INMOBILIARIO");
     // ############# ETAPA 1
    
     $("#etapa_1").html(`

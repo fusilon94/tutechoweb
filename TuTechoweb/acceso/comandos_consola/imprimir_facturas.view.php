@@ -12,36 +12,38 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#2d89ef">
 <meta name="theme-color" content="#ffffff">
-      <title>Consola - Editor de Contratos</title>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-      <meta name="Description" content="#">
-      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Consola - Imprimir Facturas</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="Description" content="#">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-      <link rel="stylesheet" type="text/css" href="../../css/flexslider.css">
-      <link rel="stylesheet" href="../../css/font_awesome.css">
-      <link rel="stylesheet" href="../../css/consola_agente.css">
-      <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-      <link rel="stylesheet" href="../../css/contrato_estilos_generales.css" media="screen">
-      <link rel="stylesheet" href="../../css/contrato_estilos_generales_impresion.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../../css/flexslider.css">
+    <link rel="stylesheet" href="../../css/font_awesome.css">
+    <link rel="stylesheet" href="../../css/consola_agente.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/factura_estilos_generales.css" media="screen">
+    <link rel="stylesheet" href="../../css/facturas_estilos_generales_impresion.css" media="print">
 
-      <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
-      <script src="../../js/consola_agente_jquery-ui.min.js"></script>
-      <script src="../../js/js.cookie.js"></script>
-<script src="../../js/menu.js"></script>
-      <script src="../../js/slider.js"></script>
-      <script src="../../js/jquery.flexslider.js"></script>
-      <script>
-        const tipo_selected = "<?php echo $tipo_selected; ?>";
-        const pais_selected = "<?php echo $pais_selected; ?>";
-
-        let etapa_actual = 1;
-        let preguntas_grupos_cantidad;
-
-        const agente_id = "<?php echo $agente_id[0]; ?>";
-      </script>
-      <script src="../../js/contrato_funciones_generales.js"></script>
-      <script src="../../js/contrato_<?php echo $tipo_selected . '_' . $pais_selected; ?>.js"></script>
-      
+    <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
+    <script src="../../js/consola_agente_jquery-ui.min.js"></script>
+    <script src="../../js/js.cookie.js"></script>
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/slider.js"></script>
+    <script src="../../js/jquery.flexslider.js"></script>
+    <script src="../../js/qart.min.js"></script>
+    <script>
+    const agencia_id = "<?= $factura_info['agencia_id'];?>";
+    const id_factura = "<?= $id_factura;?>";
+    const moneda_string = "<?= $moneda['moneda_string'];?>";
+    const moneda_code = "<?= $moneda['moneda_code'];?>";
+    const moneda_symbol = "<?= $moneda['moneda'];?>";
+    const acceso = "<?= $nivel_acceso;?>";
+    let etapa_actual = 1;
+    let preguntas_grupos_cantidad;
+    </script>
+    <script src="../../js/numero_a_letras.js"></script>
+    <script src="../../js/factura_funciones_generales.js"></script>
+    <script src="../../js/factura_<?php echo $factura_info['tipo'] . '_' . $_COOKIE['tutechopais']; ?>.js"></script>
 
  </head>
  <body>
@@ -52,8 +54,9 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
          <h2>Indicaciones</h2>
          <span class="indicaciones_impresion">
             <p>Margenes: Arriba 2cm, Izquierda 2cm, Derecha 2cm, Abajo 2.2cm</p>
-            <p>Impresion en Doble cara, en Hoja A4</p>
-            <p>Llenado, firmas y huellas en tinta azul</p>
+            <p>Impresion en Hoja A4</p>
+            <p>Imprimir en dos ejemplares</p>
+            <b>!! IMPORTANTE <!DOCTYPE html><br>NO PODRA VOLVER ATRÁS, LA FACTURA DEBERÁ IMPRIMIRSE</b>
          </span>
          <span class="btn_confirmar_impresion">CONTINUAR</span>
      </div>
@@ -117,17 +120,26 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
 
                         <hr class="barra_separacion_navigacion">
 
+                        <?php 
+                        
+                        if ($nivel_acceso == '1' || $nivel_acceso == '11' || $nivel_acceso == '12') {
+                            echo"
+                            <div class=\"navegacion_wrap\">
+                                <span class=\"paso_anterior\">
+                                    <i class=\"paso_btn_icon_left\"> < </i>
+                                    <p class=\"nav_text\">ATRÁS</p>
+                                </span>
+                                <span class=\"paso_adelante\">
+                                    <i class=\"paso_btn_icon_right\"> > </i>
+                                    <p class=\"nav_text\">SIGUIENTE</p>
+                                </span>
+                            </div>
+                            ";
+                        }
+                        
+                        
+                        ?>
 
-                        <div class="navegacion_wrap">
-                            <span class="paso_anterior">
-                                <i class="paso_btn_icon_left"> < </i>
-                                <p class="nav_text">ATRÁS</p>
-                            </span>
-                            <span class="paso_adelante">
-                                <i class="paso_btn_icon_right"> > </i>
-                                <p class="nav_text">SIGUIENTE</p>
-                            </span>
-                        </div>
 
 
                     </div>
@@ -141,7 +153,8 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
                 
 
                 <div class="contrato_contenedor">
-
+                    
+                    
                 </div>
 
                 
@@ -156,8 +169,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  </body>
 
  <?php //ASI NO TENEMOS PROBLEMAS DE VARIABLES PERSISTENTES, Y AL REFRESH OBLIGAMOS DE NUEVO AL CONTRATO DESDE EL INICIO
-    unset($_SESSION['tipo_selected']);
-    unset($_SESSION['pais_selected']);
+    // unset($_SESSION['id_factura']);
  ?>
 
 </html>
