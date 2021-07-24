@@ -244,7 +244,7 @@ $(document).ready(function(){
               
 
             
-        )}.error(function(){
+        }).error(function(){
             alert('ERROR DE CONEXION CON IMPUESTOS NACIONALES, INTENTE NUEVAMENTE');
         });
 
