@@ -61,11 +61,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $agencia_datos['fecha_string'] = $fecha_string;
 
           
-            $consulta_factura = $conexion->prepare("SELECT detalle FROM facturas WHERE id = :id");
+            $consulta_factura = $conexion->prepare("SELECT * FROM facturas WHERE id = :id");
             $consulta_factura->execute([':id' => $id_factura]);
-            $factura_datos = $consulta_factura->fetch(PDO::FETCH_COLUMN, 0);
+            $factura_datos = $consulta_factura->fetch(PDO::FETCH_ASSOC);
 
-            $agencia_datos['detalle_factura'] = json_decode($factura_datos);
+            $agencia_datos['detalle_factura'] = json_decode($factura_datos['detalle']);
+            $agencia_datos['datos_factura'] = $factura_datos;//se usa en consola factura, pero no en imprimir factura
 
 
         };

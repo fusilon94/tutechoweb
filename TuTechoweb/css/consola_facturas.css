@@ -158,11 +158,11 @@ header nav{
     width: 100vw;
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.377);
     visibility: hidden;
     z-index: 100;
+    font-size: 0.8em;
 }
 
 .popup{
@@ -170,17 +170,16 @@ header nav{
     position: relative;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 30em;
-    background: #2C2C47;
-    border: 0.7em solid #0984cc;
+    background: #fff;
     z-index: 3;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 3px;
     color: #333;
     font-size: 1.2em;
     font-weight: bold;
     padding: 1.5em 1em 0.5em 1em;
+    margin-top: 5em;
+    max-height: calc(100vh - 7em);
 }
 
 .popup i.fa-exclamation-circle{
@@ -210,11 +209,6 @@ header nav{
     -webkit-transform:translateY(-0.1em);
     -moz-transform:translateY(-0.1em);
     transform:translateY(-0.1em);
-}
-
-.popup_content{
-    display: flex;
-    flex-direction: column;
 }
 
 /* ########## TAB LISTA ########### */

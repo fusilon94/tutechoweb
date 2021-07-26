@@ -23,9 +23,13 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" href="../../css/jquery-ui.css">
       <link rel="stylesheet" href="../../css/consola_facturas.css">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview.css">
 
       <script>
         const modo = 'anular';
+        const moneda_string = "<?= $moneda['moneda_string'];?>";
+        const moneda_code = "<?= $moneda['moneda_code'];?>";
+        const moneda_symbol = "<?= $moneda['moneda'];?>";
       </script>
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
       <script src="../../js/js.cookie.js"></script>
@@ -33,6 +37,8 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <script src="../../js/jquery-ui.min.js"></script>
       <script src="../../js/consola_agente_jquery-ui.min.js"></script>
       <script src="../../js/consola_agente_admin.js"></script>
+      <script src="../../js/qart.min.js"></script>
+      <script src="../../js/numero_a_letras.js"></script>
       <script src="../../js/consola_facturas_<?= $_COOKIE['tutechopais'];?>.js"></script>
      
  </head>
@@ -103,7 +109,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
         <div class="graph_consola">
 
             <div class="tabs_wrap">
-              <input class="input_factura_id" placeholder="Factura ID">
+              <input class="input_factura_id" placeholder="Buscar">
             </div>
 
             <div class="tab_content_lista activo">

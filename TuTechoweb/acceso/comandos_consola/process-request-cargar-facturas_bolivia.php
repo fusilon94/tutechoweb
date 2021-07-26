@@ -23,15 +23,15 @@ try {
 } catch (PDOException $e) { //en caso de error de conexion repostarlo
   echo "Error: " . $e->getMessage();
 };
+$consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code FROM paises WHERE pais = :pais");
+$consulta_pais_info->execute([":pais" => $_COOKIE['tutechopais']]);
+$pais_info =	$consulta_pais_info->fetch(PDO::FETCH_ASSOC);
+
 
 if (isset($_POST['agencia_id']) && isset($_POST['modo'])) {
 
   $agencia_id = $_POST['agencia_id'];
   $modo = $_POST['modo'];
-
-  $consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code FROM paises WHERE pais = :pais");
-  $consulta_pais_info->execute([":pais" => $_COOKIE['tutechopais']]);
-  $pais_info =	$consulta_pais_info->fetch(PDO::FETCH_ASSOC);
 
   if ($modo == 'revertir') {
 
@@ -84,6 +84,20 @@ if (isset($_POST['agencia_id']) && isset($_POST['modo'])) {
   };
 
   echo"</div>";
+
+  
+}elseif (isset($_POST['factura_id'])) {
+  
+  $factura_id = $_POST['factura_id'];
+
+  $consulta_facturas=	$conexion->prepare("SELECT id, fecha_impresion, tipo, referencia_inmueble, monto, numero_factura, codigo_control, numero_autorizacion FROM facturas WHERE impreso = 1 AND anulado = 1 AND agencia_id = :agencia_id");
+  $consulta_facturas->execute([':agencia_id' => $agencia_id]);
+  $facturas =	$consulta_facturas->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
 };
 
 

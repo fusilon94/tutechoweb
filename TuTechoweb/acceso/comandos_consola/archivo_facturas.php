@@ -54,9 +54,9 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     $facturas =	$consulta_facturas->fetchAll(PDO::FETCH_ASSOC);
   };
 
-  $consulta_pais_info =	$conexion_internacional->prepare("SELECT moneda, moneda_code FROM paises WHERE pais = :pais");
-  $consulta_pais_info->execute([":pais" => $_COOKIE['tutechopais']]);
-  $pais_info =	$consulta_pais_info->fetch(PDO::FETCH_ASSOC);
+  $consulta_moneda =	$conexion_internacional->prepare(" SELECT moneda_string, moneda_code, moneda FROM paises WHERE pais = :pais");
+  $consulta_moneda->execute([ ':pais' => $_COOKIE['tutechopais'] ]);//SE PASA EL NOMBRE DEL SPONSOR
+  $moneda = $consulta_moneda->fetch(PDO::FETCH_ASSOC);
 
 
 }else {

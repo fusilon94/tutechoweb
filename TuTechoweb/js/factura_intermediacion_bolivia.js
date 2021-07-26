@@ -33,8 +33,8 @@ $(document).ready(function(){
         
         <div class="factura_upper_right">
             <span class="nit_agencia">NIT ${datos['NIT']}</span>
-            <span class="numero_factura">N°#####</span>
-            <span class="numero_autorizacion">N°#################</span>
+            <span class="numero_factura">FACTURA N°#####</span>
+            <span class="numero_autorizacion">AUTORIZACION N°#################</span>
             <span class="original">ORIGINAL</span>
             <span class="actividad_empresa">Intermediación en la venta, alquiler y anticretico, gestoria y administración de bienes inmuebles para particulares y empresas</span>
         </div>
