@@ -22,8 +22,9 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" href="../../css/jquery-ui.css">
-      <link rel="stylesheet" href="../../css/consola_facturas.css">
-      <link rel="stylesheet" href="../../css/facturas_consola_preview.css">
+      <link rel="stylesheet" href="../../css/consola_facturas.css" media="screen">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview.css" media="screen">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview_impresion.css" media="print">
       
 
       <script>
@@ -50,10 +51,18 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  <div class="popup_overlay">
       <div class="popup">
           <span class="popup_cerrar"><i class="fa fa-times"></i></span>
+          <div class="popup_actions">
+            <span class="action_imprimir">
+              <img src="../../objetos/imprimir_btn.svg" alt="IMPRIMIR" class="factura_print_icon" title="IMPRIMIR">
+              <span>IMPRIMIR</span>
+            </span>
+          </div>
+          
           <div class="popup_content">
 
 
           </div>
+          
       </div>    
   </div>
 
@@ -64,8 +73,8 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       	  <header>
             <div class="regreso_boton_div_contenedor">
                 <a href="consola_facturas.php">
-                <span class="fas fa-arrow-circle-left fa-2x regreso_boton"></span>
-                <span class="atras_texto"><p>VOLVER ATRÁS</p></span>
+                  <span class="fas fa-arrow-circle-left fa-2x regreso_boton"></span>
+                  <span class="atras_texto"><p>VOLVER ATRÁS</p></span>
                 </a>
             </div>
       	    <div id="contenedor_menu_boton"> <!-- Boton de menu visible en pantallas mobiles -->

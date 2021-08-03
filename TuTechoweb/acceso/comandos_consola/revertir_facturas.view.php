@@ -22,8 +22,9 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" href="../../css/jquery-ui.css">
-      <link rel="stylesheet" href="../../css/consola_facturas.css">
-      <link rel="stylesheet" href="../../css/facturas_consola_preview.css">
+      <link rel="stylesheet" href="../../css/consola_facturas.css" media="screen">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview.css" media="screen">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview_impresion.css" media="print">
 
 
       <script>
@@ -50,9 +51,28 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  <div class="popup_overlay">
       <div class="popup">
           <span class="popup_cerrar"><i class="fa fa-times"></i></span>
+          <div class="popup_actions">
+            <span class="action_revertir" id="revertir_factura">
+              <i class="fas fa-undo-alt revertir_icon"></i>
+              <span>REVERTIR FACTURA</span>
+            </span>
+            <span class="action_imprimir">
+              <img src="../../objetos/imprimir_btn.svg" alt="IMPRIMIR" class="factura_print_icon" title="IMPRIMIR">
+              <span>IMPRIMIR</span>
+            </span>
+          </div>
+          
           <div class="popup_content">
 
 
+          </div>
+
+          <div class="confirmacion_wrap">
+            <h2 class="confirmar_titulo">Esta seguro de querer revertir la factura anulada?</h2>
+            <span class="action_revertir" id="confirmar_revertir">
+              <i class="fas fa-undo-alt revertir_icon"></i>
+              <span>CONFIRMAR REVERTIR</span>
+            </span>
           </div>
       </div>    
   </div>

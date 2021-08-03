@@ -177,7 +177,7 @@ header nav{
     color: #333;
     font-size: 1.2em;
     font-weight: bold;
-    padding: 1.5em 1em 0.5em 1em;
+    padding: 1em 1em 0.5em 1em;
     margin-top: 5em;
     max-height: calc(100vh - 7em);
 }

@@ -1,127 +1,64 @@
+/*   ###########    ESTILOS GENERALES    #############   */
+*
+{margin:0;
+padding:0;
+-webkit-box-sizing:border-box; /*bug fix general */
+-moz-box-sizing:border-box;   /*bug fix for Mozilla */
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;}
+
+html {min-height: 100%;
+      display: flex;}
+
+a {text-decoration: none; color: black;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.2em; text-indent: 0.5em;}
+li {list-style: none;}
+
+body
+{width: 100%;
+ min-height: 100%;
+ background-size: 100% 100%;}
+
+ #contenedor_total
+ {width: 100vw; height: 100vh; display: flex; flex-direction: column;}
+
+ header
+ {display: none;}
+
+/* ################################## CONTENIDO ################################################################ */
+
+.popup_overlay{
+    visibility: unset;
+}
+
+.popup{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding: 0em;
+}
 
 .popup_content {
     display: block;
     background-color: #fff;
-    width: 50em;
-    overflow-y: overlay;
 }
 
 .popup_content span.dato{
     background-color: #fff;
 }
 
-
-/* ##################### ACTIONS ######################## */
-
-.popup_actions {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    padding: 0 1em;
-    margin-bottom: 0.8em;
-}
-
-.action_imprimir{
-    display: flex;
-    align-items: center;
-    background-color: #0984cc;
-    border-radius: 7px;
-    padding: 0.3em 0.8em;
-    cursor: pointer;
-    color: #fff;
-    font-weight: bold;
-    user-select: none;
-}
-
-.action_imprimir:hover {
-    background-color: #189ae6;
-}
-
-.action_imprimir:active {
-    transform: scale(0.95);
-    transition: 0.2s;
-}
-
-.factura_print_icon{
-    width: 2.5em;
-    margin-right: 0.5em;
-}
-
-.action_anular {
-    display: flex;
-    align-items: center;
-    background-color: #cc4040;
-    border-radius: 5px;
-    padding: 0.4em 0.8em;
-    cursor: pointer;
-    color: #fff;
-    font-weight: bold;
-    user-select: none;
-}
-.action_anular:hover {
-    background-color: #df6060;
-}
-
-.action_anular:active {
-    transform: scale(0.95);
-    transition: 0.2s;
-}
-
-.anular_icon{
-    font-size: 1.6em;
-    margin-right: 0.5em;
-    color: #fff;
-}
-
-.action_revertir {
-    display: flex;
-    align-items: center;
-    background-color: #40cc47;
-    border-radius: 5px;
-    padding: 0.75em 0.8em;
-    margin-right: 1.5em;
-    cursor: pointer;
-    color: #fff;
-    font-weight: bold;
-    user-select: none;
-}
-.action_revertir:hover {
-    background-color: #5add60;
-}
-
-.action_revertir:active {
-    transform: scale(0.95);
-    transition: 0.2s;
-}
-
-.revertir_icon{
-    font-size: 1.6em;
-    margin-right: 0.5em;
-    color: #fff;
-}
-
-.confirmacion_wrap{
+.popup_actions{
     display: none;
-    width: 100%;
-    height: 20em;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5em 2em;
-    user-select: none;
-    flex-direction: column;
 }
 
-.confirmar_titulo{
-    text-align: center;
-    width: 100%;
-    color: rgb(22, 22, 22);
-    font-weight: bold;
-    margin-bottom: 1em;
+#contenedor_total{
+    display: none;
 }
 
-
-
-
+.popup_cerrar{
+    display: none;
+}
 /* ########################## FACTURA ############################# */
 
 .factura_up{

@@ -22,8 +22,9 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" href="../../css/jquery-ui.css">
-      <link rel="stylesheet" href="../../css/consola_facturas.css">
-      <link rel="stylesheet" href="../../css/facturas_consola_preview.css">
+      <link rel="stylesheet" href="../../css/consola_facturas.css" media="screen">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview.css" media="screen">
+      <link rel="stylesheet" href="../../css/facturas_consola_preview_impresion.css" media="print">
 
       <script>
         const modo = 'anular';
@@ -49,9 +50,24 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  <div class="popup_overlay">
       <div class="popup">
           <span class="popup_cerrar"><i class="fa fa-times"></i></span>
+          <div class="popup_actions">
+            <span class="action_anular" id="anular_factura">
+              <i class="fas fa-minus-circle anular_icon"></i>
+              <span>ANULAR FACTURA</span>
+            </span>
+          </div>
+          
           <div class="popup_content">
 
 
+          </div>
+
+          <div class="confirmacion_wrap">
+            <h2 class="confirmar_titulo">Esta seguro de querer anular la factura?</h2>
+            <span class="action_anular" id="confirmar_anular">
+              <i class="fas fa-minus-circle anular_icon"></i>
+              <span>CONFIRMAR ANULAR</span>
+            </span>
           </div>
       </div>    
   </div>

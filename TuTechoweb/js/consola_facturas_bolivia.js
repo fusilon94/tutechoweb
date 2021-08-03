@@ -58,6 +58,8 @@ $(document).ready(function(){
     
     $(".popup_cerrar").on("click", function(){
         $(".popup_overlay").css("visibility", "hidden");
+        $(".popup_actions").css("display", "flex");
+        $('.confirmacion_wrap').css("display", "none")
     });
     
 
@@ -77,7 +79,7 @@ $(document).ready(function(){
             const datos_factura = datos['datos_factura'];
             console.log(datos_factura)
             $(".popup_content").html(`
-                <div class="factura_up">
+                <div factura_id="${factura_id}" class="factura_up">
                     <div class="factura_upper_left">
                         <img src="../../objetos/logotipo2.svg" alt="" class="factura_logo">
                         <span class="razon_social">${datos['razon_social']}</span>
@@ -168,6 +170,56 @@ $(document).ready(function(){
 
 
         $(".popup_overlay").css("visibility", "unset");
+
+
+        // ##################### ACTIONS #########################
+
+        $('.action_imprimir').on('click', function(){
+            window.print();
+        });
+
+        $('#anular_factura').on('click', function(){
+            $('.popup_content').empty();
+            $('.confirmacion_wrap').css({ display: 'flex' })
+            $('.popup_actions').css({ display: 'none' })
+        });
+
+        $('#revertir_factura').on('click', function(){
+            $('.popup_content').empty();
+            $('.confirmacion_wrap').css({ display: 'flex' })
+            $('.popup_actions').css({ display: 'none' })
+        });
+
+
+        // CONFIRMACION ACTIONS
+
+        $('#confirmar_anular').on('click', function(){
+
+            const factura_id = $('.factura_up').attr('factura_id');
+
+            $.ajax({
+                type: "POST",
+                url: "process-facturas-actions-bolivia.php",
+                data: { factura_id: factura_id, modo: 'anular' },
+            }).done(function(data){
+                window.history.back();
+            });
+
+        });
+
+        $('#confirmar_revertir').on('click', function(){
+
+            const factura_id = $('.factura_up').attr('factura_id');
+
+            $.ajax({
+                type: "POST",
+                url: "process-facturas-actions-bolivia.php",
+                data: { factura_id: factura_id, modo: 'revertir' },
+            }).done(function(data){
+                window.history.back();
+            });
+
+        });
 
     });
 
