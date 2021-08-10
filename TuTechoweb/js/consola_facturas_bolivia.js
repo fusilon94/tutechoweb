@@ -147,6 +147,8 @@ $(document).ready(function(){
                     <span class="leyenda_consumidor">Estan prohibidas las practicas comerciales abusivas, tienes derecho a denunciarlas</span>
                     
                 </div>
+
+                <span class="codigo_interno">CODIGO INTERNO: ${datos_factura['id']}</span>
  
             
             `);

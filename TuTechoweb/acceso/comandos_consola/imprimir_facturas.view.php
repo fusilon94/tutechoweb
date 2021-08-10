@@ -169,7 +169,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  </body>
 
  <?php //ASI NO TENEMOS PROBLEMAS DE VARIABLES PERSISTENTES, Y AL REFRESH OBLIGAMOS DE NUEVO AL CONTRATO DESDE EL INICIO
-    // unset($_SESSION['id_factura']);
+    unset($_SESSION['id_factura']);
  ?>
 
 </html>

@@ -27,9 +27,12 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
 
+      <script>
+        const agencia_id = "<?php if(isset($_SESSION['agencia_edit'])){echo $_SESSION['agencia_edit'];};?>";
+      </script>
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
       <script src="../../js/js.cookie.js"></script>
-<script src="../../js/menu.js"></script>
+      <script src="../../js/menu.js"></script>
       <script src="../../js/slider.js"></script>
       <script src="../../js/jquery.flexslider.js"></script>
       <script src="../../js/consola_agente_jquery-ui.min.js"></script>
@@ -37,6 +40,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <script src="../../js/consola_agente_admin.js"></script>
       <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="crossorigin=""></script>
       <script src="../../js/nueva_agencia.js"></script>
+      <script src="../../js/nueva_agencia_<?= $_COOKIE['tutechopais'];?>.js"></script>
       <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
       <script> //en el modo EDIT esto define la dinamica del thumbnail de cada foto ESPECIFICO DE ESTE FORMULARIO
 
@@ -164,89 +168,15 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
         </div>
       </div>
 
-      <div class="inputs_contenedor">
-        <div class="inputs_pak">
-          <span class="input_wrap">
-            <label for="direccion">Dirección: </label>
-            <input id="direccion" type="text" name="direccion" value="<?= (isset($_SESSION['agencia_edit']) ? fill_edit_info('direccion', $agencia_info) : '') ?>">
-          </span>
-          <span class="input_wrap">
-            <label for="direccion_complemento">Complemento: </label>
-            <input id="direccion_complemento" type="text" name="direccion_complemento" value="<?= (isset($_SESSION['agencia_edit']) ? fill_edit_info('direccion_complemento', $agencia_info) : '') ?>">
-          </span>
-        </div>
-        <div class="inputs_pak">
-          <span class="input_wrap">
-            <label for="telefono">Telefono: </label>
-            <input id="telefono" type="text" name="telefono" value="<?= (isset($_SESSION['agencia_edit']) ? fill_edit_info('telefono', $agencia_info) : '') ?>">
-          </span>
-          <span class="input_wrap">
-            <label for="nit">NIT: </label>
-            <input id="nit" type="text" name="nit" value="<?= (isset($_SESSION['agencia_edit']) ? fill_edit_info('NIT', $agencia_info) : '') ?>">
-          </span>
-        </div>
-      </div>
 
-      <div class="fotos_wrap">
-
-        
-      <?php if ($modo_edicion !== ''): ?>
-
-        <div id="contenedor_foto">
-          <p style="text-align: center; color: #333333; font-weight: bold; width: 100%; cursor: default"> Sube una foto de la Agencia</p>
-          <div id="campo_foto" class="campo_foto">
-            <img src="<?= '../../agencias/' . $_SESSION['cookie_pais'] . '/' . $agencia_info['departamento'] . "_" . $agencia_info['location_tag'] . "/foto_agencia.jpg" . "?=" . Date('U')?>" alt="Foto Agencia" class="thumb_foto_normal">
-            <div class="thumb_foto_normal_p_container" onclick="thumb_click_operator(this)">
-              <p class="thumb_foto_normal_p">Cambiar Fotografía</p>
-            </div>
-            <i class="fa fa-undo-alt return_change_foto return_foto" onclick="return_foto_click_operator(this)"></i>
-            <label for="foto" id="foto_label"><p> Sube la Foto</br><span>Click or Drop</span></p></label>
-            <input type="file" id="foto" name="foto" class="" disabled>
-          </div>
-        </div>
-
-        <div id="contenedor_foto2">
-          <p style="text-align: center; color: #333333; font-weight: bold; width: 100%; cursor: default"> Sube una foto del Frontis</p>
-          <div id="campo_foto2" class="campo_foto">
-            <img src="<?= '../../agencias/' . $_SESSION['cookie_pais'] . '/' . $agencia_info['departamento'] . "_" . $agencia_info['location_tag'] . "/foto_agencia_frontis.jpg" . "?=" . Date('U')?>" alt="Foto Agencia" class="thumb_foto_normal">
-            <div class="thumb_foto_normal_p_container" onclick="thumb_click_operator(this)">
-              <p class="thumb_foto_normal_p">Cambiar Fotografía</p>
-            </div>
-            <i class="fa fa-undo-alt return_change_foto return_foto" onclick="return_foto_click_operator(this)"></i>
-            <label for="foto2" id="foto_label2"><p> Sube la Foto</br><span>Click or Drop</span></p></label>
-            <input type="file" id="foto2" name="foto2" class="" disabled>
-          </div>
-        </div>
-        
-      <?php else: ?>
-
-        <div id="contenedor_foto">
-          <p style="text-align: center; color: #333333; font-weight: bold; width: 100%; cursor: default"> Sube una foto de la Agencia</p>
-          <div id="campo_foto" class="campo_foto">
-            <label for="foto" id="foto_label"><p> Sube la Foto</br><span>Click or Drop</span></p></label>
-            <input type="file" id="foto" name="foto" class="">
-          </div>
-        </div>
-
-        <div id="contenedor_foto2">
-          <p style="text-align: center; color: #333333; font-weight: bold; width: 100%; cursor: default"> Sube una foto del Frontis</p>
-          <div id="campo_foto2" class="campo_foto">
-            <label for="foto2" id="foto_label2"><p> Sube la Foto</br><span>Click or Drop</span></p></label>
-            <input type="file" id="foto2" name="foto2" class="">
-          </div>
-        </div>
-
-      <?php endif; ?>
+      <div class="datos_contenedor" style="display: flex; width: 100%; flex-direction: column">
 
       </div>
-
-      <input type="hidden" name="modo" value="<?= $modo_edicion ?>">
 
       <span class="boton_crear_agencia"><?= (isset($_SESSION['agencia_edit']) ? 'Editar Agencia' : 'Crear Agencia') ?></span>
 
     </div>
 
-    <input type="hidden" name="modo" value="<?= (isset($_SESSION['agencia_edit']) ? 'edicion' : 'first_entry') ?>">
   </form>
 
 </main>

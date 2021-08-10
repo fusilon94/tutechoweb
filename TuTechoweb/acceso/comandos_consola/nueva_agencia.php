@@ -184,7 +184,6 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
   $regiones	=	$consulta_regiones->fetchAll(PDO::FETCH_COLUMN, 0);
 
   // MODO EDICION ###############################################################################################################
-  $modo_edicion = '';
 
   if (isset($_SESSION['agencia_edit'])) {
     $agencia_id = $_SESSION['agencia_edit'];
@@ -192,8 +191,6 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     $consulta_agencia_info =	$conexion->prepare("SELECT * FROM agencias WHERE id =:id");
     $consulta_agencia_info->execute([':id' => $agencia_id]);
     $agencia_info	=	$consulta_agencia_info->fetch(PDO::FETCH_ASSOC);
-
-    $modo_edicion = 'activado';
   };
 
   function fill_edit_info($info, $agencia){

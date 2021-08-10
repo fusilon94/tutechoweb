@@ -25,34 +25,34 @@ $(document).ready(function(){
 
     //CODIGO PARA POBLAR SELECT CIUDADES SEGUN EL DEPARTAMENTO ESCOGIDO ###############################################
 
-            $("select.departamento").change(function(){
-                var departamentoSelected = $(".departamento option:selected").val();
-                if (departamentoSelected !== '') { //si hubo una seleccion se cargan las ciudades de la db
+    $("select.departamento").change(function(){
+        const departamentoSelected = $(".departamento option:selected").val();
+        if (departamentoSelected !== '') { //si hubo una seleccion se cargan las ciudades de la db
 
-                    $.ajax({
-                        type: "POST",
-                        url: "process-request-ciudades.php",
-                        data: { departamentoChoice : departamentoSelected }
-                    }).done(function(data){
-                        $("#ciudad").prop('disabled', false).html(data);// se activa el select ciudades y pobla
-                        $("#barrio").empty().prop('disabled', true);//se vacia y bloquea el select barrios si tenia algo
-                    });
+          $.ajax({
+              type: "POST",
+              url: "process-request-ciudades.php",
+              data: { departamentoChoice : departamentoSelected }
+          }).done(function(data){
+              $("#ciudad").prop('disabled', false).html(data);// se activa el select ciudades y pobla
+              $("#barrio").empty().prop('disabled', true);//se vacia y bloquea el select barrios si tenia algo
+          });
 
-                    // Se pide las coordenadas y el zoom del departamento elejido
-                    $.ajax({
-                        type: "POST",
-                        url: "process-request-coordenadas_mapa_agencia.php",
-                        data: { departamentoChoice : departamentoSelected }
-                    }).done(function(data){
-                        $(".mapa_coordenadas_container").html(data);
-                        refresh_mapa_registro_sponsor();
-                    });
+          // Se pide las coordenadas y el zoom del departamento elejido
+          $.ajax({
+              type: "POST",
+              url: "process-request-coordenadas_mapa_agencia.php",
+              data: { departamentoChoice : departamentoSelected }
+          }).done(function(data){
+              $(".mapa_coordenadas_container").html(data);
+              refresh_mapa_registro_sponsor();
+          });
 
-                }else { // si se seleciono vacio, entonces se vacian y bloquean los select ciudad y barrio
-                  $("#ciudad").empty().prop('disabled', true).val('');
-                  $("#barrio").empty().prop('disabled', true).val('');
-                };
-            });
+        }else { // si se seleciono vacio, entonces se vacian y bloquean los select ciudad y barrio
+          $("#ciudad").empty().prop('disabled', true).val('');
+          $("#barrio").empty().prop('disabled', true).val('');
+        };
+    });
 
 
     //CODIGO PARA POBLAR SELECT BARRIOS SEGUN LA CIUDAD ESCOGIDA  Y MOSTRAR RESULTADOS SPONSORS###############################################
@@ -213,109 +213,35 @@ function onMapClick(e){
 
 mymap.on("contextmenu", onMapClick);//crea un marker al hacer click derecho en PC o click touch largo en mobile
 
-// CODIGO VERIFICACION REGEX #########################################################
-
-  $("#direccion").on('input', function(){
-    if ($(this).val().match(/^[\w\d\s+\-&.,#:\/áÁéÉíÍóÓúÚñÑ\']+$/) == null) {//Si se ingrso un caracter no permitido
-      alert('Simbolo/Caracter no permitido');
-    };
-  });
-
-  $("#direccion_complemento").on('input', function(){
-    if ($(this).val().match(/^[\w\d\s+\-&.,#:\/áÁéÉíÍóÓúÚñÑ\']+$/) == null) {//Si se ingrso un caracter no permitido
-      alert('Simbolo/Caracter no permitido');
-    };
-  });
-
-  $("#telefono").on('input', function(){
-    if ($(this).val().match(/^[+\-0-9().# \/]+$/g) == null) {//Si se ingrso un caracter no permitido
-      alert('Simbolo/Caracter no permitido');
-    };
-  });
-
-  $("#nit").on('input', function(){
-    if ($(this).val().match(/^[\w\d\s+\-áÁéÉíÍóÓúÚñÑ&#\/,.\']+$/) == null) {//Si se ingrso un caracter no permitido
-      alert('Simbolo/Caracter no permitido');
-    };
-  });
-
-// CODIGO BOTON CREAR AGENCIA ########################################################
-
-  $(".boton_crear_agencia").on('click', function(){
-    var departamento = $(".departamento option:selected").val();
-    var ciudad = $(".ciudad option:selected").val();
-    var direccion = $("#direccion").val();
-    var complemento = $("#direccion_complemento").val();
-    var telefono = $("#telefono").val();
-    var nit = $("#nit").val();
-    var lat = $("#mapa_coordenada_lat").val();
-    var lng = $("#mapa_coordenada_lng").val();
-    var zoom = $("#mapa_zoom").val();
-    var foto = $("#foto").val();
-    var foto2 = $("#foto2").val();
-    var modo = $("#modo").val();
-
-    if (departamento == '' || ciudad == '' || direccion == '' || complemento == '' || telefono == '' || nit == '' || lat == '' || lng == '' || zoom == '' || (modo == '' && foto == '' && foto2 == '')) {
-      $(".popup_success_text").html('Todos los campos deben llenarse');
-      $(".popup_success").css('visibility', 'unset');
-    }else {
-      if (direccion.match(/^[\w\d\s+\-&.,#:\/áÁéÉíÍóÓúÚñÑ\']+$/) == null || complemento.match(/^[\w\d\s+\-&.,#:\/áÁéÉíÍóÓúÚñÑ\']+$/) == null || telefono.match(/^[+\-0-9().# \/]+$/g) == null || nit.match(/^[\w\d\s+\-áÁéÉíÍóÓúÚñÑ&#\/,.\']+$/) == null) {
-        $(".popup_success_text").html('Caracteres no permitidos en algun campo');
-        $(".popup_success").css('visibility', 'unset');
-      }else {
-        $("#nueva_agencia_form").submit();
-      };
-
-    };
-
-  });
 
 // ##########################################################################################
 // ###############################DRAG AND DROP FEATURES ####################################
 // ##########################################################################################
 
-  $(".campo_foto").on('dragenter', function (e){  // lo que pasa cuando drag por encima, y cuando te vas
-      $(this).css('border', '3px dashed #007fff');
-  });
+$(".campo_foto").on('dragenter', function (e){  // lo que pasa cuando drag por encima, y cuando te vas
+  $(this).css('border', '3px dashed #007fff');
+});
 
-  $(".campo_foto").on('dragover', function (e){
-      e.preventDefault();
-      e.stopPropagation();
-      $(this).css('border', '1px solid #007fff');
-      return false;
-  });
+$(".campo_foto").on('dragover', function (e){
+  e.preventDefault();
+  e.stopPropagation();
+  $(this).css('border', '1px solid #007fff');
+  return false;
+});
 
-  $(".campo_foto").on('dragleave', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      $(this).css('border', '3px dashed gray');
-      $(this).css('background', 'white');
-  });
-
-  $.uploadPreview({
-      input_field: "#foto",   // Default: .image-upload
-      preview_box: "#campo_foto",  // Default: .image-preview
-      label_field: "#foto_label",    // Default: .image-label
-      label_default: "<p>Sube una foto de la Agencia<br><span>Click or Drop</span></p>",   // Default: Choose File
-      label_selected: "Cambia esta imagen",  // Default: Change File
-      no_label: false                 // Default: false
-  });
-
-  $.uploadPreview({
-    input_field: "#foto2",   // Default: .image-upload
-    preview_box: "#campo_foto2",  // Default: .image-preview
-    label_field: "#foto_label2",    // Default: .image-label
-    label_default: "<p>Sube una foto de la Agencia<br><span>Click or Drop</span></p>",   // Default: Choose File
-    label_selected: "Cambia esta imagen",  // Default: Change File
-    no_label: false                 // Default: false
+$(".campo_foto").on('dragleave', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $(this).css('border', '3px dashed gray');
+  $(this).css('background', 'white');
 });
 
 
 // CODIGO POPUP SUCCESS ####################################################################################
 
-  $('.popup_success_cerrar i.fa-times').on("click", function(){
-    $('.popup_success').css('visibility',  'hidden');
-  });
+$('.popup_success_cerrar i.fa-times').on("click", function(){
+  $('.popup_success').css('visibility',  'hidden');
+});
 
   });
 });
