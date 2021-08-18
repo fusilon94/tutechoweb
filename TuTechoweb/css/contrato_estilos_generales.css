@@ -68,6 +68,72 @@ header nav{
 }
 
 
+/* ################### CONTRATO HEADER ###################### */
+
+.header_contrato_wrap{
+    padding: 1em;
+    display: inline-block;
+    background-color: rgb(44, 44, 44);
+    color: #fff;
+    width: 100%;
+    font-size: 0.7em;
+    margin-bottom: 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.header_contrato_left{
+    display: inline-block;
+    height: 100%;
+    width: 6cm;
+    vertical-align: middle;
+    margin-left: 1cm;
+}
+
+.header_contrato_right{
+    display: inline-block;
+    width: 8cm;
+    margin-left: 4cm;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+
+.contrato_logo{
+    display: block;
+    width: 3.5cm;
+    margin: 0em auto 0.5em auto;
+}
+
+.razon_social {
+    display: block;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.direccion_agencia {
+    display: block;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.direccion_agencia p {
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.codigo_qr_container {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 5em;
+}
+
+
 /* ################################## CONTENIDO ################################################################ */
 
 
@@ -169,7 +235,7 @@ header nav{
     width: 25em;
     min-height: 20em;
     height: fit-content;
-    max-height: 70vh;
+    max-height: 60vh;
     padding: 1em;
     background-color: rgb(107, 107, 107);
     box-shadow: 0px 3px 9px #949494;
@@ -233,6 +299,16 @@ header nav{
     padding-left: 0.5em;
     display: flex;
     width: 80%;
+}
+
+.pregunta_select_short{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(30, 30, 30);
+    padding-left: 0.5em;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
 }
 
 .bolean_group{
@@ -442,6 +518,7 @@ header nav{
     padding: 6em 7.1em;
     user-select: none;
     cursor: default;
+    position: relative;
 }
 
 .contrato_contenedor span.dato{
@@ -576,6 +653,324 @@ header nav{
 .btn_confirmar_impresion:active{
     font-size: 1.05em; 
 }
+
+
+/* ### pregunta group #### */
+
+.arrendador_wrap{
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+.arrendador_wrap hr{
+    margin: 1em 0em;
+}
+
+.arrendatario_wrap{
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+.arrendatario_wrap hr{
+    margin: 1em 0em;
+}
+
+.titulo_group{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.borrar_elemento_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(180, 180, 180, 0.911);
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-bottom: 0.1em;
+    margin-left: 0.8em;
+}
+
+.borrar_elemento_btn:hover{
+    color: #fff;
+}
+
+.borrar_elemento_btn:active{
+    transform: scale(0.95);
+}
+
+.pregunta_elemento{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.pregunta_arrendador_group{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.tipo_wrap_vertical{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-right: 1em;
+}
+
+.checks_wrap_horizontal{
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+}
+
+.check_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.check_label{
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    cursor: default;
+    user-select: none;
+}
+
+.check_label .fa-info-circle{
+    cursor: pointer;
+}
+
+.check_element{
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.check_element .fa-square{
+    color: rgba(180, 180, 180);
+}
+
+.check_element .fa-check-square{
+    color: rgb(150, 248, 52);
+}
+
+
+.check_element:hover{
+    color: #fff;
+}
+
+.check_element:active{
+    transform: scale(0.9);
+}
+
+.datos_btn_group{
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.datos_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #35b4e6;
+    margin-right: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
+    user-select: none;
+    padding: 0.3em 1.5em;
+}
+
+.datos_btn:hover{
+    background-color: #40b6e6; 
+}
+
+.datos_btn:active{
+    transform: scale(0.99);
+}
+
+.estado_datos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.estado_datos .fa-check-circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(150, 248, 52);
+    font-size: 1.8em;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.agregar_arrendador_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #fdb210;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    user-select: none;
+    margin: 1em auto;
+    padding: 0.5em 2em;
+}
+
+.agregar_arrendador_btn:hover{
+    background-color: #fab829; 
+}
+
+.agregar_arrendador_btn:active{
+    transform: scale(0.98);
+}
+
+/* ##### POPUP DATOS ##### */
+
+.overlay_datos{
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 23;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_datos{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    background-color: #fff;
+    position: relative;
+    border-radius: 5px;
+    width: 80%;
+    max-height: 80vh;
+    overflow-y: overlay;
+}
+
+.popup_datos_cerrar{
+    position: absolute;
+    top: 0.5em;
+    right: 2.5em;
+}
+
+.popup_datos_cerrar i{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(107, 107, 107);
+    cursor: pointer;
+    position: fixed;
+}
+
+.popup_datos_cerrar:hover i {
+    color: rgb(31, 31, 31);  
+}
+
+.popup_datos_cerrar:active i {
+    font-size: 1.45em; 
+}
+
+.popup_datos_contenido{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.popup_preguntas_wrap{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.popup_wrap_vertical{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-right: 1em;
+    padding-bottom: 1.5em;
+}
+
+.popup_wrap_vertical label{
+    margin-bottom: 0.3em;
+    color: #424242;
+    font-weight: bold;
+}
+
+.popup_wrap_vertical input{
+    margin-bottom: 0.3em;
+    color: #303030;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.popup_wrap_vertical select{
+    margin-bottom: 0.3em;
+    color: #303030;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.popup_wrap_vertical option{
+    margin-bottom: 0.3em;
+    color: #303030;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.borde_rojo{
+    border: 1px solid red;
+}
+
+.popup_datos_mensaje{
+    width: 100%;
+    text-align: center;
+    color: rgb(236, 31, 31);
+    font-size: 1.1em;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.popup_guardar_datos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background-color: #1087fd;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    user-select: none;
+    margin: 1em auto;
+    padding: 0.5em 2em;
+}
+
+.popup_guardar_datos:hover{
+    background-color: #2590fa;
+}
+
+.popup_guardar_datos:active{
+    transform: scale(0.95);
+}
+
+
 /* ###################################  RESPONSIVE ############################################################# */
 
 

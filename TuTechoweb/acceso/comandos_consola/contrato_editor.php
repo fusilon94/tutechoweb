@@ -26,9 +26,10 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
     echo "Error: " . $e->getMessage();
   };
 
-  if (isset($_SESSION['tipo_selected']) && isset($_SESSION['pais_selected'])) {
+  if (isset($_SESSION['tipo_selected']) && isset($_SESSION['pais_selected']) && isset($_SESSION['sub_tipo_selected'])) {
       $tipo_selected = $_SESSION['tipo_selected'];
       $pais_selected = $_SESSION['pais_selected'];
+      $sub_tipo_selected = $_SESSION['sub_tipo_selected'];
   }else {
       // header('Location: consola_contratos_personal.php');
   };

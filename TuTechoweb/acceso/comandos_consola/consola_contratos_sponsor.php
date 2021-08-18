@@ -27,6 +27,7 @@ if (isset($_SESSION['usuario'])) {//si una SESSION a sido definida entonces deja
 
     $_SESSION['tipo_selected'] = $tipo_selected;
     $_SESSION['pais_selected'] = $pais_selected;
+    $_SESSION['sub_tipo_selected'] = '';
 
     $contrato_path = 'Location: contrato_editor.php';
 

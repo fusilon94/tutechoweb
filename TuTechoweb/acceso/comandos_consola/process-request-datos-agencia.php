@@ -35,9 +35,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             'direccion' => "______",
             'direccion_complemento' => "______",
             'NIT' => "______",
-            'location_tag' => "______"];
+            'location_tag' => "______",
+            'razon_social' => "______"]
+            ;
         }else{
-            $consulta_agencia =	$conexion->prepare("SELECT departamento, ciudad, barrio, direccion, direccion_complemento, NIT, location_tag FROM agencias WHERE id = :id");
+            $consulta_agencia =	$conexion->prepare("SELECT * FROM agencias WHERE id = :id");
             $consulta_agencia->execute([':id' => $agente['agencia_id']]);
             $agencia =	$consulta_agencia->fetch(PDO::FETCH_ASSOC);
         };

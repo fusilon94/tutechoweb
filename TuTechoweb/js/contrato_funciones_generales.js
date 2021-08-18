@@ -82,6 +82,10 @@
         $(".overlay").css("visibility", "hidden");
     });
 
+    $(".popup_datos_cerrar").on("click", function(){
+        $(".overlay_datos").css("visibility", "hidden");
+    });
+
     $(".btn_confirmar_impresion").on("click", function(){
         $(".overlay").css("visibility", "hidden");
         window.print();

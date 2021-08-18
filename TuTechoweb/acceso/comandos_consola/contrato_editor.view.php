@@ -21,17 +21,20 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/font_awesome.css">
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-      <link rel="stylesheet" href="../../css/contrato_estilos_generales.css" media="screen">
-      <link rel="stylesheet" href="../../css/contrato_estilos_generales_impresion.css" media="print">
+      <link rel="stylesheet" href="../../css/contrato_estilos_generales.css" >
+      <!-- <link rel="stylesheet" href="../../css/contrato_estilos_generales_impresion.css" media="print"> -->
 
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
       <script src="../../js/consola_agente_jquery-ui.min.js"></script>
       <script src="../../js/js.cookie.js"></script>
-<script src="../../js/menu.js"></script>
+      <script src="../../js/menu.js"></script>
+      <script src="../../js/qart.min.js"></script>
+      <script src="../../js/numero_a_letras.js"></script>
       <script src="../../js/slider.js"></script>
       <script src="../../js/jquery.flexslider.js"></script>
       <script>
         const tipo_selected = "<?php echo $tipo_selected; ?>";
+        const sub_tipo_selected = "<?php echo $sub_tipo_selected; ?>";
         const pais_selected = "<?php echo $pais_selected; ?>";
 
         let etapa_actual = 1;
@@ -40,7 +43,7 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
         const agente_id = "<?php echo $agente_id[0]; ?>";
       </script>
       <script src="../../js/contrato_funciones_generales.js"></script>
-      <script src="../../js/contrato_<?php echo $tipo_selected . '_' . $pais_selected; ?>.js"></script>
+      <script src="../../js/contrato_<?php echo $tipo_selected . '_' . $sub_tipo_selected . $pais_selected; ?>.js"></script>
       
 
  </head>
@@ -56,6 +59,16 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
             <p>Llenado, firmas y huellas en tinta azul</p>
          </span>
          <span class="btn_confirmar_impresion">CONTINUAR</span>
+     </div>
+ </div>
+
+ <div class="overlay_datos">
+     <div class="popup_datos">
+         <span class="popup_datos_cerrar"><i class="fa fa-times"></i></span>
+         
+         <div class="popup_datos_contenido">
+
+         </div>
      </div>
  </div>
 
@@ -156,8 +169,9 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
  </body>
 
  <?php //ASI NO TENEMOS PROBLEMAS DE VARIABLES PERSISTENTES, Y AL REFRESH OBLIGAMOS DE NUEVO AL CONTRATO DESDE EL INICIO
-    unset($_SESSION['tipo_selected']);
-    unset($_SESSION['pais_selected']);
+    // unset($_SESSION['tipo_selected']);
+    // unset($_SESSION['pais_selected']);
+    // unset($_SESSION['sub_tipo_selected']);
  ?>
 
 </html>
