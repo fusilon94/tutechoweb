@@ -193,14 +193,29 @@ recaudar_datos(agente_id).then(function(datos){
 // #################################### OBJETO DATOS ALMACENADOS #####################################################
 
 const datos_formulario = {
-    arrendador: [],
-    arrendatario: []
+    arrendador: [{}],
+    arrendatario: [{}]
 };
 
 // #################################### DEFINICION DE FUNCIONES ESPECIFICAS ##########################################
 
+function edit_select(dato, dato_compare){
+        if (dato == dato_compare) {
+            return 'selected';
+        }else{
+            return '';
+        };
+};
+
+
 function crear_formulario_datos(categoria, parametros){//tipo es string, parametros es un array/objeto
     let formulario_datos;
+
+    let edit_estado = $(`.group_question_wrap[count="${parametros.count}"]`).find(".estado_datos");
+    let datos = {};
+    if (edit_estado.hasClass("activo")) { 
+        datos = datos_formulario.arrendador[parametros.count-1].datos;
+    };
 
     if (categoria == 'arrendador') {
 
@@ -209,6 +224,8 @@ function crear_formulario_datos(categoria, parametros){//tipo es string, paramet
         }else{
             
             if (parametros['tipo'] == 'natural') {
+                const { nombre = '', tipo_doc = '', numero_identidad = '', domicilio = '' } = datos;
+
                 formulario_datos = `
                     <h2 style="margin-bottom: 1em">Arrendador #${parametros['count']}</h2>
 
@@ -216,27 +233,29 @@ function crear_formulario_datos(categoria, parametros){//tipo es string, paramet
 
                         <div class="popup_wrap_vertical">
                             <label for="popup_nombre">Nombre y Apellidos</label>
-                            <input name="popup_nombre" value="" class="popup_input_string popup_nombre">
+                            <input name="popup_nombre" value="${nombre}" class="popup_input_string popup_nombre">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_doc_identidad">Documento de Identidad</label>
                             <select name="popup_doc_identidad" class="popup_doc_identidad">
-                                <option value=""></option>
-                                <option value="Carnet de Identidad">Carnet de Identidad</option>
-                                <option value="Pasaporte">Pasaporte</option>
+                                <option value="" ${edit_select(tipo_doc, "")}></option>
+                                <option value="Carnet de Identidad" ${edit_select(tipo_doc, 'Carnet de Identidad')}>Carnet de Identidad</option>
+                                <option value="Pasaporte" ${edit_select(tipo_doc, 'Pasaporte')}>Pasaporte</option>
                             </select>
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_num_identidad">N° de Documento</label>
-                            <input name="popup_num_identidad" value="" placeholder="" class="popup_input_num popup_num_identidad">
+                            <input name="popup_num_identidad" value="${numero_identidad}" placeholder="" class="popup_input_num popup_num_identidad">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_domicilio">Domicilio</label>
-                            <input name="popup_domicilio" value="" placeholder="ej: #numero, calle/avenida, ciudad - departamento" class="popup_input_string popup_domicilio">
+                            <input name="popup_domicilio" value="${domicilio}" placeholder="ej: #numero, calle/avenida, ciudad - departamento" class="popup_input_string popup_domicilio">
                         </div>
 
                 `;
             }else if(parametros['tipo'] == 'juridico'){
+                const { razon_social = '', tipo_entidad = '', nit = '', domicilio = '', representante_nombre = '', representante_doc_identidad = '', representante_num_identidad = '', representante_cargo = '' } = datos;
+
                 formulario_datos = `
                     <h2 style="margin-bottom: 1em">Arrendador #${parametros['count']}</h2>
 
@@ -244,43 +263,43 @@ function crear_formulario_datos(categoria, parametros){//tipo es string, paramet
 
                         <div class="popup_wrap_vertical">
                             <label for="popup_razon_social">Razón Social</label>
-                            <input name="popup_razon_social" value="" class="popup_input_string popup_razon_social">
+                            <input name="popup_razon_social" value="${razon_social}" class="popup_input_string popup_razon_social">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_tipo_entidad">Tipo de Entidad</label>
                             <select name="popup_tipo_entidad" class="popup_tipo_entidad">
-                                <option value=""></option>
-                                <option value="Sociedad Anónima">Sociedad Anónima</option>
-                                <option value="Sociedad a Resposabilidad Limitada">Sociedad a Resposabilidad Limitada</option>
+                                <option value="" ${edit_select(tipo_entidad, '')}></option>
+                                <option value="Sociedad Anónima" ${edit_select(tipo_entidad, 'Sociedad Anónima')}>Sociedad Anónima</option>
+                                <option value="Sociedad a Resposabilidad Limitada" ${edit_select(tipo_entidad, 'Sociedad a Resposabilidad Limitada')}>Sociedad a Resposabilidad Limitada</option>
                             </select>
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_nit">NIT</label>
-                            <input name="popup_nit" value="" placeholder="" class="popup_input_string popup_nit">
+                            <input name="popup_nit" value="${nit}" placeholder="" class="popup_input_string popup_nit">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_domicilio_sede">Direccion principal</label>
-                            <input name="popup_domicilio_sede" value="" placeholder="" class="popup_input_string popup_domicilio_sede">
+                            <input name="popup_domicilio_sede" value="${domicilio}" placeholder="" class="popup_input_string popup_domicilio_sede">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_representante_nombre">Nombre y Apellido del representante</label>
-                            <input name="popup_representante_nombre" value="" placeholder="ej: #numero, calle/avenida, ciudad - departamento"  class="popup_input_string popup_representante_nombre">
+                            <input name="popup_representante_nombre" value="${representante_nombre}" placeholder="ej: #numero, calle/avenida, ciudad - departamento"  class="popup_input_string popup_representante_nombre">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_representante_doc_identidad">Documento de Identidad</label>
                             <select name="popup_representante_doc_identidad" class="popup_representante_doc_identidad">
-                                <option value=""></option>
-                                <option value="Carnet de Identidad">Carnet de Identidad</option>
-                                <option value="Pasaporte">Pasaporte</option>
+                                <option value="" ${edit_select(representante_doc_identidad, '')}></option>
+                                <option value="Carnet de Identidad" ${edit_select(representante_doc_identidad, 'Carnet de Identidad')}>Carnet de Identidad</option>
+                                <option value="Pasaporte" ${edit_select(representante_doc_identidad, 'Pasaporte')}>Pasaporte</option>
                             </select>
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_representante_num_identidad">N° de Documento</label>
-                            <input name="popup_representante_num_identidad" value="" placeholder="" class="popup_input_num popup_representante_num_identidad">
+                            <input name="popup_representante_num_identidad" value="${representante_num_identidad}" placeholder="" class="popup_input_num popup_representante_num_identidad">
                         </div>
                         <div class="popup_wrap_vertical">
                             <label for="popup_representante_cargo">Cargo que ocupa</label>
-                            <input name="popup_representante_cargo" value="" placeholder=""  class="popup_input_string popup_representante_cargo">
+                            <input name="popup_representante_cargo" value="${representante_cargo}" placeholder=""  class="popup_input_string popup_representante_cargo">
                         </div>
 
                 `;
@@ -288,14 +307,16 @@ function crear_formulario_datos(categoria, parametros){//tipo es string, paramet
             
 
             if (parametros['poder'] == true) {
+                const { poder_num = '', notaria = '' } = datos;
+
                 formulario_datos += `
                     <div class="popup_wrap_vertical">
                         <label for="popup_poder_num">N° de Poder</label>
-                        <input name="popup_poder_num" value="" class="popup_input_num popup_poder_num">
+                        <input name="popup_poder_num" value="${poder_num}" class="popup_input_num popup_poder_num">
                     </div>
                     <div class="popup_wrap_vertical">
                         <label for="popup_notaria">Notaria</label>
-                        <input name="popup_notaria" value="" placeholder="ej: Notaria de Fé Pública n°42"  class="popup_input_string popup_notaria">
+                        <input name="popup_notaria" value="${notaria}" placeholder="ej: Notaria de Fé Pública n°42"  class="popup_input_string popup_notaria">
                     </div>
                 `;
             }
@@ -319,7 +340,7 @@ function crear_formulario_datos(categoria, parametros){//tipo es string, paramet
 function guardar_formulario_datos(categoria, parametros) {
     
     if (categoria === 'arrendador') {
-        const { tipo, poder } = parametros;
+        const { tipo, poder, count } = parametros;
 
         let datos = {};
 
@@ -353,11 +374,11 @@ function guardar_formulario_datos(categoria, parametros) {
         };
 
         
-        datos_formulario.arrendador.push({
+        datos_formulario.arrendador[count-1] = {
             tipo: tipo,
             poder: poder,
             datos: datos,
-        });
+        };
 
     };
 
@@ -367,39 +388,49 @@ function guardar_formulario_datos(categoria, parametros) {
 
 function refresh_contrato() {
     
-    if (datos_formulario['arrendador'].length === 0) {
+    if (datos_formulario['arrendador'].length === 0) {// Este evento puede que nunca ocurra ;)
         $('#contrato_arrendador').html(`
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ______
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ______</br></br>
         `);
     }else{
+
         let arrendador_text = '';
         datos_formulario['arrendador'].forEach(function(arrendador){
-
-            console.log(arrendador)
             let arrendador_element = '';
-            if (arrendador['tipo'] == "natural") {
-
+            if (Object.keys(arrendador).length == 0) {
                 arrendador_element += `
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ${arrendador.datos.nombre}, con ${arrendador.datos.tipo_doc} n°${arrendador.datos.numero_identidad}, con domicilio en ${arrendador.datos.domicilio}
-                `;
-                
-            } else if (arrendador['tipo'] == "juridico"){
-                
-                arrendador_element += `
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ${arrendador.datos.razon_social}, ${arrendador.datos.tipo_entidad} con NIT n°${arrendador.datos.nit}, con dirección principal en ${arrendador.datos.domicilio}, siendo representada por ${arrendador.datos.representante_nombre}, con ${arrendador.datos.representante_doc_identidad} n°${arrendador.datos.representante_num_identidad}, que ocupa el cargo de ${arrendador.datos.representante_cargo}
-                `;
-
-            };
-
-            if (arrendador['poder'] == true) {
-                arrendador_element += `
-                    , con Poder Notariado espécifico y suficiente n°${arrendador.datos.poder_num} otorgado por la ${arrendador.datos.notaria}</br></br>
-                `;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ______</br></br>
+                    `;
             }else{
-                arrendador_element += `.</br></br>`;  
+                
+                if (arrendador['tipo'] == "natural") {
+    
+                    arrendador_element += `
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ${arrendador.datos.nombre}, con ${arrendador.datos.tipo_doc} n°${arrendador.datos.numero_identidad}, con domicilio en ${arrendador.datos.domicilio}
+                    `;
+                    
+                } else if (arrendador['tipo'] == "juridico"){
+                    
+                    arrendador_element += `
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - ${arrendador.datos.razon_social}, ${arrendador.datos.tipo_entidad} con NIT n°${arrendador.datos.nit}, con dirección principal en ${arrendador.datos.domicilio}, siendo representada por ${arrendador.datos.representante_nombre}, con ${arrendador.datos.representante_doc_identidad} n°${arrendador.datos.representante_num_identidad}, que ocupa el cargo de ${arrendador.datos.representante_cargo}
+                    `;
+    
+                };
+    
+                if (arrendador['poder'] == true) {
+                    arrendador_element += `
+                        , con Poder Notariado espécifico y suficiente n°${arrendador.datos.poder_num} otorgado por la ${arrendador.datos.notaria}</br></br>
+                    `;
+                }else{
+                    arrendador_element += `.</br></br>`;  
+                };
+    
+               
             };
 
             arrendador_text += arrendador_element;
+
+            
         });
 
         $('#contrato_arrendador').html(arrendador_text);
@@ -431,6 +462,29 @@ function refresh_count(categoria){ // Restablece el count de los arrendadores cu
         });
     };
 
+};
+
+function add_check(categoria, count){
+    if (categoria === 'arrendador') {
+
+        $(".etapas_wrap").find(".arrendador_wrap").eq(count-1).find(".estado_datos").addClass("activo");
+        
+    } else if (categoria === 'arrendatario'){
+        
+    };
+};
+
+function check_estado_change(element){
+    const estado = $(element).parents('.group_question_wrap').find(".estado_datos");
+    if (!estado.hasClass("activo")) { return };
+
+    estado.removeClass("activo");
+
+    let categoria = $(element).parents('.group_question_wrap').attr("categoria");
+    let count = $(element).parents('.group_question_wrap').attr("count");
+
+    datos_formulario[categoria][count-1] = {};
+    refresh_contrato();
 };
 
 // #################################### REGEX ESPECIFICOS ##########################################
@@ -482,8 +536,18 @@ $(".etapas_wrap").on("click", ".check_element", function(){//funcion de checks b
         $(this).html(`<i class="far fa-square"></i>`).removeClass("activo");
     };
 
+    const parent_wrap = $(this).parents('.group_question_wrap').attr("categoria")
+    if (parent_wrap == "arrendador" || parent_wrap == 'arrendatario') {
+        check_estado_change( $(this) );
+    };
 });
 
+
+$(".etapas_wrap").on("change", ".pregunta_select_short", function(){
+    
+    check_estado_change( $(this) );
+
+});
 
 $(".etapas_wrap").on("click", ".datos_btn", function(){
 
@@ -543,7 +607,7 @@ $(".etapas_wrap").on("click", ".agregar_arrendador_btn", function(){
     const count_wraps = ($(this).parent().find(".arrendador_wrap").length) + 1;
 
     $(this).parent().find(".arrendador_wrap").last().after(`
-        <div class="arrendador_wrap" count="${count_wraps}" categoria="arrendador">
+        <div class="arrendador_wrap group_question_wrap" count="${count_wraps}" categoria="arrendador">
             <span class="titulo_group">
                 <span style="color: #fff">ARRENDADOR #${count_wraps}</span>
                 <span class="borrar_elemento_btn"><i class="fa fa-trash-alt"></i></span>
@@ -578,6 +642,9 @@ $(".etapas_wrap").on("click", ".agregar_arrendador_btn", function(){
             <hr>
         </div>
     `);
+
+    datos_formulario.arrendador.push({});
+    refresh_contrato();
 });
 
 $(".popup_datos_contenido").on("click", ".popup_guardar_datos", function(){
@@ -597,6 +664,7 @@ $(".popup_datos_contenido").on("click", ".popup_guardar_datos", function(){
     if ( error == false ) { 
         guardar_formulario_datos(categoria, parametros);
         refresh_contrato();
+        add_check( categoria, parametros.count );
         $(".popup_datos_contenido").empty();
         $(".overlay_datos").css("visibility", "hidden");
         
@@ -621,7 +689,7 @@ $(".contrato_titulo").html("CONTRATO DE ARRENDAMIENTO - BOLIVIA");
 
 $("#etapa_1").html(`
 
-<div class="arrendador_wrap" count="1" categoria="arrendador">
+<div class="arrendador_wrap group_question_wrap" count="1" categoria="arrendador">
     <span class="titulo_group">
         <span style="color: #fff">ARRENDADOR #1</span>
         <span class="borrar_elemento_btn"><i class="fa fa-trash-alt"></i></span>
@@ -693,7 +761,7 @@ function get_ciudades(departamentoSelected) {
 };
 
 $("#etapa_2").html(`
-<div class="arrendatario_wrap" count="1" categoria="arrendatario">
+<div class="arrendatario_wrap group_question_wrap" count="1" categoria="arrendatario">
     <span class="titulo_group">
         <span style="color: #fff">ARRENDATARIO #1</span>
         <span class="borrar_elemento_btn"><i class="fa fa-trash-alt"></i></span>

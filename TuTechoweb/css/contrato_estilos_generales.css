@@ -657,23 +657,13 @@ header nav{
 
 /* ### pregunta group #### */
 
-.arrendador_wrap{
+.group_question_wrap{
     display: flex;
     flex-direction: column;
     user-select: none;
 }
 
-.arrendador_wrap hr{
-    margin: 1em 0em;
-}
-
-.arrendatario_wrap{
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-}
-
-.arrendatario_wrap hr{
+.group_question_wrap hr{
     margin: 1em 0em;
 }
 
@@ -803,6 +793,11 @@ header nav{
     justify-content: center;
     align-items: center;
     cursor: default;
+    visibility: hidden;
+}
+
+.estado_datos.activo{
+    visibility: unset;
 }
 
 .estado_datos .fa-check-circle{
