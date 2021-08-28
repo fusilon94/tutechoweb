@@ -33,6 +33,16 @@ async function recaudar_datos(agente_id){
 
 };
 
+// #################################### OBJETO DATOS ALMACENADOS #####################################################
+
+const datos_formulario = {
+    arrendador: [{}],
+    arrendatario: [{}],
+    datos_inmueble: '-______',
+    fecha_inicio: '______',
+    fecha_final: '______',
+};
+
 // ################### CONTRATO INICIAL
 recaudar_datos(agente_id).then(function(datos){
 
@@ -76,12 +86,12 @@ recaudar_datos(agente_id).then(function(datos){
     <p><strong><u>1.Cl&aacute;usula Primera</u>:(De las partes)</strong></p>
     <p style="text-align: center;"><strong>&nbsp;</strong></p>
     <p>1.1. El ARRENDADOR:</p>
-    <span id="contrato_arrendador" style="text-align: justify; margin-left: 2.5em"><i class="fas fa-circle"></i> ______</span>
-    <p><strong>&nbsp;</strong>Persona que ser&aacute; en adelante denominada como el ARRENDADOR.</p>
+    <span id="contrato_arrendador" style="text-align: justify"><p><i class="fas fa-circle"></i> ______<br><br></p></span>
+    <p id="arrendador_final"><strong>&nbsp;</strong>Persona que ser&aacute; en adelante denominada como el ARRENDADOR.</p>
     <p style="text-align: center;"><strong>&nbsp;</strong></p>
     <p>1.2. El ARRENDATARIO:</p>
-    <span id="contrato_arrendatario" style="text-align: justify; margin-left: 2.5em"><i class="fas fa-circle"></i> ______</span>
-    <p><strong>&nbsp;</strong>Persona que ser&aacute; en adelante denominada como el ARRENDATARIO.</p>
+    <span id="contrato_arrendatario" style="text-align: justify"><p><i class="fas fa-circle"></i> ______<br><br></p></span>
+    <p id="arrendatario_final"><strong>&nbsp;</strong>Persona que ser&aacute; en adelante denominada como el ARRENDATARIO.</p>
         
     `);
 
@@ -92,7 +102,7 @@ recaudar_datos(agente_id).then(function(datos){
     <p><strong><u>2.Cl&aacute;usula Segunda</u></strong><strong>:</strong> (<strong>Del objeto</strong>)</p>
     <p style="text-align: center;"><strong>&nbsp;</strong></p>
     <p><strong>&nbsp;</strong>El <strong>ARRENDADOR</strong> arrienda al <strong>ARRENDATARIO</strong> el siguiente bien inmueble:</p>
-    <span>-______</span>
+    <span id="datos_inmueble" style="text-align: justify">-______</span>
     <p style="text-align: center;"><strong>&nbsp;</strong></p>
     <p><strong>&nbsp;</strong>El contrato se rige por las disposiciones legales vigentes y en especial por las establecidas en el Art. 685 y siguientes del C&oacute;digo Civil.</p>
 
@@ -103,7 +113,7 @@ recaudar_datos(agente_id).then(function(datos){
     <p style="text-align: center;"><strong>&nbsp;</strong></p>
     <p><strong><u>3.Cl&aacute;usula Tercera</u></strong>: <strong>(Del plazo)</strong></p>
     <p style="text-align: center;"><strong>&nbsp;</strong></p>
-    <p style="text-align: justify;"><strong>&nbsp;</strong>El presente contrato dar&aacute; inicio el <span>______</span> y tendr&aacute; fin el <span>______</span>. En caso de que ambas partes decidieran ampliar en plazo del Contrato de Arrendamiento, necesariamente se debe realizar un nuevo documento de contrato de alquiler.</p>
+    <p style="text-align: justify;"><strong>&nbsp;</strong>El presente contrato dar&aacute; inicio el <span id="contrato_inicio_text">______</span> y tendr&aacute; fin <span id="contrato_final_text">______</span>. En caso de que ambas partes decidieran ampliar en plazo del Contrato de Arrendamiento, necesariamente se debe realizar un nuevo documento de contrato de alquiler.</p>
     `);
 
     // CLAUSULA 4
@@ -190,12 +200,6 @@ recaudar_datos(agente_id).then(function(datos){
 
 });
 
-// #################################### OBJETO DATOS ALMACENADOS #####################################################
-
-const datos_formulario = {
-    arrendador: [{}],
-    arrendatario: [{}]
-};
 
 // #################################### DEFINICION DE FUNCIONES ESPECIFICAS ##########################################
 
@@ -643,6 +647,11 @@ function refresh_contrato() {
     // ###### ETAPA 1 --> ARRENDADORES
 
     let arrendador_text = '';
+    arrendador_text += `<p>`;
+    let arrendador_final = '<strong>&nbsp;</strong>Persona que ser&aacute; en adelante denominada como el ARRENDADOR.';
+    if (Object.keys(datos_formulario['arrendador']).length > 1) {
+        arrendador_final = '<strong>&nbsp;</strong>Personas que ser&aacuten; en conjunto y en adelante denominadas como el ARRENDADOR.';
+    };
     datos_formulario['arrendador'].forEach(function(arrendador){
         let arrendador_element = '';
         if (Object.keys(arrendador).length == 0) {
@@ -652,13 +661,13 @@ function refresh_contrato() {
             if (arrendador['tipo'] == "natural") {
 
                 arrendador_element += `
-                     <i class="fas fa-circle"></i> ${arrendador.datos.nombre}, con ${arrendador.datos.tipo_doc} n°${arrendador.datos.numero_identidad}, con domicilio en ${arrendador.datos.domicilio}
+                    <i class="fas fa-circle"></i> ${arrendador.datos.nombre}, con ${arrendador.datos.tipo_doc} n°${arrendador.datos.numero_identidad}, con domicilio en ${arrendador.datos.domicilio}
                 `;
                 
             } else if (arrendador['tipo'] == "juridico"){
                 
                 arrendador_element += `
-                     <i class="fas fa-circle"></i> ${arrendador.datos.razon_social}, ${arrendador.datos.tipo_entidad} con NIT n°${arrendador.datos.nit}, con dirección principal en ${arrendador.datos.domicilio}, siendo representada por ${arrendador.datos.representante_nombre}, con ${arrendador.datos.representante_doc_identidad} n°${arrendador.datos.representante_num_identidad}, que ocupa el cargo de ${arrendador.datos.representante_cargo}
+                    <i class="fas fa-circle"></i> ${arrendador.datos.razon_social}, ${arrendador.datos.tipo_entidad} con NIT n°${arrendador.datos.nit}, con dirección principal en ${arrendador.datos.domicilio}, siendo representada por ${arrendador.datos.representante_nombre}, con ${arrendador.datos.representante_doc_identidad} n°${arrendador.datos.representante_num_identidad}, que ocupa el cargo de ${arrendador.datos.representante_cargo}
                 `;
 
             };
@@ -679,19 +688,26 @@ function refresh_contrato() {
         
     });
 
+    arrendador_text += `</p>`;
     $('#contrato_arrendador').html(arrendador_text);
+    $("#arrendador_final").html(arrendador_final);
+    
     
     // ###### ETAPA 2 --> ARRENDATARIOS
 
     let arrendatario_text = '';
+    let arrendatario_final = '<strong>&nbsp;</strong>Persona que ser&aacute; en adelante denominada como el ARRENDATARIO.';
+    if (Object.keys(datos_formulario['arrendatario']).length > 1) {
+        arrendatario_final = '<strong>&nbsp;</strong>Personas que ser&aacuten; en conjunto y en adelante denominadas como el ARRENDATARIO.';
+    };
+    arrendatario_text += `<p>`;
     datos_formulario['arrendatario'].forEach(function(arrendatario){
         let arrendatario_element = '';
+        
         if (Object.keys(arrendatario).length == 0) {
-            arrendatario_element += `
-                 <i class="fas fa-circle"></i> ______</br></br>
-                `;
+            arrendatario_element += `<i class="fas fa-circle"></i> ______</br></br>`;
         }else{
-            
+
             if (arrendatario['tipo'] == "natural") {
 
                 arrendatario_element += `
@@ -705,7 +721,7 @@ function refresh_contrato() {
             } else if (arrendatario['tipo'] == "juridico"){
                 
                 arrendatario_element += `
-                     <i class="fas fa-circle"></i> ${arrendatario.datos.razon_social}, ${arrendatario.datos.tipo_entidad} con NIT n°${arrendatario.datos.nit}, con dirección principal en ${arrendatario.datos.domicilio}, siendo representada por ${arrendatario.datos.representante_nombre}, con ${arrendatario.datos.representante_doc_identidad} n°${arrendatario.datos.representante_num_identidad}, que ocupa el cargo de ${arrendatario.datos.representante_cargo}
+                    <i class="fas fa-circle"></i> ${arrendatario.datos.razon_social}, ${arrendatario.datos.tipo_entidad} con NIT n°${arrendatario.datos.nit}, con dirección principal en ${arrendatario.datos.domicilio}, siendo representada por ${arrendatario.datos.representante_nombre}, con ${arrendatario.datos.representante_doc_identidad} n°${arrendatario.datos.representante_num_identidad}, que ocupa el cargo de ${arrendatario.datos.representante_cargo}
                 `;
 
             };
@@ -718,14 +734,12 @@ function refresh_contrato() {
             if (arrendatario.terceros == true) {
 
                 arrendatario_element += `
-                    , se da como Garante y toma total responsablidad por el Uso y Goce del inmueble cedido a:
+                    , se da como Garante y toma total responsablidad por el Uso y Goce del inmueble cedido a:</br>
                     `;
                 
                 arrendatario.datos.terceros.forEach(function(tercero){
-
                     arrendatario_element += `</br>
-                    <p style="margin-left: 3.5em">-&nbsp;${tercero.nombre}, con ${tercero.tipo_doc} n°${tercero.numero_identidad}</p>`;
-
+                    <p style="margin-left: 3.5em; text-align: justify;">-&nbsp;${tercero.nombre}, con ${tercero.tipo_doc} n°${tercero.numero_identidad}</p>`;
                 });
 
                 arrendatario_element += `</br></br>`;
@@ -734,16 +748,27 @@ function refresh_contrato() {
                 arrendatario_element += `.</br></br>`;  
             };
             
-            
-            
         };
 
         arrendatario_text += arrendatario_element;
-
         
     });
 
+    arrendatario_text += `</p>`;
+    
     $('#contrato_arrendatario').html(arrendatario_text);
+    $("#arrendatario_final").html(arrendatario_final);
+
+
+    // ################ DATOS INMUEBLE #####################
+
+    $('#datos_inmueble').html(datos_formulario.datos_inmueble);
+
+    
+    // ########### INICIO Y FINAL DE CONTRATO ################
+
+    $('#contrato_inicio_text').html(datos_formulario.fecha_inicio);
+    $('#contrato_final_text').html(datos_formulario.fecha_final);
     
     
 };
@@ -1095,6 +1120,88 @@ $(".popup_datos_contenido").on("click", ".popup_guardar_datos", function(){
     
 });
 
+// VALIDAR REFERENCIA DE INMUEBLE
+$(".etapas_wrap").on("click", ".referencia_btn", function(){
+    
+    const referencia = $("#referencia_inmueble").val();
+
+    $.ajax({
+        type: "POST",
+        url: "process-request-get-inmueble-datos-all.php",
+        data: { referencia_sent : referencia },
+        dataType: 'json'
+    }).done(function(data){
+        
+        if (data == 'error') {
+            $(".referencia_invalida").addClass("activo");
+            datos_formulario.datos_inmueble = '-______';
+            refresh_contrato();
+            return
+        };
+
+        $(".referencia_invalida").removeClass("activo");
+
+        const { dormitorios, parqueos, pais, departamento, location_tag, direccion, direccion_complemento, superficie_inmueble, superficie_terreno, superficie_terreno_medida } = data;
+
+        const dormitorios_string = dormitorios == 1 ? `un dormitorio`
+            : `${dormitorios} dormitorios`;
+
+        const parqueos_string = parqueos == 0 ? ''
+            : parqueos == 1 ?  `y un espacio de estacionamiento vehicular o parqueo` 
+            : `y ${parqueos} espacios de estacionamiento vehicular o parqueos`;
+
+        const datos_inmueble = `
+            <p style="text-align: justify">Una casa con dirección en ${direccion}, ${direccion_complemento} en ${location_tag}, departamento de ${departamento} - ${pais}.
+            El inmueble tiene una superficie construida de ${superficie_inmueble} m&sup2 en un terreno con superficie de ${superficie_terreno} ${superficie_terreno_medida}.
+            El inmueble consta con de ${dormitorios_string} ${parqueos_string}.</p>
+        `;
+
+        datos_formulario.datos_inmueble = datos_inmueble;
+        refresh_contrato();
+        
+        
+    }).error(e => console.log(e.responseText));
+
+});
+
+
+$(".etapas_wrap").on("change", "#fecha_inicio", function(){
+
+    const fecha_inicio = $("#fecha_inicio").val();
+    if (fecha_inicio == '') { return };
+
+    datos_formulario.fecha_inicio = fecha_inicio;
+    refresh_contrato();
+    
+});
+
+$(".etapas_wrap").on("change", "#fecha_final", function(){
+
+    const fecha_final = $("#fecha_final").val();
+    if (fecha_final == '') { return };
+
+    datos_formulario.fecha_final = `el ${fecha_final}`;
+    refresh_contrato();
+});
+
+
+
+$(".etapas_wrap").on("click", ".check_indefinido", function(){
+
+    const unchecked = $(this).hasClass('activo');
+    if ( unchecked ) {
+        $("#fecha_final").prop("disabled", true);
+        $("#fecha_final").val('');
+        datos_formulario.fecha_final = 'de carácter indefinido';
+    } else {
+        $("#fecha_final").prop("disabled", false);
+        datos_formulario.fecha_final = '______';
+    };
+    refresh_contrato();
+
+})
+
+
 // ####################################  FIRST CHARGE ################################################################
 
 preguntas_grupos_cantidad = 10;
@@ -1240,26 +1347,50 @@ focus_fill_select("#ciudad_agente", ".agente_ciudad");
 
 $("#etapa_3").html(`
     <span class="pregunta_elemento">
-        <label for="registro_agente_autonomo" class="pregunta_label">Entidad y documento con los cuales el AGENTE esta inscrito como profesional autónomo:</label>
-        <textarea name="registro_agente_autonomo" id="registro_agente_autonomo" rows="1" class="pregunta_input" oninput="auto_grow(this)" placeholder="Fundempresa, registro n°xxxxxxxx-x"></textarea>
+        <label for="referencia_inmueble" class="pregunta_label">Ingrése una Referencia Inmueble Válida:</label>
+        <input type="text" name="referencia_inmueble" id="referencia_inmueble" class="pregunta_input referencia_inmueble input_short" maxlength="12">
     </span>
+    <div class="datos_btn_group">
+        <span class="referencia_btn">Validar Referencia</span>
+    </div>
+    <span class="referencia_invalida">Referencia NO válida</span>
 `);
 
-focus_fill_input("#registro_agente_autonomo", ".registro_agente_autonomo");
 
-    // ############# ETAPA 3
 
-    $("#etapa_4").html(`
-    <span class="pregunta_elemento">
-        <label for="email_agente" class="pregunta_label">Correo electrónico personal (no comercial) del AGENTE a contratar:</label>
-        <textarea name="email_agente" id="email_agente" rows="1" class="pregunta_input" oninput="auto_grow(this)" placeholder="agente@gmail.com"></textarea>
+// ############# ETAPA 4
+
+$("#etapa_4").html(`
+
+<span class="pregunta_elemento">
+    <label for="email_agente" class="pregunta_label">Fecha de inicio de contrato:</label>
+    <input name="fecha_inicio" id="fecha_inicio" class="pregunta_input input_short fecha_inicio" readonly>
+</span>
+
+<div class="pregunta_arrendador_group">
+    <span class="tipo_wrap_vertical">
+        <label for="email_agente" class="pregunta_label">Fecha de fin de contrato:</label>
+        <input name="fecha_final" id="fecha_final" class="pregunta_input fecha_final" readonly>
     </span>
+    <span class="checks_wrap_horizontal">
+        <span class="check_wrap">
+            <p class="check_label">Indefinido <i class="fas fa-info-circle" title="Contrato con duración indéfinida, pero limitada por ley a 10 años antes de renovación"></i></p>
+            <span class="check_element check_indefinido"><i class="far fa-square"></i></span>
+        </span>
+        
+    </span>
+
+</div>
+
 `);
 
-focus_fill_input("#email_agente", ".email_agente");
+$("#fecha_inicio").datepicker({
+    dateFormat: "dd-mm-yy"
+});
 
-
-
+$('#fecha_final').datepicker({
+    dateFormat: "dd-mm-yy"
+});
 
 
 });

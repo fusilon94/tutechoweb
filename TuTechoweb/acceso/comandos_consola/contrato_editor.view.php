@@ -22,9 +22,12 @@ if(isset($_SESSION['usuario'])){} else{header('Location: ../acceso.php');} //par
       <link rel="stylesheet" href="../../css/consola_agente.css">
       <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
       <link rel="stylesheet" href="../../css/contrato_estilos_generales.css" >
+      <link rel="stylesheet" href="../../css/jquery-ui.css">
+      <link rel="stylesheet" href="../../css/consola_agente_jquery-ui.css">
       <!-- <link rel="stylesheet" href="../../css/contrato_estilos_generales_impresion.css" media="print"> -->
 
       <script src="http://code.jquery.com/jquery-latest.js" onerror="this.onerror=null;this.src='../../js/jquery-latest.js';"></script>
+      <script src="../../js/jquery-ui.min.js"></script>
       <script src="../../js/consola_agente_jquery-ui.min.js"></script>
       <script src="../../js/js.cookie.js"></script>
       <script src="../../js/menu.js"></script>

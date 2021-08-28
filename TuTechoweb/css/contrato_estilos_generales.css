@@ -317,6 +317,10 @@ header nav{
     cursor: pointer;
 }
 
+.input_short{
+    max-width: 10em;
+}
+
 .bolean_group{
     display: flex;
     justify-content: space-evenly;
@@ -800,6 +804,43 @@ header nav{
 
 .datos_btn:active{
     transform: scale(0.99);
+}
+
+.referencia_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #35b4e6;
+    margin: 0 auto;
+    font-size: 1.1em;
+    font-weight: bold;
+    user-select: none;
+    padding: 0.3em 1.5em;
+}
+
+.referencia_btn:hover{
+    background-color: #40b6e6; 
+}
+
+.referencia_btn:active{
+    transform: scale(0.99);
+}
+
+.referencia_invalida{
+    visibility: hidden;
+    display: flex;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 0.5em;
+    color: #eb2525;
+}
+
+.referencia_invalida.activo{
+    visibility: unset;
 }
 
 .estado_datos{
